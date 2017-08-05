@@ -1,15 +1,12 @@
 {
-  "name": "kitchenFox",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "kitchenfox",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "directories": {
     "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,14 +18,19 @@
   "bugs": {
     "url": "https://github.com/hobara/kitchenFox/issues"
   },
-  "homepage": "https://github.com/hobara/kitchenFox#readme",
   "dependencies": {
-    "express": "^4.15.3",
-    "rimraf": "^2.6.1"
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "jade": "~1.11.0",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.5",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
   },
+  "homepage": "https://github.com/hobara/kitchenFox#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-config-airbnb-base": "^11.2.0",
