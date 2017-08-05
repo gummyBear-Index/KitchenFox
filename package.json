@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/hobara/kitchenFox#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
     "rimraf": "^2.6.1"
   },
   "devDependencies": {
