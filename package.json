@@ -1,12 +1,16 @@
 {
-  "name": "kitchenfox",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "name": "kitchenFox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "directories": {
     "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
+    "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js server.js",
+    "populate": "node_modules/babel-cli/bin/babel-node.js populate.js"
   },
   "repository": {
     "type": "git",
@@ -18,24 +22,25 @@
   "bugs": {
     "url": "https://github.com/hobara/kitchenFox/issues"
   },
-  "dependencies": {
-    "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
-    "jade": "~1.11.0",
-    "mongodb": "^2.2.30",
-    "mongoose": "^4.11.5",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
-  },
   "homepage": "https://github.com/hobara/kitchenFox#readme",
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.11.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.5",
+    "morgan": "^1.8.2"
   }
 }
