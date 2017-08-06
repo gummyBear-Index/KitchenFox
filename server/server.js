@@ -8,6 +8,10 @@ app.get('/', (req, res) =>
   res.send('Hello World!')
 )
 
+app.get('/users', (req, res) =>
+  res.send()
+)
+
 // Launch the server on port 3000
 const server = app.listen(3000, () => {
   const { address, port } = server.address();
