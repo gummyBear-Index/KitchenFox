@@ -17,6 +17,9 @@
 !/log/.keep
 !/tmp/.keep
 
+/server/node_modules
+/client/node_modules
+
 /node_modules
 /yarn-error.log
 
@@ -27,3 +30,4 @@ node_modules/
 .DS_Store
 npm-debug.log
 .eslintrc.json
+package-lock.json
