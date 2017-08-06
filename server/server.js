@@ -1,4 +1,5 @@
 import express from 'express';
+import { userIndex } from './api/controllers/users';
 
 // Initialize http server
 const app = express();
@@ -6,11 +7,11 @@ const app = express();
 // Handle / route
 app.get('/', (req, res) =>
   res.send('Hello World!')
-)
+);
 
 app.get('/users', (req, res) =>
-  res.send()
-)
+  res.send(userIndex())
+);
 
 // Launch the server on port 3000
 const server = app.listen(3000, () => {
