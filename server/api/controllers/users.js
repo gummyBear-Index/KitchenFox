@@ -5,7 +5,9 @@ import User from '../models/user';
 export const userIndex = (req, res, next) => (
   User.find().lean().exec((err, users) => {
     return (
-      res.json(users)
+      res.json(
+        { hello: 'world' }
+      )
     );
   })
 );
