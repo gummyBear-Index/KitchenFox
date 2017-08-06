@@ -11,7 +11,7 @@ const users = [
   },
 ];
 
-mongoose.connect('mongodb://localhost/users');
+mongoose.connect('mongodb://localhost/kitchenFox');
 
 users.map((data) => {
   const user = new User(data);
