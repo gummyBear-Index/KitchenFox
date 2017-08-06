@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { userIndex } from './controllers/users';
 import passport from 'passport';
+import User from './models/user';
 
 const router = Router();
 
@@ -18,6 +19,15 @@ router.get('/protected', (req, res, next) => {
         .json({ secret: '123' });
     }
   })(req, res, next);
+});
+
+router.post('/register', (req, res) => {
+  User.register(new User({email:req.body.email}), req.body.password, (err, user) => {
+    if (err) {
+      return res.status(400).send({error: "Email address in use"});
+    }
+    res.status(200).send({user:user.id});
+  });
 });
 
 router.route('/users.json').get(userIndex);
