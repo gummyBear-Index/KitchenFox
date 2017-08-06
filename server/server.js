@@ -1,5 +1,8 @@
 import express from 'express';
 import { userIndex } from './api/controllers/users';
+import morgan from 'morgan';
+import mongoose from 'mongoose';
+import router from './api/routes';
 
 // Initialize http server
 const app = express();
@@ -9,9 +12,9 @@ app.get('/', (req, res) =>
   res.send('Hello World!')
 );
 
-app.get('/users', (req, res) =>
-  res.send(userIndex())
-);
+app.use(morgan('combined'));
+app.use('/api', router);
+
 
 // Launch the server on port 3000
 const server = app.listen(3000, () => {
