@@ -8,9 +8,6 @@ import router from './api/routes';
 const app = express();
 
 // Handle / route
-app.get('/', (req, res) =>
-  res.send('Hello World!')
-);
 
 app.use(morgan('combined'));
 app.use('/api', router);
