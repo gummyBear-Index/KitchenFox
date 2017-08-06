@@ -13,6 +13,9 @@ import router from './api/routes';
 
 // Initialize http server
 const app = express();
+let options = {};
+options.jwtFromRequest = ExtractJwt.fromAuthHeader();
+options.secretOrKey = '7x0jhxt&quot;9(thpX6';
 
 passport.use('local', new LocalStrategy(User.authenticate()));
 passport.use('jwt', new JwtStrategy(options, (jwt_payload, done) => {
@@ -30,9 +33,6 @@ passport.use('jwt', new JwtStrategy(options, (jwt_payload, done) => {
   });
 }));
 
-let options = {};
-options.jwtFromRequest = ExtractJwt.fromAuthHeader();
-options.secretOrKey = '7x0jhxt&quot;9(thpX6';
 // Handle / route
 
 app.use(morgan('combined'));

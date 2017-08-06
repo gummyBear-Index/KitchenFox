@@ -10,7 +10,7 @@ router.get('/protected', (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' })
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
     if (user) {
       return res
@@ -23,7 +23,7 @@ router.get('/protected', (req, res, next) => {
 router.route('/users.json').get(userIndex);
 
 router.route('/').get((req, res) =>
-  res.send('Hello Errbody!'),
+  res.send('Hello Errbody!')
 );
 
 export default router;
