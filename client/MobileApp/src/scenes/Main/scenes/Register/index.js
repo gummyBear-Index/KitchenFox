@@ -20,6 +20,7 @@ import * as usersApi from 'MobileApp/src/data/users/api';
 import * as session from 'MobileApp/src/services/session';
 import * as api from 'MobileApp/src/services/api';
 import FormMessage from 'MobileApp/src/components/FormMessage';
+// import { createUser } from '../../../services/util/api_util';
 
 const styles = StyleSheet.create({
 	container: {
@@ -68,36 +69,59 @@ class Register extends Component {
 			firstName: '',
 			email: '',
 			password: '',
+			username: '',
 		};
 		this.state = this.initialState;
 	}
 
+
 	onPressRegister() {
+		const { firstName, email, password, username } = this.state;
+
+		const createUser = (username, password) => (
+			fetch("http://10.163.109.163:3000/api/register", {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: `username=${username}&password=${password}`,
+			})
+		);
+		const login = (username, password) => (
+			fetch("http://10.163.109.163:3000/api/login", {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: `username=${username}&password=${password}`,
+			})
+		);
+		const secured = ({ token }) => (
+			fetch("http://10.163.109.163:3000/api/register", {
+				method: "GET",
+				headers: {
+					'Authentication': `JWT ${token}`
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+			})
+		);
+
 		this.setState({
 			isLoading: true,
 			error: '',
 		});
 		dismissKeyboard();
 
-		const { firstName, email, password } = this.state;
-		usersApi.create({ firstName, email, password })
-		.then(() => {
-			session.authenticate(email, password)
-			.then(() => {
-				this.setState(this.initialState);
-				const routeStack = this.props.navigator.getCurrentRoutes();
-				this.props.navigator.jumpTo(routeStack[3]);
-			});
-		})
-		.catch((exception) => {
-			// Displays only the first error message
-			const error = api.exceptionExtractError(exception);
-			const newState = {
-				isLoading: false,
-				...(error ? { error } : {}),
-			};
-			this.setState(newState);
-		});
+		// let formData = new FormData();
+		let params = {
+			username,
+			password,
+		};
+		// for (let key in params) {
+		// 	formData.append(key, params[key]);
+		// }
+		createUser(username, password).then(response => console.warn(response));
+		// login(username, password).then(response => secured(response))
 	}
 
 	onPressBack() {
@@ -145,6 +169,17 @@ class Register extends Component {
 									autoCapitalize="none"
 									onChangeText={email => this.setState({ email })}
 									value={this.state.email}
+								/>
+							</InputGroup>
+							<InputGroup style={styles.input}>
+								<Icon style={styles.inputIcon} name="ios-person" />
+								<Input
+									placeholder="Username"
+									keyboardType="email-address"
+									autoCorrect={false}
+									autoCapitalize="none"
+									onChangeText={username => this.setState({ username })}
+									value={this.state.username}
 								/>
 							</InputGroup>
 							<InputGroup style={styles.input}>
