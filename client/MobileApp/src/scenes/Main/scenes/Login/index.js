@@ -69,8 +69,8 @@ class Login extends Component {
 		this.initialState = {
 			isLoading: false,
 			error: null,
-			email: 'user1@facebook.com',
-			password: '12345678',
+			username: '',
+			password: '',
 		};
 		this.state = this.initialState;
 	}
@@ -81,6 +81,7 @@ class Login extends Component {
 			error: '',
 		});
 		dismissKeyboard();
+
 
 		session.authenticate(this.state.email, this.state.password)
 		.then(() => {
@@ -101,11 +102,11 @@ class Login extends Component {
 			}
 		});
 	}
-
-	onPressBack() {
-		const routeStack = this.props.navigator.getCurrentRoutes();
-		this.props.navigator.jumpTo(routeStack[0]);
-	}
+	//
+	// onPressBack() {
+	// 	const routeStack = this.props.navigator.getCurrentRoutes();
+	// 	this.props.navigator.jumpTo(routeStack[0]);
+	// }
 
 	renderError() {
 		if (this.state.error) {

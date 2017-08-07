@@ -4,46 +4,50 @@ KitchenFox is a mobile application that keeps track of user’s food inventory. 
 ### Functionality & MVP
 KitchenFox will provide the following Functionality to users.
 - [ ] User authentication (new account creation, login, logout).
-- [ ] Create, update, delete food inventory.
-- [ ] Scan receipt/barcode to update inventory.
+- [ ] Create, view, update and delete food inventory.
+- [ ] Scan barcode to update inventory.
 - [ ] Display recipes available based the user’s food inventory.
 
 ### Wireframes
 
 
-
-
 ### Architecture and Technologies
 Express.js
-
 Node.js
-
 MongoDB with Mongoose (ORM)
-
-
-
 
 ### Implementation Timeline  
 #### Day 1:
+Users can sign up, login and logout.
+*Backend auth*: Graham and Cherry
+*Frontend auth*: Kevin and Hiro
+#### Day 2 - 4:
+Create, view, update and delete inventory from users input.
+*Backend*: Barcode scan update inventory, Manual input update inventory
+*Frontend*: Update kitchen dashboard, Index page for update, update form                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+Learn, Implement barcode scanning API
 
-#### Day 2:
-
-#### Day 3:
-
-#### Day 4:
-
-#### Day 5:
-
-#### Day 6:
+#### Day 5 - 6:
+Display recipe
+*Backend*: fetch/hit recipe api, parse info needed for frontend
+		Update Inventory based on selected recipe
+*Frontend*: Display recipe based on relevant info
 
 #### Day 7:
+*Frontend*: app dash board (alerts for low-inventory items)
+*Polish user experience and touch-up styling*
 
 ### Bonus Features
+- [ ] Use Receipt to update inventory
+- [ ] Connect with Amazon via affiliate link for items low in stock
 - [ ] Shopping list
+- [ ] Notification reminders when food items are close to expiring
 - [ ] Suggest a meal plan for the week based on food inventory
 - [ ] Allow users to save, edit, and view selected meal plans for the week
 - [ ] Sharing shopping lists between users.  
 - [ ] Estimation of carbon footprint and environmental impact based on purchase.
 - [ ] Parse voice to text to update inventory.
-- [ ] Notification reminders when food items are close to expiring
-- [ ] Alex / Google Home integration to update kitchen inventory via voice commands
+- [ ] Alexa / Google Home integration to update kitchen inventory via voice commands
+- [ ] Nutrition tracking
+- [ ] Oauth
+- [ ] Stop adding things to bonus
