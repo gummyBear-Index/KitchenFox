@@ -78,33 +78,37 @@ class Register extends Component {
 	onPressRegister() {
 		const { firstName, email, password, username } = this.state;
 
-		const createUser = (username, password) => (
-			fetch("http://10.163.109.163:3000/api/register", {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-				body: `username=${username}&password=${password}`,
-			})
-		);
+		// const createUser = (username, password) => (
+		// 	fetch("http://[2602:304:791d:3900:b053:4884:e9c4:7318]:3000/api/register", {
+		// 		method: "POST",
+		// 		headers: {
+		// 			'Content-Type': 'application/x-www-form-urlencoded',
+		// 		},
+		// 		body: `username=${username}&password=${password}`,
+		// 	})
+		// );
 		const login = (username, password) => (
-			fetch("http://10.163.109.163:3000/api/login", {
+			fetch("http://[2602:304:791d:3900:b053:4884:e9c4:7318]:3000/api/login", {
 				method: "POST",
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
+					charset: 'UTF-8',
 				},
 				body: `username=${username}&password=${password}`,
 			})
 		);
-		const secured = ({ token }) => (
-			fetch("http://10.163.109.163:3000/api/register", {
+		const securable = (stoken) => (
+			fetch("http://[2602:304:791d:3900:b053:4884:e9c4:7318]:3000/api/protected", {
 				method: "GET",
 				headers: {
-					'Authentication': `JWT ${token}`
+					authorization: `JWT ${stoken}`,
 					'Content-Type': 'application/x-www-form-urlencoded',
+					charset: 'UTF-8',
 				},
 			})
 		);
+
+		// .then(response => console.warn(String(response)))
 
 		this.setState({
 			isLoading: true,
@@ -117,10 +121,45 @@ class Register extends Component {
 			username,
 			password,
 		};
+		function getDifference(a, b)
+		{
+		    var i = 0;
+		    var j = 0;
+		    var result = "";
+
+		    while (j < b.length)
+		    {
+		        if (a[i] != b[j] || i == a.length)
+		            result += b[j];
+		        else
+		            i++;
+		        j++;
+		    }
+		    return result;
+		}
 		// for (let key in params) {
 		// 	formData.append(key, params[key]);
 		// }
-		createUser(username, password).then(response => console.warn(response));
+		const gimmeToken = (response) => {
+			const blarg = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODgwODk3MmFhOWM3MmYxNmZmODY0ZSIsInVzZXJuYW1lIjoiZ3JhaGFtIiwiaWF0IjoxNTAyMDg3NTY3fQ.Azmp7HCklfPf9vz5TJhYHdEJzeqtM7CNZ3aQf5w1F5I";
+			// console.warn(response._bodyText, blarg);
+			let thing = JSON.parse(response._bodyText)
+			// console.warn(`answer: ${thing.token}`);
+			// console.warn(thing);
+			// console.warn(getDifference(thing, blarg));
+			this.radThing = thing;
+			return thing.token;
+		};
+
+		const gimmeSecret = (response) => {
+			const otherThing = JSON.stringify(response);
+			console.warn(otherThing);
+			return otherThing
+		}
+		login(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
+		// .then(reply => console.warn(JSON.stringify(reply)))
+		// let that = this;
+		// setTimeout(that.securable(that.radThing), 5000);
 		// login(username, password).then(response => secured(response))
 	}
 

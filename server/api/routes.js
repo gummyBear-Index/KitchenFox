@@ -10,11 +10,12 @@ const secret = '7x0jhxt&quot;9(thpX6';
 
 router.get('/protected', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
+    console.log(req.headers.authorization);
     if (err) {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json(String(err));
     }
     if (user) {
       return res

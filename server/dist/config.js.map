@@ -1,0 +1,1 @@
+{"version":3,"sources":["../config.js"],"names":["Promise","connect"],"mappings":";;;;;;AAAA;;;;AACA;;;;;;AAEA,mBAASA,OAAT;AACA,mBAASC,OAAT,CAAiB,sCAAjB","file":"config.js","sourcesContent":["import bluebird from 'bluebird';\nimport mongoose from 'mongoose';\n\nmongoose.Promise = bluebird;\nmongoose.connect('mongodb://localhost:27017/kitchenFox');\n\nexport default mongoose;\n"]}
