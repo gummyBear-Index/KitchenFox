@@ -26,12 +26,10 @@ router.get('/protected', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    console.log(user);
     if (err) {
       return next(err);
     }
     if (!user) {
-      console.log(res);
       return res.status(401).json({ err });
     }
     if (user) {
@@ -45,7 +43,7 @@ router.post('/login', (req, res, next) => {
 
 // User postman to submit request, only works for urlencoded type data
 router.post('/register', (req, res) => {
-  User.register(new User({email:req.body.email}), req.body.password, (err, user) => {
+  User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
     if (err) {
       return res.status(400).send({error: "Email address in use"});
     }

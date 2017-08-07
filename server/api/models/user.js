@@ -6,7 +6,6 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const User = new Schema({});
 
 User.plugin(passportLocalMongoose, {
-  usernameField: "email",
   usernameUnique: true,
 });
 
