@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import {
+	AsyncStorage,
 	TouchableWithoutFeedback,
 	StyleSheet,
 } from 'react-native';
@@ -147,13 +148,16 @@ class Register extends Component {
 			// console.warn(`answer: ${thing.token}`);
 			// console.warn(thing);
 			// console.warn(getDifference(thing, blarg));
-			this.radThing = thing;
+      AsyncStorage.setItem('jwt', thing.token);
+      // alert(`Success! You may now access protected content.`)
+      // Redirect to home screen
 			return thing.token;
 		};
 
 		const gimmeSecret = (response) => {
 			const otherThing = JSON.stringify(response);
 			console.warn(otherThing);
+			AsyncStorage.getItem('jwt', (err, token) => console.warn(token));
 			return otherThing
 		}
 		login(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
