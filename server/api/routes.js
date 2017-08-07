@@ -30,10 +30,10 @@ router.post('/login', (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({ err });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
     if (user) {
-      const token = jwt.sign({ id: user._id, email: user.email }, secret)
+      const token = jwt.sign({ id: user._id, username: user.username }, secret)
       return res
         .status(200)
         .json({ token });
