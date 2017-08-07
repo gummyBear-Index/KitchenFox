@@ -15,9 +15,11 @@ KitchenFox will provide the following Functionality to users.
 
 
 ### Architecture and Technologies
-Express.js
-Node.js
-MongoDB with Mongoose (ORM)
+**Express.js**
+**Node.js**
+**MongoDB with Mongoose (ORM)**
+**react-native-camera**: For barcode scanning on Android and iOS [link to react-native-camera's repo](https://github.com/lwansbrough/react-native-camera/blob/master/README.md)
+**UPC Database**: After a user scans a barcode, the information from the barcode will be queried against this [UPC Database](https://upcdatabase.org) to return product name on the Add Item  to food inventory screen
 
 
 ### Implementation Timeline  
@@ -25,6 +27,7 @@ MongoDB with Mongoose (ORM)
 Users can sign up, login and logout.
 *Backend auth*: Graham and Cherry
 *Frontend auth*: Kevin and Hiro
+
 #### Day 2 - 4:
 Create, view, update and delete inventory from users input.
 *Backend*: Barcode scan update inventory, Manual input update inventory
