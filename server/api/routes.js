@@ -1,9 +1,12 @@
 import express, { Router } from 'express';
 import { userIndex } from './controllers/users';
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
 import User from './models/user';
 
 const router = Router();
+const secret = '7x0jhxt&quot;9(thpX6';
+// delete unless needed
 
 router.get('/protected', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
@@ -21,6 +24,24 @@ router.get('/protected', (req, res, next) => {
   })(req, res, next);
 });
 
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    console.log(user);
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      console.log(res);
+      return res.status(401).json({ err });
+    }
+    if (user) {
+      const token = jwt.sign({ id: user._id, email: user.email }, secret)
+      return res
+        .status(200)
+        .json({ token });
+    }
+  })(req, res, next);
+});
 
 // User postman to submit request, only works for urlencoded type data
 router.post('/register', (req, res) => {
