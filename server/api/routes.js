@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { userIndex, register } from './controllers/users';
+import { userIndex, register, login } from './controllers/users';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import User from './models/user';
@@ -24,23 +24,7 @@ router.get('/protected', (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-    if (user) {
-      const token = jwt.sign({ id: user._id, username: user.username }, secret)
-      return res
-        .status(200)
-        .json({ token });
-    }
-  })(req, res, next);
-});
-
+router.route('/login').post((req, res, next) => login(req, res, next));
 
 router.route('/register').post((req, res) => register(req, res));
 
