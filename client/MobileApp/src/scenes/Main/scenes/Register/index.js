@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import {
+	AsyncStorage,
 	TouchableWithoutFeedback,
 	StyleSheet,
 } from 'react-native';
@@ -20,6 +21,7 @@ import * as usersApi from 'MobileApp/src/data/users/api';
 import * as session from 'MobileApp/src/services/session';
 import * as api from 'MobileApp/src/services/api';
 import FormMessage from 'MobileApp/src/components/FormMessage';
+// import { createUser } from '../../../services/util/api_util';
 
 const styles = StyleSheet.create({
 	container: {
@@ -68,36 +70,101 @@ class Register extends Component {
 			firstName: '',
 			email: '',
 			password: '',
+			username: '',
 		};
 		this.state = this.initialState;
 	}
 
+
 	onPressRegister() {
+		const { firstName, email, password, username } = this.state;
+
+		// const createUser = (username, password) => (
+		// 	fetch("http://[2602:304:791d:3900:b053:4884:e9c4:7318]:3000/api/register", {
+		// 		method: "POST",
+		// 		headers: {
+		// 			'Content-Type': 'application/x-www-form-urlencoded',
+		// 		},
+		// 		body: `username=${username}&password=${password}`,
+		// 	})
+		// );
+		const login = (username, password) => (
+			fetch("http://[2602:304:791d:3900:b053:4884:e9c4:7318]:3000/api/login", {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					charset: 'UTF-8',
+				},
+				body: `username=${username}&password=${password}`,
+			})
+		);
+		const securable = (stoken) => (
+			fetch("http://[2602:304:791d:3900:b053:4884:e9c4:7318]:3000/api/protected", {
+				method: "GET",
+				headers: {
+					authorization: `JWT ${stoken}`,
+					'Content-Type': 'application/x-www-form-urlencoded',
+					charset: 'UTF-8',
+				},
+			})
+		);
+
+		// .then(response => console.warn(String(response)))
+
 		this.setState({
 			isLoading: true,
 			error: '',
 		});
 		dismissKeyboard();
 
-		const { firstName, email, password } = this.state;
-		usersApi.create({ firstName, email, password })
-		.then(() => {
-			session.authenticate(email, password)
-			.then(() => {
-				this.setState(this.initialState);
-				const routeStack = this.props.navigator.getCurrentRoutes();
-				this.props.navigator.jumpTo(routeStack[3]);
-			});
-		})
-		.catch((exception) => {
-			// Displays only the first error message
-			const error = api.exceptionExtractError(exception);
-			const newState = {
-				isLoading: false,
-				...(error ? { error } : {}),
-			};
-			this.setState(newState);
-		});
+		// let formData = new FormData();
+		let params = {
+			username,
+			password,
+		};
+		function getDifference(a, b)
+		{
+		    var i = 0;
+		    var j = 0;
+		    var result = "";
+
+		    while (j < b.length)
+		    {
+		        if (a[i] != b[j] || i == a.length)
+		            result += b[j];
+		        else
+		            i++;
+		        j++;
+		    }
+		    return result;
+		}
+		// for (let key in params) {
+		// 	formData.append(key, params[key]);
+		// }
+		const gimmeToken = (response) => {
+			const blarg = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODgwODk3MmFhOWM3MmYxNmZmODY0ZSIsInVzZXJuYW1lIjoiZ3JhaGFtIiwiaWF0IjoxNTAyMDg3NTY3fQ.Azmp7HCklfPf9vz5TJhYHdEJzeqtM7CNZ3aQf5w1F5I";
+			// console.warn(response._bodyText, blarg);
+			let thing = JSON.parse(response._bodyText)
+			// console.warn(`answer: ${thing.token}`);
+			// console.warn(thing);
+			// console.warn(getDifference(thing, blarg));
+      AsyncStorage.setItem('jwt', thing.token);
+      // alert(`Success! You may now access protected content.`)
+      // Redirect to home screen
+			return thing.token;
+		};
+
+		const gimmeSecret = (response) => {
+			const otherThing = JSON.stringify(response);
+			console.warn(otherThing);
+			AsyncStorage.getItem('jwt', (err, token) => console.warn(token));
+			return otherThing
+		}
+		login(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
+		// .then(reply => console.warn(JSON.stringify(reply)))
+		// let that = this;
+		// setTimeout(that.securable(that.radThing), 5000);
+		// login(username, password).then(response => secured(response))
 	}
 
 	onPressBack() {
@@ -145,6 +212,17 @@ class Register extends Component {
 									autoCapitalize="none"
 									onChangeText={email => this.setState({ email })}
 									value={this.state.email}
+								/>
+							</InputGroup>
+							<InputGroup style={styles.input}>
+								<Icon style={styles.inputIcon} name="ios-person" />
+								<Input
+									placeholder="Username"
+									keyboardType="email-address"
+									autoCorrect={false}
+									autoCapitalize="none"
+									onChangeText={username => this.setState({ username })}
+									value={this.state.username}
 								/>
 							</InputGroup>
 							<InputGroup style={styles.input}>
