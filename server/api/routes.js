@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { userIndex } from './controllers/users';
+import { userIndex, register } from './controllers/users';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import User from './models/user';
@@ -41,15 +41,8 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-// User postman to submit request, only works for urlencoded type data
-router.post('/register', (req, res) => {
-  User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
-    if (err) {
-      return res.status(400).send({error: "Email address in use"});
-    }
-    res.status(200).send({user:user.id});
-  });
-});
+
+router.route('/register').post((req, res) => register(req, res));
 
 // router.route('/users.json').get(userIndex);
 
