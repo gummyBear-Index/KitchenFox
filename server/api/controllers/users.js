@@ -20,17 +20,18 @@ export const userIndex = (req, res, next) => (
 // )
 
 export const register = (req, res, next) => {
-  User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
+  User.register(new User({
+    username: req.body.username,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+  }), req.body.password, (err, user) => {
     if (err) {
       return res.status(401).json({ error: 'Email address in use' });
     }
-    else {
-      return res
-        .status(200)
-        .json(getToken(user));
-    }
-  }
-);
+    return res
+      .status(200)
+      .json(getToken(user));
+  });
 };
 
 // export const login = (req, res, next) => {
@@ -61,7 +62,7 @@ export const login = (req, res, next) => {
     if (user) {
       return res
         .status(200)
-        .json(getToken(user));
+        .json(JSON.parse(getToken(user)));
     }
   })(req, res, next);
 };

@@ -18,6 +18,7 @@
 !/tmp/.keep
 
 /server/node_modules
+/server/dist
 /client/node_modules
 
 /node_modules
