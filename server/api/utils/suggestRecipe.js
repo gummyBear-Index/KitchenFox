@@ -5,10 +5,8 @@ import jwt from 'jsonwebtoken';
 import User from './models/user';
 
 const router = Router();
-const secret = '7x0jhxt&quot;9(thpX6';
-// delete unless needed
 
-router.get('/protected', (req, res, next) => {
+router.get('/recipe', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
     if (err) {
       return next(err);
@@ -23,15 +21,3 @@ router.get('/protected', (req, res, next) => {
     }
   })(req, res, next);
 });
-
-router.route('/login').post((req, res, next) => login(req, res, next));
-
-router.route('/register').post((req, res) => register(req, res));
-
-// router.route('/users.json').get(userIndex);
-
-router.route('/').get((req, res) =>
-  res.send('Hello Errbody!')
-);
-
-export default router;
