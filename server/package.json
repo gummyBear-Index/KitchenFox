@@ -37,12 +37,17 @@
     "eslint-plugin-react": "^7.1.0"
   },
   "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.2",
     "moment": "^2.18.1",
+    "nodemon": "^1.11.0",
     "mongoose": "^4.11.5",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",

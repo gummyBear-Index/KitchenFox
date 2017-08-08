@@ -11,7 +11,7 @@ KitchenFox will provide the following Functionality to users.
 
 
 ### Wireframes
-[wireframes]("https://github.com/hobara/kitchenFox/tree/master/docs/wireframes")
++ [wireframes](./wireframes/)
 
 
 ### Architecture and Technologies
