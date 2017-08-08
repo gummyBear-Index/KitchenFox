@@ -66,7 +66,7 @@ export const login = (req, res, next) => {
   })(req, res, next);
 };
 
-export const getToken = (err, user, info) => {
+export const getToken = (user) => {
     const token = jwt.sign({ id: user._id, username: user.username }, secret);
     return {token};
 };
