@@ -1,1 +1,1 @@
-// import './client/components/entry_level';
+import './components/entry_level';
