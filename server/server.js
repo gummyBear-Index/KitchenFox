@@ -50,8 +50,10 @@ app.use(morgan('combined'));
 app.use('/api', router);
 
 
+const portNum = process.env.PORT || 3000;
+
 // Launch the server on port 3000
-const server = app.listen(3000, () => {
+const server = app.listen(portNum, () => {
   const { address, port } = server.address();
   console.log(`Listening at http://${address}:${port}`);
 });
