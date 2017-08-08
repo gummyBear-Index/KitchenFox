@@ -27,13 +27,12 @@ export const register = (req, res, next) => {
     else {
       return res
         .status(200)
-        .json(getToken());
+        .json(getToken(user));
     }
   }
 );
 };
 
-//
 // export const login = (req, res, next) => {
 //   passport.authenticate('local', (err, user, info) => {
 //     if (err) {
@@ -62,7 +61,7 @@ export const login = (req, res, next) => {
     if (user) {
       return res
         .status(200)
-        .json(getToken());
+        .json(getToken(user));
     }
   })(req, res, next);
 };
