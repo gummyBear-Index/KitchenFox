@@ -33,10 +33,10 @@ export const getLocalToken = () => (
   await AsyncStorage.getItem('jwt');
 )
 
-export const demoSecured = () => {
+export const demoSecured = (route) => {
   const token = getLocalToken();
   return (
-    fetch('https://kitchenfox.herokuapp.com/api/protected', {
+    fetch('https://kitchenfox.herokuapp.com/api/${route}', {
       method: 'GET',
       headers: {
         authorization: `JWT ${token}`,

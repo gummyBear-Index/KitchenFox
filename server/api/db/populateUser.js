@@ -1,19 +1,69 @@
-import mongoose from 'mongoose';
+import mongoose from '../db/database';
 import User from '../models/user';
 
+const populate = () => {
+  const currentUsers =  User.find().lean().distinct('_id');
 
-const users = [
-  {
-    username: 'Jerry',
-  },
-  {
-    username: 'Graham',
-  },
-];
 
-mongoose.connect('mongodb://localhost/kitchenFox');
+  console.log(currentUsers);
 
-users.map((data) => {
-  const user = new User(data);
-  user.save();
-});
+  const inventory = {
+    'A123948172348': {
+      'name': 'Banana',
+      'quantity': 11,
+      'units': 'each',
+    },
+    '9348798375': {
+      'name': 'Vegemite',
+      'quantity': 400,
+      'units': 'g',
+    },
+  };
+  const users = [
+    {
+      username: 'graham',
+      password: 'graham',
+      first_name: 'Graham',
+      last_name: 'Paye',
+      inventory: Object.assign(inventory),
+    },
+    {
+      username: 'hiro',
+      password: 'hiro',
+      first_name: 'Hiro',
+      last_name: 'Obara',
+      inventory: Object.assign(inventory),
+    },
+  ];
+  console.log(users);
+  console.log(typeof users);
+
+  users.map(user => User.register(new User({
+    username: user.username,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    inventory: Object.assign(user.inventory),
+  }), 'pass', (err, user) => (
+    err ? console.log(err) : console.log('success')
+  )));
+
+  // console.log(User.all());
+};
+
+// export const register = (req, res, next) => {
+//   User.register(new User({
+//     username: req.body.username,
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//   }), req.body.password, (err, user) => {
+//     if (err) {
+//       return res.status(401).json({ error: 'Email address in use' });
+//     }
+//     return res
+//       .status(200)
+//       .json(getToken(user));
+//   });
+// };
+
+
+export default populate;

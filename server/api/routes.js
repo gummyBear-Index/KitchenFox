@@ -5,14 +5,13 @@ import jwt from 'jsonwebtoken';
 import { userIndex, register, login } from './controllers/users';
 import { itemsIndex } from './controllers/items';
 import User from './models/user';
+import { secret } from '../config';
 
 const router = Router();
-const secret = '7x0jhxt&quot;9(thpX6';
 // delete unless needed
 
 router.get('/protected', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
-    console.log(req.headers.authorization);
     if (err) {
       return next(err);
     }

@@ -1,8 +1,8 @@
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 
+import { secret } from '../../config';
 import User from '../models/user';
-const secret = '7x0jhxt&quot;9(thpX6';
 
 // lean gives json instead of mongo docobject
 export const userIndex = (req, res, next) => (
@@ -62,7 +62,7 @@ export const login = (req, res, next) => {
     if (user) {
       return res
         .status(200)
-        .json(JSON.parse(getToken(user)));
+        .json(getToken(user));
     }
   })(req, res, next);
 };

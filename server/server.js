@@ -10,15 +10,17 @@ import { ExtractJwt } from 'passport-jwt';
 
 import User from './api/models/user';
 
-import mongoose from './config';
+import mongoose from './api/db/database';
+import { secret } from './config';
 import router from './api/routes';
 
 // Initialize http server
 const app = express();
 
+
 let options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeader();
-options.secretOrKey = '7x0jhxt&quot;9(thpX6';
+options.secretOrKey = secret;
 
 app.use(passport.initialize());
 
