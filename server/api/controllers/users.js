@@ -18,17 +18,23 @@ export const register = (req, res, next) => (
     err ? res.status(400).send({error: "Email address in use"}) : res.status(200).send({user:user.id})
   ))
 )
-//
-// export const register = (req, res, next) => {
-//   User.register(new User({ username: req.body.username }), req.body.password, (err, user, req) => {
+
+// 
+// export const login = (req, res, next) => {
+//   passport.authenticate('local', (err, user, info) => {
 //     if (err) {
 //       return next(err);
 //     }
-//     if (user) {
-//       login(req);
+//     if (!user) {
+//       return res.status(401).json({ error: 'Invalid credentials' });
 //     }
-//   }
-//   )
+//     if (user) {
+//       const token = jwt.sign({ id: user._id, username: user.username }, secret);
+//       return res
+//         .status(200)
+//         .json({ token });
+//     }
+//   })(req, res, next);
 // };
 
 export const login = (req, res, next) => {
@@ -40,10 +46,14 @@ export const login = (req, res, next) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
     if (user) {
-      const token = jwt.sign({ id: user._id, username: user.username }, secret)
       return res
         .status(200)
-        .json({ token });
+        .json(getToken());
     }
   })(req, res, next);
-}
+};
+
+export const getToken = (err, user, info) => {
+    const token = jwt.sign({ id: user._id, username: user.username }, secret);
+    return {token};
+};
