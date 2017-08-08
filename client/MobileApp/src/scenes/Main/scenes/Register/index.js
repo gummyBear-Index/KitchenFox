@@ -122,22 +122,22 @@ class Register extends Component {
 			username,
 			password,
 		};
-		function getDifference(a, b)
-		{
-		    var i = 0;
-		    var j = 0;
-		    var result = "";
+		// function getDifference(a, b)
+		// {
+		//     var i = 0;
+		//     var j = 0;
+		//     var result = "";
 
-		    while (j < b.length)
-		    {
-		        if (a[i] != b[j] || i == a.length)
-		            result += b[j];
-		        else
-		            i++;
-		        j++;
-		    }
-		    return result;
-		}
+		//     while (j < b.length)
+		//     {
+		//         if (a[i] != b[j] || i == a.length)
+		//             result += b[j];
+		//         else
+		//             i++;
+		//         j++;
+		//     }
+		//     return result;
+		// }
 		// for (let key in params) {
 		// 	formData.append(key, params[key]);
 		// }
@@ -158,7 +158,7 @@ class Register extends Component {
 			const otherThing = JSON.stringify(response);
 			console.warn(otherThing);
 			AsyncStorage.getItem('jwt', (err, token) => console.warn(token));
-			return otherThing
+			return otherThing;
 		}
 		login(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
 		// .then(reply => console.warn(JSON.stringify(reply)))
