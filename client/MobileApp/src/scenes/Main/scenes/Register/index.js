@@ -79,17 +79,21 @@ class Register extends Component {
 	onPressRegister() {
 		const { firstName, email, password, username } = this.state;
 
-		// const createUser = (username, password) => (
-		// 	fetch("http://kitchenfox.herokuapp.com:3000/api/register", {
-		// 		method: "POST",
-		// 		headers: {
-		// 			'Content-Type': 'application/x-www-form-urlencoded',
-		// 		},
-		// 		body: `username=${username}&password=${password}`,
-		// 	})
-		// );
+		const createUser = (username, password) => (
+			fetch("http://kitchenfox.herokuapp.com/api/register", {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				// body: `username=${username}&password=${password}`,
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        })
+			})
+		);
+
 		const login = (username, password) => (
-      // 2602:304:791d:3900:b053:4884:e9c4:7318
 			fetch("http://kitchenfox.herokuapp.com/api/login", {
 				method: "POST",
 				headers: {
@@ -165,8 +169,8 @@ class Register extends Component {
 			AsyncStorage.getItem('jwt', (err, token) => console.warn(token));
 			return otherThing;
 		}
-    // createUser(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
-		login(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
+    createUser(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
+		// login(username, password).then(response => securable(gimmeToken(response))).then(otherthing => gimmeSecret(otherthing));
 		// .then(reply => console.warn(JSON.stringify(reply)))
 		// let that = this;
 		// setTimeout(that.securable(that.radThing), 5000);
