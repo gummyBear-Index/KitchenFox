@@ -4,9 +4,6 @@ import User from '../models/user';
 const populate = () => {
   const currentUsers =  User.find().lean().distinct('_id');
 
-
-  console.log(currentUsers);
-
   const inventory = {
     'A123948172348': {
       'name': 'Banana',
@@ -34,18 +31,32 @@ const populate = () => {
       last_name: 'Obara',
       inventory: Object.assign(inventory),
     },
+    {
+      username: 'cherry',
+      password: 'cherry',
+      first_name: 'Cherry',
+      last_name: 'Lam',
+      inventory: Object.assign(inventory),
+    },
+    {
+      username: 'kevin',
+      password: 'kevin',
+      first_name: 'Kevin',
+      last_name: 'Yang',
+      inventory: Object.assign(inventory),
+    },
   ];
-  console.log(users);
-  console.log(typeof users);
 
-  users.map(user => User.register(new User({
+  const addSeed = () => (users.map(user => User.register(new User({
     username: user.username,
     first_name: user.first_name,
     last_name: user.last_name,
     inventory: Object.assign(user.inventory),
   }), 'pass', (err, user) => (
     err ? console.log(err) : console.log('success')
-  )));
+  ))));
+
+  User.remove(addSeed);
 
   // console.log(User.all());
 };

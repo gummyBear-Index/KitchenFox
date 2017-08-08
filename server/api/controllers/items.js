@@ -12,6 +12,7 @@ const testItems = (user) => {
 
 
 export const itemsIndex = (req, res, next) => {
-  User.getUserFromToken(req.headers.authorization, decode => console.log(decode));
-  return res.json({ hello: 'hello' });
+  populate();
+  User.getUserFromToken(req.headers.authorization, user => res.json(user.inventory));
+  // return res.json(user);
 };

@@ -23,7 +23,7 @@ User.static('getUserFromToken', (token, callback) => {
   const body = token.split(' ');
   const parsedToken = body.length > 1 ? body[1] : body[0]
   const decoded = jwt.verify(parsedToken, secret);
-  callback(decoded);
+  return callback(decoded);
 });
 
 // router.get('/protected', (req, res, next) => {
