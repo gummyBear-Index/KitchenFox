@@ -1,6 +1,6 @@
-// import {
-// 	AppRegistry,
-// } from 'react-native';
-// import App from 'MobileApp/src/App';
-//
-// AppRegistry.registerComponent('MobileApp', () => App);
+import {
+	AppRegistry,
+} from 'react-native';
+import App from 'MobileApp/App';
+
+AppRegistry.registerComponent('MobileApp', () => App);
