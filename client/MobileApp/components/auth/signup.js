@@ -13,6 +13,7 @@ import {
   Icon,
   View,
   Text,
+  Navigator,
 } from 'native-base';
 
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
@@ -23,8 +24,8 @@ class Signup extends Component {
 
 		this.initialState = {
 			firstName: '',
+			lastName: '',
 			email: '',
-			username: '',
 			password: '',
 		};
 		this.state = this.initialState;
@@ -43,9 +44,9 @@ class Signup extends Component {
 
 		dismissKeyboard();
 
-		login(username, password).then(response => saveToken(response));
-		let that = this;
-		setTimeout(that.showJWT, 5000);
+		createUser(username, password).then(response => saveToken(response));
+		// let that = this;
+		// setTimeout(that.showJWT, 5000);
 	}
 
 	showJWT() {
@@ -90,7 +91,7 @@ class Signup extends Component {
 									placeholder='Last name'
 									autoCorrect={false}
 									onChangeText={lastName => this.setState({ lastName })}
-									value={this.state.firstName}
+									value={this.state.lastName}
 								/>
 							</InputGroup>
 							<InputGroup style={styles.input}>
