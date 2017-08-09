@@ -5,6 +5,11 @@ import { secret } from '../../config';
 import User from '../models/user';
 
 // lean gives json instead of mongo docobject
+export const getToken = (user) => {
+  const token = jwt.sign({ id: user._id, username: user.username }, secret);
+  return { token };
+};
+
 export const userIndex = (req, res, next) => (
   User.find().lean().exec((err, users) => {
     return (
@@ -59,9 +64,4 @@ export const login = (req, res, next) => {
         .json(getToken(user));
     }
   })(req, res, next);
-};
-
-export const getToken = (user) => {
-    const token = jwt.sign({ id: user._id, username: user.username }, secret);
-    return {token};
 };
