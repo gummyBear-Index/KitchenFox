@@ -18,25 +18,25 @@ export const login = (username, password) => (
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-8',
     },
-    body: JSON.stringify({
-      username: username,
-      password: password,
-    })
+    body: `username=${username}&password=${password}`,
   })
 );
 
-export const saveToken = token => (
-  await AsyncStorage.setItem('jwt', token);
-)
+export const saveToken = (response) => {
+  let body = JSON.parse(response._bodyText);
+  let token = body.token;
+  console.log(token);
+  AsyncStorage.setItem('jwt', JSON.stringify(token));
+};
 
 export const getLocalToken = () => (
-  await AsyncStorage.getItem('jwt');
-)
+  AsyncStorage.getItem('jwt')
+);
 
-export const demoSecured = (route) => {
+export const demoSecured = () => {
   const token = getLocalToken();
   return (
-    fetch('https://kitchenfox.herokuapp.com/api/${route}', {
+    fetch('https://kitchenfox.herokuapp.com/api/protected', {
       method: 'GET',
       headers: {
         authorization: `JWT ${token}`,

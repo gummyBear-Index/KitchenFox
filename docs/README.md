@@ -32,6 +32,7 @@ Users can sign up, login and logout.
 Create, view, update and delete inventory from users input.
 *Backend*: Barcode scan update inventory, Manual input update inventory
 *Frontend*: Update kitchen dashboard, Index page for update, update form and learn, Implement barcode scanning API
+
 *Backend*: Barcode scan update inventory, Manual input update inventory (Graham and Cherry)
 *Frontend*: Update kitchen dashboard, Index page for update, update form, learn, Implement barcode scanning API (Kevin and Hiro)
 

@@ -1,15 +1,16 @@
 import express, { Router } from 'express';
-import { userIndex, register, login } from './controllers/users';
-import { createQuery, apiCall } from './utils/suggestRecipe';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import User from './models/user';
 import http from 'http';
+const router = Router();
+
+import { userIndex, register, login } from './controllers/users';
+import { createQuery, apiCall } from './utils/suggestRecipe';
+import { itemsIndex } from './controllers/items';
+import User from './models/user';
+import { secret } from '../config';
 
 const router = Router();
-const secret = '7x0jhxt&quot;9(thpX6';
-const app_id = "744f7b77";
-const app_key = "28d95b6af2869f1fdd36dcc5a7e6a24b";
 // delete unless needed
 
 router.get('/protected', (req, res, next) => {
@@ -50,6 +51,7 @@ router.get('/recipes', (req, res, next) => {
     }
   })(req, res, next);
 });
+router.route('/items').get((req, res, next) => itemsIndex(req, res, next));
 
 // router.route('/users.json').get(userIndex);
 
