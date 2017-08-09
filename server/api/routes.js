@@ -33,37 +33,22 @@ router.route('/login').post((req, res, next) => login(req, res, next));
 router.route('/register').post((req, res) => register(req, res));
 
 router.get('/recipes', (req, res, next) => {
-  // passport.authenticate('jwt', (err, user, info) => {
-  //   if (err) {
-  //     return next(err);
-  //   }
-  //   if (!user) {
-  //     return res.status(401).json({ error: 'Invalid credentials' });
-  //   }
-  //   if (user) {
-      let recipes = apiCall(createQuery()).then();
-      console.log("hi");
-      console.log(recipes);
-      return res
+  passport.authenticate('jwt', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    if (user) {
+      apiCall(createQuery()).then((recipeinfo) => {
+        console.log(recipeinfo[4]);
+        return res
         .status(200)
-        .json({recipes});
-    // }
-  // })(req, res, next);
-});
-
-router.get('/recipestest', (req, res, next) => {
-  let query = createQuery();
-  http.get(`http://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${app_key}`, (response) => {
-    response.setEncoding('utf8');
-    let rawData = '';
-    response.on('data', (chunk) => { rawData += chunk; });
-    response.on('end', () => {
-        const parsedData = JSON.parse(rawData);
-        let recipeinfo = parsedData.hits;
-        console.log(parsedData.hits);
-        res.status(200).json(recipeinfo);
-    });
-  });
+        .json(recipeinfo);
+      });
+    }
+  })(req, res, next);
 });
 
 // router.route('/users.json').get(userIndex);
