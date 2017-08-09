@@ -3,19 +3,19 @@ import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage, StyleSheet } from 'react-native';
 
 import {
-  Container, 
-  Header, 
-  Title, 
-  InputGroup, 
-  Input, 
-  Button, 
-  Spinner, 
-  Icon, 
-  View, 
+  Container,
+  Header,
+  Title,
+  InputGroup,
+  Input,
+  Button,
+  Spinner,
+  Icon,
+  View,
   Text
 } from 'native-base';
 
-import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/api_util';
+import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 // import { Text } from 'react-native';
 
 class Signup extends Component {
@@ -30,7 +30,7 @@ class Signup extends Component {
 		};
 		this.state = this.initialState;
   }
-  
+
   onPressRegister() {
 		const { username, password } = this.state;
 
@@ -46,14 +46,14 @@ class Signup extends Component {
       // Redirect to home screen
 			return thing.token;
 		};
-		
+
 		dismissKeyboard();
-    
+
 		login(username, password).then(response => saveToken(response));
 		let that = this;
 		setTimeout(that.thing, 5000);
 	}
-	
+
 	thing() {
 		this.token;
 		let that = this;
@@ -64,7 +64,7 @@ class Signup extends Component {
 		const routeStack = this.props.navigator.getCurrentRoutes();
 		this.props.navigator.jumpTo(routeStack[0]);
   }
-  
+
   render() {
 		return (
 			<Container>
