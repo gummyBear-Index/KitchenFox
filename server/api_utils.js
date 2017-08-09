@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 
 export const createUser = (username, password) => (
-  fetch("https://kitchenfox.herokuapp.com:3000/api/register", {
+  fetch("https://kitchenfox.herokuapp.com/api/register", {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -33,10 +33,10 @@ export const getLocalToken = () => (
   await AsyncStorage.getItem('jwt');
 )
 
-export const demoSecured = () => {
+export const demoSecured = (route) => {
   const token = getLocalToken();
   return (
-    fetch('https://kitchenfox.herokuapp.com/api/protected', {
+    fetch('https://kitchenfox.herokuapp.com/api/${route}', {
       method: 'GET',
       headers: {
         authorization: `JWT ${token}`,

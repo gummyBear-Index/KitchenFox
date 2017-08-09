@@ -5,6 +5,7 @@ export const createUser = (username, password) => (
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      charset: 'UTF-16',
     },
     body: `username=${username}&password=${password}`,
   })
@@ -44,7 +45,7 @@ export const demoSecured = () => {
       },
     })
   );
-}
+};
 
 export const securable = token => (
   fetch("https://kitchenfox.herokuapp.com/api/protected", {

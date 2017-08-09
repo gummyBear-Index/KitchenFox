@@ -5,33 +5,33 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as JwtStrategy } from 'passport-jwt';
-import { ExtractJwt } from 'passport-jwt';
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
 import User from './api/models/user';
 
-import mongoose from './config';
+import { secret } from './config';
 import router from './api/routes';
 
 // Initialize http server
 const app = express();
 
-let options = {};
+
+const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeader();
-options.secretOrKey = '7x0jhxt&quot;9(thpX6';
+options.secretOrKey = secret;
 
 app.use(passport.initialize());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
 }));
 app.use(cookieParser());
 
 passport.use('local', new LocalStrategy(User.authenticate()));
-passport.use('jwt', new JwtStrategy(options, (jwt_payload, done) => {
+passport.use('jwt', new JwtStrategy(options, (jwtPayload, done) => {
   User.findOne({
-    _id: jwt_payload.id
+    _id: jwtPayload.id,
   }, (err, user) => {
     if (err) {
       return done(err, false);
