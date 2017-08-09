@@ -13,12 +13,6 @@ export const userIndex = (req, res, next) => (
   })
 );
 
-// export const register = (req, res, next) => (
-//   User.register(new User({ username: req.body.username }), req.body.password, (err, user) => (
-//     err ? res.status(400).send({error: "Email address in use"}) : res.status(200).send({user:user.id})
-//   ))
-// )
-
 export const register = (req, res, next) => {
   User.register(new User({
     username: req.body.username,
