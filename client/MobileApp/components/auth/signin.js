@@ -18,7 +18,7 @@ import {
   Navigator,
 } from 'native-base';
 
-import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
+import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
 class SignIn extends Component {
   constructor(props) {

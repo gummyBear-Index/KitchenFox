@@ -10,16 +10,21 @@ export const checkLogin = () => dispatch => (
     // .error(error => receiveErrors(error))
 );
 
+export const getLocalToken = () => (
+  AsyncStorage.getItem('jwt')
+);
+
 export const saveToken = (response) => (
   AsyncStorage.setItem('jwt', response._bodyText)
 );
 
 export const signin = state => dispatch => (
   APIUtil.login(state.username, state.password)
-    .then(resposnse => {
+    .then(response => {
       console.warn(JSON.stringify(response));
-      saveToken(response);
-    }).then(() => dispatch(receiveToken);
+      saveToken(response).then(() => dispatch(receiveToken));
+    })
+
 );
 
 export const receiveToken = token => ({
