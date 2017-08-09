@@ -35,9 +35,3 @@ export const updateItems = (id, update) => {
   return getItemsByUserId(id)
     .then(oldItems => setInventory(id, merge(newItems, oldItems)));
 };
-
-//
-// Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, { new: true }, function (err, tank) {
-//   if (err) return handleError(err);
-//   res.send(tank);
-// });
