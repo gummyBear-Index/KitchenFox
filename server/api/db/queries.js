@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import merge from 'lodash/merge';
+import Promise from 'bluebird';
 
 import User from '../models/user';
 import { secret } from '../../config';
@@ -20,6 +22,26 @@ export const getUserFromToken = (token) => {
   return user;
 };
 
-export const updateItems = (user, items, callback) => {
-
+export const getItemsByUserId = (id) => {
+  const items = User.findById(id).select('inventory').exec();
+  return items;
 };
+
+export const promiseMerge = (obj1, obj2) => (
+  new Promise(() => (merge({}, obj1, obj2)))
+);
+
+export const updateItems = (id, update) => {
+  const newItems = update;
+  const newInventory = getItemsByUserId(id)
+    .then(oldItems => (promiseMerge(oldItems, newItems)))
+    .then(newInv => User
+      .findByIdAndUpdate(id, { $set: { inventory: newInv } }).lean().exec());
+  return newInventory;
+};
+//
+//
+// Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, { new: true }, function (err, tank) {
+//   if (err) return handleError(err);
+//   res.send(tank);
+// });

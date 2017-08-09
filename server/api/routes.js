@@ -3,7 +3,7 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 
 import { userIndex, register, login } from './controllers/users';
-import { itemsIndex } from './controllers/items';
+import { itemsIndex, itemsPatch } from './controllers/items';
 import User from './models/user';
 import { secret } from '../config';
 
@@ -32,10 +32,10 @@ router.route('/register').post((req, res) => register(req, res));
 
 router.route('/items').get((req, res, next) => itemsIndex(req, res, next));
 
+router.route('/items').patch((req, res, next) => itemsPatch(req, res, next));
+
 // router.route('/users.json').get(userIndex);
 
-router.route('/').get((req, res) =>
-  res.send('Hello Errbody!')
-);
+router.route('/').get((req, res) => res.send('Hello Errbody!'));
 
 export default router;
