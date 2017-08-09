@@ -19,7 +19,9 @@
 
 /server/node_modules
 /server/dist
-/client/node_modules
+client/MobileApp/node_modules
+client/MobileApp/__tests__
+client/MobileApp/.eslintrc
 
 /node_modules
 /yarn-error.log
