@@ -20,7 +20,7 @@ class App extends Component {
       );
     } else {
       return (
-        <Greetings />
+        <Signin />
       );
     }
   }

@@ -24,6 +24,7 @@ class Signin extends Component {
     super(props);
 
     this.initialState = {
+      currentUser: ''
       email: '',
       password: ''
     }
@@ -40,9 +41,11 @@ class Signin extends Component {
 
     dismissKeyboard();
 
-    login(username, password).then(response => saveToken(response));
-    let that = this;
-    setTimeout(that.showJWT, 5000);
+    login(username, password).then(response => saveToken(response))
+    setState()
+
+    // let that = this;
+    // setTimeout(that.showJWT, 5000);
   }
 
   showJWT() {

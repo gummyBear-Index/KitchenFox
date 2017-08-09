@@ -25,14 +25,14 @@ class Signup extends Component {
 		this.initialState = {
 			firstName: '',
 			lastName: '',
-			email: '',
+			username: '',
 			password: '',
 		};
 		this.state = this.initialState;
   }
 
   handleSignup() {
-		const { username, password } = this.state;
+		const { firstName. lastName, username, password } = this.state;
 
 		const getToken = (response) => {
   		let parsedRes = JSON.parse(response._bodyText);
@@ -101,8 +101,8 @@ class Signup extends Component {
 									keyboardType="email-address"
 									autoCorrect={false}
 									autoCapitalize="none"
-									onChangeText={email => this.setState({ email })}
-									value={this.state.email}
+									onChangeText={email => this.setState({ username })}
+									value={this.state.username}
 								/>
 							</InputGroup>
 							<InputGroup style={styles.input}>

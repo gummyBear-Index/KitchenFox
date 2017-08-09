@@ -22,11 +22,12 @@ export const login = (username, password) => (
   })
 );
 
+//actions
 export const saveToken = (response) => {
   let body = JSON.parse(response._bodyText);
   let token = body.token;
   console.log(token);
-  AsyncStorage.setItem('jwt', JSON.stringify(token));
+  AsyncStorage.setItem('jwt', token);
 };
 
 export const getLocalToken = () => (
