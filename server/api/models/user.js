@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import passportLocalMongoose from 'passport-local-mongoose';
 
 import mongoose from '../db/database';
-import { secret } from '../../config';
 
 
 const Schema = mongoose.Schema;
@@ -17,13 +16,6 @@ const User = new Schema({
 
 User.plugin(passportLocalMongoose, {
   usernameUnique: true,
-});
-
-User.static('getUserFromToken', (token, callback) => {
-  const body = token.split(' ');
-  const parsedToken = body.length > 1 ? body[1] : body[0]
-  const decoded = jwt.verify(parsedToken, secret);
-  return callback(decoded);
 });
 
 // router.get('/protected', (req, res, next) => {

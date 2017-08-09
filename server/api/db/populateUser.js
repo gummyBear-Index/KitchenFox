@@ -52,7 +52,7 @@ const populate = () => {
     first_name: user.first_name,
     last_name: user.last_name,
     inventory: Object.assign(user.inventory),
-  }), 'pass', (err, user) => (
+  }), user.password, (err, user) => (
     err ? console.log(err) : console.log('success')
   ))));
 
