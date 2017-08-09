@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Signup from './auth/signup';
+import Signin from './auth/signin';
 import { checkLogin } from '../actions/session_actions';
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
   render() {
     if (this.props.currentUser) {
       return (
-        <Signup />
+        <Signin />
       );
     } else {
       return (

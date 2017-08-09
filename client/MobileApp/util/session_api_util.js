@@ -15,7 +15,7 @@ export const login = (username, password) => (
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      charset: 'UTF-8',
+      charset: 'UTF-16',
     },
     body: `username=${username}&password=${password}`,
   })
@@ -40,7 +40,7 @@ export const demoSecured = () => {
       headers: {
         authorization: `JWT ${token}`,
         'Content-Type': 'application/x-www-form-urlencoded',
-        charset: 'UTF-8',
+        charset: 'UTF-16',
       },
     })
   );
@@ -52,7 +52,7 @@ export const securable = token => (
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
-      charset: 'UTF-8',
+      charset: 'UTF-16',
     },
   })
 );
@@ -63,7 +63,7 @@ export const protectedHeaders = () => (
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
-      charset: 'UTF-8',
+      charset: 'UTF-16',
     },
   })
 );
