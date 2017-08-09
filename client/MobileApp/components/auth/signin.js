@@ -14,6 +14,7 @@ import {
   Icon,
   View,
   Text,
+  Navigator,
 } from 'native-base';
 
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';

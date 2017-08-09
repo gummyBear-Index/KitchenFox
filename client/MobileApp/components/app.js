@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Signup from './auth/signup';
 import Signin from './auth/signin';
+import Greeting from './auth/greeting';
 import { checkLogin } from '../actions/session_actions';
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
       );
     } else {
       return (
-        <Signup />
+        <Greetings />
       );
     }
   }
