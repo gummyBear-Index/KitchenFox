@@ -32,7 +32,7 @@ class Signup extends Component {
   }
 
   handleSignup() {
-		const { firstName. lastName, username, password } = this.state;
+		const { firstName, lastName, username, password } = this.state;
 
 		const getToken = (response) => {
   		let parsedRes = JSON.parse(response._bodyText);

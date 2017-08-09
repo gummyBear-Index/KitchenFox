@@ -3,6 +3,7 @@ import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, RECEIVE_TOKEN } from '../actions/
 
 const initialState = {
   currentUser: null,
+  token: null,
   errors: {}
 };
 
@@ -11,7 +12,7 @@ const SessionReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      const currentUser = { action.currentUser };
+      const currentUser = action.currentUser;
       newState = merge({}, state, currentUser);
       return newState;
     case RECEIVE_TOKEN:
@@ -19,8 +20,7 @@ const SessionReducer = (state = initialState, action) => {
       return newState;
     case RECEIVE_ERRORS:
       const errors = action.errors;
-      newState = merge({}, state);
-      newState.errors = action.errors;
+      newState = merge({}, state, errors);
       return newState;
     default:
       return state;

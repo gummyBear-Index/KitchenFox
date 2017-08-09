@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Signup from './auth/signup';
-import Signin from './auth/signin';
+import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
 import { checkLogin } from '../actions/session_actions';
 
@@ -19,7 +19,11 @@ class App extends Component {
   }
 
   render() {
-    { this.state.session.token ? <Signing /> : <Greetings /> }
+    if (this.state.session.token) {
+      return (<Signup />)
+    } else {
+      return (<SigninContainer />)
+    }
   }
 }
 

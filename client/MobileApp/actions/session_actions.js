@@ -5,20 +5,26 @@ export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const LOGOUT = 'LOGOUT';
 export const RECEIVE_TOKEN = 'RECEIVE_TOKEN';
 
-// export const checkLogin = () => dispatch => (
-//   APIUtil.getLocalToken().then(token => this.props.setState({ currentUser: token }),
-//   err => this.props.setState({ currentUser: null })
-// ));
-
 export const checkLogin = () => dispatch => (
   APIUtil.getLocalToken().then(token => dispatch(receiveToken(token)))
-    .error(error => receiveErrors(error))
+    // .error(error => receiveErrors(error))
+);
+
+export const saveToken = (response) => (
+  AsyncStorage.setItem('jwt', response._bodyText)
+);
+
+export const signin = state => dispatch => (
+  APIUtil.login(state.username, state.password)
+    .then(resposnse => {
+      console.warn(JSON.stringify(response));
+      saveToken(response);
+    }).then(() => dispatch(receiveToken);
 );
 
 export const receiveToken = token => ({
   type: RECEIVE_TOKEN,
   token,
-  errors,
 })
 
 export const receiveCurrentUser = currentUser => ({

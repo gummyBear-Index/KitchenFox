@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, StackNavigator } from 'react-native';
 import { styles } from '../../style/auth/session';
+// import { signin } from '../../actions/session_actions';
 
 import {
   Container,
@@ -19,31 +20,39 @@ import {
 
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
-class Signin extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
-
     this.initialState = {
-      currentUser: ''
-      email: '',
+      username: '',
       password: ''
     }
     this.state = this.initialState;
+
+    this.handleSignin = this.handleSignin.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    // console.warn(newProps);
+    // console.warn(JSON.stringify(newProps));
+    if (newProps.currentUser) {
+      this.props.navigation.navigate('IndexPage');
+    }
   }
 
   handleSignin() {
-    const { username, password } = this.state;
-    const getToken = response => {
-      let parsedRes = JSON.parse(response._bodyText);
-      AsyncStorage.setItem('jwt', parsedRes.token);
-      return parsedRes.token;
-    }
-
+    this.props.signin(this.state);
+    console.warn(JSON.stringify(this.state));
+    console.warn(JSON.stringify(this.props));
+    // const { username, password } = this.state;
+    // const getToken = response => {
+    //   let parsedRes = JSON.parse(response._bodyText);
+    //   AsyncStorage.setItem('jwt', parsedRes.token);
+    //   return parsedRes.token;
+    // }
     dismissKeyboard();
-
-    login(username, password).then(response => saveToken(response))
-    setState()
-
+    //
+    // login(username, password).then(response => saveToken(response))
     // let that = this;
     // setTimeout(that.showJWT, 5000);
   }
@@ -55,8 +64,9 @@ class Signin extends Component {
   }
 
   handleGoBack() {
-    const routeStack = this.props.navigator.getCurrentRoutes();
-    this.props.navigator.jumpTo(routeStack[0]);
+    this.props.navigation.navigate('Greeting');
+    // const routeStack = this.props.navigator.getCurrentRoutes();
+    // this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {
@@ -82,7 +92,7 @@ class Signin extends Component {
                 keyboardtype='email-address'
                 autoCorrect={false}
                 autoCapitalize='none'
-                onChangeText={email => this.setState({ email })}
+                onChangeText={username => this.setState({ username })}
                 value={this.state.username}
               />
             </InputGroup>
@@ -113,4 +123,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default SignIn;

@@ -1,30 +1,53 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native';
 import {
-  TouchableHighlight,
-  Text,
+  Container,
+  Header,
+  Title,
+  InputGroup,
+  Input,
+  Button,
+  Spinner,
+  Icon,
   View,
+  Text,
+  Navigator,
 } from 'native-base';
+// import { StackNavigation } from 'react-navigation'
 
-import SigninPage from './signin';
-import SignupPage from './signup';
+import SignIn from './signin';
+import SignUp from './signup';
+
 // const ProtectedView = require('./ProtectedView')
 
+
 class Greeting extends Component {
+  static navigationOptions = {
+    title: 'Home',
+  }
+  constructor(props) {
+		super(props);
+
+    this.initialState = {
+      email: '',
+      password: ''
+    }
+    this.state = this.initialState;
+  }
 
   _handleSignupPage = () => {
-    // this.props.navigator.push({
-    //   title: 'Signup',
-    //   component: SignupPage,
-    //   backButtonTitle: 'Back'
-    // })
+    this.props.navigator.push({
+      title: 'SignUp',
+      component: SignUp,
+      backButtonTitle: 'Back'
+    })
   }
   _handleSigninPage = () => {
-    // this.props.navigator.push({
-    //   title: 'Signin',
-    //   component: SigninPage,
-    //   backButtonTitle: 'Back'
-    // })
+    this.props.navigator.push({
+      title: 'SignIn',
+      component: SignIn,
+      backButtonTitle: 'Back'
+    })
   }
   // _handleProtectedView = () => {
   //   this.props.navigator.push({
@@ -37,32 +60,52 @@ class Greeting extends Component {
     AsyncStorage.removeItem('jwt');
     alert('You have been logged out.');
   }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight onPress={this._handleSignupPage}>
-          <Text style={[styles.button, styles.blueButton]}>
-            Sign up
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this._handleSigninPage}>
-          <Text style={[styles.button, styles.greenButton]}>
-            Sign In
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this._handleLogOut}>
-          <Text style={[styles.button, styles.greyButton]}>
-            Log Out
-          </Text>
-        </TouchableHighlight>
-        // <TouchableHighlight onPress={this._handleProtectedView}>
-        //   <Text style={[styles.button, styles.redButton]}>
-        //     Protected Content
-        //   </Text>
-        // </TouchableHighlight>
-      </View>
-    )
+    // const {navigate} = this.props.navigation;
+    return(
+      <Container>
+        <View style={styles.container}>
+          <Header>
+            <Title>Welcome to KitchenFox!</Title >
+          </Header>
+          <Button>
+            <Text>Sign Up</Text>
+          </Button>
+          <Button>
+            <Text>Sign In</Text>
+          </Button>
+        </View>
+      </Container>
+    );
   }
+
+
+  // render() {
+  //   return (
+  //     <Container>
+  //     <View style={styles.container}>
+  //       <Text>Hello</Text>
+
+  //     //   <TouchableHighlight onPress={this._handleSigninPage}>
+  //     //     <Text style={[styles.button, styles.greenButton]}>
+  //     //       Sign In
+  //     //     </Text>
+  //     //   </TouchableHighlight>
+  //     //   <TouchableHighlight onPress={this._handleLogOut}>
+  //     //     <Text style={[styles.button, styles.greyButton]}>
+  //     //       Log Out
+  //     //     </Text>
+  //     //   </TouchableHighlight>
+  //       // <TouchableHighlight onPress={this._handleProtectedView}>
+  //       //   <Text style={[styles.button, styles.redButton]}>
+  //       //     Protected Content
+  //       //   </Text>
+  //       // </TouchableHighlight>
+  //     </View>
+  //     </Container>
+  //   )
+  // }
 }
 
 const styles = StyleSheet.create({
