@@ -7,6 +7,11 @@ import { checkLogin } from '../actions/session_actions';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      session: {
+        token: '',
+      },
+    }
   }
 
   componentWillMount() {
@@ -14,15 +19,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.currentUser) {
-      return (
-        <Signin />
-      );
-    } else {
-      return (
-        <Greetings />
-      );
-    }
+    { this.state.session.token ? <Signing /> : <Greetings /> }
   }
 }
 
