@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import merge from 'lodash/merge';
 
-import populate from '../db/populateUser'
+import populate from '../db/populateUser';
 import User from '../models/user';
 import { secret } from '../../config';
 
