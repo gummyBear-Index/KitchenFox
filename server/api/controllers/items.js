@@ -1,5 +1,5 @@
 // import User from '../models/user';
-// import populate from '../db/populateUser'
+import populate from '../db/populateUser'
 
 import { getUserFromToken, updateItems, getIdFromToken } from '../db/queries';
 
@@ -16,4 +16,5 @@ export const itemsPatch = (req, res) => {
     .then(inventory => (
       res.json(inventory)
     ));
+  // populate();
 };

@@ -19,8 +19,7 @@ class App extends Component {
   }
 
   render() {
-    return <Greeting />;
-    // (this.state.session.token ? <homeIndexPage /> : {Greeting});
+    return(this.state.session.token ? <Signing /> : <Greetings />)
   }
 }
 

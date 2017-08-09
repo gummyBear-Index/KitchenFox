@@ -15,6 +15,11 @@ export const signin = state => dispatch => (
     .then(response => dispatch(receiveToken))
 );
 
+// export const checkLogin = () => dispatch => (
+//   APIUtil.getLocalToken().then(token => this.props.setState({ currentUser: token }),
+//   err => this.props.setState({ currentUser: null })
+// ));
+
 export const receiveToken = token => ({
   type: RECEIVE_TOKEN,
   token,
@@ -23,10 +28,10 @@ export const receiveToken = token => ({
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
-  errors
+  errors,
 });
 
 export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,
-  errors
+  errors,
 });
