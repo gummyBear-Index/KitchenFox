@@ -10,9 +10,6 @@ import { createQuery, apiCall } from './utils/suggestRecipe';
 import User from './models/user';
 import { secret } from '../config';
 
-const router = Router();
-// delete unless needed
-
 router.get('/protected', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
     if (err) {

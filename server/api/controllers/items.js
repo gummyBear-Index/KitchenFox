@@ -9,9 +9,11 @@ export const itemsIndex = (req, res) => (
     .error(error => res.send(error))
 );
 
-
 // TODO: Something isn't returning... TMA (too much asynchronous)
-export const itemsPatch = (req, res) => (
-  updateItems(getIdFromToken(req.headers.authorization), req.body.inventory)
-    .then(inventory => res.json(inventory))
-);
+export const itemsPatch = (req, res) => {
+  const id = getIdFromToken(req.headers.authorization);
+  updateItems(id, req.body.inventory)
+    .then(inventory => {
+      res.json(inventory);
+    })
+};
