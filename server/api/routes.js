@@ -7,6 +7,7 @@ const router = Router();
 import { userIndex, register, login } from './controllers/users';
 import { itemsIndex, itemsPatch } from './controllers/items';
 import { createQuery, apiCall } from './utils/suggestRecipe';
+import { getItemsByUserId } from './db/queries';
 import User from './models/user';
 import { secret } from '../config';
 
@@ -39,11 +40,12 @@ router.get('/recipes', (req, res, next) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
     if (user) {
-      apiCall(createQuery()).then((recipeinfo) => {
-        console.log(recipeinfo[4]);
-        return res
-        .status(200)
-        .json(recipeinfo);
+      getItemsByUserId(user._id).then((result) => {
+        apiCall(createQuery(result)).then((recipeinfo) => {
+          return res
+          .status(200)
+          .json(recipeinfo);
+        });
       });
     }
   })(req, res, next);
