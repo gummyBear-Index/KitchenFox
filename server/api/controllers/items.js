@@ -13,7 +13,7 @@ export const itemsIndex = (req, res) => (
 export const itemsPatch = (req, res) => {
   const id = getIdFromToken(req.headers.authorization);
   updateItems(id, req.body.inventory)
-    .then(inventory => {
+    .then(inventory => (
       res.json(inventory);
-    })
+    ))
 };
