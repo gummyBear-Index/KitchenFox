@@ -14,6 +14,6 @@ export const itemsPatch = (req, res) => {
   const id = getIdFromToken(req.headers.authorization);
   updateItems(id, req.body.inventory)
     .then(inventory => (
-      res.json(inventory);
-    ))
+      res.json(inventory)
+    ));
 };

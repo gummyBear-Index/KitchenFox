@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
-import {
-  View, 
-  Text,
-} from 'react-native';
-
 import Signup from './auth/signup';
+import Signin from './auth/signin';
+import { checkLogin } from '../actions/session_actions';
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.checkLogin();
+  }
+
   render() {
-    return (
-      <Signup />
-    );
+    if (this.props.currentUser) {
+      return (
+        <Signin />
+      );
+    } else {
+      return (
+        <Signup />
+      );
+    }
   }
 }
 

@@ -1,6 +1,5 @@
 import { AsyncStorage } from 'react-native';
 
-
 export const createUser = (username, password) => (
   fetch("https://kitchenfox.herokuapp.com/api/register", {
     method: "POST",
