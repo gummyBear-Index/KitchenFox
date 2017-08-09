@@ -61,7 +61,7 @@ export const apiCall = (query) => {
       res.on('end', () => {
         try {
           const parsedData = JSON.parse(rawData);
-          console.log(parsedData);
+          console.log(parsedData.hits);
         } catch (e) {
           console.error(e.message);
         }
