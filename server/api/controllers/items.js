@@ -6,5 +6,9 @@ import populate from '../db/populateUser'
 import { getUserFromToken } from '../db/queries';
 
 export const itemsIndex = (req, res, next) => {
-  getUserFromToken(req.headers.authorization, user => res.json(user.inventory));
+  getUserFromToken(req.headers.authorization, items => res.json(items));
 };
+
+// export const itemsPatch = (req, res, next) => (
+//
+// )
