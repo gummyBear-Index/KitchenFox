@@ -22,28 +22,28 @@ const populate = () => {
       password: 'graham',
       first_name: 'Graham',
       last_name: 'Paye',
-      inventory: Object.assign(inventory),
+      inventory,
     },
     {
       username: 'hiro',
       password: 'hiro',
       first_name: 'Hiro',
       last_name: 'Obara',
-      inventory: Object.assign(inventory),
+      inventory,
     },
     {
       username: 'cherry',
       password: 'cherry',
       first_name: 'Cherry',
       last_name: 'Lam',
-      inventory: Object.assign(inventory),
+      inventory,
     },
     {
       username: 'kevin',
       password: 'kevin',
       first_name: 'Kevin',
       last_name: 'Yang',
-      inventory: Object.assign(inventory),
+      inventory,
     },
   ];
 

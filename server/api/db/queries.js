@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import merge from 'lodash/merge';
-import Promise from 'bluebird';
 
+import populate from '../db/populateUser'
 import User from '../models/user';
 import { secret } from '../../config';
 
@@ -14,34 +14,24 @@ export const getIdFromToken = (token) => {
 
 export const getUserFromToken = (token) => {
   const id = getIdFromToken(token);
-  const user = User.findById(id).lean().exec();
-  // user is a promise. Use by doing below. Error isn't strictly necessary.
+  return User.findById(id).lean().exec();
+  // Return value is a promise. Use by doing below. Error isn't strictly necessary.
   // getUserFromToken(token)
   //  .then(user => coolFunction(user))
   //  .error(error => coolErrorFunction(error));
-  return user;
 };
 
-export const getItemsByUserId = (id) => {
-  const items = User.findById(id).select('inventory').exec();
-  return items;
-};
+export const getItemsByUserId = id => (
+  User.findById(id).select('inventory').exec()
+);
 
-export const promiseMerge = (obj1, obj2) => (
-  new Promise(() => (merge({}, obj1, obj2)))
+export const setInventory = (id, mergedItems) => (
+  User.findByIdAndUpdate(id, { inventory: mergedItems })
+    .select('inventory').exec()
 );
 
 export const updateItems = (id, update) => {
-  const newItems = update;
-  const newInventory = getItemsByUserId(id)
-    .then(oldItems => (promiseMerge(oldItems, newItems)))
-    .then(newInv => User
-      .findByIdAndUpdate(id, { $set: { inventory: newInv } }).lean().exec());
-  return newInventory;
+  const newItems = typeof update === 'string' ? JSON.parse(update) : update;
+  return getItemsByUserId(id)
+    .then(oldItems => setInventory(id, merge(newItems, oldItems)));
 };
-//
-//
-// Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, { new: true }, function (err, tank) {
-//   if (err) return handleError(err);
-//   res.send(tank);
-// });
