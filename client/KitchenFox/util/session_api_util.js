@@ -23,11 +23,15 @@ export const login = (username, password) => (
 );
 
 export const saveToken = response => (
-  AsyncStorage.setItem('jwt', response._bodyText)
+  AsyncStorage.setItem('jwt', response)
 );
 
 export const getLocalToken = () => (
   AsyncStorage.getItem('jwt')
+);
+
+export const deleteLocalToken = () => (
+  AsyncStorage.removeItem('jwt')
 );
 
 export const demoSecured = () => {

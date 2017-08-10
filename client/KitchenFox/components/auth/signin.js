@@ -31,8 +31,6 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // console.warn(newProps);
-    // console.warn(JSON.stringify(newProps));
     if (newProps.currentUser) {
       this.props.navigation.navigate('IndexPage');
     }
@@ -40,32 +38,7 @@ class SignIn extends Component {
 
   handleSignin() {
     this.props.signin(this.state);
-    // console.warn(JSON.stringify(this.state));
-    // console.warn(JSON.stringify(this.props));
-    // console.warn(JSON.stringify(AsyncStorage.getItem('jwt')));
     dismissKeyboard();
-
-    // console.warn(newProps);
-    // console.warn(JSON.stringify(newProps));
-  }
-
-  // handleSignin() {
-    // signin(this.state);
-    // const { username, password } = this.state;
-    // const getToken = response => {
-    //   let parsedRes = JSON.parse(response._bodyText);
-    //   AsyncStorage.setItem('jwt', parsedRes.token);
-    //   return parsedRes.token;
-    // }
-    //
-    // login(username, password).then(response => saveToken(response))
-    // let that = this;
-    // setTimeout(that.showJWT, 5000);
-
-  showJWT() {
-    this.token;
-    let that = this;
-    AsyncStorage.getItem('jwt').then(token => console.warn(token));
   }
 
   handleGoBack() {
@@ -115,7 +88,7 @@ class SignIn extends Component {
             ) : (
               <Button
                 style={styles.button}
-                onPress={() => this.handleSignin()}
+                onPress={(e) => this.handleSignin()}
               >
                 <Text>Sign in</Text>
               </Button>

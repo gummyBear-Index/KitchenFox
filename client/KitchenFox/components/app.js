@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Signup from './auth/signup';
+import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
 import { checkLogin } from '../actions/session_actions';
@@ -8,9 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      session: {
-        token: '',
-      },
+      loggedIn: Boolean(this.props.session.token.length),
     };
   }
 
@@ -19,12 +17,14 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.warn(JSON.stringify(newProps));
+    if (!this.state.loggedIn && newProps.session.token) {
+      this.setState({ loggedIn: true })
+    }
   }
 
   render() {
-    if (this.state.session.token) {
-      return (<Signup />);
+    if (this.state.loggedIn) {
+      return (<SignupContainer />);
     } else {
       return (<SigninContainer />);
       // return (<Greeting />);

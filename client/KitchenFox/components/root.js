@@ -8,12 +8,12 @@ class Root extends Component {
   }
 
   render() {
-  return(
-    <Provider store={this.props.store}>
-      <AppContainer />
-    </Provider>
-  );
-}
+    return (
+      <Provider store={this.props.store}>
+        <AppContainer />
+      </Provider>
+    );
+  }
 }
 
 export default Root;
