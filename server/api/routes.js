@@ -27,7 +27,16 @@ router.get('/protected', (req, res, next) => {
   })(req, res, next);
 });
 
-router.route('/user').get((req, res) => showUser(req, res));
+// app.post('/profile', passport.authenticate('jwt', { session: false }),
+//     function(req, res) {
+//         res.send(req.user.profile);
+//     }
+// );
+
+// router.get('/user', passport.authenticate('jwt'), (req, res) => showUser(req, res));
+router.route('/user').get((req, res, next) => showUser(req, res, next));
+
+// router.route('/user').get((req, res) => showUser(req, res));
 
 router.route('/login').post((req, res, next) => login(req, res, next));
 
