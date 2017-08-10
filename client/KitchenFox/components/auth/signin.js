@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { AsyncStorage, StackNavigator } from 'react-native';
+import { StackNavigator } from 'react-native';
 import { styles } from '../../style/auth/session';
 import { signin } from '../../actions/session_actions';
 import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
@@ -22,18 +22,16 @@ import {
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.initialState = {
+    this.state = {
       username: '',
-      password: ''
+      password: '',
+      first_name: '',
+      last_name: '',
     };
-    this.state = this.initialState;
-
     this.handleSignin = this.handleSignin.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    // console.warn(newProps);
-    // console.warn(JSON.stringify(newProps));
     if (newProps.currentUser) {
       this.props.navigation.navigate('IndexPage');
     }
@@ -41,32 +39,7 @@ class SignIn extends Component {
 
   handleSignin() {
     this.props.signin(this.state);
-    // console.warn(JSON.stringify(this.state));
-    // console.warn(JSON.stringify(this.props));
-
     dismissKeyboard();
-
-    // console.warn(newProps);
-    // console.warn(JSON.stringify(newProps));
-  }
-
-  // handleSignin() {
-    // signin(this.state);
-    // const { username, password } = this.state;
-    // const getToken = response => {
-    //   let parsedRes = JSON.parse(response._bodyText);
-    //   AsyncStorage.setItem('jwt', parsedRes.token);
-    //   return parsedRes.token;
-    // }
-    //
-    // login(username, password).then(response => saveToken(response))
-    // let that = this;
-    // setTimeout(that.showJWT, 5000);
-
-  showJWT() {
-    this.token;
-    let that = this;
-    AsyncStorage.getItem('jwt').then(token => console.warn(token));
   }
 
   handleGoBack() {

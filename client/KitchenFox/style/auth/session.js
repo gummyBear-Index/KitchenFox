@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     padding: 20,
     // textAlign: 'center',
     marginBottom: 20,
-    color: '#fff'
+    // color: '#fff'
   },
   greenButton: {
     backgroundColor: '#4CD964'

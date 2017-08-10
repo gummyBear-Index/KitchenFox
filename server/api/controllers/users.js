@@ -3,11 +3,12 @@ import jwt from 'jsonwebtoken';
 
 import { secret } from '../../config';
 import User from '../models/user';
+import { getDocFromToken, getUserFromToken } from '../db/queries';
 
 // lean gives json instead of mongo docobject
 export const getToken = (user) => {
   const token = jwt.sign({ id: user._id, username: user.username }, secret);
-  return { token };
+  return token;
 };
 
 export const userIndex = (req, res, next) => (
@@ -17,6 +18,20 @@ export const userIndex = (req, res, next) => (
     );
   })
 );
+
+export const showUser = (req, res) => {
+  getUserFromToken(req.headers.authorization)
+    .then((user) => {
+      if (user instanceof Error) {
+        return res.status(401).json({ error: 'Invalid Token' });
+      }
+      return res.status(200).json({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        username: user.username,
+      });
+    });
+};
 
 export const register = (req, res, next) => {
   User.register(new User({
@@ -29,7 +44,12 @@ export const register = (req, res, next) => {
     }
     return res
       .status(200)
-      .json(getToken(user));
+      .json({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        token: getToken(user),
+        username: user.username
+      });
   });
 };
 
@@ -61,7 +81,12 @@ export const login = (req, res, next) => {
     if (user) {
       return res
         .status(200)
-        .json(getToken(user));
+        .json({
+          first_name: user.first_name,
+          last_name: user.last_name,
+          token:getToken(user),
+          username: user.username
+        });
     }
   })(req, res, next);
 };

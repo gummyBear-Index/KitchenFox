@@ -3,7 +3,7 @@ import SessionReducer from './session_reducer';
 
 const appReducer = combineReducers({
   session: SessionReducer,
-}) ;
+});
 
 const RootReducer = (state, action) => {
   if (action.type === 'LOGOUT') {

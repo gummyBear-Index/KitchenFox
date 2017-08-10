@@ -1,10 +1,11 @@
 import merge from 'lodash/merge';
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, RECEIVE_TOKEN } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, LOGOUT } from '../actions/session_actions';
 
 const initialState = {
-  currentUser: null,
+  first_name: '',
+  last_name: '',
   token: {},
-  errors: {}
+  errors: {},
 };
 
 const SessionReducer = (state = initialState, action) => {
@@ -12,17 +13,14 @@ const SessionReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      const currentUser = action.currentUser;
-      newState = merge({}, state, currentUser);
       newState = merge({}, state, action.currentUser);
       return newState;
-    case RECEIVE_TOKEN:
-      newState = merge({}, state, action.token);
-      return newState;
     case RECEIVE_ERRORS:
-      const errors = action.errors;
+      const errors = { errors: action.errors };
       newState = merge({}, state, errors);
       return newState;
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

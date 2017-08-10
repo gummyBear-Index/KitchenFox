@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import http from 'http';
 const router = Router();
 
-import { userIndex, register, login } from './controllers/users';
+import { userIndex, register, login, showUser } from './controllers/users';
 import { itemsIndex, itemsPatch } from './controllers/items';
 import { createQuery, apiCall } from './utils/suggestRecipe';
 import { getItemsByUserId } from './db/queries';
@@ -26,6 +26,8 @@ router.get('/protected', (req, res, next) => {
     }
   })(req, res, next);
 });
+
+router.route('/user').get((req, res) => showUser(req, res));
 
 router.route('/login').post((req, res, next) => login(req, res, next));
 

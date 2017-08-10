@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 import App from './app';
-import { checkLogin } from '../actions/session_actions';
+import { checkLogin, fetchToken } from '../actions/session_actions';
 
-const mapStateToProps = state => (
+const mapStateToProps = ({ session }) => (
   {
-    state: state,
-    currentUser: state.session.currentUser
+    session,
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
-    checkLogin: () => dispatch(checkLogin())
+    fetchToken: () => dispatch(fetchToken()),
   }
 );
 

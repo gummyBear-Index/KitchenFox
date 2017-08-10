@@ -20,40 +20,30 @@ import {
 
 class Signup extends Component {
   constructor(props) {
-		super(props);
-
-		this.initialState = {
-			firstName: '',
-			lastName: '',
-			username: '',
-			password: '',
-		};
-		this.state = this.initialState;
+    super(props);
+    this.state = {
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
+      token: '',
+    };
   }
 
   handleSignup() {
-		const { firstName, lastName, username, password } = this.state;
+		// const { firstName, lastName, username, password } = this.state;
+    //
+		// const getToken = (response) => {
+  	// 	let parsedRes = JSON.parse(response._bodyText);
+    //   AsyncStorage.setItem('jwt', parsedRes.token);
+    //   // alert(`Success! You may now access protected content.`)
+    //   // Redirect to home screen
+		// 	return parsedRes.token;
+		// };
+    // this.props.logout();
 
-		const getToken = (response) => {
-  		let parsedRes = JSON.parse(response._bodyText);
-      AsyncStorage.setItem('jwt', parsedRes.token);
-      // alert(`Success! You may now access protected content.`)
-      // Redirect to home screen
-			return parsedRes.token;
-		};
-
-		dismissKeyboard();
-
-		createUser(username, password).then(response => saveToken(response));
-		// let that = this;
-		// setTimeout(that.showJWT, 5000);
-	}
-
-	showJWT() {
-		this.token;
-		let that = this;
-		AsyncStorage.getItem('jwt').then(token => console.warn(token));
-	}
+    dismissKeyboard();
+  }
 
   handleGoBack() {
 		const routeStack = this.props.navigator.getCurrentRoutes();
@@ -119,7 +109,7 @@ class Signup extends Component {
 							) : (
 								<Button
 									style={styles.button}
-									onPress={() => this.handleSignup()}
+									onPress={(e) => this.handleSignup()}
 								>
 									<Text>Sign up</Text>
 								</Button>

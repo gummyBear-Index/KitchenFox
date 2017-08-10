@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Signup from './auth/signup';
+import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
-import { checkLogin } from '../actions/session_actions';
 
 import Pantry from '../screens/pantry';
 
@@ -10,22 +9,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      session: {
-        token: '',
-      },
+      loggedIn: Boolean(this.props.session.token.length),
     };
   }
 
   componentWillMount() {
-    // this.props.checkLogin();
+    this.props.fetchToken();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!this.state.loggedIn && newProps.session.token) {
+      this.setState({ loggedIn: true })
+    }
   }
 
   render() {
-    if (this.state.session.token) {
+    if (this.state.loggedIn) {
       return (<Pantry />);
-    } else {
-      return (<SigninContainer />);
     }
+    return (<SigninContainer />);
   }
 }
 

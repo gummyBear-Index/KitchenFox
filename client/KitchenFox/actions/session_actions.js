@@ -1,37 +1,14 @@
 import * as APIUtil from '../util/session_api_util';
-import { AsyncStorage } from 'react-native'; 
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const LOGOUT = 'LOGOUT';
-export const RECEIVE_TOKEN = 'RECEIVE_TOKEN';
 
-export const checkLogin = () => dispatch => (
-  APIUtil.getLocalToken().then(token => dispatch(receiveToken(token)))
-    // .error(error => receiveErrors(error))
-);
-
-export const getLocalToken = () => (
-  AsyncStorage.getItem('jwt')
-);
-
-export const saveToken = (response) => (
-  AsyncStorage.setItem('jwt', response._bodyText)
-);
-
-export const signin = state => dispatch => (
-  APIUtil.login(state.username, state.password)
-    .then(response => {
-      console.warn(JSON.stringify(response));
-      saveToken(response).then(() => dispatch(receiveToken));
-    })
-
-);
-
-export const receiveToken = token => ({
-  type: RECEIVE_TOKEN,
-  token,
-});
+// TODO: Have checkLogin ping server to ensure token is valid
+// export const checkLogin = () => dispatch => (
+//   APIUtil.getLocalToken().then(token => dispatch(receiveToken(token)))
+//     // .error(error => receiveErrors(error))
+// );
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -42,3 +19,34 @@ export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,
   errors,
 });
+
+export const deleteSession = () => ({
+  type: LOGOUT,
+});
+
+export const logout = () => dispatch => (
+  APIUtil.deleteLocalToken()
+    .then(() => dispatch(deleteSession()))
+);
+
+export const receiveSignin = response => (dispatch) => {
+  const parsedResponse = JSON.parse(response._bodyText)
+  APIUtil.saveToken(parsedResponse.token)
+    .then(() => dispatch(receiveCurrentUser(parsedResponse)));
+};
+
+export const signin = state => dispatch => (
+  APIUtil.login(state.username, state.password)
+    .then((response) => {
+      dispatch(receiveSignin(response));
+    })
+);
+
+export const fetchToken = () => (dispatch) => {
+  APIUtil.getLocalToken().then((token) => {
+    const sessionToken = {
+      token,
+    };
+    dispatch(receiveCurrentUser(sessionToken));
+  });
+};
