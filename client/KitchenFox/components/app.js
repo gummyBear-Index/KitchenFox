@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.warn(JSON.stringify(newProps));
+    // console.warn(JSON.stringify(newProps));
   }
 
   render() {

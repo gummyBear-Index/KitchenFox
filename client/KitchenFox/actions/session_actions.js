@@ -15,34 +15,26 @@ export const receiveCurrentUser = currentUser => ({
   currentUser,
 });
 
-export const signin = state => dispatch => (
-  APIUtil.login(state.username, state.password)
-    .then(response => {
-      console.warn(JSON.stringify(response));
-      saveToken(response).then(() => {
-        dispatch(receiveToken);
-          // const v = AsyncStorage.getItem('jwt');
-          // if (v !== null) {
-            // co/nsole.warn(JSON.stringify(v));
-          // }
-        // console.warn(JSON.stringify(AsyncStorage.getItem('jwt'))
-      }
-    );
-    })
-);
-
-export const receiveSignin = response => dispatch => {
-  APIUtil.saveToken(response).then(() => dispatch(receiveCurrentUser(response._bodyText)));
-};
-
-export const fetchToken = () => (dispatch) => {
-  APIUtil.getLocalToken().then((token) => {
-    const sessionToken = { token, };
-    dispatch(receiveCurrentUser(sessionToken));
-  });
-};
-
 export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,
   errors,
 });
+
+export const receiveSignin = response => (dispatch) => {
+  APIUtil.saveToken(response).then(() => dispatch(receiveCurrentUser(response._bodyText)));
+};
+
+export const signin = state => dispatch => (
+  APIUtil.login(state.username, state.password)
+    .then((response) => {
+      // console.warn(JSON.stringify(response));
+      dispatch(receiveSignin(response));
+    })
+);
+
+export const fetchToken = () => (dispatch) => {
+  APIUtil.getLocalToken().then((token) => {
+    console.warn(JSON.stringify(token));
+    dispatch(receiveCurrentUser(token));
+  });
+};

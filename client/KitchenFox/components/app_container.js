@@ -4,8 +4,7 @@ import { checkLogin, fetchToken } from '../actions/session_actions';
 
 const mapStateToProps = state => (
   {
-    state: state,
-    currentUser: state.session.currentUser
+    state,
   }
 );
 

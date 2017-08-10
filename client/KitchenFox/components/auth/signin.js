@@ -31,6 +31,7 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.warn(JSON.stringify(newProps));
     // console.warn(newProps);
     // console.warn(JSON.stringify(newProps));
     if (newProps.currentUser) {
@@ -65,7 +66,7 @@ class SignIn extends Component {
   showJWT() {
     this.token;
     let that = this;
-    AsyncStorage.getItem('jwt').then(token => console.warn(token));
+    // AsyncStorage.getItem('jwt').then(token => console.warn(token));
   }
 
   handleGoBack() {
@@ -115,7 +116,7 @@ class SignIn extends Component {
             ) : (
               <Button
                 style={styles.button}
-                onPress={() => this.handleSignin()}
+                onPress={(e) => this.handleSignin()}
               >
                 <Text>Sign in</Text>
               </Button>
