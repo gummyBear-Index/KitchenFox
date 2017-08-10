@@ -19,7 +19,7 @@ class App extends Component {
 
   componentWillReceiveProps(newProps) {
     if (!this.state.loggedIn && newProps.session.token) {
-      this.setState({ loggedIn: true })
+      this.setState({ loggedIn: true });
     }
   }
 
