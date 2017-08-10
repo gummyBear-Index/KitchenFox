@@ -1,5 +1,5 @@
 import * as APIUtil from '../util/session_api_util';
-import { AsyncStorage } from 'react-native'; 
+import { AsyncStorage } from 'react-native';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
@@ -23,9 +23,16 @@ export const signin = state => dispatch => (
   APIUtil.login(state.username, state.password)
     .then(response => {
       console.warn(JSON.stringify(response));
-      saveToken(response).then(() => dispatch(receiveToken));
+      saveToken(response).then(() => {
+        dispatch(receiveToken);
+          // const v = AsyncStorage.getItem('jwt');
+          // if (v !== null) {
+            // co/nsole.warn(JSON.stringify(v));
+          // }
+        // console.warn(JSON.stringify(AsyncStorage.getItem('jwt'))
+      }
+    );
     })
-
 );
 
 export const receiveToken = token => ({
