@@ -36,7 +36,7 @@ class PantryCategoriesIndex extends React.Component {
             </ListItem>
           </List>
         </Content>
-        <NavFooter />
+        <NavFooter navigate={navigate} />
       </Container>
     );
   }
