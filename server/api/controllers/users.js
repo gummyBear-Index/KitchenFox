@@ -7,7 +7,7 @@ import User from '../models/user';
 // lean gives json instead of mongo docobject
 export const getToken = (user) => {
   const token = jwt.sign({ id: user._id, username: user.username }, secret);
-  return { token };
+  return token;
 };
 
 export const userIndex = (req, res, next) => (
@@ -29,7 +29,12 @@ export const register = (req, res, next) => {
     }
     return res
       .status(200)
-      .json(getToken(user));
+      .json({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        token:getToken(user),
+        username: user.username
+      });
   });
 };
 
@@ -61,7 +66,12 @@ export const login = (req, res, next) => {
     if (user) {
       return res
         .status(200)
-        .json(getToken(user));
+        .json({
+          first_name: user.first_name,
+          last_name: user.last_name,
+          token:getToken(user),
+          username: user.username
+        });
     }
   })(req, res, next);
 };
