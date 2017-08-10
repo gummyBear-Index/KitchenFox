@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 import { Container, Content, List, ListItem, Button,
-Card, CardItem, Left, Text, Body } from 'native-base';
+Card, CardItem, Left, Text } from 'native-base';
 
-import NavFooter from '../components/nav/footer';
+import NavFooter from '../nav/footer';
 
-class PantryCategoriesList extends React.Component {
+class PantryCategoriesIndex extends React.Component {
   static navigationOptions = {
-    title: 'Kitchen ingredients you have',
+    title: 'Your Ingredients',
   };
 
   render() {
@@ -43,33 +42,6 @@ class PantryCategoriesList extends React.Component {
   }
 }
 
-class VeggieScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Veggies',
-  };
-
-  render() {
-    return (
-      <Container>
-        <Content>
-          <List>
-            <ListItem itemDivider>
-              <Text onPress={() => navigate('Veggies')}>Veggies</Text>
-            </ListItem>                    
-            <ListItem >
-              <PantryCategoryItemCard />
-            </ListItem>
-            <ListItem>
-              <Text>Asparagus</Text>
-            </ListItem>
-          </List>
-        </Content>
-      </Container>
-
-    );
-  }
-}
-
 const PantryCategoryItemCard = () => {
   return (
     <Card>
@@ -85,10 +57,4 @@ const PantryCategoryItemCard = () => {
   );
 };
 
-const Pantry = StackNavigator({
-  Pantry: { screen: PantryCategoriesList },
-  Veggies: { screen: VeggieScreen },
-  PantryCategory: { screen: PantryCategoryItemCard },
-});
-
-export default Pantry;
+export default PantryCategoriesIndex;
