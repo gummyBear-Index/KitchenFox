@@ -20,10 +20,20 @@ export const receiveErrors = errors => ({
   errors,
 });
 
+export const deleteSession = () => ({
+  type: LOGOUT,
+});
+
+export const logout = () => dispatch => (
+  APIUtil.deleteLocalToken()
+    .then(() => dispatch(deleteSession()))
+);
+
 export const receiveSignin = response => (dispatch) => {
   // console.warn(response._bodyText);
   const parsedResponse = JSON.parse(response._bodyText)
-  APIUtil.saveToken(parsedResponse.token).then(() => dispatch(receiveCurrentUser(parsedResponse)));
+  APIUtil.saveToken(parsedResponse.token)
+    .then(() => dispatch(receiveCurrentUser(parsedResponse)));
 };
 
 export const signin = state => dispatch => (

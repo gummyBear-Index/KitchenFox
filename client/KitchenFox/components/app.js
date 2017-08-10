@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Signup from './auth/signup';
+import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
 import { checkLogin } from '../actions/session_actions';
@@ -8,8 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false,
+      loggedIn: Boolean(this.props.session.token.length),
     };
+    console.warn(JSON.stringify(this.props));
   }
 
   componentWillMount() {
@@ -24,7 +25,7 @@ class App extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return (<Signup />);
+      return (<SignupContainer />);
     } else {
       return (<SigninContainer />);
       // return (<Greeting />);

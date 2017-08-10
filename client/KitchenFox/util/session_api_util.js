@@ -30,6 +30,10 @@ export const getLocalToken = () => (
   AsyncStorage.getItem('jwt')
 );
 
+export const deleteLocalToken = () => (
+  AsyncStorage.removeItem('jwt')
+);
+
 export const demoSecured = () => {
   const token = getLocalToken();
   return (
