@@ -7,6 +7,7 @@ const router = Router();
 import { userIndex, register, login, showUser } from './controllers/users';
 import { itemsIndex, itemsPatch } from './controllers/items';
 import { createQuery, apiCall } from './utils/suggestRecipe';
+import { upcLookUp } from './utils/upcLogic';
 import { getItemsByUserId } from './db/queries';
 import User from './models/user';
 import { secret } from '../config';
@@ -33,7 +34,24 @@ router.route('/login').post((req, res, next) => login(req, res, next));
 
 router.route('/register').post((req, res) => register(req, res));
 
-router.route('/upcLookUp').get((req, res) => upcLookUp(req, res));
+router.get('/upcLookUp', (req, res, next) => {
+  // passport.authenticate('jwt', (err, user, info) => {
+  //   if (err) {
+  //     return next(err);
+  //   }
+  //   if (!user) {
+  //     return res.status(401).json({ error: 'Invalid credentials' });
+  //   }
+  //   if (user) {
+  console.log(req.headers);
+        upcLookUp(req.headers.upc_code).then((iteminfo) => {
+          return res
+          .status(200)
+          .json(iteminfo);
+        });
+  //   }
+  // })(req, res, next);
+});
 
 router.get('/recipes', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
@@ -54,6 +72,7 @@ router.get('/recipes', (req, res, next) => {
     }
   })(req, res, next);
 });
+
 router.route('/items').get((req, res, next) => itemsIndex(req, res, next));
 
 router.route('/items').patch((req, res, next) => itemsPatch(req, res, next));
