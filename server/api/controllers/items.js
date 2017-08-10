@@ -1,17 +1,25 @@
+import passport from 'passport';
 // import User from '../models/user';
-import populate from '../db/populateUser'
+// import populate from '../db/populateUser';
 
-import { getUserFromToken, updateItems, getIdFromToken, getItemsByUserId } from '../db/queries';
+import { updateItems } from '../db/queries';
 
-export const itemsIndex = (req, res) => (
-  getUserFromToken(req.headers.authorization)
-    .then(user => res.status(200).json(user.inventory))
-    .error(error => res.send(error))
-);
+export const itemsIndex = (req, res) => {
+  passport.authenticate('jwt', (err, user) => {
+    if (user) {
+      return res
+        .status(200)
+        .json({ inventory: user.inventory });
+    } return res.status(401).json({ error: 'Invalid token' });
+  })(req, res);
+};
 
-export const itemsPatch = (req, res) => (
-  updateItems(getIdFromToken(req.headers.authorization), req.body.inventory)
-    .then(doc => getItemsByUserId(doc._id))
-    .then(items => res.status(200).json(items.inventory))
-  // populate();
-);
+export const itemsPatch = (req, res) => {
+  passport.authenticate('jwt', (err, user) => {
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+    return updateItems(user._id, req.body.inventory, user.inventory)
+      .then(newInv => res.status(200).json(newInv.inventory));
+  })(req, res);
+};

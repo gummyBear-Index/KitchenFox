@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
-import { checkLogin } from '../actions/session_actions';
+
+import Pantry from '../screens/pantry';
 
 class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends Component {
       return (<SignupContainer />);
       // return (<Greeting />);
     }
+    return (<SigninContainer />);
   }
 }
 

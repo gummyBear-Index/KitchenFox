@@ -20,12 +20,13 @@ import {
 
 class Signup extends Component {
   constructor(props) {
-		super(props);
+    super(props);
     this.state = {
-    	first_name: '',
-    	last_name: '',
-    	username: '',
-    	password: ''
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
+      token: '',
     };
   }
 

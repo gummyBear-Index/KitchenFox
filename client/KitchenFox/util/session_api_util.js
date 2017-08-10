@@ -1,19 +1,21 @@
 import { AsyncStorage } from 'react-native';
 
-export const signup = (firstName, lastName, username, password) => (
-  fetch("https://kitchenfox.herokuapp.com/api/register", {
-    method: "POST",
+export const signup = (state) => {
+  const { first, last, username, password } = state;
+  return fetch('https://kitchenfox.herokuapp.com/api/register', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-    body: `first_name=${firstName}&last_name=${lastName}&username=${username}&password=${password}`,
-  })
-);
+    body: `username=${username}&password=${password}&first_name=${first}&last_name=${last}`,
+  });
+};
 
+// TODO: Change interpolated bodies to JSON.stringifieds
 export const login = (username, password) => (
-  fetch("https://kitchenfox.herokuapp.com/api/login", {
-    method: "POST",
+  fetch('https://kitchenfox.herokuapp.com/api/login', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
@@ -65,8 +67,8 @@ export const demoSecured = () => {
 };
 
 export const securable = token => (
-  fetch("https://kitchenfox.herokuapp.com/api/protected", {
-    method: "GET",
+  fetch('https://kitchenfox.herokuapp.com/api/protected', {
+    method: 'GET',
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -76,8 +78,8 @@ export const securable = token => (
 );
 
 export const protectedHeaders = () => (
-  fetch("https://kitchenfox.herokuapp.com/api/protected", {
-    method: "GET",
+  fetch('https://kitchenfox.herokuapp.com/api/protected', {
+    method: 'GET',
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',

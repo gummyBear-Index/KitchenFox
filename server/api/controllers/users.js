@@ -4,19 +4,24 @@ import jwt from 'jsonwebtoken';
 import { secret } from '../../config';
 import User from '../models/user';
 
-// lean gives json instead of mongo docobject
 export const getToken = (user) => {
   const token = jwt.sign({ id: user._id, username: user.username }, secret);
-  return { token };
+  return token;
 };
 
-export const userIndex = (req, res, next) => (
-  User.find().lean().exec((err, users) => {
-    return (
-      res.json({ users })
-    );
-  })
-);
+export const showUser = (req, res, next) => {
+  passport.authenticate('jwt', (err, user) => {
+    if (user) {
+      return res
+        .status(200)
+        .json({
+          username: user.username,
+          first_name: user.first_name,
+          last_name: user.last_name,
+        });
+    } return res.status(401).json({ error: 'Invalid token' });
+  })(req, res, next);
+};
 
 export const register = (req, res, next) => {
   User.register(new User({
@@ -29,26 +34,15 @@ export const register = (req, res, next) => {
     }
     return res
       .status(200)
-      .json(getToken(user));
+      .json({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        token: getToken(user),
+        username: user.username,
+      });
   });
 };
 
-// export const login = (req, res, next) => {
-//   passport.authenticate('local', (err, user, info) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!user) {
-//       return res.status(401).json({ error: 'Invalid credentials' });
-//     }
-//     if (user) {
-//       const token = jwt.sign({ id: user._id, username: user.username }, secret);
-//       return res
-//         .status(200)
-//         .json({ token });
-//     }
-//   })(req, res, next);
-// };
 
 export const login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
@@ -61,7 +55,12 @@ export const login = (req, res, next) => {
     if (user) {
       return res
         .status(200)
-        .json(getToken(user));
+        .json({
+          first_name: user.first_name,
+          last_name: user.last_name,
+          token:getToken(user),
+          username: user.username
+        });
     }
   })(req, res, next);
 };

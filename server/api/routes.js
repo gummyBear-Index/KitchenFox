@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import http from 'http';
 const router = Router();
 
-import { userIndex, register, login } from './controllers/users';
+import { userIndex, register, login, showUser } from './controllers/users';
 import { itemsIndex, itemsPatch } from './controllers/items';
 import { createQuery, apiCall } from './utils/suggestRecipe';
 import { getItemsByUserId } from './db/queries';
@@ -26,6 +26,17 @@ router.get('/protected', (req, res, next) => {
     }
   })(req, res, next);
 });
+
+// app.post('/profile', passport.authenticate('jwt', { session: false }),
+//     function(req, res) {
+//         res.send(req.user.profile);
+//     }
+// );
+
+// router.get('/user', passport.authenticate('jwt'), (req, res) => showUser(req, res));
+router.route('/user').get((req, res, next) => showUser(req, res, next));
+
+// router.route('/user').get((req, res) => showUser(req, res));
 
 router.route('/login').post((req, res, next) => login(req, res, next));
 

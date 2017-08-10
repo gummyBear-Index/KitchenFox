@@ -1,27 +1,40 @@
 import jwt from 'jsonwebtoken';
-import merge from 'lodash/merge';
 
 import populate from '../db/populateUser';
 import User from '../models/user';
 import { secret } from '../../config';
 
-export const getIdFromToken = (token) => {
-  const body = token.split(' ');
-  const parsedToken = body.length > 1 ? body[1] : body[0];
-  const decoded = jwt.verify(parsedToken, secret);
-  return decoded.id;
+export const getIdFromToken = (token = '') => {
+  try {
+    const body = token.split(' ');
+    const parsedToken = body.length > 1 ? body[1] : body[0];
+    const decoded = jwt.verify(parsedToken, secret);
+    return decoded.id;
+  } catch (err) {
+    return err;
+  }
 };
 
-export const getUserFromToken = token => (
+// export const getIdFromToken = (token = '') => {
+//   const body = token.split(' ');
+//   const parsedToken = body.length > 1 ? body[1] : body[0];
+// }
+
+
+export const getDocFromToken = token => (
   User.findById(getIdFromToken(token)).lean().exec()
   // Return value is a promise. Use by doing below. Error isn't strictly necessary.
-  // getUserFromToken(token)
+  // getDocFromToken(token)
   //  .then(user => coolFunction(user))
   //  .error(error => coolErrorFunction(error));
 );
 
+export const getUserFromToken = (token) => {
+  return User.findById(id).select('username first_name last_name').lean().exec();
+};
+
 export const getItemsByUserId = id => (
-  User.findById(id).select('inventory').exec()
+  User.findById(id).select('inventory').lean().exec()
 );
 
 export const setInventory = (id, mergedItems) => (
@@ -29,10 +42,11 @@ export const setInventory = (id, mergedItems) => (
   .select('inventory').lean().exec()
 );
 
-export const updateItems = (id, update) => {
+export const updateItems = (id, update, original) => {
   const newItems = typeof update === 'string' ? JSON.parse(update) : update;
-  return getItemsByUserId(id)
-    .then(oldItems => (
-      setInventory(id, Object.assign(oldItems.inventory, newItems))
-    ));
+  const oldItems = typeof original === 'string' ? JSON.parse(original) : original;
+  const mergedItems = Object.assign(oldItems, newItems);
+  const updateDb = User.findByIdAndUpdate(id, { inventory: mergedItems })
+    .select('inventory').lean().exec();
+  return updateDb.then(() => getItemsByUserId(id));
 };
