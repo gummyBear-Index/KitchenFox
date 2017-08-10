@@ -17,7 +17,7 @@ class PantryCategoriesIndex extends React.Component {
         <Content>
           <List>
             <ListItem itemDivider>
-              <Text onPress={() => navigate('Veggies')}>Veggies</Text>
+              <Text onPress={() => navigate('PantryCategory')}>Veggies</Text>
             </ListItem>                    
             <ListItem >
               <Text>Tomatoes</Text>
@@ -41,20 +41,5 @@ class PantryCategoriesIndex extends React.Component {
     );
   }
 }
-
-const PantryCategoryItemCard = () => {
-  return (
-    <Card>
-      <CardItem>
-        <Left>
-          <Body>
-            <Text>NativeBase</Text>
-            <Text note>GeekyAnts</Text>
-          </Body>
-        </Left>
-      </CardItem>
-    </Card>
-  );
-};
 
 export default PantryCategoriesIndex;

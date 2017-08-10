@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, List, ListItem, Text } from 'native-base';
+import { Container, Content, List, ListItem, Text, Card, CardItem, Body, Left } from 'native-base';
 
 class PantryCategoryIndex extends React.Component {
   static navigationOptions = {
@@ -18,14 +18,26 @@ class PantryCategoryIndex extends React.Component {
             <ListItem >
               <PantryCategoryItemCard />
             </ListItem>
-            <ListItem>
-              <Text>Asparagus</Text>
-            </ListItem>
           </List>
         </Content>
       </Container>
     );
   }
 }
+
+const PantryCategoryItemCard = () => {
+  return (
+    <Card>
+      <CardItem>
+        <Left>
+          <Body>
+            <Text>Asparagus</Text>
+            <Text note>Running Low</Text>
+          </Body>
+        </Left>
+      </CardItem>
+    </Card>
+  );
+};
 
 export default PantryCategoryIndex;

@@ -12,7 +12,7 @@ class PantryAddItems extends React.Component {
       <Container>
         <Content>
           <Text>
-            PLUS SIGN
+            ADD AN ITEM HERE
           </Text>
         </Content>
       </Container>
