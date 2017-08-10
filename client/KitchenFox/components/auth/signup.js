@@ -19,6 +19,10 @@ import {
 
 
 class Signup extends Component {
+  static navigationOptions = {
+    title: 'Sign Up',
+	};
+	
   constructor(props) {
     super(props);
     this.state = {
@@ -45,76 +49,62 @@ class Signup extends Component {
     dismissKeyboard();
   }
 
-  handleGoBack() {
-		const routeStack = this.props.navigator.getCurrentRoutes();
-		this.props.navigator.jumpTo(routeStack[0]);
-  }
-
   render() {
 		return (
 			<Container>
 				<View style={styles.container}>
-					<Header>
-						<Button
-							onPress={() => this.handleGoBack()}
-							transparent
-						>
-							<Icon name='ios-arrow-back' />
-						</Button>
-						<Title>Sign Up</Title>
-					</Header>
-						<View
-							style={styles.content}
-						>
-							<InputGroup style={styles.input}>
-								<Icon style={styles.inputIcon} name='ios-arrow-forward' />
-								<Input
-									placeholder='First name'
-									autoCorrect={false}
-									onChangeText={firstName => this.setState({ firstName })}
-									value={this.state.firstName}
-								/>
-							</InputGroup>
-							<InputGroup style={styles.input}>
-								<Icon style={styles.inputIcon} name='ios-arrow-forward' />
-								<Input
-									placeholder='Last name'
-									autoCorrect={false}
-									onChangeText={lastName => this.setState({ lastName })}
-									value={this.state.lastName}
-								/>
-							</InputGroup>
-							<InputGroup style={styles.input}>
-								<Icon style={styles.inputIcon} name="ios-person" />
-								<Input
-									placeholder="Email"
-									keyboardType="email-address"
-									autoCorrect={false}
-									autoCapitalize="none"
-									onChangeText={email => this.setState({ username })}
-									value={this.state.username}
-								/>
-							</InputGroup>
-							<InputGroup style={styles.input}>
-								<Icon style={styles.inputIcon} name="ios-unlock" />
-								<Input
-									placeholder="Password"
-									onChangeText={password => this.setState({ password })}
-									value={this.state.password}
-									secureTextEntry
-								/>
-							</InputGroup>
-							{this.state.isLoading ? (
-								<Spinner size="small" color="#000000" />
-							) : (
-								<Button
-									style={styles.button}
-									onPress={(e) => this.handleSignup()}
-								>
-									<Text>Sign up</Text>
-								</Button>
-							)}
-						</View>
+					<View
+						style={styles.content}
+					>
+						<InputGroup style={styles.input}>
+							<Icon style={styles.inputIcon} name='ios-arrow-forward' />
+							<Input
+								placeholder='First name'
+								autoCorrect={false}
+								onChangeText={firstName => this.setState({ firstName })}
+								value={this.state.firstName}
+							/>
+						</InputGroup>
+						<InputGroup style={styles.input}>
+							<Icon style={styles.inputIcon} name='ios-arrow-forward' />
+							<Input
+								placeholder='Last name'
+								autoCorrect={false}
+								onChangeText={lastName => this.setState({ lastName })}
+								value={this.state.lastName}
+							/>
+						</InputGroup>
+						<InputGroup style={styles.input}>
+							<Icon style={styles.inputIcon} name="ios-person" />
+							<Input
+								placeholder="Email"
+								keyboardType="email-address"
+								autoCorrect={false}
+								autoCapitalize="none"
+								onChangeText={email => this.setState({ username })}
+								value={this.state.username}
+							/>
+						</InputGroup>
+						<InputGroup style={styles.input}>
+							<Icon style={styles.inputIcon} name="ios-unlock" />
+							<Input
+								placeholder="Password"
+								onChangeText={password => this.setState({ password })}
+								value={this.state.password}
+								secureTextEntry
+							/>
+						</InputGroup>
+						{this.state.isLoading ? (
+							<Spinner size="small" color="#000000" />
+						) : (
+							<Button
+								style={styles.button}
+								onPress={(e) => this.handleSignup()}
+							>
+								<Text>Sign up</Text>
+							</Button>
+						)}
+					</View>
 				</View>
 			</Container>
 		);

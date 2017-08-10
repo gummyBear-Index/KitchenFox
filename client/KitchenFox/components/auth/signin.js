@@ -20,6 +20,9 @@ import {
 } from 'native-base';
 
 class SignIn extends Component {
+  static navigationOptions = {
+    title: 'Sign In',
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -42,25 +45,10 @@ class SignIn extends Component {
     dismissKeyboard();
   }
 
-  handleGoBack() {
-    this.props.navigation.navigate('Greeting');
-    // const routeStack = this.props.navigator.getCurrentRoutes();
-    // this.props.navigator.jumpTo(routeStack[0]);
-  }
-
   render() {
     return(
       <Container>
         <View style={styles.container}>
-          <Header>
-            <Button
-              onPress={() => this.handleGoBack()}
-              transparent
-            >
-              <Icon name='ios-arrow-back' />
-            </Button>
-            <Title>Sign In</Title >
-          </Header>
           <View
             style={styles.content}
           >

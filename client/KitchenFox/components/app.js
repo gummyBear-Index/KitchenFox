@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import SignupContainer from './auth/signup_container';
-import SigninContainer from './auth/signin_container';
-import Greeting from './auth/greeting';
 
+import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
 class App extends Component {
@@ -25,9 +23,9 @@ class App extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return (<Pantry />);
+      return (<Welcome />);
     }
-    return (<SigninContainer />);
+    return (<Pantry />);
   }
 }
 

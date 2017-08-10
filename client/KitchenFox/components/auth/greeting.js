@@ -34,20 +34,6 @@ class Greeting extends Component {
     this.state = this.initialState;
   }
 
-  _handleSignupPage = () => {
-    this.props.navigator.push({
-      title: 'SignUp',
-      component: SignupPage,
-      backButtonTitle: 'Back'
-    })
-  }
-  _handleSigninPage = () => {
-    this.props.navigator.push({
-      title: 'SignIn',
-      component: SigninPage,
-      backButtonTitle: 'Back'
-    })
-  }
   // _handleProtectedView = () => {
   //   this.props.navigator.push({
   //     title: 'Protected Content',
@@ -61,16 +47,18 @@ class Greeting extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return(
       <Container>
         <View style={styles.container}>
           <Header>
             <Title>Welcome to KitchenFox!</Title >
           </Header>
-          <Button onPress={() => this.props.navigation.navigate('SignIn', {name: 'signup'})}>
+          <Button onPress={() => navigate('Signup', {name: 'signup'})}>
             <Text>Sign Up</Text>
           </Button>
-          <Button onPress={() => this.props.navigation.navigate('SignUp', {name: 'signin'})}>
+          <Button onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text>Sign In</Text>
           </Button>
         </View>
