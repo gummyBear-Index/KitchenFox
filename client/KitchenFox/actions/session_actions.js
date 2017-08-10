@@ -1,23 +1,20 @@
 import * as APIUtil from '../util/session_api_util';
-import { AsyncStorage } from 'react-native'; 
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const LOGOUT = 'LOGOUT';
-export const RECEIVE_TOKEN = 'RECEIVE_TOKEN';
 
-export const checkLogin = () => dispatch => (
-  APIUtil.getLocalToken().then(token => dispatch(receiveToken(token)))
-    // .error(error => receiveErrors(error))
-);
 
-export const getLocalToken = () => (
-  AsyncStorage.getItem('jwt')
-);
+// TODO: Have checkLogin ping server to ensure token is valid
+// export const checkLogin = () => dispatch => (
+//   APIUtil.getLocalToken().then(token => dispatch(receiveToken(token)))
+//     // .error(error => receiveErrors(error))
+// );
 
-export const saveToken = (response) => (
-  AsyncStorage.setItem('jwt', response._bodyText)
-);
+export const receiveCurrentUser = currentUser => ({
+  type: RECEIVE_CURRENT_USER,
+  currentUser,
+});
 
 export const signin = state => dispatch => (
   APIUtil.login(state.username, state.password)
@@ -28,15 +25,16 @@ export const signin = state => dispatch => (
 
 );
 
-export const receiveToken = token => ({
-  type: RECEIVE_TOKEN,
-  token,
-});
+export const receiveSignin = response => dispatch => {
+  APIUtil.saveToken(response).then(() => dispatch(receiveCurrentUser(response._bodyText)));
+};
 
-export const receiveCurrentUser = currentUser => ({
-  type: RECEIVE_CURRENT_USER,
-  currentUser,
-});
+export const fetchToken = () => (dispatch) => {
+  APIUtil.getLocalToken().then((token) => {
+    const sessionToken = { token, };
+    dispatch(receiveCurrentUser(sessionToken));
+  });
+};
 
 export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,

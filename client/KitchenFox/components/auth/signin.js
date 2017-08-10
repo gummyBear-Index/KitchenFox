@@ -27,7 +27,6 @@ class SignIn extends Component {
       password: ''
     };
     this.state = this.initialState;
-
     this.handleSignin = this.handleSignin.bind(this);
   }
 
