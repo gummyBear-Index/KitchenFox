@@ -12,14 +12,13 @@ export const getIdFromToken = (token) => {
   return decoded.id;
 };
 
-export const getUserFromToken = (token) => {
-  const id = getIdFromToken(token);
-  return User.findById(id).lean().exec();
+export const getUserFromToken = token => (
+  User.findById(getIdFromToken(token)).lean().exec()
   // Return value is a promise. Use by doing below. Error isn't strictly necessary.
   // getUserFromToken(token)
   //  .then(user => coolFunction(user))
   //  .error(error => coolErrorFunction(error));
-};
+);
 
 export const getItemsByUserId = id => (
   User.findById(id).select('inventory').exec()
@@ -27,11 +26,13 @@ export const getItemsByUserId = id => (
 
 export const setInventory = (id, mergedItems) => (
   User.findByIdAndUpdate(id, { inventory: mergedItems })
-    .select('inventory').exec()
+  .select('inventory').lean().exec()
 );
 
 export const updateItems = (id, update) => {
   const newItems = typeof update === 'string' ? JSON.parse(update) : update;
   return getItemsByUserId(id)
-    .then(oldItems => setInventory(id, merge(newItems, oldItems)));
+    .then(oldItems => (
+      setInventory(id, Object.assign(oldItems.inventory, newItems))
+    ));
 };
