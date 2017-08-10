@@ -30,7 +30,7 @@ export const logout = () => dispatch => (
 );
 
 export const receiveSignin = response => (dispatch) => {
-  const parsedResponse = JSON.parse(response._bodyText)
+  const parsedResponse = JSON.parse(response._bodyText);
   APIUtil.saveToken(parsedResponse.token)
     .then(() => dispatch(receiveCurrentUser(parsedResponse)));
 };
@@ -48,5 +48,40 @@ export const fetchToken = () => (dispatch) => {
       token,
     };
     dispatch(receiveCurrentUser(sessionToken));
+  });
+};
+
+export const receiveSignup = response => (dispatch) => {
+  const parsedResponse = JSON.parse(response._bodyText);
+  // console.warn(JSON.stringify(parsedResponse));
+  APIUtil.saveFirstName(parsedResponse.first_name);
+  APIUtil.saveLastName(parsedResponse.last_name);
+  APIUtil.saveToken(parsedResponse.token)
+  .then(() => dispatch(receiveCurrentUser(parsedResponse)));
+};
+export const signup = state => dispatch => {
+  // console.warn(JSON.stringify(state));
+  APIUtil.signup(state.first_name, state.last_name, state.username, state.password)
+    .then((response) => {
+      // console.warn(JSON.stringify(response)),
+      dispatch(receiveSignup(response));
+    });
+};
+
+export const fetchFirstName = () => (dispatch) => {
+  APIUtil.getFirstName().then((fn) => {
+    const firstName = {
+      fn,
+    };
+    dispatch(receiveCurrentUser(firstName));
+  });
+};
+
+export const fetchLastName = () => (dispatch) => {
+  APIUtil.getFirstName().then((fn) => {
+    const lastName = {
+      fn,
+    };
+    dispatch(receiveCurrentUser(lastName));
   });
 };
