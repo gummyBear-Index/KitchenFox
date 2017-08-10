@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { StackNavigator } from 'react-native';
 import { styles } from '../../style/auth/session';
+import { text } from '../../style/text.js';
 import { signin } from '../../actions/session_actions';
 import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
@@ -20,9 +21,9 @@ import {
 } from 'native-base';
 
 class SignIn extends Component {
-  static navigationOptions = {
-    title: 'Sign In',
-  };
+  // static navigationOptions = {
+  //   title: 'Sign In',
+  // };
   constructor(props) {
     super(props);
     this.state = {
@@ -53,8 +54,8 @@ class SignIn extends Component {
       <Container>
         <View style={styles.container}>
           <View
-            style={styles.content}
-          >
+            style={styles.content}>
+              <Text style={text.titleLeft}>Sign In</Text>
             <InputGroup style={styles.input}>
               <Icon style={styles.inputIcon} name='ios-person' />
               <Input

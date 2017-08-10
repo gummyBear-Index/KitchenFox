@@ -17,6 +17,7 @@ import {
 
 import SignIn from './signin';
 import SignUp from './signup';
+import { text } from '../../style/text';
 
 // const ProtectedView = require('./ProtectedView')
 
@@ -52,9 +53,7 @@ class Greeting extends Component {
     return(
       <Container>
         <View style={styles.container}>
-          <Header>
-            <Title>Welcome to KitchenFox!</Title >
-          </Header>
+            <Title style={text.titleCenter}>Welcome to KitchenFox!</Title >
           <Button onPress={() => navigate('Signup', {name: 'signup'})}>
             <Text>Sign Up</Text>
           </Button>

@@ -9,16 +9,19 @@ export const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 4,
-    padding: 20,
-    // textAlign: 'center',
-    marginBottom: 20,
-    // color: '#fff'
+    marginTop: 20,
+    alignSelf: 'center',
   },
   greenButton: {
     backgroundColor: '#4CD964'
   },
   centering: {
-    // alignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'center'
+  },
+  content: {
+    marginTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   }
 });

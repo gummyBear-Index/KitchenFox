@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage } from 'react-native';
 import { styles } from '../../style/auth/session';
+import { text } from '../../style/text.js';
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 import {
   Container,
@@ -19,9 +20,9 @@ import {
 
 
 class Signup extends Component {
-  static navigationOptions = {
-    title: 'Sign Up',
-	};
+  // static navigationOptions = {
+  //   title: 'Sign Up',
+	// };
 	
   constructor(props) {
     super(props);
@@ -56,8 +57,8 @@ class Signup extends Component {
 			<Container>
 				<View style={styles.container}>
 					<View
-						style={styles.content}
-					>
+						style={styles.content}>
+						<Text style={text.titleLeft}>Sign Up</Text>
 						<InputGroup style={styles.input}>
 							<Icon style={styles.inputIcon} name='ios-arrow-forward' />
 							<Input
