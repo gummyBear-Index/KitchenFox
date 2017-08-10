@@ -33,6 +33,8 @@ router.route('/login').post((req, res, next) => login(req, res, next));
 
 router.route('/register').post((req, res) => register(req, res));
 
+router.route('/upcLookUp').get((req, res) => upcLookUp(req, res));
+
 router.get('/recipes', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
     if (err) {
