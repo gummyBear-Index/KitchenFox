@@ -51,6 +51,7 @@ export const fetchToken = () => (dispatch) => {
   });
 };
 
+
 export const receiveSignup = response => (dispatch) => {
   const parsedResponse = JSON.parse(response._bodyText);
   // console.warn(JSON.stringify(parsedResponse));
