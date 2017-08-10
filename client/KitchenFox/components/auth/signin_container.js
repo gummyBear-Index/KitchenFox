@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import SignIn from './signin';
 import { signin } from '../../actions/session_actions';
 
-const mapStateToProps = state => ({
+const mapStateToProps = ({ session }) => ({
   // currentUser: state.session.currentUser,
   // token: state.session.token,
   // errors: state.session.errors
-  session: state.session,
+  session,
 });
 
 const mapDispatchToProps = dispatch => ({

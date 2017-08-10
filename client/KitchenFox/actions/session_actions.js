@@ -21,7 +21,9 @@ export const receiveErrors = errors => ({
 });
 
 export const receiveSignin = response => (dispatch) => {
-  APIUtil.saveToken(response).then(() => dispatch(receiveCurrentUser(response._bodyText)));
+  // console.warn(response._bodyText);
+  const parsedResponse = JSON.parse(response._bodyText)
+  APIUtil.saveToken(parsedResponse.token).then(() => dispatch(receiveCurrentUser(parsedResponse)));
 };
 
 export const signin = state => dispatch => (
@@ -34,7 +36,9 @@ export const signin = state => dispatch => (
 
 export const fetchToken = () => (dispatch) => {
   APIUtil.getLocalToken().then((token) => {
-    console.warn(JSON.stringify(token));
-    dispatch(receiveCurrentUser(token));
+    const sessionToken = {
+      token,
+    };
+    dispatch(receiveCurrentUser(sessionToken));
   });
 };

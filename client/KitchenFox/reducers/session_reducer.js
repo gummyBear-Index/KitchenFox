@@ -2,7 +2,8 @@ import merge from 'lodash/merge';
 import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS } from '../actions/session_actions';
 
 const initialState = {
-  currentUser: null,
+  first_name: '',
+  last_name: '',
   token: {},
   errors: {},
 };

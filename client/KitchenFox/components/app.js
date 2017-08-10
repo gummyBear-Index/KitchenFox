@@ -8,9 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      session: {
-        token: '',
-      },
+      loggedIn: false,
     };
   }
 
@@ -19,11 +17,13 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // console.warn(JSON.stringify(newProps));
+    if (!this.state.loggedIn && newProps.session.token) {
+      this.setState({ loggedIn: true })
+    }
   }
 
   render() {
-    if (this.state.session.token) {
+    if (this.state.loggedIn) {
       return (<Signup />);
     } else {
       return (<SigninContainer />);

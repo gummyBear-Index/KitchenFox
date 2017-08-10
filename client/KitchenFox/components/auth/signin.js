@@ -31,7 +31,7 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.warn(JSON.stringify(newProps));
+    // console.warn(JSON.stringify(newProps));
     // console.warn(newProps);
     // console.warn(JSON.stringify(newProps));
     if (newProps.currentUser) {

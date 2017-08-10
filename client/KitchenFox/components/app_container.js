@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import App from './app';
 import { checkLogin, fetchToken } from '../actions/session_actions';
 
-const mapStateToProps = state => (
+const mapStateToProps = ({ session }) => (
   {
-    state,
+    session,
   }
 );
 
