@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import Promise from 'bluebird';
 
 import populate from '../db/populateUser';
 import User from '../models/user';
