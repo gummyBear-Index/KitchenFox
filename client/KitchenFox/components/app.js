@@ -22,9 +22,9 @@ class App extends Component {
 
   render() {
     if (this.state.session.token) {
-      return (<Signup />);
-    } else {
       return (<Pantry />);
+    } else {
+      return (<Signup />);
     }
   }
 }
