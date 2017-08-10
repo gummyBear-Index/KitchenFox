@@ -10,6 +10,6 @@ const RootReducer = (state, action) => {
     state = undefined;
   }
   return appReducer(state, action);
-}
+};
 
 export default RootReducer;

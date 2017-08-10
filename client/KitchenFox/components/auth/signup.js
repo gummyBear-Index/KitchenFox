@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage } from 'react-native';
 import { styles } from '../../style/auth/session';
+import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 import {
   Container,
   Header,
@@ -16,7 +17,6 @@ import {
   Navigator,
 } from 'native-base';
 
-import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
 class Signup extends Component {
   constructor(props) {
