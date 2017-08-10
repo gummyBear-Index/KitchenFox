@@ -10,7 +10,7 @@ const populate = () => {
       'quantity': 11,
       'units': 'each',
     },
-    '9348798375': {
+    9348798375: {
       'name': 'Vegemite',
       'quantity': 400,
       'units': 'g',
