@@ -24,7 +24,7 @@ class App extends Component {
     if (this.state.session.token) {
       return (<Pantry />);
     } else {
-      return (<Signup />);
+      return (<SigninContainer />);
     }
   }
 }
