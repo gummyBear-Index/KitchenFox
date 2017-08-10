@@ -3,7 +3,7 @@ import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, RECEIVE_TOKEN } from '../actions/
 
 const initialState = {
   currentUser: null,
-  token: null,
+  token: {},
   errors: {}
 };
 
