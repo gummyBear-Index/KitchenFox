@@ -19,9 +19,9 @@
 
 /server/node_modules
 /server/dist
-client/MobileApp/node_modules
-client/MobileApp/__tests__
-client/MobileApp/.eslintrc
+client/KitchenFox/node_modules
+client/KitchenFox/__tests__
+client/KitchenFox/.eslintrc
 
 /node_modules
 /yarn-error.log
