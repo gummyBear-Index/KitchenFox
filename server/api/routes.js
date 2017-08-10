@@ -35,22 +35,21 @@ router.route('/login').post((req, res, next) => login(req, res, next));
 router.route('/register').post((req, res) => register(req, res));
 
 router.get('/upcLookUp', (req, res, next) => {
-  // passport.authenticate('jwt', (err, user, info) => {
-  //   if (err) {
-  //     return next(err);
-  //   }
-  //   if (!user) {
-  //     return res.status(401).json({ error: 'Invalid credentials' });
-  //   }
-  //   if (user) {
-  console.log(req.headers);
-        upcLookUp(req.headers.upc_code).then((iteminfo) => {
-          return res
-          .status(200)
-          .json(iteminfo);
-        });
-  //   }
-  // })(req, res, next);
+  passport.authenticate('jwt', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    if (user) {
+      upcLookUp(req.headers.upc_code).then((iteminfo) => {
+        return res
+        .status(200)
+        .json(iteminfo);
+      });
+    }
+  })(req, res, next);
 });
 
 router.get('/recipes', (req, res, next) => {
