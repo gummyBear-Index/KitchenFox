@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    return(this.state.session.token ? <Signing /> : <Greetings />)
+    return(this.state.session.token ? <Signup /> : <Signin />)
   }
 }
 
