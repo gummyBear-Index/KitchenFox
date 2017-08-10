@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/session_api_util';
+import { AsyncStorage } from 'react-native'; 
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
@@ -26,7 +27,6 @@ export const signin = state => dispatch => (
     })
 
 );
-
 
 export const receiveToken = token => ({
   type: RECEIVE_TOKEN,

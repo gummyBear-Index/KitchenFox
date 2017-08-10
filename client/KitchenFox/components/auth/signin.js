@@ -25,7 +25,7 @@ class SignIn extends Component {
     this.initialState = {
       username: '',
       password: ''
-    }
+    };
     this.state = this.initialState;
 
     this.handleSignin = this.handleSignin.bind(this);
@@ -41,8 +41,8 @@ class SignIn extends Component {
 
   handleSignin() {
     this.props.signin(this.state);
-    console.warn(JSON.stringify(this.state));
-    console.warn(JSON.stringify(this.props));
+    // console.warn(JSON.stringify(this.state));
+    // console.warn(JSON.stringify(this.props));
 
     dismissKeyboard();
 

@@ -22,8 +22,6 @@ export const login = (username, password) => (
   })
 );
 
-<<<<<<< HEAD:client/MobileApp/util/session_api_util.js
-=======
 export const saveToken = (response) => (
   AsyncStorage.setItem('jwt', response._bodyText)
 );
@@ -31,7 +29,6 @@ export const saveToken = (response) => (
 export const getLocalToken = () => (
   AsyncStorage.getItem('jwt')
 );
->>>>>>> 383ef0e442c96ad81b86eaee9376d259f3b5bfe9:client/KitchenFox/util/session_api_util.js
 
 export const demoSecured = () => {
   const token = getLocalToken();
