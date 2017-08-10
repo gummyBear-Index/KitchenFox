@@ -12,6 +12,8 @@ const Pantry = StackNavigator({
   AddItem: { screen: PantryAddItems },
   Dashboard: { screen: DashboardPantryStocked },
   Recipes: { screen: RecipesIndex },
+  }, {
+  headerMode: 'none'
 });
 // const Pantry = StackNavigator({
 //   Pantry: { screen: PantryCategoriesIndex },

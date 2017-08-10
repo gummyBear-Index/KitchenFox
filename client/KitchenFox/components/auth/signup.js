@@ -44,12 +44,14 @@ class Signup extends Component {
     //   // Redirect to home screen
 		// 	return parsedRes.token;
 		// };
-    // this.props.logout();
-
+		// this.props.logout();
+		
+		this.props.navigation.navigate('Pantry');
     dismissKeyboard();
   }
 
   render() {
+
 		return (
 			<Container>
 				<View style={styles.container}>

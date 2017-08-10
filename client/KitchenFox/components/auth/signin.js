@@ -42,10 +42,13 @@ class SignIn extends Component {
 
   handleSignin() {
     this.props.signin(this.state);
+
+    this.props.navigation.navigate('Pantry');
     dismissKeyboard();
   }
 
   render() {
+    const { navigate } = this.props.navigation; 
     return(
       <Container>
         <View style={styles.container}>

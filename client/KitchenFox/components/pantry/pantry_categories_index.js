@@ -8,6 +8,7 @@ import NavFooter from '../nav/footer';
 class PantryCategoriesIndex extends React.Component {
   static navigationOptions = {
     title: 'Your Ingredients',
+    headerLeft: null
   };
 
   render() {
