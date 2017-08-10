@@ -10,7 +10,6 @@ class App extends Component {
     this.state = {
       loggedIn: Boolean(this.props.session.token.length),
     };
-    console.warn(JSON.stringify(this.props));
   }
 
   componentWillMount() {

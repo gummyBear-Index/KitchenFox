@@ -5,7 +5,6 @@ import AppContainer from './app_container';
 class Root extends Component {
   constructor(props) {
     super(props);
-    // console.warn(JSON.stringify(this.props.store));
   }
 
   render() {

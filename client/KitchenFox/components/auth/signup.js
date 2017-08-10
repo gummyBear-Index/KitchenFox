@@ -40,20 +40,13 @@ class Signup extends Component {
     //   // Redirect to home screen
 		// 	return parsedRes.token;
 		// };
-    // console.warn('button hit');
-    this.props.logout();
+    // this.props.logout();
 
 		dismissKeyboard();
 
 		// createUser(username, password).then(response => saveToken(response));
 		// let that = this;
 		// setTimeout(that.showJWT, 5000);
-	}
-
-	showJWT() {
-		this.token;
-		let that = this;
-		AsyncStorage.getItem('jwt').then(token => console.warn(token));
 	}
 
   handleGoBack() {

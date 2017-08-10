@@ -7,7 +7,6 @@ import { getLocalToken } from '../util/session_api_util';
 let preloadedState;
 
 getLocalToken().then(token => {
-  console.warn(token);
   if (token) {
     preloadedState = {
       session: {

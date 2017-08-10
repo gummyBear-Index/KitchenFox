@@ -30,7 +30,6 @@ export const logout = () => dispatch => (
 );
 
 export const receiveSignin = response => (dispatch) => {
-  // console.warn(response._bodyText);
   const parsedResponse = JSON.parse(response._bodyText)
   APIUtil.saveToken(parsedResponse.token)
     .then(() => dispatch(receiveCurrentUser(parsedResponse)));
@@ -39,7 +38,6 @@ export const receiveSignin = response => (dispatch) => {
 export const signin = state => dispatch => (
   APIUtil.login(state.username, state.password)
     .then((response) => {
-      // console.warn(JSON.stringify(response));
       dispatch(receiveSignin(response));
     })
 );
