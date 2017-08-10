@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
-import { checkLogin } from '../actions/session_actions';
 
 class App extends Component {
   constructor(props) {
@@ -25,10 +24,9 @@ class App extends Component {
   render() {
     if (this.state.loggedIn) {
       return (<SignupContainer />);
-    } else {
-      return (<SigninContainer />);
-      // return (<Greeting />);
     }
+    return (<SigninContainer />);
+    // return (<Greeting />);
   }
 }
 

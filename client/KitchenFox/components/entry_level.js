@@ -20,8 +20,6 @@ getLocalToken().then(token => {
 
 const store = configureStore(preloadedState);
 
-const Entry = () => (
-  <Root store={store} />
-);
+const Entry = () => (<Root store={store} />);
 
 AppRegistry.registerComponent('KitchenFox', () => Entry);
