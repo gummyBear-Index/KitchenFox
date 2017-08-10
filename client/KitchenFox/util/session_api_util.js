@@ -1,13 +1,13 @@
 import { AsyncStorage } from 'react-native';
 
-export const createUser = (username, password) => (
+export const signup = (firstName, lastName, username, password) => (
   fetch("https://kitchenfox.herokuapp.com/api/register", {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-    body: `username=${username}&password=${password}`,
+    body: `first_name=${firstName}&last_name=${lastName}&username=${username}&password=${password}`,
   })
 );
 
@@ -32,6 +32,22 @@ export const getLocalToken = () => (
 
 export const deleteLocalToken = () => (
   AsyncStorage.removeItem('jwt')
+);
+
+export const saveFirstName = response => (
+  AsyncStorage.setItem('fn', response)
+);
+
+export const getFirstName = () => (
+  AsyncStorage.setItem('fn')
+);
+
+export const saveLastName = response => (
+  AsyncStorage.setItem('ln', response)
+);
+
+export const getLastName = () => (
+  AsyncStorage.setItem('ln')
 );
 
 export const demoSecured = () => {

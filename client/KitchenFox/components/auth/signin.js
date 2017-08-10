@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage, StackNavigator } from 'react-native';
 import { styles } from '../../style/auth/session';
-import { signin } from '../../actions/session_actions';
-import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
 import {
   Container,
@@ -22,17 +20,18 @@ import {
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.initialState = {
+    this.state = {
       username: '',
       password: ''
     };
-    this.state = this.initialState;
-    this.handleSignin = this.handleSignin.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.currentUser) {
-      this.props.navigation.navigate('IndexPage');
+      let user = newProps.currentUser;
+      console.warn(JSON.stringify(user));
+      // navigate to index page
+      // this.props.navigation.navigate('IndexPage');
     }
   }
 
@@ -41,8 +40,14 @@ class SignIn extends Component {
     dismissKeyboard();
   }
 
+  handleLogout() {
+    this.props.logout();
+  }
+
   handleGoBack() {
-    this.props.navigation.navigate('Greeting');
+    // navigate to greeting page
+
+    // this.props.navigation.navigate('Greeting');
     // const routeStack = this.props.navigator.getCurrentRoutes();
     // this.props.navigator.jumpTo(routeStack[0]);
   }
@@ -90,13 +95,18 @@ class SignIn extends Component {
                 style={styles.button}
                 onPress={(e) => this.handleSignin()}
               >
-                <Text>Sign in</Text>
+                <Text>SIGN IN</Text>
               </Button>
             )}
           </View>
+          <Button
+            style={styles.button}
+            onPress={(e) => this.handleLogout()}
+          >
+            <Text>LOGOUT</Text>
+          </Button>
         </View>
       </Container>
-
     );
   }
 }
