@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/session_api_util';
+import { AsyncStorage } from 'react-native'; 
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
@@ -10,25 +11,31 @@ export const checkLogin = () => dispatch => (
     // .error(error => receiveErrors(error))
 );
 
-export const signin = state => dispatch => (
-  APIUtil.login(state.username, state.password)
-    .then(response => dispatch(receiveToken))
+export const getLocalToken = () => (
+  AsyncStorage.getItem('jwt')
 );
 
-// export const checkLogin = () => dispatch => (
-//   APIUtil.getLocalToken().then(token => this.props.setState({ currentUser: token }),
-//   err => this.props.setState({ currentUser: null })
-// ));
+export const saveToken = (response) => (
+  AsyncStorage.setItem('jwt', response._bodyText)
+);
+
+export const signin = state => dispatch => (
+  APIUtil.login(state.username, state.password)
+    .then(response => {
+      console.warn(JSON.stringify(response));
+      saveToken(response).then(() => dispatch(receiveToken));
+    })
+
+);
 
 export const receiveToken = token => ({
   type: RECEIVE_TOKEN,
   token,
-})
+});
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
-  errors,
 });
 
 export const receiveErrors = errors => ({

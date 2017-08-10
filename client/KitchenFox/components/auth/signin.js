@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, StackNavigator } from 'react-native';
 import { styles } from '../../style/auth/session';
 import { signin } from '../../actions/session_actions';
+import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
 import {
   Container,
@@ -18,27 +19,39 @@ import {
   Navigator,
 } from 'native-base';
 
-import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
-
-class Signin extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
-
     this.initialState = {
-      email: '',
+      username: '',
       password: ''
-    }
+    };
     this.state = this.initialState;
+
+    this.handleSignin = this.handleSignin.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    console.warn(newProps);
-    console.warn(JSON.stringify(newProps));
-    this.setState()
+    // console.warn(newProps);
+    // console.warn(JSON.stringify(newProps));
+    if (newProps.currentUser) {
+      this.props.navigation.navigate('IndexPage');
+    }
   }
 
   handleSignin() {
-    signin(this.state);
+    this.props.signin(this.state);
+    // console.warn(JSON.stringify(this.state));
+    // console.warn(JSON.stringify(this.props));
+
+    dismissKeyboard();
+
+    // console.warn(newProps);
+    // console.warn(JSON.stringify(newProps));
+  }
+
+  // handleSignin() {
+    // signin(this.state);
     // const { username, password } = this.state;
     // const getToken = response => {
     //   let parsedRes = JSON.parse(response._bodyText);
@@ -46,13 +59,9 @@ class Signin extends Component {
     //   return parsedRes.token;
     // }
     //
-    dismissKeyboard();
-    //
     // login(username, password).then(response => saveToken(response))
-
     // let that = this;
     // setTimeout(that.showJWT, 5000);
-  }
 
   showJWT() {
     this.token;
@@ -61,8 +70,9 @@ class Signin extends Component {
   }
 
   handleGoBack() {
-    const routeStack = this.props.navigator.getCurrentRoutes();
-    this.props.navigator.jumpTo(routeStack[0]);
+    this.props.navigation.navigate('Greeting');
+    // const routeStack = this.props.navigator.getCurrentRoutes();
+    // this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {
@@ -88,7 +98,7 @@ class Signin extends Component {
                 keyboardtype='email-address'
                 autoCorrect={false}
                 autoCapitalize='none'
-                onChangeText={email => this.setState({ email })}
+                onChangeText={username => this.setState({ username })}
                 value={this.state.username}
               />
             </InputGroup>
@@ -119,4 +129,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default SignIn;

@@ -13,16 +13,17 @@ import {
   Text,
   Navigator,
 } from 'native-base';
-// import { navigation }
+// import { StackNavigation } from 'react-navigation'
 
-// import SigninPage from './signin';
-// import SignupPage from './signup';
+import SignIn from './signin';
+import SignUp from './signup';
 
 // const ProtectedView = require('./ProtectedView')
+
 class Greeting extends Component {
-  static navigationOptions = {
-    title: 'Home',
-  }
+  // static navigationOptions = {
+  //   title: 'Home',
+  // }
   constructor(props) {
 		super(props);
 
