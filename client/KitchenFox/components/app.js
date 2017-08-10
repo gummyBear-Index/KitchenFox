@@ -3,6 +3,8 @@ import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import Greeting from './auth/greeting';
 
+import Pantry from '../screens/pantry';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,10 +25,9 @@ class App extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return (<SignupContainer />);
+      return (<Pantry />);
     }
     return (<SigninContainer />);
-    // return (<Greeting />);
   }
 }
 
