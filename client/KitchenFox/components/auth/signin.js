@@ -42,7 +42,7 @@ class SignIn extends Component {
     this.props.signin(this.state);
     // console.warn(JSON.stringify(this.state));
     // console.warn(JSON.stringify(this.props));
-
+    // console.warn(JSON.stringify(AsyncStorage.getItem('jwt')));
     dismissKeyboard();
 
     // console.warn(newProps);
