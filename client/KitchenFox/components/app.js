@@ -15,7 +15,11 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.props.checkLogin();
+    this.props.fetchToken();
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.warn(JSON.stringify(newProps));
   }
 
   render() {

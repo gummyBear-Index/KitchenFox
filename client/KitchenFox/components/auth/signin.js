@@ -26,7 +26,7 @@ class Signin extends Component {
 
     this.initialState = {
       email: '',
-      password: ''
+      password: '',
     }
     this.state = this.initialState;
   }

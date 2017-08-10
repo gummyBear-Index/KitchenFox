@@ -22,7 +22,7 @@ export const login = (username, password) => (
   })
 );
 
-export const saveToken = (response) => (
+export const saveToken = response => (
   AsyncStorage.setItem('jwt', response._bodyText)
 );
 
