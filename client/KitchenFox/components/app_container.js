@@ -10,7 +10,6 @@ const mapStateToProps = ({ session }) => (
 
 const mapDispatchToProps = dispatch => (
   {
-    checkLogin: () => dispatch(checkLogin()),
     fetchToken: () => dispatch(fetchToken()),
   }
 );

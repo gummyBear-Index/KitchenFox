@@ -20,12 +20,12 @@ import {
 
 class Signup extends Component {
   constructor(props) {
-		super(props);
+    super(props);
     this.state = {
-    	first_name: '',
-    	last_name: '',
-    	username: '',
-    	password: '',
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
       token: '',
     };
   }
@@ -42,12 +42,8 @@ class Signup extends Component {
 		// };
     // this.props.logout();
 
-		dismissKeyboard();
-
-		// createUser(username, password).then(response => saveToken(response));
-		// let that = this;
-		// setTimeout(that.showJWT, 5000);
-	}
+    dismissKeyboard();
+  }
 
   handleGoBack() {
 		const routeStack = this.props.navigator.getCurrentRoutes();

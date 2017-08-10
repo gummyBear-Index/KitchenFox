@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { AsyncStorage, StackNavigator } from 'react-native';
+import { StackNavigator } from 'react-native';
 import { styles } from '../../style/auth/session';
 import { signin } from '../../actions/session_actions';
 import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
@@ -22,11 +22,12 @@ import {
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.initialState = {
+    this.state = {
       username: '',
-      password: ''
+      password: '',
+      first_name: '',
+      last_name: '',
     };
-    this.state = this.initialState;
     this.handleSignin = this.handleSignin.bind(this);
   }
 
@@ -88,7 +89,7 @@ class SignIn extends Component {
             ) : (
               <Button
                 style={styles.button}
-                onPress={(e) => this.handleSignin()}
+                onPress={() => this.handleSignin()}
               >
                 <Text>Sign in</Text>
               </Button>

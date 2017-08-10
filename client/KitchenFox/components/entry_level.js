@@ -11,7 +11,7 @@ getLocalToken().then(token => {
     preloadedState = {
       session: {
         token,
-      },
+      }
     };
   } else {
     preloadedState = {};

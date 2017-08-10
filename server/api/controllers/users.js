@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import { secret } from '../../config';
 import User from '../models/user';
+import { getDocFromToken, getUserFromToken } from '../db/queries';
 
 // lean gives json instead of mongo docobject
 export const getToken = (user) => {
@@ -18,6 +19,20 @@ export const userIndex = (req, res, next) => (
   })
 );
 
+export const showUser = (req, res) => {
+  getUserFromToken(req.headers.authorization)
+    .then((user) => {
+      if (user instanceof Error) {
+        return res.status(401).json({ error: 'Invalid Token' });
+      }
+      return res.status(200).json({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        username: user.username,
+      });
+    });
+};
+
 export const register = (req, res, next) => {
   User.register(new User({
     username: req.body.username,
@@ -32,7 +47,7 @@ export const register = (req, res, next) => {
       .json({
         first_name: user.first_name,
         last_name: user.last_name,
-        token:getToken(user),
+        token: getToken(user),
         username: user.username
       });
   });

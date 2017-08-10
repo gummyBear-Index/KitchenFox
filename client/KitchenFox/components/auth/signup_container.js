@@ -3,9 +3,6 @@ import Signup from './signup';
 import { signin, logout } from '../../actions/session_actions';
 
 const mapStateToProps = ({ session }) => ({
-  // currentUser: state.session.currentUser,
-  // token: state.session.token,
-  // errors: state.session.errors
   session,
 });
 

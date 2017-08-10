@@ -1,10 +1,10 @@
 // import User from '../models/user';
 import populate from '../db/populateUser'
 
-import { getUserFromToken, updateItems, getIdFromToken, getItemsByUserId } from '../db/queries';
+import { getDocFromToken, updateItems, getIdFromToken, getItemsByUserId } from '../db/queries';
 
 export const itemsIndex = (req, res) => (
-  getUserFromToken(req.headers.authorization)
+  getDocFromToken(req.headers.authorization)
     .then(user => res.status(200).json(user.inventory))
     .error(error => res.send(error))
 );
