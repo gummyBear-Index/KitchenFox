@@ -72,6 +72,18 @@ export const patchItems = (state) => {
   });
 };
 
+export const upcLookUp = (code, token) => {
+  fetch(`${baseURL}upcLookUp`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `JWT ${token}`,
+      'upc_code': code,
+      charset: 'UTF-8',
+    },
+  });
+};
+
 export const deleteLocalData = () => (
   AsyncStorage.removeItem('user')
 );
