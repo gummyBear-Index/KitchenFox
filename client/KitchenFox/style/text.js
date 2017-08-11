@@ -31,6 +31,5 @@ export const text = StyleSheet.create({
     paddingBottom: 20,
     textAlign: 'center',
     color: '#fff',
-    fontWeight: 'bold',
   },
 });
