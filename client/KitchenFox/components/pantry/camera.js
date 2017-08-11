@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderRadius: 5,
     color: '#000',
     padding: 10,
@@ -57,37 +57,36 @@ class BarCodeCamera extends Component {
   // static navigationOptions = {
   //   title: 'Scan the Item',
   // };
-  // <View>
-  //   <Text>
-  //     Scan the barcode now!
-  //   </Text>
+
+  // <View style={styles.container}>
   //   <Camera
-  //   ref={(cam) => {
-  //     this.camera = cam;
-  //   }}
-  //   style={styles.container}
-  //   aspect={Camera.constants.Aspect.fill}
-  //   onBarCodeRead={this._onBarCodeRead}
-  //   barCodeTypes={["upce"]}
-  //   type={this.state.cameraType}>
+  //     ref={(cam) => {
+  //       this.camera = cam;
+  //     }}
+  //     style={styles.preview}
+  //     aspect={Camera.constants.Aspect.fill}>
+  //     <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
   //   </Camera>
   // </View>
 
   render() {
     // if (this.state.showCamera) {
         return (
-          <View style={styles.container}>
+          <View>
+            <Text>
+              Scan the barcode now!
+            </Text>
             <Camera
-              ref={(cam) => {
-                this.camera = cam;
-              }}
-              style={styles.preview}
-              aspect={Camera.constants.Aspect.fill}>
-              <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+            ref={(cam) => {
+              this.camera = cam;
+            }}
+            style={styles.container}
+            aspect={Camera.constants.Aspect.fill}
+            onBarCodeRead={this._onBarCodeRead}
+            barCodeTypes={["upce"]}
+            type={this.state.cameraType}>
             </Camera>
           </View>
-
-
         );
     // } else {
     //     return (
@@ -100,13 +99,13 @@ class BarCodeCamera extends Component {
     // }
   }
 
-  takePicture() {
-  const options = {};
-  //options.location = ...
-  this.camera.capture({metadata: options})
-    .then((data) => console.log(data))
-    .catch(err => console.error(err));
-  }
+  // takePicture() {
+  // const options = {};
+  // //options.location = ...
+  // this.camera.capture({metadata: options})
+  //   .then((data) => console.log(data))
+  //   .catch(err => console.error(err));
+  // }
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false});
