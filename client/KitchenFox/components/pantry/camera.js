@@ -34,6 +34,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
+  square: {
+    height:250,
+    width:200,
+    borderWidth: 3,
+    borderRadius:4,
+    borderColor: 'red',
+  },
   capture: {
     flex: 0,
     backgroundColor: 'white',
@@ -49,7 +56,8 @@ class BarCodeCamera extends Component {
     super(props);
     this.state = {
       showCamera: true,
-      cameraType: Camera.constants.Type.back
+      cameraType: Camera.constants.Type.back,
+      upc: "none",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
   }
@@ -74,6 +82,9 @@ class BarCodeCamera extends Component {
             orientation={Camera.constants.Orientation.portrait}
             barCodeTypes={['org.gs1.UPC-E']}
             onBarCodeRead={this._onBarCodeRead}>
+            <View style={styles.square}>
+              <Text>Here</Text>
+            </View>
           </Camera>
           </View>
         );
@@ -81,13 +92,12 @@ class BarCodeCamera extends Component {
         return (
           <View>
             <Text>
-              None
+              {this.state.upc}
             </Text>
           </View>
         );
     }
   }
-
   // takePicture() {
   // const options = {};
   // //options.location = ...
@@ -96,9 +106,11 @@ class BarCodeCamera extends Component {
   //   .catch(err => console.error(err));
   // }
 
+
+
   _onBarCodeRead(e) {
-    this.setState({showCamera: false});
-    console.warn("here");
+    this.setState({showCamera: false, upc: e.data});
+    console.warn(this.state.upc);
     Alert.alert(
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
