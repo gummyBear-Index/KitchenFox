@@ -6,12 +6,12 @@ const objectToQueryString = (object) => {
   let keys = Object.keys(object);
   let queryString = [];
   keys.forEach(k => {
-    let entry = `${k}=${object[k]}`
+    let entry = `${k}=${object[k]}`;
     queryString.push(entry);
-  })
+  });
   queryString = queryString.join('&');
   return queryString;
-}
+};
 
 export const signup = (state) => {
   const body = objectToQueryString(state);
@@ -47,7 +47,7 @@ export const fetchItems = token => (
   })
 );
 
-export const fetchUser = state => (
+export const fetchUser = state => {
   const token = state.session.token;
   fetch(`${baseURL}user`, {
     method: 'GET',
@@ -56,8 +56,8 @@ export const fetchUser = state => (
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-  })
-);
+  });
+};
 
 export const patchItems = (state) => {
   const token = state.session.token;

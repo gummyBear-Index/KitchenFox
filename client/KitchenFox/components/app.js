@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import SignupContainer from './auth/signup_container';
+import SigninContainer from './auth/signin_container';
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
@@ -19,6 +20,8 @@ class App extends Component {
   }
 
   render() {
+    console.warn('app is loading');
+    console.warn(JSON.stringify(this.props));
     if (this.props.session.token.length) {
       return (<SigninContainer />);
     } else {

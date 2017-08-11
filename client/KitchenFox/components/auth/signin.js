@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { StackNavigator } from 'react-native';
-
-import { signin } from '../../actions/session_actions';
-import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
-
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
@@ -46,16 +42,16 @@ class SignIn extends Component {
 
   handleSignin() {
     this.props.signin(this.state);
-    this.props.navigation.navigate('Pantry');
+    // this.props.navigation.navigate('Pantry');
     dismissKeyboard();
   }
-  
+
   handleLogout() {
     this.props.logout();
   }
 
   render() {
-    const { navigate } = this.props.navigation; 
+    const { navigate } = this.props.navigation;
     return(
       <Container>
         <View style={session.container}>

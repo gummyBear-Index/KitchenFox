@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage } from 'react-native';
-
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
 import { session } from '../../style/layout';
-
-import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
 import {
   Container,
@@ -24,7 +21,7 @@ import {
 } from 'native-base';
 
 
-class Signup extends Component {	
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +53,6 @@ class Signup extends Component {
   }
 
   render() {
-
 		return (
 			<Container>
 				<View style={session.container}>
@@ -88,7 +84,7 @@ class Signup extends Component {
 								keyboardType="email-address"
 								autoCorrect={false}
 								autoCapitalize="none"
-								onChangeText={email => this.setState({ username })}
+								onChangeText={username => this.setState({ username })}
 								value={this.state.username}
 							/>
 						</InputGroup>
@@ -112,6 +108,12 @@ class Signup extends Component {
 							</Button>
 						)}
 					</View>
+          <Button
+            style={button.sessionButton}
+            onPress={(e) => this.handleLogout()}
+          >
+            <Text>LOGOUT</Text>
+          </Button>
 				</View>
 			</Container>
 		);
