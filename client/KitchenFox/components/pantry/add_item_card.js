@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { StackNavigator, Alert, StyleSheet } from 'react-native';
 import Camera from "react-native-camera";
+import {button} from '../../style/button';
+import {text} from '../../style/text';
+import {input} from '../../style/input';
+
 import {
   Container,
   Content,
@@ -23,6 +27,10 @@ class AddItemCard extends Component {
       showCamera: true,
       cameraType: Camera.constants.Type.back,
       upc: "none",
+      name: "",
+      quantity: "",
+      units: "",
+      weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
   }
@@ -42,34 +50,48 @@ class AddItemCard extends Component {
       <View style={session.container}>
         <View
           style={session.content}>
-            <Text style={text.titleLeft}>Sign In</Text>
+            <Text style={text.titleCenter}>Sign In</Text>
           <InputGroup style={input.field}>
             <Icon name='label' />
             <Input
               placeholder='Name'
               autoCorrect={false}
               autoCapitalize='words'
-              onChangeText={name => this.setState({ username })}
-              value={this.state.username}
+              onChangeText={name => this.setState({name: name})}
+              value={this.state.name}
             />
           </InputGroup>
           <InputGroup style={input.field}>
-            <Icon name='ios-unlock' />
+            <Icon name='label' />
             <Input
-              placeholder='Password'
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
-              secureTextEntry
+              placeholder='Quantity'
+              autoCorrect={false}
+              keyboardType="numeric"
+              onChangeText={quantity => this.setState({quantity: quantity})}
+              value={this.state.quantity}
             />
           </InputGroup>
-          {this.state.isLoading ? (
-            <Spinner size="small" color="#000000" />
-          ) : (
+          <InputGroup style={input.field}>
+            <Icon name='label' />
+            <Input
+              placeholder='Name'
+              autoCorrect={false}
+              autoCapitalize='words'
+              onChangeText={name => this.setState({name: name})}
+              value={this.state.name}
+            />
+          </InputGroup>
+          <Picker
+            selectedValue={this.state.unit}
+            onValueChange={unit => this.setState({unit: unit})}>
+            <Picker.Item label="grams" value="g" />
+            <Picker.Item label="each" value="each" />
+          </Picker>
             <Button
               style={button.sessionButton}
               onPress={() => this.handleSignin()}
             >
-              <Text>SIGN IN</Text>
+              <Icon name='barcode' />
             </Button>
           )}
         </View>
