@@ -20,17 +20,12 @@ class App extends Component {
   }
 
   render() {
-    console.warn('app is loading');
     console.warn(JSON.stringify(this.props));
     if (this.props.session.token.length) {
-      return (<SigninContainer />);
+      return (<Pantry />);
     } else {
-      // console.warn(JSON.stringify(this.state));
-      // console.warn(JSON.stringify(this.props));
-      return (<SignupContainer />);
-      // return (<Greeting />);
+      return (<Welcome />);
     }
-    // return (<Pantry />);
   }
 }
 

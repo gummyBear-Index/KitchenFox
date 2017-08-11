@@ -13,7 +13,7 @@ export const text = StyleSheet.create({
     fontSize: 30,
     paddingTop: 20,
     paddingBottom: 20,
-    paddingLeft: 10,  
+    paddingLeft: 10,
     textAlign: 'left',
     color: COLOR_PRIMARY,
   },
@@ -26,11 +26,18 @@ export const text = StyleSheet.create({
     fontWeight: 'bold',
   },
   sessionTitle: {
-    fontSize: 40,
+    fontSize: 50,
     marginTop: 80,
     paddingBottom: 20,
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold',
   },
+  sessionMessage: {
+    fontSize: 20,
+    marginTop: 5,
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
+  }
 });

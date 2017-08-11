@@ -58,12 +58,14 @@ class Greeting extends Component {
         style={session.container}>
         {/* <View style={session.darkenContainer}> */}
           <Title style={text.sessionTitle}>KitchenFox</Title>
-          <Button 
+          <Text style={text.sessionMessage}>always know what you have</Text>
+          <Text style={text.sessionMessage}>and what you can cook</Text>
+          <Button
             style={button.sessionButton}
             onPress={() => navigate('Signup', {name: 'signup'})}>
             <Text>Sign Up</Text>
           </Button>
-          <Button 
+          <Button
             style={button.sessionButton}
             onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text>Sign In</Text>
