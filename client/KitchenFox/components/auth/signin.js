@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { StackNavigator } from 'react-native';
-import { styles } from '../../style/auth/session';
+
+import { signin } from '../../actions/session_actions';
+import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
+
+import { text } from '../../style/text.js';
+import { button } from '../../style/button';
+import { input } from '../../style/input';
+import { session } from '../../style/layout';
 
 import {
   Container,
@@ -40,9 +47,10 @@ class SignIn extends Component {
 
   handleSignin() {
     this.props.signin(this.state);
+    this.props.navigation.navigate('Pantry');
     dismissKeyboard();
   }
-
+  
   handleLogout() {
     this.props.logout();
   }
@@ -56,23 +64,15 @@ class SignIn extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation; 
     return(
       <Container>
-        <View style={styles.container}>
-          <Header>
-            <Button
-              onPress={() => this.handleGoBack()}
-              transparent
-            >
-              <Icon name='ios-arrow-back' />
-            </Button>
-            <Title>Sign In</Title >
-          </Header>
+        <View style={session.container}>
           <View
-            style={styles.content}
-          >
-            <InputGroup style={styles.input}>
-              <Icon style={styles.inputIcon} name='ios-person' />
+            style={session.content}>
+              <Text style={text.titleLeft}>Sign In</Text>
+            <InputGroup style={input.field}>
+              <Icon name='ios-person' />
               <Input
                 placeholder='Email'
                 keyboardtype='email-address'
@@ -82,8 +82,8 @@ class SignIn extends Component {
                 value={this.state.username}
               />
             </InputGroup>
-            <InputGroup style={styles.input}>
-              <Icon style={styles.inputIcon} name='ios-unlock' />
+            <InputGroup style={input.field}>
+              <Icon name='ios-unlock' />
               <Input
                 placeholder='Password'
                 onChangeText={password => this.setState({ password })}
@@ -95,7 +95,7 @@ class SignIn extends Component {
               <Spinner size="small" color="#000000" />
             ) : (
               <Button
-                style={styles.button}
+                style={button.sessionButton}
                 onPress={() => this.handleSignin()}
               >
                 <Text>SIGN IN</Text>
