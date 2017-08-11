@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Camera } from './pantry/camera';
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
@@ -26,19 +26,20 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.loggedIn) {
-      // return (<Welcome />);
-
-      console.warn(JSON.stringify(this.state));
-      console.warn(JSON.stringify(this.props));
-      return (<SigninContainer />);
-    } else {
-      console.warn(JSON.stringify(this.state));
-      console.warn(JSON.stringify(this.props));
-      return (<SignupContainer />);
-      // return (<Greeting />);
-    }
-    // return (<Pantry />);
+    return(<Camera/>);
+  //   if (this.state.loggedIn) {
+  //     // return (<Welcome />);
+  //
+  //     console.warn(JSON.stringify(this.state));
+  //     console.warn(JSON.stringify(this.props));
+  //     return (<SigninContainer />);
+  //   } else {
+  //     console.warn(JSON.stringify(this.state));
+  //     console.warn(JSON.stringify(this.props));
+  //     return (<SignupContainer />);
+  //     // return (<Greeting />);
+  //   }
+  //   // return (<Pantry />);
   }
 }
 
