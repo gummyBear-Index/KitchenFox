@@ -25,9 +25,7 @@ class SignIn extends Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
-      first_name: '',
-      last_name: '',
+      password: ''
     };
     this.handleSignin = this.handleSignin.bind(this);
   }
@@ -41,17 +39,14 @@ class SignIn extends Component {
   }
 
   handleSignin() {
+    console.warn(JSON.stringify(this.state));
     this.props.signin(this.state);
     // this.props.navigation.navigate('Pantry');
     dismissKeyboard();
   }
 
-  handleLogout() {
-    this.props.logout();
-  }
-
   render() {
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     return(
       <Container>
         <View style={session.container}>
@@ -89,12 +84,6 @@ class SignIn extends Component {
               </Button>
             )}
           </View>
-          <Button
-            style={styles.button}
-            onPress={(e) => this.handleLogout()}
-          >
-            <Text>LOGOUT</Text>
-          </Button>
         </View>
       </Container>
     );

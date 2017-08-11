@@ -48,10 +48,6 @@ class Signup extends Component {
 		dismissKeyboard();
 	}
 
-  handleLogout() {
-    this.props.logout();
-  }
-
   render() {
 		return (
 			<Container>
@@ -108,12 +104,6 @@ class Signup extends Component {
 							</Button>
 						)}
 					</View>
-          <Button
-            style={button.sessionButton}
-            onPress={(e) => this.handleLogout()}
-          >
-            <Text>LOGOUT</Text>
-          </Button>
 				</View>
 			</Container>
 		);
