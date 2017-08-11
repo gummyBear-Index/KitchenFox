@@ -34,42 +34,25 @@ class Signup extends Component {
       password: '',
       token: '',
     };
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.currentUser) {
+    if (newProps.session.token.length) {
       let user = newProps.currentUser;
-      console.warn(JSON.stringify(user));
       // navigate to index page
       // this.props.navigation.navigate('indexPage');
     }
   }
 
   handleSignup() {
-		// const { firstName, lastName, username, password } = this.state;
-    //
-		// const getToken = (response) => {
-  	// 	let parsedRes = JSON.parse(response._bodyText);
-    //   AsyncStorage.setItem('jwt', parsedRes.token);
-    //   // alert(`Success! You may now access protected content.`)
-    //   // Redirect to home screen
-		// 	return parsedRes.token;
-		// };
-		// this.props.logout();
-		this.props.signup(this.state);
-		this.props.navigation.navigate('Pantry');
-    dismissKeyboard();
-  }
+    this.props.signup(this.state);
+    // console.warn(JSON.stringify(this.state))
+		dismissKeyboard();
+	}
 
   handleLogout() {
     this.props.logout();
-  }
-
-  handleGoBack() {
-    // navigate to greeting page
-
-		// const routeStack = this.props.navigator.getCurrentRoutes();
-		// this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {

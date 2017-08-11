@@ -39,7 +39,6 @@ class SignIn extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.currentUser) {
       let user = newProps.currentUser;
-      console.warn(JSON.stringify(user));
       // navigate to index page
       // this.props.navigation.navigate('IndexPage');
     }
@@ -53,14 +52,6 @@ class SignIn extends Component {
   
   handleLogout() {
     this.props.logout();
-  }
-
-  handleGoBack() {
-    // navigate to greeting page
-
-    // this.props.navigation.navigate('Greeting');
-    // const routeStack = this.props.navigator.getCurrentRoutes();
-    // this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {
