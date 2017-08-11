@@ -16,19 +16,18 @@ import {
   Navigator,
 } from 'native-base';
 
-// let styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     backgroundColor: "transparent",
-//   }
-// });
-
 const styles = StyleSheet.create({
+  // container: {
+  //   flex: 1,
+  //   flexDirection: 'column',
+  // },
   container: {
     flex: 1,
-    flexDirection: 'row',
+    justifyContent: "center",
+    // width:300,
+    // height:5,
+    // alignItems: "center",
+    backgroundColor: "transparent",
   },
   preview: {
     flex: 1,
@@ -52,51 +51,41 @@ class BarCodeCamera extends Component {
       showCamera: true,
       cameraType: Camera.constants.Type.back
     };
+    this._onBarCodeRead = this._onBarCodeRead.bind(this);
   }
 
   // static navigationOptions = {
   //   title: 'Scan the Item',
   // };
 
-  // <View style={styles.container}>
-  //   <Camera
-  //     ref={(cam) => {
-  //       this.camera = cam;
-  //     }}
-  //     style={styles.preview}
-  //     aspect={Camera.constants.Aspect.fill}>
-  //     <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-  //   </Camera>
-  // </View>
-
   render() {
-    // if (this.state.showCamera) {
+    if (this.state.showCamera) {
         return (
-          <View>
-            <Text>
-              Scan the barcode now!
-            </Text>
-            <Camera
+          <View style={styles.container}>
+          <Text>
+            Scan the barcode now!
+          </Text>
+          <Camera
             ref={(cam) => {
               this.camera = cam;
             }}
-            style={styles.container}
+            style={styles.preview}
             aspect={Camera.constants.Aspect.fill}
-            onBarCodeRead={this._onBarCodeRead}
-            barCodeTypes={["upce"]}
-            type={this.state.cameraType}>
-            </Camera>
+            orientation={Camera.constants.Orientation.portrait}
+            barCodeTypes={['org.gs1.UPC-E']}
+            onBarCodeRead={this._onBarCodeRead}>
+          </Camera>
           </View>
         );
-    // } else {
-    //     return (
-    //       <View>
-    //         <Text>
-    //           here
-    //         </Text>
-    //       </View>
-    //     );
-    // }
+    } else {
+        return (
+          <View>
+            <Text>
+              None
+            </Text>
+          </View>
+        );
+    }
   }
 
   // takePicture() {
@@ -109,6 +98,7 @@ class BarCodeCamera extends Component {
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false});
+    console.warn("here");
     Alert.alert(
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
