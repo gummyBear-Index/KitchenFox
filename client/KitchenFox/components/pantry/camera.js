@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-native';
+import { StackNavigator, Alert, StyleSheet } from 'react-native';
 import Camera from "react-native-camera";
 
 import {
@@ -16,62 +16,106 @@ import {
   Navigator,
 } from 'native-base';
 
-let styles = StyleSheet.create({
+// let styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     backgroundColor: "transparent",
+//   }
+// });
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "transparent",
+    flexDirection: 'row',
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
   }
 });
 
-class Camera extends Component {
-  constructor() {
-    super()
-    this.state ={
+class BarCodeCamera extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       showCamera: true,
       cameraType: Camera.constants.Type.back
-    }
-  };
+    };
+  }
 
-  static navigationOptions = {
-    title: 'Scan the Item',
-  };
+  // static navigationOptions = {
+  //   title: 'Scan the Item',
+  // };
+  // <View>
+  //   <Text>
+  //     Scan the barcode now!
+  //   </Text>
+  //   <Camera
+  //   ref={(cam) => {
+  //     this.camera = cam;
+  //   }}
+  //   style={styles.container}
+  //   aspect={Camera.constants.Aspect.fill}
+  //   onBarCodeRead={this._onBarCodeRead}
+  //   barCodeTypes={["upce"]}
+  //   type={this.state.cameraType}>
+  //   </Camera>
+  // </View>
 
   render() {
-    return (
-      if(this.state.showCamera) {
-          return (
-              <View>
-                <Camera
-                ref={(cam) => {
-                  this.camera = cam;
-                }}
-                style={styles.container}
-                aspect={Camera.constants.Aspect.fill}
-                onBarCodeRead={this._onBarCodeRead}
-                barCodeTypes="upce"
-                type={this.state.cameraType}>
-                </Camera>
-              </View>
-          );
-      } else {
-          return (
-              <View>
-              </View>
-          );
-      }
-    );
-  };
+    // if (this.state.showCamera) {
+        return (
+          <View style={styles.container}>
+            <Camera
+              ref={(cam) => {
+                this.camera = cam;
+              }}
+              style={styles.preview}
+              aspect={Camera.constants.Aspect.fill}>
+              <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+            </Camera>
+          </View>
+
+
+        );
+    // } else {
+    //     return (
+    //       <View>
+    //         <Text>
+    //           here
+    //         </Text>
+    //       </View>
+    //     );
+    // }
+  }
+
+  takePicture() {
+  const options = {};
+  //options.location = ...
+  this.camera.capture({metadata: options})
+    .then((data) => console.log(data))
+    .catch(err => console.error(err));
+  }
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false});
-    AlertIOS.alert(
+    Alert.alert(
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
     );
   }
 
-});
+}
 
-export default Camera;
+export default BarCodeCamera;

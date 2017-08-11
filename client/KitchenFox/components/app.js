@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Camera } from './pantry/camera';
+import BarCodeCamera from './pantry/camera';
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   render() {
-    return(<Camera/>);
+    return(<BarCodeCamera />);
   //   if (this.state.loggedIn) {
   //     // return (<Welcome />);
   //
