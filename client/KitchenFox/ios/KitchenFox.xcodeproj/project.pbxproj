@@ -48,6 +48,8 @@
 		103AA47897D94A9A8AAC030B /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11848C0A4BA74940B33B962D /* SimpleLineIcons.ttf */; };
 		F14378C93B8C4837B6D70F3F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91F3480F054240C182BD9A3F /* Zocial.ttf */; };
 		19BAAC722457456393396E6C /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9C94DEEA634403BB1F1619 /* libRCTCamera.a */; };
+		2AF13EAC6707460E972E22C9 /* FredokaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DF466E9C3594F6DB91A6E78 /* FredokaOne-Regular.ttf */; };
+		D23ECF3A936A4BB38D82B56C /* GrandHotel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F81AC27544DE8B8D67ED4 /* GrandHotel-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +283,8 @@
 		91F3480F054240C182BD9A3F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		0C043934BA274201B630F509 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		9B9C94DEEA634403BB1F1619 /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		8DF466E9C3594F6DB91A6E78 /* FredokaOne-Regular.ttf */ = {isa = PBXFileReference; name = "FredokaOne-Regular.ttf"; path = "../assets/fonts/FredokaOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7E0F81AC27544DE8B8D67ED4 /* GrandHotel-Regular.ttf */ = {isa = PBXFileReference; name = "GrandHotel-Regular.ttf"; path = "../assets/fonts/GrandHotel-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,6 +531,8 @@
 				A52E45BE314148CFBE109E44 /* rubicon-icon-font.ttf */,
 				11848C0A4BA74940B33B962D /* SimpleLineIcons.ttf */,
 				91F3480F054240C182BD9A3F /* Zocial.ttf */,
+				8DF466E9C3594F6DB91A6E78 /* FredokaOne-Regular.ttf */,
+				7E0F81AC27544DE8B8D67ED4 /* GrandHotel-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -902,6 +908,8 @@
 				04596104D8804E98B27F3FDA /* rubicon-icon-font.ttf in Resources */,
 				103AA47897D94A9A8AAC030B /* SimpleLineIcons.ttf in Resources */,
 				F14378C93B8C4837B6D70F3F /* Zocial.ttf in Resources */,
+				2AF13EAC6707460E972E22C9 /* FredokaOne-Regular.ttf in Resources */,
+				D23ECF3A936A4BB38D82B56C /* GrandHotel-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
