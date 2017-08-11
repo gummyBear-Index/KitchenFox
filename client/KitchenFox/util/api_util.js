@@ -39,16 +39,16 @@ export const login = (state) => {
   });
 };
 
-export const fetchItems = token => (
-  fetch(`${baseURL}items`, {
+export const fetchItems = token => {
+  return fetch(`${baseURL}items`, {
     method: 'GET',
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-  })
-);
+  });
+};
 
 export const fetchUser = state => {
   const token = state.session.token;
@@ -72,6 +72,18 @@ export const patchItems = (state) => {
       authorization: `JWT ${token}`,
     },
     body: `${objectToQueryString(state)}`,
+  });
+};
+
+export const upcLookUp = (code, token) => {
+  fetch(`${baseURL}upcLookUp`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `JWT ${token}`,
+      'upc_code': code,
+      charset: 'UTF-8',
+    },
   });
 };
 
