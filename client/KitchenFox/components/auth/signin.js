@@ -8,7 +8,6 @@ import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
 import { session } from '../../style/layout';
-// import { styles } from '../../style/auth/session'
 
 import {
   Container,
@@ -25,9 +24,6 @@ import {
 } from 'native-base';
 
 class SignIn extends Component {
-  // static navigationOptions = {
-  //   title: 'Sign In',
-  // };
   constructor(props) {
     super(props);
     this.state = {

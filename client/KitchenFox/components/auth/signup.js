@@ -6,7 +6,6 @@ import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
 import { session } from '../../style/layout';
-// import { styles } from '../../style/auth/session';
 
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 import {
@@ -24,11 +23,7 @@ import {
 } from 'native-base';
 
 
-class Signup extends Component {
-  // static navigationOptions = {
-  //   title: 'Sign Up',
-	// };
-	
+class Signup extends Component {	
   constructor(props) {
     super(props);
     this.state = {

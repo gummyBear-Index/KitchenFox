@@ -14,14 +14,12 @@ import {
   Text,
   Navigator,
 } from 'native-base';
-// import { StackNavigation } from 'react-navigation'
 
 import SignIn from './signin';
 import SignUp from './signup';
 import { text } from '../../style/text';
 import { button } from '../../style/button';
 import { session } from '../../style/layout';
-// import { styles } from '../../style/auth/session'
 
 // const ProtectedView = require('./ProtectedView')
 
