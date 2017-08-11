@@ -3,14 +3,12 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    // padding: 20,
     flex: 1,
     flexDirection: 'column'
   },
   button: {
     borderRadius: 4,
     padding: 20,
-    // textAlign: 'center',
     marginBottom: 20,
     color: '#fff'
   },
@@ -18,7 +16,20 @@ export const styles = StyleSheet.create({
     backgroundColor: '#4CD964'
   },
   centering: {
-    // alignItems: 'center',
     justifyContent: 'center'
   }
+});
+
+export const session = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    justifyContent: 'center',
+  },
+  content: {
+    marginTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
 });

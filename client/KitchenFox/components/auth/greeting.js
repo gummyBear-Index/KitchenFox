@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
 import {
   Container,
   Header,
@@ -13,10 +14,12 @@ import {
   Text,
   Navigator,
 } from 'native-base';
-// import { StackNavigation } from 'react-navigation'
 
 import SignIn from './signin';
 import SignUp from './signup';
+import { text } from '../../style/text';
+import { button } from '../../style/button';
+import { session } from '../../style/layout';
 
 // const ProtectedView = require('./ProtectedView')
 
@@ -34,20 +37,6 @@ class Greeting extends Component {
     this.state = this.initialState;
   }
 
-  _handleSignupPage = () => {
-    this.props.navigator.push({
-      title: 'SignUp',
-      component: SignupPage,
-      backButtonTitle: 'Back'
-    })
-  }
-  _handleSigninPage = () => {
-    this.props.navigator.push({
-      title: 'SignIn',
-      component: SigninPage,
-      backButtonTitle: 'Back'
-    })
-  }
   // _handleProtectedView = () => {
   //   this.props.navigator.push({
   //     title: 'Protected Content',
@@ -61,20 +50,24 @@ class Greeting extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return(
-      <Container>
-        <View style={styles.container}>
-          <Header>
-            <Title>Welcome to KitchenFox!</Title >
-          </Header>
-          <Button onPress={() => this.props.navigation.navigate('SignIn', {name: 'signup'})}>
+      <Image
+        source={require('../../images/greeting/food-1-.jpg')}
+        style={session.container}>
+            <Title style={text.titleCenter}>KitchenFox</Title>
+          <Button 
+            style={button.sessionButton}
+            onPress={() => navigate('Signup', {name: 'signup'})}>
             <Text>Sign Up</Text>
           </Button>
-          <Button onPress={() => this.props.navigation.navigate('SignUp', {name: 'signin'})}>
+          <Button 
+            style={button.sessionButton}
+            onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text>Sign In</Text>
           </Button>
-        </View>
-      </Container>
+      </Image>
     );
   }
 
@@ -105,35 +98,5 @@ class Greeting extends Component {
   //   )
   // }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    padding: 80,
-    flex: 1,
-    flexDirection: 'column'
-  },
-  button: {
-    borderRadius: 4,
-    padding: 20,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#fff'
-  },
-  greenButton: {
-    backgroundColor: '#4CD964'
-  },
-  blueButton: {
-    backgroundColor: '#34AADC'
-  },
-  redButton: {
-    backgroundColor: '#FF3B30',
-    color: '#fff'
-  },
-  greyButton: {
-    backgroundColor: '#777',
-    color: '#fff'
-  }
-})
 
 export default Greeting;
