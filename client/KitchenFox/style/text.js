@@ -26,17 +26,17 @@ export const text = StyleSheet.create({
     fontWeight: 'bold',
   },
   sessionTitle: {
-    fontSize: 50,
-    paddingBottom: 10,
+    fontSize: 94,
     textAlign: 'center',
     color: '#fff',
     textShadowColor: '#000',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 20,
+    fontFamily: 'GrandHotel-Regular',
   },
   sessionMessage: {
-    fontSize: 20,
-    marginTop: 5,
+    fontSize: 23,
+    marginBottom: 2,
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold',
@@ -46,5 +46,9 @@ export const text = StyleSheet.create({
   },
   sessionButton: {
     color: BUTTON_ACTION_TEXT,
+    fontFamily: 'FredokaOne-Regular',
+    fontSize: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
   }
 });

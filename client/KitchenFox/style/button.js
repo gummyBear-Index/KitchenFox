@@ -15,7 +15,7 @@ export const button = StyleSheet.create({
     borderRadius: 4,
     marginTop: 20,
     alignSelf: 'center',
-    backgroundColor: BUTTON_ACTION
-  }
+    backgroundColor: BUTTON_ACTION,
+  },
 });
 
