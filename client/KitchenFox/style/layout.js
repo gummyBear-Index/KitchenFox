@@ -7,8 +7,20 @@ export const session = StyleSheet.create({
     width: undefined,
     height: undefined,
   },
+  darkness: {
+    backgroundColor: 'rgba(0,0,0,.7)',
+    flex: 1,
+    width: undefined,
+    height: undefined,
+  },
   content: {
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  header: {
+    marginTop: 80,
+  },
+  groupButtons: {
+    paddingTop: 15,
   },
 });

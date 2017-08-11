@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native';
-import { Image } from 'react-native';
+import { Animated, Image } from 'react-native';
 import {
   Container,
   Header,
@@ -32,7 +32,8 @@ class Greeting extends Component {
 
     this.initialState = {
       email: '',
-      password: ''
+      password: '',
+      fadeAnim: new Animated.Value(0),
     }
     this.state = this.initialState;
   }
@@ -56,21 +57,25 @@ class Greeting extends Component {
       <Image
         source={require('../../images/greeting/food-1-.jpg')}
         style={session.container}>
-        {/* <View style={session.darkenContainer}> */}
-          <Title style={text.sessionTitle}>KitchenFox</Title>
-          <Text style={text.sessionMessage}>always know what you have</Text>
-          <Text style={text.sessionMessage}>and what you can cook</Text>
-          <Button
-            style={button.sessionButton}
-            onPress={() => navigate('Signup', {name: 'signup'})}>
-            <Text>Sign Up</Text>
-          </Button>
-          <Button
-            style={button.sessionButton}
-            onPress={() => navigate('Signin', {name: 'signin'})}>
-            <Text>Sign In</Text>
-          </Button>
-        {/* </View> */}
+         <View style={session.darkness}> 
+          <View style={session.header}>
+            <Title style={text.sessionTitle}>KitchenFox</Title>
+            <Text style={text.sessionMessage}>always know what you have</Text>
+            <Text style={text.sessionMessage}>and what you can cook</Text>
+          </View>
+          <View style={session.groupButtons}>
+            <Button
+              style={button.sessionButton}
+              onPress={() => navigate('Signup', {name: 'signup'})}>
+              <Text>Sign Up</Text>
+            </Button>
+            <Button
+              style={button.sessionButton}
+              onPress={() => navigate('Signin', {name: 'signin'})}>
+              <Text>Sign In</Text>
+            </Button>
+          </View>
+         </View> 
       </Image>
     );
   }

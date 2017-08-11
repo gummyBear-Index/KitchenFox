@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 
+import BarCodeCamera from './pantry/camera'; 
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
@@ -21,13 +22,14 @@ class App extends Component {
   }
 
   render() {
-    console.warn(JSON.stringify(this.props));
+    // console.warn(JSON.stringify(this.props));
     if (this.props.session.token.length) {
       return (<Pantry />);
     } else {
       return (<Welcome />);
     }
   }
+  // return (<BarCodeCamera />);
 }
 
 export default App;

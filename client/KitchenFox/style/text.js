@@ -27,8 +27,7 @@ export const text = StyleSheet.create({
   },
   sessionTitle: {
     fontSize: 50,
-    marginTop: 80,
-    paddingBottom: 20,
+    paddingBottom: 10,
     textAlign: 'center',
     color: '#fff',
   },
