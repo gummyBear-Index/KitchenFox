@@ -26,20 +26,20 @@ class App extends Component {
   }
 
   render() {
-    return(<BarCodeCamera />);
-  //   if (this.state.loggedIn) {
-  //     // return (<Welcome />);
-  //
-  //     console.warn(JSON.stringify(this.state));
-  //     console.warn(JSON.stringify(this.props));
-  //     return (<SigninContainer />);
-  //   } else {
-  //     console.warn(JSON.stringify(this.state));
-  //     console.warn(JSON.stringify(this.props));
-  //     return (<SignupContainer />);
-  //     // return (<Greeting />);
-  //   }
-  //   // return (<Pantry />);
+  //  return(<BarCodeCamera />);
+     if (this.state.loggedIn) {
+       return (<Welcome />);
+  
+       console.warn(JSON.stringify(this.state));
+       console.warn(JSON.stringify(this.props));
+       return (<SigninContainer />);
+     } else {
+       console.warn(JSON.stringify(this.state));
+       console.warn(JSON.stringify(this.props));
+       return (<SignupContainer />);
+       // return (<Greeting />);
+     }
+     return (<Pantry />);
   }
 }
 
