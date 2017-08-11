@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => (
   {
     requestItems: token => dispatch(requestItems(token)),
     logout: () => dispatch(logout()),
-    logout: () => dispatch(logout()),
   }
 );
 
