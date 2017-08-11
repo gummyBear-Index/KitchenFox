@@ -56,7 +56,8 @@ class Greeting extends Component {
       <Image
         source={require('../../images/greeting/food-1-.jpg')}
         style={session.container}>
-            <Title style={text.titleCenter}>KitchenFox</Title>
+        {/* <View style={session.darkenContainer}> */}
+          <Title style={text.sessionTitle}>KitchenFox</Title>
           <Button 
             style={button.sessionButton}
             onPress={() => navigate('Signup', {name: 'signup'})}>
@@ -67,6 +68,7 @@ class Greeting extends Component {
             onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text>Sign In</Text>
           </Button>
+        {/* </View> */}
       </Image>
     );
   }

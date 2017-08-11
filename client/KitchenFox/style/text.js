@@ -25,4 +25,12 @@ export const text = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  sessionTitle: {
+    fontSize: 40,
+    marginTop: 80,
+    paddingBottom: 20,
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 });
