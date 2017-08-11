@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   render() {
-    console.warn(JSON.stringify(this.props));
+    // console.warn(JSON.stringify(this.props));
     if (this.props.session.token.length) {
       return (<Pantry />);
     } else {

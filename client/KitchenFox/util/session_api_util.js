@@ -37,16 +37,16 @@ export const login = (state) => {
   });
 };
 
-export const fetchItems = token => (
-  fetch(`${baseURL}items`, {
+export const fetchItems = token => {
+  return fetch(`${baseURL}items`, {
     method: 'GET',
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-  })
-);
+  });
+};
 
 export const fetchUser = state => {
   const token = state.session.token;
