@@ -11,30 +11,21 @@ class App extends Component {
     this.state = {
       first_name: '',
       last_name: '',
-      loggedIn: Boolean(this.props.session.token.length),
+      token: '',
+      username: '',
     };
   }
 
   componentWillMount() {
-    this.props.fetchFirstName();
-    this.props.fetchLastName();
-    this.props.fetchToken();
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (!this.state.loggedIn && newProps.session.token) {
-      this.setState({ loggedIn: true });
-    }
+    this.props.loadLocalUser();
   }
 
   render() {
-    if (this.state.loggedIn) {
-      console.warn(JSON.stringify(this.state));
-      console.warn(JSON.stringify(this.props));
+    if (this.props.session.token.length) {
       return (<SigninContainer />);
     } else {
-      console.warn(JSON.stringify(this.state));
-      console.warn(JSON.stringify(this.props));
+      // console.warn(JSON.stringify(this.state));
+      // console.warn(JSON.stringify(this.props));
       return (<SignupContainer />);
       // return (<Greeting />);
     }

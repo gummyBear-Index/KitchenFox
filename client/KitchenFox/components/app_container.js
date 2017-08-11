@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import App from './app';
-import { checkLogin, fetchToken, fetchFirstName, fetchLastName } from '../actions/session_actions';
+import { loadLocalUser } from '../actions/session_actions';
 
 const mapStateToProps = ({ session }) => (
   {
@@ -10,9 +10,7 @@ const mapStateToProps = ({ session }) => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchToken: () => dispatch(fetchToken()),
-    fetchFirstName: () => dispatch(fetchFirstName()),
-    fetchLastName: () => dispatch(fetchLastName()),
+    loadLocalUser: () => dispatch(loadLocalUser()),
   }
 );
 

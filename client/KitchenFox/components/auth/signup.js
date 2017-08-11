@@ -28,12 +28,12 @@ class Signup extends Component {
       password: '',
       token: '',
     };
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.currentUser) {
+    if (newProps.session.token.length) {
       let user = newProps.currentUser;
-      console.warn(JSON.stringify(user));
       // navigate to index page
       // this.props.navigation.navigate('indexPage');
     }
@@ -41,18 +41,12 @@ class Signup extends Component {
 
   handleSignup() {
     this.props.signup(this.state);
+    // console.warn(JSON.stringify(this.state))
 		dismissKeyboard();
 	}
 
   handleLogout() {
     this.props.logout();
-  }
-
-  handleGoBack() {
-    // navigate to greeting page
-
-		// const routeStack = this.props.navigator.getCurrentRoutes();
-		// this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {
