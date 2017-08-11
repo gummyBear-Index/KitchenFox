@@ -22,3 +22,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+export const session = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    justifyContent: 'center',
+  },
+});

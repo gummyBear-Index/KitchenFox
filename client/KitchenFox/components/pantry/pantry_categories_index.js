@@ -10,7 +10,7 @@ class PantryCategoriesIndex extends React.Component {
     title: 'Your Ingredients',
     headerLeft: null
   };
-
+t
   render() {
     const { navigate } = this.props.navigation;
     return (

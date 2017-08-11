@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
 import {
   Container,
   Header,
@@ -18,6 +19,9 @@ import {
 import SignIn from './signin';
 import SignUp from './signup';
 import { text } from '../../style/text';
+import { button } from '../../style/button';
+import { session } from '../../style/layout';
+// import { styles } from '../../style/auth/session'
 
 // const ProtectedView = require('./ProtectedView')
 
@@ -51,17 +55,21 @@ class Greeting extends Component {
     const { navigate } = this.props.navigation;
 
     return(
-      <Container>
-        <View style={styles.container}>
-            <Title style={text.titleCenter}>Welcome to KitchenFox!</Title >
-          <Button onPress={() => navigate('Signup', {name: 'signup'})}>
+      <Image
+        source={require('../../images/greeting/food-1-.jpg')}
+        style={session.container}>
+            <Title style={text.titleCenter}>Welcome to KitchenFox!</Title>
+          <Button 
+            style={button.sessionButton}
+            onPress={() => navigate('Signup', {name: 'signup'})}>
             <Text>Sign Up</Text>
           </Button>
-          <Button onPress={() => navigate('Signin', {name: 'signin'})}>
+          <Button 
+            style={button.sessionButton}
+            onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text>Sign In</Text>
           </Button>
-        </View>
-      </Container>
+      </Image>
     );
   }
 
@@ -92,35 +100,5 @@ class Greeting extends Component {
   //   )
   // }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    padding: 80,
-    flex: 1,
-    flexDirection: 'column'
-  },
-  button: {
-    borderRadius: 4,
-    padding: 20,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#fff'
-  },
-  greenButton: {
-    backgroundColor: '#4CD964'
-  },
-  blueButton: {
-    backgroundColor: '#34AADC'
-  },
-  redButton: {
-    backgroundColor: '#FF3B30',
-    color: '#fff'
-  },
-  greyButton: {
-    backgroundColor: '#777',
-    color: '#fff'
-  }
-})
 
 export default Greeting;
