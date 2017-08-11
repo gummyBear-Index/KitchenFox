@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import { StackNavigator } from 'react-navigation';
-import { Container, Content, Text } from 'native-base';
+import { StyleSheet } from 'react-native';
+
+import { Container, Content, Text, View } from 'native-base';
 
 class PantryAddItems extends React.Component {
   static navigationOptions = {
@@ -9,13 +10,9 @@ class PantryAddItems extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Content>
-          <Text>
-            ADD AN ITEM HERE
-          </Text>
-        </Content>
-      </Container>
+      <View>
+        <Text>ADD ITEMS HERE</Text>
+      </View>
     );
   }
 }
