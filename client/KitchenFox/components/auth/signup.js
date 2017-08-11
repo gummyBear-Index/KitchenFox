@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage } from 'react-native';
-
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
 import { session } from '../../style/layout';
-
-import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
 import {
   Container,
@@ -24,7 +21,7 @@ import {
 } from 'native-base';
 
 
-class Signup extends Component {	
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,46 +31,28 @@ class Signup extends Component {
       password: '',
       token: '',
     };
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.currentUser) {
+    if (newProps.session.token.length) {
       let user = newProps.currentUser;
-      console.warn(JSON.stringify(user));
       // navigate to index page
       // this.props.navigation.navigate('indexPage');
     }
   }
 
   handleSignup() {
-		// const { firstName, lastName, username, password } = this.state;
-    //
-		// const getToken = (response) => {
-  	// 	let parsedRes = JSON.parse(response._bodyText);
-    //   AsyncStorage.setItem('jwt', parsedRes.token);
-    //   // alert(`Success! You may now access protected content.`)
-    //   // Redirect to home screen
-		// 	return parsedRes.token;
-		// };
-		// this.props.logout();
-		this.props.signup(this.state);
-		this.props.navigation.navigate('Pantry');
-    dismissKeyboard();
-  }
+    this.props.signup(this.state);
+    // console.warn(JSON.stringify(this.state))
+		dismissKeyboard();
+	}
 
   handleLogout() {
     this.props.logout();
   }
 
-  handleGoBack() {
-    // navigate to greeting page
-
-		// const routeStack = this.props.navigator.getCurrentRoutes();
-		// this.props.navigator.jumpTo(routeStack[0]);
-  }
-
   render() {
-
 		return (
 			<Container>
 				<View style={session.container}>
@@ -105,7 +84,7 @@ class Signup extends Component {
 								keyboardType="email-address"
 								autoCorrect={false}
 								autoCapitalize="none"
-								onChangeText={email => this.setState({ username })}
+								onChangeText={username => this.setState({ username })}
 								value={this.state.username}
 							/>
 						</InputGroup>
@@ -129,6 +108,12 @@ class Signup extends Component {
 							</Button>
 						)}
 					</View>
+          <Button
+            style={button.sessionButton}
+            onPress={(e) => this.handleLogout()}
+          >
+            <Text>LOGOUT</Text>
+          </Button>
 				</View>
 			</Container>
 		);
