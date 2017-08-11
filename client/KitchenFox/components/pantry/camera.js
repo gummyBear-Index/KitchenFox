@@ -26,12 +26,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     // width:300,
     // height:5,
-    // alignItems: "center",
     backgroundColor: "transparent",
   },
   preview: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   square: {
