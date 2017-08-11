@@ -9,9 +9,14 @@ import { button } from '../../style/button';
 
 import NavFooter from '../nav/footer';
 
-class PantryCategoriesIndex extends React.Component {
+class PantryIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      quantity: 0,
+      units: ''
+    }
 
     this.renderItems = this.renderItems.bind(this);
   }
@@ -46,7 +51,9 @@ class PantryCategoriesIndex extends React.Component {
       return (
         <List>
         {allItems.map((item, idx) =>
-          <ListItem key={idx} onPress={() => navigate('PantryCategory')}>
+          <ListItem key={idx} onPress={() => {
+            navigate('PantryItem', { item });
+          }}>
             <Text>
               {Object.values(item)[0]['name']}: &nbsp;
               {Object.values(item)[0]['quantity']}
@@ -68,7 +75,7 @@ class PantryCategoriesIndex extends React.Component {
           <List>
             <ListItem itemDivider>
               <Text>
-                Hello, {fullName}! Here's Your Ingredients.
+                Hello, {fullName}! Here is Your Ingredients.
               </Text>
             </ListItem>
             {this.renderItems()}
@@ -97,4 +104,4 @@ const mapDispatchToProps = dispatch => ({
   requestItems: token => dispatch(requestItems(token))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PantryCategoriesIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(PantryIndex);
