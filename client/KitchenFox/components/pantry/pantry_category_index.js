@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, List, ListItem, Text, Card, CardItem, Body, Left } from 'native-base';
+import { Container, Content, List, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 
 class PantryCategoryIndex extends React.Component {
   static navigationOptions = {
@@ -14,7 +14,7 @@ class PantryCategoryIndex extends React.Component {
           <List>
             <ListItem itemDivider>
               <Text onPress={() => navigate('Veggies')}>Veggies</Text>
-            </ListItem>                    
+            </ListItem>
             <ListItem >
               <PantryCategoryItemCard />
             </ListItem>

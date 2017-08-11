@@ -25,27 +25,28 @@ export const signup = (state) => {
   });
 };
 
-export const login = (state) => (
-  fetch(`${baseURL}login`, {
+export const login = (state) => {
+  const body = objectToQueryString(state);
+  return fetch(`${baseURL}login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-    body: `${objectToQueryString(state)}`,
-  })
-);
+    body: `${body}`,
+  });
+};
 
-export const fetchItems = token => (
-  fetch(`${baseURL}items`, {
+export const fetchItems = token => {
+  return fetch(`${baseURL}items`, {
     method: 'GET',
     headers: {
       authorization: `JWT ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
       charset: 'UTF-16',
     },
-  })
-);
+  });
+};
 
 export const fetchUser = state => {
   const token = state.session.token;

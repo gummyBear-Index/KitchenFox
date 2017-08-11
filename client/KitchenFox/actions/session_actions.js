@@ -24,7 +24,7 @@ export const logout = () => dispatch => (
 );
 
 export const signin = state => dispatch => (
-  APIUtil.login(state.username, state.password)
+  APIUtil.login(state)
     .then((response) => {
       dispatch(receiveSignin(response));
     })
@@ -39,14 +39,14 @@ export const signup = state => dispatch => {
 
 export const receiveSignin = response => (dispatch) => {
   const parsedResponse = JSON.parse(response._bodyText);
-  APIUtil.saveToken(parsedResponse.token)
+  APIUtil.setLocalUserData(response._bodyText)
     .then(() => dispatch(receiveCurrentUser(parsedResponse)));
 };
 
 export const receiveSignup = response => (dispatch) => {
   const parsedResponse = JSON.parse(response._bodyText);
   APIUtil.setLocalUserData(response._bodyText)
-  .then(() => dispatch(receiveCurrentUser(parsedResponse)));
+    .then(() => dispatch(receiveCurrentUser(parsedResponse)));
 };
 
 export const loadLocalUser = () => dispatch => (

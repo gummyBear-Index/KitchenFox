@@ -16,13 +16,13 @@ export const receiveErrors = errors => ({
 export const requestItems = token => dispatch => (
   APIUtil.fetchItems(token).then((inventory) => {
     const parsedInventory = JSON.parse(inventory._bodyText);
-    dispatch(receiveInventory(parsedInventory));
+    dispatch(receiveInventory(parsedInventory.inventory));
   })
 );
 
 export const sendItems = (token, inventory) => dispatch => (
   APIUtil.patchItems(token, inventory).then((newInventory) => {
     const parsedInventory = JSON.parse(newInventory._bodyText);
-    dispatch(receiveInventory(parsedInventory));
+    dispatch(receiveInventory(parsedInventory.inventory));
   })
 );
