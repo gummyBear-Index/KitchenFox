@@ -1,4 +1,4 @@
-import * as APIUtil from '../util/session_api_util';
+import * as APIUtil from '../util/api_util';
 
 export const RECEIVE_INVENTORY = 'RECEIVE_INVENTORY';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
