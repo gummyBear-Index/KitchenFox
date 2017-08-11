@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Content, Text, View } from 'native-base';
+import { StackNavigator, Alert, StyleSheet } from 'react-native';
+import Camera from "react-native-camera";
+import {
+  Container,
+  Content,
+  Header,
+  Title,
+  InputGroup,
+  Input,
+  Button,
+  Spinner,
+  Icon,
+  View,
+  Text,
+  Navigator,
+} from 'native-base';
 
 class AddItemCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showCamera: true,
+      cameraType: Camera.constants.Type.back,
+      upc: "none",
+    };
+    this._onBarCodeRead = this._onBarCodeRead.bind(this);
+  }
+
+  _onBarCodeRead(e) {
+    this.setState({showCamera: false, upc: e.data});
+    console.warn(this.state.upc);
+    Alert.alert(
+        "Barcode Found!",
+        "Type: " + e.type + "\nData: " + e.data
+    );
+  }
+
+  render() {
   return (
     <Container>
       <View style={session.container}>
@@ -10,13 +44,12 @@ class AddItemCard extends Component {
           style={session.content}>
             <Text style={text.titleLeft}>Sign In</Text>
           <InputGroup style={input.field}>
-            <Icon name='ios-person' />
+            <Icon name='label' />
             <Input
-              placeholder='Email'
-              keyboardtype='email-address'
+              placeholder='Name'
               autoCorrect={false}
-              autoCapitalize='none'
-              onChangeText={username => this.setState({ username })}
+              autoCapitalize='words'
+              onChangeText={name => this.setState({ username })}
               value={this.state.username}
             />
           </InputGroup>
@@ -43,6 +76,7 @@ class AddItemCard extends Component {
       </View>
     </Container>
   );
+  }
 }
 
 export default AddItemCard;
