@@ -58,7 +58,7 @@ class Greeting extends Component {
       <Image
         source={require('../../images/greeting/food-1-.jpg')}
         style={session.container}>
-            <Title style={text.titleCenter}>Welcome to KitchenFox!</Title>
+            <Title style={text.titleCenter}>KitchenFox</Title>
           <Button 
             style={button.sessionButton}
             onPress={() => navigate('Signup', {name: 'signup'})}>

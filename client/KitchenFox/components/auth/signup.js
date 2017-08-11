@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { AsyncStorage } from 'react-native';
-import { styles } from '../../style/auth/session';
+
 import { text } from '../../style/text.js';
+import { button } from '../../style/button';
+import { input } from '../../style/input';
+import { session } from '../../style/layout';
+// import { styles } from '../../style/auth/session';
+
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 import {
   Container,
@@ -55,12 +60,12 @@ class Signup extends Component {
 
 		return (
 			<Container>
-				<View style={styles.container}>
+				<View style={session.container}>
 					<View
-						style={styles.content}>
+						style={session.content}>
 						<Text style={text.titleLeft}>Sign Up</Text>
-						<InputGroup style={styles.input}>
-							<Icon style={styles.inputIcon} name='ios-arrow-forward' />
+						<InputGroup style={input.field}>
+							<Icon name='ios-arrow-forward' />
 							<Input
 								placeholder='First name'
 								autoCorrect={false}
@@ -68,8 +73,8 @@ class Signup extends Component {
 								value={this.state.firstName}
 							/>
 						</InputGroup>
-						<InputGroup style={styles.input}>
-							<Icon style={styles.inputIcon} name='ios-arrow-forward' />
+						<InputGroup style={input.field}>
+							<Icon name='ios-arrow-forward' />
 							<Input
 								placeholder='Last name'
 								autoCorrect={false}
@@ -77,8 +82,8 @@ class Signup extends Component {
 								value={this.state.lastName}
 							/>
 						</InputGroup>
-						<InputGroup style={styles.input}>
-							<Icon style={styles.inputIcon} name="ios-person" />
+						<InputGroup style={input.field}>
+							<Icon name="ios-person" />
 							<Input
 								placeholder="Email"
 								keyboardType="email-address"
@@ -88,8 +93,8 @@ class Signup extends Component {
 								value={this.state.username}
 							/>
 						</InputGroup>
-						<InputGroup style={styles.input}>
-							<Icon style={styles.inputIcon} name="ios-unlock" />
+						<InputGroup style={input.field}>
+							<Icon name="ios-unlock" />
 							<Input
 								placeholder="Password"
 								onChangeText={password => this.setState({ password })}
@@ -101,7 +106,7 @@ class Signup extends Component {
 							<Spinner size="small" color="#000000" />
 						) : (
 							<Button
-								style={styles.button}
+								style={button.sessionButton}
 								onPress={(e) => this.handleSignup()}
 							>
 								<Text>Sign up</Text>

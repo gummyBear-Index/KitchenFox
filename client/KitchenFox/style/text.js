@@ -18,10 +18,11 @@ export const text = StyleSheet.create({
     color: COLOR_PRIMARY,
   },
   titleCenter: {
-    fontSize: 30,
+    fontSize: 40,
     paddingTop: 20,
     paddingBottom: 20,
     textAlign: 'center',
-    color: COLOR_PRIMARY,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
