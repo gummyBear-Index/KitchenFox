@@ -8,7 +8,7 @@ export const session = StyleSheet.create({
     height: undefined,
   },
   darkness: {
-    backgroundColor: 'rgba(0,0,0,.7)',
+    backgroundColor: 'rgba(0,0,0,.45)',
     flex: 1,
     width: undefined,
     height: undefined,

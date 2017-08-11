@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BUTTON_ACTION } from './common';
+import { BUTTON_ACTION, BUTTON_ACTION_TEXT } from './common';
 
 export const button = StyleSheet.create({
   // container: {
@@ -7,7 +7,7 @@ export const button = StyleSheet.create({
   // },
   button: {
     backgroundColor: BUTTON_ACTION,
-    color: '#fff',
+    color: BUTTON_ACTION_TEXT,
     borderRadius: 5,
     padding: 15,
   },
@@ -15,7 +15,7 @@ export const button = StyleSheet.create({
     borderRadius: 4,
     marginTop: 20,
     alignSelf: 'center',
-    backgroundColor: BUTTON_ACTION,
+    backgroundColor: BUTTON_ACTION
   }
 });
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLOR_PRIMARY } from './common';
+import { COLOR_PRIMARY, BUTTON_ACTION_TEXT } from './common';
 
 const title = {
   fontSize: 30,
@@ -30,6 +30,9 @@ export const text = StyleSheet.create({
     paddingBottom: 10,
     textAlign: 'center',
     color: '#fff',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 20,
   },
   sessionMessage: {
     fontSize: 20,
@@ -37,5 +40,11 @@ export const text = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 20,
+  },
+  sessionButton: {
+    color: BUTTON_ACTION_TEXT,
   }
 });

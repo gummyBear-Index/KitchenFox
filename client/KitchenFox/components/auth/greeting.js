@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native';
-import { Animated, Image } from 'react-native';
+import { Animated, Image, Text } from 'react-native';
 import {
   Container,
   Header,
@@ -11,7 +11,6 @@ import {
   Spinner,
   Icon,
   View,
-  Text,
   Navigator,
 } from 'native-base';
 
@@ -59,7 +58,7 @@ class Greeting extends Component {
         style={session.container}>
          <View style={session.darkness}> 
           <View style={session.header}>
-            <Title style={text.sessionTitle}>KitchenFox</Title>
+            <Text style={text.sessionTitle}>KitchenFox</Text>
             <Text style={text.sessionMessage}>always know what you have</Text>
             <Text style={text.sessionMessage}>and what you can cook</Text>
           </View>
@@ -67,12 +66,12 @@ class Greeting extends Component {
             <Button
               style={button.sessionButton}
               onPress={() => navigate('Signup', {name: 'signup'})}>
-              <Text>Sign Up</Text>
+              <Text style={text.sessionButton}>Sign Up</Text>
             </Button>
             <Button
               style={button.sessionButton}
               onPress={() => navigate('Signin', {name: 'signin'})}>
-              <Text>Sign In</Text>
+              <Text style={text.sessionButton}>Sign In</Text>
             </Button>
           </View>
          </View> 
