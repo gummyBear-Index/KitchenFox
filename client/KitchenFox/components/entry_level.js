@@ -13,6 +13,7 @@ getLocalToken().then(token => {
         token,
       }
     };
+    
   } else {
     preloadedState = {};
   }

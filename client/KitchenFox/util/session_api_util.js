@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-export const createUser = (state) => {
+export const signup = (state) => {
   const { first, last, username, password } = state;
   return fetch('https://kitchenfox.herokuapp.com/api/register', {
     method: 'POST',
@@ -24,6 +24,31 @@ export const login = (username, password) => (
   })
 );
 
+
+export const fetchItems = token => (
+  fetch('https://kitchenfox.herokuapp.com/api/protected', {
+    method: 'GET',
+    headers: {
+      authorization: `JWT ${token}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      charset: 'UTF-16',
+    },
+  })
+);
+
+export const sendItems = (token, inventory) => {
+  const stringifiedInventory = JSON.stringify(inventory);
+  return fetch('https://kitchenfox.herokuapp.com/api/items', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      charset: 'UTF-16',
+      authorization: `JWT ${token}`,
+    },
+    body: stringifiedInventory,
+  });
+};
+
 export const saveToken = response => (
   AsyncStorage.setItem('jwt', response)
 );
@@ -34,6 +59,22 @@ export const getLocalToken = () => (
 
 export const deleteLocalToken = () => (
   AsyncStorage.removeItem('jwt')
+);
+
+export const saveFirstName = response => (
+  AsyncStorage.setItem('fn', response)
+);
+
+export const getFirstName = () => (
+  AsyncStorage.setItem('fn')
+);
+
+export const saveLastName = response => (
+  AsyncStorage.setItem('ln', response)
+);
+
+export const getLastName = () => (
+  AsyncStorage.setItem('ln')
 );
 
 export const demoSecured = () => {

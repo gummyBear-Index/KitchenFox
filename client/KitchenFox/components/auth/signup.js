@@ -8,6 +8,7 @@ import { input } from '../../style/input';
 import { session } from '../../style/layout';
 
 import { createUser, login, saveToken, getLocalToken, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
+
 import {
   Container,
   Header,
@@ -35,6 +36,15 @@ class Signup extends Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.currentUser) {
+      let user = newProps.currentUser;
+      console.warn(JSON.stringify(user));
+      // navigate to index page
+      // this.props.navigation.navigate('indexPage');
+    }
+  }
+
   handleSignup() {
 		// const { firstName, lastName, username, password } = this.state;
     //
@@ -46,9 +56,20 @@ class Signup extends Component {
 		// 	return parsedRes.token;
 		// };
 		// this.props.logout();
-		
+		this.props.signup(this.state);
 		this.props.navigation.navigate('Pantry');
     dismissKeyboard();
+  }
+
+  handleLogout() {
+    this.props.logout();
+  }
+
+  handleGoBack() {
+    // navigate to greeting page
+
+		// const routeStack = this.props.navigator.getCurrentRoutes();
+		// this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {
@@ -64,8 +85,8 @@ class Signup extends Component {
 							<Input
 								placeholder='First name'
 								autoCorrect={false}
-								onChangeText={firstName => this.setState({ firstName })}
-								value={this.state.firstName}
+								onChangeText={first_name => this.setState({ first_name })}
+								value={this.state.first_name}
 							/>
 						</InputGroup>
 						<InputGroup style={input.field}>
@@ -73,8 +94,8 @@ class Signup extends Component {
 							<Input
 								placeholder='Last name'
 								autoCorrect={false}
-								onChangeText={lastName => this.setState({ lastName })}
-								value={this.state.lastName}
+								onChangeText={last_name => this.setState({ last_name })}
+								value={this.state.last_name}
 							/>
 						</InputGroup>
 						<InputGroup style={input.field}>

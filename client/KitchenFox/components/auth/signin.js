@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { StackNavigator } from 'react-native';
+
 import { signin } from '../../actions/session_actions';
 import { createUser, login, demoSecured, securable, protectedHeaders } from '../../util/session_api_util';
 
@@ -37,15 +38,29 @@ class SignIn extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.currentUser) {
-      this.props.navigation.navigate('IndexPage');
+      let user = newProps.currentUser;
+      console.warn(JSON.stringify(user));
+      // navigate to index page
+      // this.props.navigation.navigate('IndexPage');
     }
   }
 
   handleSignin() {
     this.props.signin(this.state);
-
     this.props.navigation.navigate('Pantry');
     dismissKeyboard();
+  }
+  
+  handleLogout() {
+    this.props.logout();
+  }
+
+  handleGoBack() {
+    // navigate to greeting page
+
+    // this.props.navigation.navigate('Greeting');
+    // const routeStack = this.props.navigator.getCurrentRoutes();
+    // this.props.navigator.jumpTo(routeStack[0]);
   }
 
   render() {
@@ -83,13 +98,18 @@ class SignIn extends Component {
                 style={button.sessionButton}
                 onPress={() => this.handleSignin()}
               >
-                <Text>Sign in</Text>
+                <Text>SIGN IN</Text>
               </Button>
             )}
           </View>
+          <Button
+            style={styles.button}
+            onPress={(e) => this.handleLogout()}
+          >
+            <Text>LOGOUT</Text>
+          </Button>
         </View>
       </Container>
-
     );
   }
 }
