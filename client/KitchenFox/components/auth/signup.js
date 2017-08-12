@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Image, KeyboardAvoidingView } from 'react-native';
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
@@ -51,60 +52,74 @@ class Signup extends Component {
   render() {
 		return (
 			<Container>
+				<Image
+        source={require('../../images/greeting/food-5-.jpg')}
+        style={session.container}>
 				<View style={session.container}>
 					<View
 						style={session.content}>
-						<Text style={text.titleLeft}>Sign Up</Text>
-						<InputGroup style={input.field}>
-							<Icon name='ios-arrow-forward' />
-							<Input
-								placeholder='First name'
-								autoCorrect={false}
-								onChangeText={first_name => this.setState({ first_name })}
-								value={this.state.first_name}
-							/>
-						</InputGroup>
-						<InputGroup style={input.field}>
-							<Icon name='ios-arrow-forward' />
-							<Input
-								placeholder='Last name'
-								autoCorrect={false}
-								onChangeText={last_name => this.setState({ last_name })}
-								value={this.state.last_name}
-							/>
-						</InputGroup>
-						<InputGroup style={input.field}>
-							<Icon name="ios-person" />
-							<Input
-								placeholder="Email"
-								keyboardType="email-address"
-								autoCorrect={false}
-								autoCapitalize="none"
-								onChangeText={username => this.setState({ username })}
-								value={this.state.username}
-							/>
-						</InputGroup>
-						<InputGroup style={input.field}>
-							<Icon name="ios-unlock" />
-							<Input
-								placeholder="Password"
-								onChangeText={password => this.setState({ password })}
-								value={this.state.password}
-								secureTextEntry
-							/>
-						</InputGroup>
-						{this.state.isLoading ? (
-							<Spinner size="small" color="#000000" />
-						) : (
-							<Button
-								style={button.sessionButton}
-								onPress={(e) => this.handleSignup()}
-							>
-								<Text>Sign up</Text>
-							</Button>
-						)}
+						{/* <KeyboardAvoidingView> */}
+							<Text style={text.titleCenter}>Sign Up</Text>
+							<InputGroup style={input.field}>
+								<Icon name='ios-arrow-forward' style={input.icon} />
+								<Input
+									style={input.sessionText}
+									placeholderTextColor='#000'
+									placeholder='First name'
+									autoCorrect={false}
+									onChangeText={first_name => this.setState({ first_name })}
+									value={this.state.first_name}
+								/>
+							</InputGroup>
+							<InputGroup style={input.field}>
+								<Icon name='ios-arrow-forward' style={input.icon} />
+								<Input
+									style={input.sessionText}
+									placeholderTextColor='#000'
+									placeholder='Last name'
+									autoCorrect={false}
+									onChangeText={last_name => this.setState({ last_name })}
+									value={this.state.last_name}
+								/>
+							</InputGroup>
+							<InputGroup style={input.field}>
+								<Icon name="ios-person" style={input.icon} />
+								<Input
+									style={input.sessionText}
+									placeholderTextColor='#000'
+									placeholder="Email"
+									keyboardType="email-address"
+									autoCorrect={false}
+									autoCapitalize="none"
+									onChangeText={username => this.setState({ username })}
+									value={this.state.username}
+								/>
+							</InputGroup>
+							<InputGroup style={input.field}>
+								<Icon name="ios-unlock" style={input.icon} />
+								<Input
+									style={input.sessionText}
+									placeholderTextColor='#000'
+									placeholder="Password"
+									onChangeText={password => this.setState({ password })}
+									value={this.state.password}
+									secureTextEntry
+								/>
+							</InputGroup>
+							{this.state.isLoading ? (
+								<Spinner size="small" color="#000000" />
+							) : (
+								<Button
+									style={button.sessionButton}
+									onPress={(e) => this.handleSignup()}
+								>
+									<Text style={text.sessionButton}>Go</Text>
+								</Button>
+							)}
+					{/* </KeyboardAvoidingView> */}
 					</View>
 				</View>
+				</Image>
 			</Container>
 		);
 	}

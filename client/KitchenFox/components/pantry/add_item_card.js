@@ -33,20 +33,22 @@ class AddItemCard extends Component {
       upc: "none",
       name: "",
       quantity: "",
-      units: "",
+      units: "g",
       weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
-    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then(response => response.json()).then((res) => {
-      console.warn(res);
-      this.setState(res[0]);
+    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
+      this.setState(JSON.parse(res._bodyText)[0]);
+      if (JSON.parse(res._bodyText)[0].quantity === 1) {
+        this.setState({units: "each"});
+      }
     });
-    console.warn(this.state.upc);
     Alert.alert(
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
@@ -56,6 +58,30 @@ class AddItemCard extends Component {
   toggleCamera(){
     this.setState({showCamera: true});
   }
+
+  onChange(string) {
+    let newText = '';
+    let numbers = '0123456789';
+
+    for (let i = 0; i < string.length; i++) {
+        if ( numbers.indexOf(string[i]) > -1 ) {
+            newText = newText + string[i];
+        }
+    }
+    this.setState({quantity: newText});
+    this.props.updateParent(this.props.cardNum, this.state);
+  }
+
+  onChangeText(type, value) {
+    this.setState({[type]: value});
+    if (this.state.quantity === "1") {
+      console.warn(this.state.quantity === "1");
+      this.setState({units: "each"});
+    }
+    this.props.updateParent(this.props.cardNum, this.state);
+  }
+
+  // onChangeText={name => this.setState({name: name})}
 
   render() {
     if (this.state.showCamera) {
@@ -91,7 +117,7 @@ class AddItemCard extends Component {
                 placeholder='Name'
                 autoCorrect={false}
                 autoCapitalize='words'
-                onChangeText={name => this.setState({name: name})}
+                onChangeText={name => this.onChangeText("name", name)}
                 value={this.state.name}
               />
             </InputGroup>
@@ -101,14 +127,14 @@ class AddItemCard extends Component {
                 placeholder='Quantity'
                 autoCorrect={false}
                 keyboardType="numeric"
-                onChangeText={quantity => this.setState({quantity: quantity})}
-                value={this.state.quantity}
+                onChangeText={(string) => this.onChange(string)}
+                value={`${this.state.quantity}`}
               />
             </InputGroup>
             <Icon name='cart' />
             <Picker
               selectedValue={this.state.unit}
-              onValueChange={unit => this.setState({unit: unit})}>
+              onValueChange={units => this.onChangeText("units", units)}>
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
             </Picker>

@@ -24,8 +24,6 @@ class RecipesIndex extends React.Component {
   }
 }
 
-export default RecipesIndex;
-
 //       <Header />
 //         <View>
 //           <DeckSwiper>
