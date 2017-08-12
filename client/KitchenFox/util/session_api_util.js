@@ -60,7 +60,7 @@ export const fetchUser = state => {
   });
 };
 
-export const patchItems = (state) => {
+export const patchItems = (tostate) => {
   const token = state.session.token;
   return fetch(`${baseURL}items`, {
     method: 'PATCH',
