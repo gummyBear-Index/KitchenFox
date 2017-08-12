@@ -1,15 +1,21 @@
 import { StackNavigator } from 'react-navigation';
 
-import PantryAddItems from '../components/pantry/add_items';
+import PantryAddItemsContainer from '../components/pantry/add_items_container';
 import DashboardPantryStocked from '../components/dashboard/pantry_stocked';
 import PantryIndex from '../components/pantry/pantry_index';
 import PantryItem from '../components/pantry/pantry_item';
 import RecipesIndex from '../components/recipes/recipes_index';
 
 const Pantry = StackNavigator({
+<<<<<<< HEAD
   PantryIndex: { screen: PantryIndex },
   PantryItem: { screen: PantryItem },
   AddItem: { screen: PantryAddItems },
+=======
+  Pantry: { screen: PantryCategoriesIndex },
+  PantryCategory: { screen: PantryCategoryIndex },
+  AddItem: { screen: PantryAddItemsContainer },
+>>>>>>> master
   Dashboard: { screen: DashboardPantryStocked },
   Recipes: { screen: RecipesIndex },
 });
