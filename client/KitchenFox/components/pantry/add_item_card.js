@@ -32,8 +32,8 @@ class AddItemCard extends Component {
       cameraType: Camera.constants.Type.back,
       upc: "none",
       name: "",
-      quantity: 1,
-      unit: "",
+      quantity: "",
+      units: "g",
       weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
@@ -44,9 +44,10 @@ class AddItemCard extends Component {
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
     upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
-      console.warn(JSON.parse(res._bodyText)[0].quantity);
       this.setState(JSON.parse(res._bodyText)[0]);
-    //   this.setState({quantity: (JSON.parse(res._bodyText)[0].quantity)});
+      if (JSON.parse(res._bodyText)[0].quantity === 1) {
+        this.setState({units: "each"});
+      }
     });
     Alert.alert(
         "Barcode Found!",
@@ -68,10 +69,21 @@ class AddItemCard extends Component {
         }
     }
     this.setState({quantity: newText});
+    this.props.updateParent(this.props.cardNum, this.state);
   }
 
+  onChangeText(type, value) {
+    this.setState({[type]: value});
+    if (this.state.quantity === "1") {
+      console.warn(this.state.quantity === "1");
+      this.setState({units: "each"});
+    }
+    this.props.updateParent(this.props.cardNum, this.state);
+  }
+
+  // onChangeText={name => this.setState({name: name})}
+
   render() {
-    this.state.quantity = parseInt(this.state.quantity);
     if (this.state.showCamera) {
     return (
       <View style={camera.container}>
@@ -105,7 +117,7 @@ class AddItemCard extends Component {
                 placeholder='Name'
                 autoCorrect={false}
                 autoCapitalize='words'
-                onChangeText={name => this.setState({name: name})}
+                onChangeText={name => this.onChangeText("name", name)}
                 value={this.state.name}
               />
             </InputGroup>
@@ -116,13 +128,13 @@ class AddItemCard extends Component {
                 autoCorrect={false}
                 keyboardType="numeric"
                 onChangeText={(string) => this.onChange(string)}
-                value={parseInt(this.state.quantity, 10)}
+                value={`${this.state.quantity}`}
               />
             </InputGroup>
             <Icon name='cart' />
             <Picker
               selectedValue={this.state.unit}
-              onValueChange={unit => this.setState({unit: unit})}>
+              onValueChange={units => this.onChangeText("units", units)}>
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
             </Picker>
