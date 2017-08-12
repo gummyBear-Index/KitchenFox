@@ -58,7 +58,7 @@ class Signup extends Component {
 				<View style={session.container}>
 					<View
 						style={session.content}>
-						<KeyboardAvoidingView>
+						{/* <KeyboardAvoidingView> */}
 							<Text style={text.titleCenter}>Sign Up</Text>
 							<InputGroup style={input.field}>
 								<Icon name='ios-arrow-forward' style={input.icon} />
@@ -116,7 +116,7 @@ class Signup extends Component {
 									<Text style={text.sessionButton}>Go</Text>
 								</Button>
 							)}
-					</KeyboardAvoidingView>
+					{/* </KeyboardAvoidingView> */}
 					</View>
 				</View>
 				</Image>
