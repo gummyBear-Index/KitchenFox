@@ -33,7 +33,7 @@ class AddItemCard extends Component {
       upc: "none",
       name: "",
       quantity: "",
-      unit: "g",
+      units: "g",
       weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
@@ -45,9 +45,8 @@ class AddItemCard extends Component {
     this.setState({showCamera: false, upc: e.data});
     upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
       this.setState(JSON.parse(res._bodyText)[0]);
-      console.warn(JSON.parse(res._bodyText)[0].quantity === 1);
       if (JSON.parse(res._bodyText)[0].quantity === 1) {
-        this.setState({unit: "each"});
+        this.setState({units: "each"});
       }
     });
     Alert.alert(
@@ -70,11 +69,19 @@ class AddItemCard extends Component {
         }
     }
     this.setState({quantity: newText});
+    this.props.updateParent(this.props.cardNum, this.state);
   }
 
-  onChangeText() {
-    this.props
+  onChangeText(type, value) {
+    this.setState({[type]: value});
+    if (this.state.quantity === "1") {
+      console.warn(this.state.quantity === "1");
+      this.setState({units: "each"});
+    }
+    this.props.updateParent(this.props.cardNum, this.state);
   }
+
+  // onChangeText={name => this.setState({name: name})}
 
   render() {
     if (this.state.showCamera) {
@@ -110,7 +117,7 @@ class AddItemCard extends Component {
                 placeholder='Name'
                 autoCorrect={false}
                 autoCapitalize='words'
-                onChangeText={name => this.setState({name: name})}
+                onChangeText={name => this.onChangeText("name", name)}
                 value={this.state.name}
               />
             </InputGroup>
@@ -127,7 +134,7 @@ class AddItemCard extends Component {
             <Icon name='cart' />
             <Picker
               selectedValue={this.state.unit}
-              onValueChange={unit => this.setState({unit: unit})}>
+              onValueChange={units => this.onChangeText("units", units)}>
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
             </Picker>
