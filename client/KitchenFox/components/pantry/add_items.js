@@ -56,7 +56,8 @@ class PantryAddItems extends React.Component {
         <AddItemCard
           key={`card-form-number-${i}`}
           cardNum={i}
-          updateParent={(cardNum, localState) => this.handleCardUpdate(cardNum, localState)} />
+          updateParent={(cardNum, localState) => this.handleCardUpdate(cardNum, localState)}
+          token={this.props.session.token} />
       );
       itemCards.push(j);
     }
