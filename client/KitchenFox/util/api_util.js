@@ -12,7 +12,6 @@ const objectToQueryString = (obj, prefix) => {
         `${encodeURIComponent(k)}=${encodeURIComponent(v)}`);
     }
   }
-  console.warn(queryString.join('&'));
   return queryString.join('&');
 };
 
