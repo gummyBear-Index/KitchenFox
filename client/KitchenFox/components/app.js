@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
-import BarCodeCamera from './pantry/camera';
+// import BarCodeCamera from './pantry/camera';
 import AddItemCard from './pantry/add_item_card';
 
 import Welcome from '../screens/welcome';
@@ -29,7 +29,6 @@ class App extends Component {
       return (<Welcome />);
     }
   }
-  // return (<BarCodeCamera />);
 }
 
 export default App;

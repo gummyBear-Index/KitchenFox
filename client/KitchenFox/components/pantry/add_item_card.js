@@ -53,6 +53,7 @@ class AddItemCard extends Component {
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
     );
+    this.props.updateParent(this.props.cardNum, this.state);
   }
 
   toggleCamera(){
@@ -121,7 +122,7 @@ class AddItemCard extends Component {
                 value={this.state.name}
               />
             </InputGroup>
-            <InputGroup style={input.box} borderType='rounded'>
+            <InputGroup style={input.field} borderType='rounded'>
               <Icon name='calculator' />
               <Input
                 placeholder='Quantity'
@@ -133,7 +134,7 @@ class AddItemCard extends Component {
             </InputGroup>
             <Icon name='cart' />
             <Picker
-              selectedValue={this.state.unit}
+              selectedValue={this.state.units}
               onValueChange={units => this.onChangeText("units", units)}>
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
