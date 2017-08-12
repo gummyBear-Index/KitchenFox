@@ -100,7 +100,7 @@ class Signup extends Component {
 								style={button.sessionButton}
 								onPress={(e) => this.handleSignup()}
 							>
-								<Text>Sign up</Text>
+								<Text style={text.sessionButton}>Go</Text>
 							</Button>
 						)}
 					</View>

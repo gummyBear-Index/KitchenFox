@@ -54,7 +54,7 @@ class Greeting extends Component {
 
     return(
       <Image
-        source={require('../../images/greeting/food-1-.jpg')}
+        source={require('../../images/greeting/food-4-.jpg')}
         style={session.container}>
          <View style={session.darkness}> 
           <View style={session.header}>

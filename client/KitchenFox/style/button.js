@@ -12,7 +12,7 @@ export const button = StyleSheet.create({
     padding: 15,
   },
   sessionButton: {
-    borderRadius: 4,
+    borderRadius: 20,
     marginTop: 20,
     alignSelf: 'center',
     backgroundColor: BUTTON_ACTION,
