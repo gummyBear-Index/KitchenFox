@@ -3,7 +3,9 @@ import { View } from 'react-native';
 import { Container, Content, List, ListItem, Button,
 Card, CardItem, Left, Text } from 'native-base';
 import { button } from '../../style/button';
-
+import { connect } from 'react-redux';
+import { logout } from '../../actions/session_actions';
+import { requestItems } from '../../actions/inventory_actions';
 import NavFooter from '../nav/footer';
 
 class PantryIndex extends React.Component {
@@ -19,6 +21,7 @@ class PantryIndex extends React.Component {
   }
 
   componentWillMount() {
+    console.warn(JSON.stringify(this.props.session.token));
     if (this.props.session.token) {
       this.props.requestItems(this.props.session.token);
     }
@@ -90,4 +93,14 @@ class PantryIndex extends React.Component {
   }
 }
 
-export default PantryIndex;
+const mapStateToProps = ({ session, inventory }) => ({
+  session,
+  inventory
+});
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout()),
+  requestItems: token => dispatch(requestItems(token))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PantryIndex);
