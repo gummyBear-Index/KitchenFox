@@ -4,9 +4,11 @@ import Camera from "react-native-camera";
 import {button} from '../../style/button';
 import {text} from '../../style/text';
 import {input} from '../../style/input';
+import {session} from '../../style/layout';
 
 import {
   Container,
+  Picker,
   Content,
   Header,
   Title,
@@ -50,9 +52,8 @@ class AddItemCard extends Component {
       <View style={session.container}>
         <View
           style={session.content}>
-            <Text style={text.titleCenter}>Sign In</Text>
-          <InputGroup style={input.field}>
-            <Icon name='label' />
+          <InputGroup style={input.field} borderType='rounded'>
+            <Icon name='nutrition' />
             <Input
               placeholder='Name'
               autoCorrect={false}
@@ -61,8 +62,8 @@ class AddItemCard extends Component {
               value={this.state.name}
             />
           </InputGroup>
-          <InputGroup style={input.field}>
-            <Icon name='label' />
+          <InputGroup style={input.box} borderType='rounded'>
+            <Icon name='calculator' />
             <Input
               placeholder='Quantity'
               autoCorrect={false}
@@ -71,16 +72,7 @@ class AddItemCard extends Component {
               value={this.state.quantity}
             />
           </InputGroup>
-          <InputGroup style={input.field}>
-            <Icon name='label' />
-            <Input
-              placeholder='Name'
-              autoCorrect={false}
-              autoCapitalize='words'
-              onChangeText={name => this.setState({name: name})}
-              value={this.state.name}
-            />
-          </InputGroup>
+          <Icon name='cart' />
           <Picker
             selectedValue={this.state.unit}
             onValueChange={unit => this.setState({unit: unit})}>
@@ -91,9 +83,8 @@ class AddItemCard extends Component {
               style={button.sessionButton}
               onPress={() => this.handleSignin()}
             >
-              <Icon name='barcode' />
+              <Icon name='camera' />
             </Button>
-          )}
         </View>
       </View>
     </Container>
