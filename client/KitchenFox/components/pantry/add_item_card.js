@@ -4,9 +4,13 @@ import Camera from "react-native-camera";
 import {button} from '../../style/button';
 import {text} from '../../style/text';
 import {input} from '../../style/input';
+import {session} from '../../style/layout';
+import {camera} from '../../style/cameraStyle';
+import {upcLookUp} from '../../util/api_util';
 
 import {
   Container,
+  Picker,
   Content,
   Header,
   Title,
@@ -33,10 +37,15 @@ class AddItemCard extends Component {
       weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
+    this.toggleCamera = this.toggleCamera.bind(this);
   }
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
+    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then(response => response.json()).then((res) => {
+      console.warn(res);
+      this.setState(res[0]);
+    });
     console.warn(this.state.upc);
     Alert.alert(
         "Barcode Found!",
@@ -44,60 +53,76 @@ class AddItemCard extends Component {
     );
   }
 
+  toggleCamera(){
+    this.setState({showCamera: true});
+  }
+
   render() {
-  return (
-    <Container>
-      <View style={session.container}>
-        <View
-          style={session.content}>
-            <Text style={text.titleCenter}>Sign In</Text>
-          <InputGroup style={input.field}>
-            <Icon name='label' />
-            <Input
-              placeholder='Name'
-              autoCorrect={false}
-              autoCapitalize='words'
-              onChangeText={name => this.setState({name: name})}
-              value={this.state.name}
-            />
-          </InputGroup>
-          <InputGroup style={input.field}>
-            <Icon name='label' />
-            <Input
-              placeholder='Quantity'
-              autoCorrect={false}
-              keyboardType="numeric"
-              onChangeText={quantity => this.setState({quantity: quantity})}
-              value={this.state.quantity}
-            />
-          </InputGroup>
-          <InputGroup style={input.field}>
-            <Icon name='label' />
-            <Input
-              placeholder='Name'
-              autoCorrect={false}
-              autoCapitalize='words'
-              onChangeText={name => this.setState({name: name})}
-              value={this.state.name}
-            />
-          </InputGroup>
-          <Picker
-            selectedValue={this.state.unit}
-            onValueChange={unit => this.setState({unit: unit})}>
-            <Picker.Item label="grams" value="g" />
-            <Picker.Item label="each" value="each" />
-          </Picker>
-            <Button
-              style={button.sessionButton}
-              onPress={() => this.handleSignin()}
-            >
-              <Icon name='barcode' />
-            </Button>
-          )}
+    if (this.state.showCamera) {
+    return (
+      <View style={camera.container}>
+      <Text>
+        Scan the barcode now!
+      </Text>
+      <Camera
+        ref={(cam) => {
+          this.camera = cam;
+        }}
+        style={camera.preview}
+        aspect={Camera.constants.Aspect.fill}
+        orientation={Camera.constants.Orientation.portrait}
+        barCodeTypes={['org.gs1.UPC-E']}
+        onBarCodeRead={this._onBarCodeRead}>
+        <View style={camera.square}>
+          <Text>Here</Text>
         </View>
+      </Camera>
       </View>
-    </Container>
-  );
+    );
+    } else {
+      return (
+      <Container>
+        <View style={session.container}>
+          <View
+            style={session.content}>
+            <InputGroup style={input.field} borderType='rounded'>
+              <Icon name='nutrition' />
+              <Input
+                placeholder='Name'
+                autoCorrect={false}
+                autoCapitalize='words'
+                onChangeText={name => this.setState({name: name})}
+                value={this.state.name}
+              />
+            </InputGroup>
+            <InputGroup style={input.box} borderType='rounded'>
+              <Icon name='calculator' />
+              <Input
+                placeholder='Quantity'
+                autoCorrect={false}
+                keyboardType="numeric"
+                onChangeText={quantity => this.setState({quantity: quantity})}
+                value={this.state.quantity}
+              />
+            </InputGroup>
+            <Icon name='cart' />
+            <Picker
+              selectedValue={this.state.unit}
+              onValueChange={unit => this.setState({unit: unit})}>
+              <Picker.Item label="grams" value="g" />
+              <Picker.Item label="each" value="each" />
+            </Picker>
+              <Button
+                style={button.sessionButton}
+                onPress={() => this.toggleCamera()}
+              >
+                <Icon name='camera' />
+              </Button>
+          </View>
+        </View>
+      </Container>
+      );
+    }
   }
 }
 
