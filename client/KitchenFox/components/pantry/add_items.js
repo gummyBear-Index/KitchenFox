@@ -19,7 +19,10 @@ class PantryAddItems extends React.Component {
     this.cart.forEach((item) => {
       let upc = item.upc.length ? item.upc : md5(item.name)
       if (upc in inventory) {
-        inventory[upc].quantity += item.quantity;
+        let newQuant = inventory[upc].quantity;
+        newQuant = parseInt(newQuant);
+        newQuant += parseInt(item.quantity);
+        inventory[upc].quantity = newQuant;
       } else {
         inventory[upc] = {
           name: item.name,
