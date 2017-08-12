@@ -6,6 +6,7 @@ import {text} from '../../style/text';
 import {input} from '../../style/input';
 import {session} from '../../style/layout';
 import {camera} from '../../style/cameraStyle';
+import {upcLookUp} from '../../util/api_util';
 
 import {
   Container,
@@ -41,6 +42,10 @@ class AddItemCard extends Component {
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
+    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then(response => response.json()).then((res) => {
+      console.warn(res);
+      this.setState(res[0]);
+    });
     console.warn(this.state.upc);
     Alert.alert(
         "Barcode Found!",

@@ -6,6 +6,6 @@ export const input = StyleSheet.create({
   },
   box: {
     marginBottom: 20,
-    width:100,
+    width:150,
   }
 });
