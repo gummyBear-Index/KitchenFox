@@ -5,7 +5,7 @@ import http from 'http';
 const router = Router();
 
 import { userIndex, register, login, showUser } from './controllers/users';
-import { itemsIndex, itemsPatch } from './controllers/items';
+import { itemsIndex, itemsPatch, test } from './controllers/items';
 import { createQuery, apiCall } from './utils/suggestRecipe';
 import { upcLookUp } from './utils/upcLogic';
 import { getItemsByUserId } from './db/queries';
@@ -60,6 +60,8 @@ router.get('/upcLookUp', (req, res, next) => {
     }
   })(req, res, next);
 });
+
+router.route('/test').get((req, res, next) => test(req, res, next));
 
 router.get('/recipes', (req, res, next) => {
   passport.authenticate('jwt', (err, user, info) => {
