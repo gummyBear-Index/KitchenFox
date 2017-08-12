@@ -30,9 +30,9 @@ export const text = StyleSheet.create({
     fontSize: 94,
     textAlign: 'center',
     color: '#fff',
-    // textShadowColor: '#000',
-    // textShadowOffset: { width: 2, height: 2 },
-    // textShadowRadius: 20,
+    textShadowColor: '#444',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
     fontFamily: 'GrandHotel-Regular',
   },
   sessionMessage: {
