@@ -11,11 +11,6 @@ const Pantry = StackNavigator({
   PantryIndex: { screen: PantryIndex },
   PantryItem: { screen: PantryItem },
   AddItem: { screen: PantryAddItems },
-=======
-  Pantry: { screen: PantryCategoriesIndex },
-  PantryCategory: { screen: PantryCategoryIndex },
-  AddItem: { screen: PantryAddItemsContainer },
->>>>>>> master
   Dashboard: { screen: DashboardPantryStocked },
   Recipes: { screen: RecipesIndex },
 });
