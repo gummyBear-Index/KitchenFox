@@ -22,6 +22,7 @@ import {
   View,
   Text,
   Navigator,
+  ListItem,
 } from 'native-base';
 
 class AddItemCard extends Component {
@@ -30,7 +31,7 @@ class AddItemCard extends Component {
     this.state = {
       showCamera: false,
       cameraType: Camera.constants.Type.back,
-      upc: "none",
+      upc: '',
       name: "",
       quantity: "",
       units: "g",
@@ -108,7 +109,7 @@ class AddItemCard extends Component {
     );
     } else {
       return (
-      <Container>
+      <ListItem>
         <View style={session.container}>
           <View
             style={session.content}>
@@ -147,7 +148,7 @@ class AddItemCard extends Component {
               </Button>
           </View>
         </View>
-      </Container>
+      </ListItem>
       );
     }
   }
