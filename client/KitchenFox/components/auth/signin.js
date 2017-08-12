@@ -39,7 +39,7 @@ class SignIn extends Component {
   }
 
   handleSignin() {
-    console.warn(JSON.stringify(this.state));
+    // console.warn(JSON.stringify(this.state));
     this.props.signin(this.state);
     // this.props.navigation.navigate('Pantry');
     dismissKeyboard();
@@ -55,7 +55,7 @@ class SignIn extends Component {
         <View style={session.container}>
           <View
             style={session.content}>
-              <Text style={text.titleCenter}>Sign In</Text>
+            <Text style={text.titleCenter}>Sign In</Text>
             <InputGroup style={input.field}>
               <Icon name='ios-person' style={input.icon} />
               <Input
