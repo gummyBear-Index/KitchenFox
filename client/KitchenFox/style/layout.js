@@ -6,9 +6,13 @@ export const session = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
+    backgroundColor: 'white',
+    // alignSelf: 'center'
+    justifyContent: 'center',
+    // alignItems: 'center',
   },
   darkness: {
-    backgroundColor: 'rgba(0,0,0,.48)',
+    // backgroundColor: 'rgba(0,0,0,.48)',
     flex: 1,
     width: undefined,
     height: undefined,
@@ -16,7 +20,6 @@ export const session = StyleSheet.create({
   content: {
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 30,
     paddingBottom: 20,
   },
   header: {
@@ -25,4 +28,10 @@ export const session = StyleSheet.create({
   groupButtons: {
     paddingTop: 15,
   },
+  logo: {
+    alignSelf: 'center',
+    // justifyContent: 'center',
+    width: 128,
+    height: 128,
+  }
 });

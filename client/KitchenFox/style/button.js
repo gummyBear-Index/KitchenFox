@@ -10,12 +10,16 @@ export const button = StyleSheet.create({
     color: BUTTON_ACTION_TEXT,
     borderRadius: 5,
     padding: 15,
+    shadowColor: 'transparent',
+    shadowOpacity: 0,
   },
   sessionButton: {
     borderRadius: 20,
     marginTop: 20,
     alignSelf: 'center',
     backgroundColor: BUTTON_ACTION,
+    shadowColor: 'transparent',
+    shadowOpacity: 0,
   },
 });
 
