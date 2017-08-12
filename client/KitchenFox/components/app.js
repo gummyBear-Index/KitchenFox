@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
 import AddItemCard from './pantry/add_item_card';
+import RecipesIndex from './recipes/recipes_index';
 
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
@@ -22,11 +23,12 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.session.token.length) {
-      return (<Pantry />);
-    } else {
-      return (<Welcome />);
-    }
+    return (<RecipesIndex />);
+    // if (this.props.session.token.length) {
+    //   return (<Pantry />);
+    // } else {
+    //   return (<Welcome />);
+    // }
   }
 }
 
