@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Content, Text, View } from 'native-base';
+import { Container, Content, Text, View, List } from 'native-base';
 import md5 from 'md5';
 
 import AddItemCard from './add_item_card';
 
 class PantryAddItems extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
     this.state = {
       cart: [],
@@ -56,7 +56,7 @@ class PantryAddItems extends React.Component {
         <AddItemCard
           key={`card-form-number-${i}`}
           cardNum={i}
-          updateParent={(num, slice) => this.handleCardUpdate(num, slice)} />
+          updateParent={(cardNum, localState) => this.handleCardUpdate(cardNum, localState)} />
       );
       itemCards.push(j);
     }
@@ -72,11 +72,11 @@ class PantryAddItems extends React.Component {
 
 
   render() {
-    const itemCards = this.perkFormGen(this.state.numItemCards);
+    const itemCards = this.itemFormGen(this.state.numItemCards);
     return (
-      <View>
+      <List>
         {itemCards}
-      </View>
+      </List>
     );
   }
 }
