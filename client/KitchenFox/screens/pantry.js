@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
-import PantryAddItemsContainer from '../components/pantry/add_items_container';
+import AddItemsContainer from '../components/pantry/add_items_container';
 import DashboardPantryStocked from '../components/dashboard/pantry_stocked';
 import PantryIndex from '../components/pantry/pantry_index';
 import PantryItem from '../components/pantry/pantry_item';
@@ -9,7 +9,7 @@ import RecipesIndex from '../components/recipes/recipes_index';
 const Pantry = StackNavigator({
   PantryIndex: { screen: PantryIndex },
   PantryItem: { screen: PantryItem },
-  AddItem: { screen: PantryAddItemsContainer },
+  AddItem: { screen: AddItemsContainer },
   Dashboard: { screen: DashboardPantryStocked },
   Recipes: { screen: RecipesIndex },
 });
