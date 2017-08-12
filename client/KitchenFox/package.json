@@ -7,7 +7,9 @@
     "test": "jest"
   },
   "rnpm": {
-   "assets": ["./assets/fonts"]
+    "assets": [
+      "./assets/fonts"
+    ]
   },
   "dependencies": {
     "lodash": "^4.17.4",
@@ -37,4 +39,3 @@
     "preset": "react-native"
   }
 }
-

@@ -4,7 +4,6 @@ import SigninContainer from './auth/signin_container';
 import BarCodeCamera from './pantry/camera';
 import AddItemCard from './pantry/add_item_card';
 
-import BarCodeCamera from './pantry/camera'; 
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
