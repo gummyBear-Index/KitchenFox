@@ -24,7 +24,6 @@ class App extends Component {
 
   render() {
     // return (<AddItemCard/>);
-    console.warn('app is loading');
     console.warn(JSON.stringify(this.props));
     // console.warn(JSON.stringify(this.props));
     if (this.props.session.token.length) {

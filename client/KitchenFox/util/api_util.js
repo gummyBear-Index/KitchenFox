@@ -64,7 +64,6 @@ export const fetchUser = state => {
 };
 
 export const patchItems = (token, state) => {
-  // const test = encodeURI()
   return fetch(`${baseURL}items`, {
     method: 'PATCH',
     headers: {

@@ -22,7 +22,7 @@ export const requestItems = token => dispatch => (
 
 export const sendItems = (token, inventory) => dispatch => (
   APIUtil.patchItems(token, inventory).then((newInventory) => {
-    console.warn(JSON.stringify(newInventory._bodyText));
+    console.warn((newInventory._bodyText));
     const parsedInventory = JSON.parse(newInventory._bodyText);
     dispatch(receiveInventory(parsedInventory.inventory));
   })

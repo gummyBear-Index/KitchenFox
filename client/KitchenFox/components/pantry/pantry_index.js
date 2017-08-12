@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Container, Content, List, ListItem, Button,
 Card, CardItem, Left, Text } from 'native-base';
-import { logout } from '../../actions/session_actions';
-import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
 
 import NavFooter from '../nav/footer';
@@ -21,7 +18,7 @@ class PantryIndex extends React.Component {
     this.renderItems = this.renderItems.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.session.token) {
       this.props.requestItems(this.props.session.token);
     }
@@ -56,7 +53,7 @@ class PantryIndex extends React.Component {
           }}>
             <Text>
               {Object.values(item)[0]['name']}: &nbsp;
-              {Object.values(item)[0]['quantity']}
+              {Object.values(item)[0]['quantity']} &nbsp;
               {Object.values(item)[0]['units']}
             </Text>
           </ListItem>
@@ -93,14 +90,4 @@ class PantryIndex extends React.Component {
   }
 }
 
-const mapStateToProps = ({ session, inventory }) => ({
-  session,
-  inventory
-});
-
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
-  requestItems: token => dispatch(requestItems(token))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PantryIndex);
+export default PantryIndex;

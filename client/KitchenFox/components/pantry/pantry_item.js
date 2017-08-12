@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
-import { sendItems } from '../../actions/inventory_actions';
 
 class PantryItem extends React.Component {
   constructor(props) {
@@ -24,10 +22,9 @@ class PantryItem extends React.Component {
     const key = Object.keys(item)[0];
     console.warn(key);
     const inventory = {
-      inventory: Object.assign(this.state)
-    }
-    // inventory[inventory] = Object.assign(this.state);
-    // inventory[key] = this.state
+      inventory: {}
+    };
+    inventory['inventory'][`${key}`] = Object.assign(this.state);
     console.warn(JSON.stringify(inventory));
     console.warn(token);
     this.props.sendItems(token, inventory);
@@ -36,12 +33,6 @@ class PantryItem extends React.Component {
   handleDelete() {
     console.warn(this.state);
   }
-
-  // onValueChange(value: string) {
-  //   this.setState({
-  //     units: value
-  //   });
-  //  }
 
   static navigationOptions = {
     title: 'Update Inventory',
@@ -64,7 +55,7 @@ class PantryItem extends React.Component {
               <Text>Type new quantity : </Text>
               <Input
               onChangeText={(num) => {this.setState({quantity: num});}}
-              placeholder={JSON.stringify(this.state.quantity)}
+              placeholder={`${this.state.quantity}`}
               />
               <Text>{units}</Text>
             </InputGroup >
@@ -86,6 +77,8 @@ class PantryItem extends React.Component {
     );
   }
 }
+
+export default PantryItem;
 
 // const PantryCategoryItemCard = () => {
 //   return (
@@ -112,15 +105,3 @@ class PantryItem extends React.Component {
 //   <Item label="each" value="each" />
 //   <Item label="g" value="g" />
 // </Picker>
-
-const mapStateToProps = ({ session, inventory }) => ({
-  session,
-  inventory
-});
-
-const mapDispatchToProps = dispatch => ({
-  sendItems: (token, inventory) => dispatch(sendItems(token, inventory))
-  // requestItems: token => dispatch(requestItems(token))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PantryItem);
