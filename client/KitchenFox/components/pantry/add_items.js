@@ -5,7 +5,7 @@ import md5 from 'md5';
 
 import AddItemCard from './add_item_card';
 
-class PantryAddItems extends React.Component {
+class AddItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +44,9 @@ class PantryAddItems extends React.Component {
     let blanks = newCart.filter(item => (
       !(item.upc.length || item.name.length || item.name.quantity)
     ));
-    blanks.length() === 0 ? updateNumItemCards(this.state.numItemCards + 1) : 0;
+    if (!blanks.length) {
+      this.updateNumItemCards(this.state.numItemCards + 1);
+    }
   }
 
   updateNumItemCards(newNumItemCards) {
@@ -85,4 +87,4 @@ class PantryAddItems extends React.Component {
   }
 }
 
-export default PantryAddItems;
+export default AddItems;

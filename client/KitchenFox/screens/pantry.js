@@ -5,6 +5,7 @@ import PantryIndexContainer from '../components/pantry/pantry_index_container';
 import PantryItemContainer from '../components/pantry/pantry_item_container';
 import RecipesIndex from '../components/recipes/recipes_index';
 
+
 const Pantry = StackNavigator({
   PantryIndex: { screen: PantryIndexContainer },
   PantryItem: { screen: PantryItemContainer },
