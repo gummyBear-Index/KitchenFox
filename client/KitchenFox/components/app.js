@@ -4,6 +4,7 @@ import SigninContainer from './auth/signin_container';
 import BarCodeCamera from './pantry/camera';
 import AddItemCard from './pantry/add_item_card';
 
+import BarCodeCamera from './pantry/camera'; 
 import Welcome from '../screens/welcome';
 import Pantry from '../screens/pantry';
 
@@ -23,16 +24,13 @@ class App extends Component {
   }
 
   render() {
-    return (<AddItemCard/>);
-    // console.warn('app is loading');
-    // console.warn(JSON.stringify(this.props));
-    // // console.warn(JSON.stringify(this.props));
-    // if (this.props.session.token.length) {
-    //   return (<Pantry />);
-    // } else {
-    //   return (<Welcome />);
-    // }
+    if (this.props.session.token.length) {
+      return (<Pantry />);
+    } else {
+      return (<Welcome />);
+    }
   }
+  // return (<BarCodeCamera />);
 }
 
 export default App;

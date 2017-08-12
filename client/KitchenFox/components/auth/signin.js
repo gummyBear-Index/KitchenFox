@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { StackNavigator } from 'react-native';
+import { Image } from 'react-native';
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
@@ -49,13 +49,18 @@ class SignIn extends Component {
     // const { navigate } = this.props.navigation;
     return(
       <Container>
+        <Image
+        source={require('../../images/greeting/food-2-.jpg')}
+        style={session.container}>
         <View style={session.container}>
           <View
             style={session.content}>
-              <Text style={text.titleLeft}>Sign In</Text>
+              <Text style={text.titleCenter}>Sign In</Text>
             <InputGroup style={input.field}>
-              <Icon name='ios-person' />
+              <Icon name='ios-person' style={input.icon} />
               <Input
+                style={input.sessionText}
+                placeholderTextColor='#444'
                 placeholder='Email'
                 keyboardtype='email-address'
                 autoCorrect={false}
@@ -65,8 +70,10 @@ class SignIn extends Component {
               />
             </InputGroup>
             <InputGroup style={input.field}>
-              <Icon name='ios-unlock' />
+              <Icon name='ios-unlock' style={input.icon} />
               <Input
+                style={input.sessionText}
+                placeholderTextColor='#444'
                 placeholder='Password'
                 onChangeText={password => this.setState({ password })}
                 value={this.state.password}
@@ -80,11 +87,12 @@ class SignIn extends Component {
                 style={button.sessionButton}
                 onPress={() => this.handleSignin()}
               >
-                <Text>SIGN IN</Text>
+                <Text style={text.sessionButton}>Go</Text>
               </Button>
             )}
           </View>
         </View>
+        </Image>
       </Container>
     );
   }
