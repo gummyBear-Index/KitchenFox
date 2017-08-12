@@ -53,13 +53,13 @@ class Signup extends Component {
 		return (
 			<Container>
 				<Image
-        source={require('../../images/greeting/food-22-.jpg')}
+        source={require('../../images/greeting/food-5-.jpg')}
         style={session.container}>
 				<View style={session.container}>
 					<View
 						style={session.content}>
 						<KeyboardAvoidingView>
-							<Text style={text.sessionTitle}>Sign Up</Text>
+							<Text style={text.titleCenter}>Sign Up</Text>
 							<InputGroup style={input.field}>
 								<Icon name='ios-arrow-forward' style={input.icon} />
 								<Input

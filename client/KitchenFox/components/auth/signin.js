@@ -50,12 +50,12 @@ class SignIn extends Component {
     return(
       <Container>
         <Image
-        source={require('../../images/greeting/food-5-.jpg')}
+        source={require('../../images/greeting/food-2-.jpg')}
         style={session.container}>
         <View style={session.container}>
           <View
             style={session.content}>
-              <Text style={text.sessionTitle}>Sign In</Text>
+              <Text style={text.titleCenter}>Sign In</Text>
             <InputGroup style={input.field}>
               <Icon name='ios-person' style={input.icon} />
               <Input
