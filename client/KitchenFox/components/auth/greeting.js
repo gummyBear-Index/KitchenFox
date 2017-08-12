@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native';
-import { Animated, Image, Text } from 'react-native';
+import { Animated, Image, Text, TouchableHighlight } from 'react-native';
 import {
   Container,
   Header,
@@ -19,6 +19,7 @@ import SignUp from './signup';
 import { text } from '../../style/text';
 import { button } from '../../style/button';
 import { session } from '../../style/layout';
+import FButton from '../misc/flat_button';
 
 // const ProtectedView = require('./ProtectedView')
 
@@ -53,29 +54,31 @@ class Greeting extends Component {
     const { navigate } = this.props.navigation;
 
     return(
-      <View style={session.container}>
-          {/* <View style={session.darkness}>  */}
-            {/* <View style={session.header}> */}
-            <Image source={require('../../assets/images/fox.png')}
-                    style={session.logo} />
-              <Text style={text.sessionTitle}>KitchenFox</Text>
-              <Text style={text.sessionMessage}>always know what you have</Text>
-              <Text style={text.sessionMessage}>and what you can cook</Text>
-            {/* </View> */}
-            <View style={session.groupButtons}>
-              <Button
-                style={button.sessionButton}
-                onPress={() => navigate('Signup', {name: 'signup'})}>
-                <Text style={text.sessionButton}>Sign Up</Text>
-              </Button>
-              <Button
-                style={button.sessionButton}
-                onPress={() => navigate('Signin', {name: 'signin'})}>
-                <Text style={text.sessionButton}>Sign In</Text>
-              </Button>
-          {/* </View> */}
+      <Image 
+        source={require('../../assets/images/greeting/fridge-1-.jpg')}
+        style={session.container}>
+        <View style={session.greetingDarkness}>
+        <Image source={require('../../assets/images/fox.png')}
+                style={session.logo} />
+          <Text style={text.greetingTitle}>KitchenFox</Text>
+          <Text style={text.sessionMessage}>always know what you have</Text>
+          <Text style={text.sessionMessage}>and what you can cook</Text>
+        <View style={session.groupButtons}>
+          <TouchableHighlight
+            style={button.greetingButton}
+            underlayColor='#fff'
+            onPress={() => navigate('Signup', {name: 'signup'})}>
+            <Text style={text.greetingButton}>Sign Up</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={button.greetingButton}
+            underlayColor='#fff'
+            onPress={() => navigate('Signin', {name: 'signin'})}>
+            <Text style={text.greetingButton}>Sign In</Text>
+          </TouchableHighlight>
          </View> 
-      </View>
+         </View>
+      </Image>
     );
   }
 
