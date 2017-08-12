@@ -75,6 +75,7 @@ export const patchItems = (token, state) => {
 };
 
 export const upcLookUp = (code, token) => {
+  return (
   fetch(`${baseURL}upcLookUp`, {
     method: 'GET',
     headers: {
@@ -83,7 +84,8 @@ export const upcLookUp = (code, token) => {
       'upc_code': code,
       charset: 'UTF-8',
     },
-  });
+  })
+  );
 };
 
 export const deleteLocalData = () => (

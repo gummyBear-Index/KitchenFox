@@ -32,21 +32,22 @@ class AddItemCard extends Component {
       cameraType: Camera.constants.Type.back,
       upc: "none",
       name: "",
-      quantity: "",
-      units: "",
+      quantity: 1,
+      unit: "",
       weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
-    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then(response => response.json()).then((res) => {
-      console.warn(res);
-      this.setState(res[0]);
+    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
+      console.warn(JSON.parse(res._bodyText)[0].quantity);
+      this.setState(JSON.parse(res._bodyText)[0]);
+    //   this.setState({quantity: (JSON.parse(res._bodyText)[0].quantity)});
     });
-    console.warn(this.state.upc);
     Alert.alert(
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
@@ -57,7 +58,20 @@ class AddItemCard extends Component {
     this.setState({showCamera: true});
   }
 
+  onChange(string) {
+    let newText = '';
+    let numbers = '0123456789';
+
+    for (let i = 0; i < string.length; i++) {
+        if ( numbers.indexOf(string[i]) > -1 ) {
+            newText = newText + string[i];
+        }
+    }
+    this.setState({quantity: newText});
+  }
+
   render() {
+    this.state.quantity = parseInt(this.state.quantity);
     if (this.state.showCamera) {
     return (
       <View style={camera.container}>
@@ -101,8 +115,8 @@ class AddItemCard extends Component {
                 placeholder='Quantity'
                 autoCorrect={false}
                 keyboardType="numeric"
-                onChangeText={quantity => this.setState({quantity: quantity})}
-                value={this.state.quantity}
+                onChangeText={(string) => this.onChange(string)}
+                value={parseInt(this.state.quantity, 10)}
               />
             </InputGroup>
             <Icon name='cart' />
