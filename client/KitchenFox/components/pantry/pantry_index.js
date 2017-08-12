@@ -46,7 +46,7 @@ class PantryIndex extends React.Component {
       allItems.push(obj);
     })
 
-    console.warn(JSON.stringify(allItems));
+    // console.warn(JSON.stringify(allItems));
     if (allItems.length > 0) {
       return (
         <List>
@@ -99,7 +99,6 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: user => dispatch(signup(user)),
   logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token))
 });

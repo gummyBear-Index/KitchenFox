@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
+import { sendItems } from '../../actions/inventory_actions';
 
 class PantryItem extends React.Component {
   constructor(props) {
@@ -17,7 +18,19 @@ class PantryItem extends React.Component {
   }
 
   handleUpdate() {
-    console.warn(this.state);
+    console.warn(JSON.stringify(this.state));
+    const token = this.props.session.token;
+    const item = this.props.navigation.state.params.item;
+    const key = Object.keys(item)[0];
+    console.warn(key);
+    const inventory = {
+      inventory: Object.assign(this.state)
+    }
+    // inventory[inventory] = Object.assign(this.state);
+    // inventory[key] = this.state
+    console.warn(JSON.stringify(inventory));
+    console.warn(token);
+    this.props.sendItems(token, inventory);
   }
 
   handleDelete() {
@@ -50,7 +63,7 @@ class PantryItem extends React.Component {
               <Icon name='ios-home' />
               <Text>Type new quantity : </Text>
               <Input
-              onChangeText={(text) => {console.warn(text);}}
+              onChangeText={(num) => {this.setState({quantity: num});}}
               placeholder={JSON.stringify(this.state.quantity)}
               />
               <Text>{units}</Text>
@@ -58,13 +71,13 @@ class PantryItem extends React.Component {
           </List>
           <Button
             style={button.sessionButton}
-            onPress={() => handleUpdate()}
+            onPress={() => this.handleUpdate()}
             >
             <Text>UPDATE</Text>
           </Button>
           <Button
             style={button.sessionButton}
-            onPress={() => handleDelete()}
+            onPress={() => this.handleDelete()}
             >
             <Text>DELETE</Text>
           </Button>
@@ -106,9 +119,7 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: user => dispatch(signup(user)),
-  logout: () => dispatch(logout()),
-  // sendItems: () =>
+  sendItems: (token, inventory) => dispatch(sendItems(token, inventory))
   // requestItems: token => dispatch(requestItems(token))
 });
 

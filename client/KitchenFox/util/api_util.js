@@ -12,6 +12,7 @@ const objectToQueryString = (obj, prefix) => {
         `${encodeURIComponent(k)}=${encodeURIComponent(v)}`);
     }
   }
+  console.warn(queryString.join('&'));
   return queryString.join('&');
 };
 
@@ -63,6 +64,7 @@ export const fetchUser = state => {
 };
 
 export const patchItems = (token, state) => {
+  // const test = encodeURI()
   return fetch(`${baseURL}items`, {
     method: 'PATCH',
     headers: {
