@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import Promise from 'bluebird';
 
 import populate from '../db/populateUser';
 import User from '../models/user';
@@ -29,6 +30,24 @@ export const getDocFromToken = token => (
   //  .error(error => coolErrorFunction(error));
 );
 
+export const completeMerge = (oldItems, newItems) => {
+  // const newKeys = Object.keys(newItems);
+  // const tempObj = Object.assign(oldItems);
+  // newKeys.forEach((key) => {
+  //   if (key in tempObj) {
+  //     tempObj[key].quantity += newItems[key].quantity;
+  //   } else {
+  //     tempObj[key] = newItems[key];
+  //   }
+  // });
+  const tempObj = Object.assign(oldItems, newItems);
+  let nonZeroKeys = Object.keys(tempObj);
+  nonZeroKeys = nonZeroKeys.filter(k => parseInt(tempObj[k].quantity, 10) > 0);
+  const mergedObj = {};
+  nonZeroKeys.forEach(k => (mergedObj[k] = tempObj[k]));
+  return Object.assign(mergedObj);
+};
+
 export const getUserFromToken = (token) => {
   return User.findById(id).select('username first_name last_name').lean().exec();
 };
@@ -45,7 +64,7 @@ export const setInventory = (id, mergedItems) => (
 export const updateItems = (id, update, original) => {
   const newItems = typeof update === 'string' ? JSON.parse(update) : update;
   const oldItems = typeof original === 'string' ? JSON.parse(original) : original;
-  const mergedItems = Object.assign(oldItems, newItems);
+  const mergedItems = completeMerge(oldItems, newItems);
   const updateDb = User.findByIdAndUpdate(id, { inventory: mergedItems })
     .select('inventory').lean().exec();
   return updateDb.then(() => getItemsByUserId(id));

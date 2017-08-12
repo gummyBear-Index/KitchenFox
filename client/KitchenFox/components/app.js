@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SignupContainer from './auth/signup_container';
 import SigninContainer from './auth/signin_container';
+import BarCodeCamera from './pantry/camera';
+import AddItemCard from './pantry/add_item_card';
 
 import BarCodeCamera from './pantry/camera'; 
 import Welcome from '../screens/welcome';
@@ -22,7 +24,6 @@ class App extends Component {
   }
 
   render() {
-    // console.warn(JSON.stringify(this.props));
     if (this.props.session.token.length) {
       return (<Pantry />);
     } else {

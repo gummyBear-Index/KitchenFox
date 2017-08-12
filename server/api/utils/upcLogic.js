@@ -33,10 +33,11 @@ export const upcLookUp = (upc_code) => {
         try {
           const parsedData = JSON.parse(rawData);
             iteminfo.push({
-              item_name: parsedData.item_name,
+              upc: upc_code,
+              name: parsedData.item_name,
               quantity: parsedData.nf_serving_size_qty,
-              unit: parsedData.nf_serving_size_unit,
-              grams : parsedData.nf_serving_weight_grams,
+              unit: parsedData.nf_serving_size_unit.toLowerCase(),
+              weight : parsedData.nf_serving_weight_grams,
             });
         } catch (e) {
           reject(e);

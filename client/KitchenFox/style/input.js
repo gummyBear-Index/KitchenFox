@@ -17,5 +17,9 @@ export const input = StyleSheet.create({
   },
   icon: {
     color: '#444',
-  }
+  },
+  box: {
+    marginBottom: 20,
+    width:150,
+  },
 });

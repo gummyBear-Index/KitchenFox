@@ -2,15 +2,17 @@ import { AsyncStorage } from 'react-native';
 // const baseURL = 'http://localhost:3000/api/';
 const baseURL = 'https://kitchenfox.herokuapp.com/api/';
 
-const objectToQueryString = (object) => {
-  let keys = Object.keys(object);
-  let queryString = [];
-  keys.forEach(k => {
-    let entry = `${k}=${object[k]}`;
-    queryString.push(entry);
-  });
-  queryString = queryString.join('&');
-  return queryString;
+const objectToQueryString = (obj, prefix) => {
+  const queryString = [];
+  for (let p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      let k = prefix ? `${prefix}[${p}]` : p, v = obj[p];
+      queryString.push((v !== null && typeof v === 'object') ?
+        objectToQueryString(v, k) :
+        `${encodeURIComponent(k)}=${encodeURIComponent(v)}`);
+    }
+  }
+  return queryString.join('&');
 };
 
 export const signup = (state) => {
@@ -60,8 +62,7 @@ export const fetchUser = state => {
   });
 };
 
-export const patchItems = (state) => {
-  const token = state.session.token;
+export const patchItems = (token, state) => {
   return fetch(`${baseURL}items`, {
     method: 'PATCH',
     headers: {
@@ -71,6 +72,20 @@ export const patchItems = (state) => {
     },
     body: `${objectToQueryString(state)}`,
   });
+};
+
+export const upcLookUp = (code, token) => {
+  return (
+  fetch(`${baseURL}upcLookUp`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `JWT ${token}`,
+      'upc_code': code,
+      charset: 'UTF-8',
+    },
+  })
+  );
 };
 
 export const deleteLocalData = () => (
