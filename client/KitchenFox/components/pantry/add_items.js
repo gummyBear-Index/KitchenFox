@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Content, Text, View } from 'native-base';
-import crypto from 'crypto';
+// import crypto from 'crypto';
 
 import AddItemCard from './add_item_card';
 

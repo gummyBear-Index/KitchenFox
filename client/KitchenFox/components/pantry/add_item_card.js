@@ -24,7 +24,7 @@ class AddItemCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCamera: true,
+      showCamera: false,
       cameraType: Camera.constants.Type.back,
       upc: "none",
       name: "",
