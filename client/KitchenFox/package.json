@@ -6,6 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
+  "rnpm": {
+   "assets": ["./assets/fonts"]
+  },
   "dependencies": {
     "lodash": "^4.17.4",
     "md5": "^2.2.1",
@@ -34,3 +37,4 @@
     "preset": "react-native"
   }
 }
+
