@@ -5,6 +5,7 @@ import {button} from '../../style/button';
 import {text} from '../../style/text';
 import {input} from '../../style/input';
 import {session} from '../../style/layout';
+import {camera} from '../../style/cameraStyle';
 
 import {
   Container,
@@ -35,6 +36,7 @@ class AddItemCard extends Component {
       weight: "",
     };
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
+    this.toggleCamera = this.toggleCamera.bind(this);
   }
 
   _onBarCodeRead(e) {
@@ -46,49 +48,76 @@ class AddItemCard extends Component {
     );
   }
 
+  toggleCamera(){
+    this.setState({showCamera: true});
+  }
+
   render() {
-  return (
-    <Container>
-      <View style={session.container}>
-        <View
-          style={session.content}>
-          <InputGroup style={input.field} borderType='rounded'>
-            <Icon name='nutrition' />
-            <Input
-              placeholder='Name'
-              autoCorrect={false}
-              autoCapitalize='words'
-              onChangeText={name => this.setState({name: name})}
-              value={this.state.name}
-            />
-          </InputGroup>
-          <InputGroup style={input.box} borderType='rounded'>
-            <Icon name='calculator' />
-            <Input
-              placeholder='Quantity'
-              autoCorrect={false}
-              keyboardType="numeric"
-              onChangeText={quantity => this.setState({quantity: quantity})}
-              value={this.state.quantity}
-            />
-          </InputGroup>
-          <Icon name='cart' />
-          <Picker
-            selectedValue={this.state.unit}
-            onValueChange={unit => this.setState({unit: unit})}>
-            <Picker.Item label="grams" value="g" />
-            <Picker.Item label="each" value="each" />
-          </Picker>
-            <Button
-              style={button.sessionButton}
-              onPress={() => this.handleSignin()}
-            >
-              <Icon name='camera' />
-            </Button>
+    if (this.state.showCamera) {
+    return (
+      <View style={camera.container}>
+      <Text>
+        Scan the barcode now!
+      </Text>
+      <Camera
+        ref={(cam) => {
+          this.camera = cam;
+        }}
+        style={camera.preview}
+        aspect={Camera.constants.Aspect.fill}
+        orientation={Camera.constants.Orientation.portrait}
+        barCodeTypes={['org.gs1.UPC-E']}
+        onBarCodeRead={this._onBarCodeRead}>
+        <View style={camera.square}>
+          <Text>Here</Text>
         </View>
+      </Camera>
       </View>
-    </Container>
-  );
+    );
+    } else {
+      return (
+      <Container>
+        <View style={session.container}>
+          <View
+            style={session.content}>
+            <InputGroup style={input.field} borderType='rounded'>
+              <Icon name='nutrition' />
+              <Input
+                placeholder='Name'
+                autoCorrect={false}
+                autoCapitalize='words'
+                onChangeText={name => this.setState({name: name})}
+                value={this.state.name}
+              />
+            </InputGroup>
+            <InputGroup style={input.box} borderType='rounded'>
+              <Icon name='calculator' />
+              <Input
+                placeholder='Quantity'
+                autoCorrect={false}
+                keyboardType="numeric"
+                onChangeText={quantity => this.setState({quantity: quantity})}
+                value={this.state.quantity}
+              />
+            </InputGroup>
+            <Icon name='cart' />
+            <Picker
+              selectedValue={this.state.unit}
+              onValueChange={unit => this.setState({unit: unit})}>
+              <Picker.Item label="grams" value="g" />
+              <Picker.Item label="each" value="each" />
+            </Picker>
+              <Button
+                style={button.sessionButton}
+                onPress={() => this.toggleCamera()}
+              >
+                <Icon name='camera' />
+              </Button>
+          </View>
+        </View>
+      </Container>
+      );
+    }
   }
 }
 
