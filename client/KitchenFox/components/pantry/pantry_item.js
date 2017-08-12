@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
@@ -17,18 +16,23 @@ class PantryItem extends React.Component {
   }
 
   handleUpdate() {
-    console.warn(this.state);
+    console.warn(JSON.stringify(this.state));
+    const token = this.props.session.token;
+    const item = this.props.navigation.state.params.item;
+    const key = Object.keys(item)[0];
+    console.warn(key);
+    const inventory = {
+      inventory: {}
+    };
+    inventory['inventory'][`${key}`] = Object.assign(this.state);
+    console.warn(JSON.stringify(inventory));
+    console.warn(token);
+    this.props.sendItems(token, inventory);
   }
 
   handleDelete() {
     console.warn(this.state);
   }
-
-  // onValueChange(value: string) {
-  //   this.setState({
-  //     units: value
-  //   });
-  //  }
 
   static navigationOptions = {
     title: 'Update Inventory',
@@ -50,21 +54,21 @@ class PantryItem extends React.Component {
               <Icon name='ios-home' />
               <Text>Type new quantity : </Text>
               <Input
-              onChangeText={(text) => {console.warn(text);}}
-              placeholder={JSON.stringify(this.state.quantity)}
+              onChangeText={(num) => {this.setState({quantity: num});}}
+              placeholder={`${this.state.quantity}`}
               />
               <Text>{units}</Text>
             </InputGroup >
           </List>
           <Button
             style={button.sessionButton}
-            onPress={() => handleUpdate()}
+            onPress={() => this.handleUpdate()}
             >
             <Text>UPDATE</Text>
           </Button>
           <Button
             style={button.sessionButton}
-            onPress={() => handleDelete()}
+            onPress={() => this.handleDelete()}
             >
             <Text>DELETE</Text>
           </Button>
@@ -73,6 +77,8 @@ class PantryItem extends React.Component {
     );
   }
 }
+
+export default PantryItem;
 
 // const PantryCategoryItemCard = () => {
 //   return (
@@ -99,17 +105,3 @@ class PantryItem extends React.Component {
 //   <Item label="each" value="each" />
 //   <Item label="g" value="g" />
 // </Picker>
-
-const mapStateToProps = ({ session, inventory }) => ({
-  session,
-  inventory
-});
-
-const mapDispatchToProps = dispatch => ({
-  signup: user => dispatch(signup(user)),
-  logout: () => dispatch(logout()),
-  // sendItems: () =>
-  // requestItems: token => dispatch(requestItems(token))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PantryItem);
