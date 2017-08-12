@@ -32,7 +32,7 @@ class AddItemCard extends Component {
       cameraType: Camera.constants.Type.back,
       upc: "none",
       name: "",
-      quantity: "",
+      quantity: 1,
       unit: "",
       weight: "",
     };
@@ -46,7 +46,7 @@ class AddItemCard extends Component {
     upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
       console.warn(JSON.parse(res._bodyText)[0].quantity);
       this.setState(JSON.parse(res._bodyText)[0]);
-      this.setState({quantity: (JSON.parse(res._bodyText)[0].quantity).toString});
+    //   this.setState({quantity: (JSON.parse(res._bodyText)[0].quantity)});
     });
     Alert.alert(
         "Barcode Found!",
@@ -71,6 +71,7 @@ class AddItemCard extends Component {
   }
 
   render() {
+    this.state.quantity = parseInt(this.state.quantity);
     if (this.state.showCamera) {
     return (
       <View style={camera.container}>
@@ -115,7 +116,7 @@ class AddItemCard extends Component {
                 autoCorrect={false}
                 keyboardType="numeric"
                 onChangeText={(string) => this.onChange(string)}
-                value={this.state.quantity}
+                value={parseInt(this.state.quantity, 10)}
               />
             </InputGroup>
             <Icon name='cart' />
