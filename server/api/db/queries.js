@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import Promise from 'bluebird';
 
 import populate from '../db/populateUser';
 import User from '../models/user';
@@ -27,6 +28,18 @@ export const getDocFromToken = token => (
   // getDocFromToken(token)
   //  .then(user => coolFunction(user))
   //  .error(error => coolErrorFunction(error));
+);
+
+export const removeZeroQuanityItems = () => (
+  User.where('inventory').exists().lean().then(userArr => {
+    userArr.forEach(user => {
+      let inventory = user.inventory;
+    })
+  })
+  // console.log(thing);
+  // User.find().execAsycn()
+  // .lean().distinct('_id')
+  // (err, users) => (console.log(users))
 );
 
 export const getUserFromToken = (token) => {

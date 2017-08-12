@@ -62,8 +62,7 @@ export const fetchUser = state => {
   });
 };
 
-export const patchItems = (state) => {
-  const token = state.session.token;
+export const patchItems = (token, state) => {
   return fetch(`${baseURL}items`, {
     method: 'PATCH',
     headers: {
