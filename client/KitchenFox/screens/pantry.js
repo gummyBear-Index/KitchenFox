@@ -9,7 +9,7 @@ import RecipesIndex from '../components/recipes/recipes_index';
 const Pantry = StackNavigator({
   PantryIndex: { screen: PantryIndex },
   PantryItem: { screen: PantryItem },
-  AddItem: { screen: PantryAddItems },
+  AddItem: { screen: PantryAddItemsContainer },
   Dashboard: { screen: DashboardPantryStocked },
   Recipes: { screen: RecipesIndex },
 });

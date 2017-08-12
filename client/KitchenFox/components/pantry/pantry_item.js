@@ -108,7 +108,7 @@ const mapStateToProps = ({ session, inventory }) => ({
 const mapDispatchToProps = dispatch => ({
   signup: user => dispatch(signup(user)),
   logout: () => dispatch(logout()),
-  sendItems: () =>
+  // sendItems: () =>
   // requestItems: token => dispatch(requestItems(token))
 });
 
