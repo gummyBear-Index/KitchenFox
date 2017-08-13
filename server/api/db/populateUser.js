@@ -1,21 +1,21 @@
 import mongoose from '../db/database';
 import User from '../models/user';
+import md5 from 'md5'
 
 const populate = () => {
   const currentUsers =  User.find().lean().distinct('_id');
-
   const inventory = {
-    'A123948172348': {
+    `${md5('tomato')}`: {
       'name': 'Tomato',
       'quantity': 11,
       'units': 'each',
     },
-    9348798375: {
+    `${md5('chicken')}`: {
       'name': 'Chicken',
       'quantity': 400,
       'units': 'g',
     },
-    183249187: {
+    `${md5('linguine')}`: {
       'name': 'Linguine',
       'quantity': 1400,
       'units': 'g',

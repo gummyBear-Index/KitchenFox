@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
+import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List, Spinner } from 'native-base';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
-
 import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
-import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
 
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
 import  { button } from '../../style/button';
@@ -18,6 +17,7 @@ class RecipesIndex extends React.Component {
     this.state = {
       recipes: "none",
       query: {},
+      spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
   };
@@ -25,21 +25,18 @@ class RecipesIndex extends React.Component {
   //   title: 'Recipes',
   // };
 
-  componentWillMount() {
-    // this.props.requestItems(this.props.session.token);
-    // getRecipes(5, this.props.session.token).then((res) => {
-    //   this.setState({recipes: JSON.parse(res._bodyText)})
-    // });
-  }
 
   fetchRecipes(query) {
+    this.setState({spinner: true});
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)});
+      this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({spinner: false});
     });
   } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)});
+      this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({spinner: false});
     });
     }
   }
@@ -53,6 +50,7 @@ class RecipesIndex extends React.Component {
     }
     this.setState({query: newQuery});
   }
+
 
   renderItems() {
     const allId = Object.keys(this.props.inventory);
@@ -119,6 +117,12 @@ class RecipesIndex extends React.Component {
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
+    let spinner;
+    if (this.state.spinner) {
+      spinner = (<Content><Spinner color='blue'/></Content>);
+    } else {
+      spinner =  (<Content></Content>);
+    }
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
@@ -126,7 +130,7 @@ class RecipesIndex extends React.Component {
           <ScrollView>
             {items}
           </ScrollView>
-
+            {spinner}
           <View style={pantry.groupButtons}>
             <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
               <Text style={text.negButtonRecipe}>all my food</Text>
