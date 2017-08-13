@@ -40,7 +40,7 @@ class SignIn extends Component {
   }
 
   handleSignin() {
-    console.warn(JSON.stringify(this.state));
+    // console.warn(JSON.stringify(this.state));
     this.props.signin(this.state);
     // this.props.navigation.navigate('Pantry');
     dismissKeyboard();

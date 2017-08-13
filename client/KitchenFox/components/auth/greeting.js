@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { AsyncStorage, StyleSheet } from 'react-native';
 import { Animated, Image, Text, TouchableHighlight } from 'react-native';
+
+import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
+import { signin } from '../../actions/session_actions';
+
 import {
   Container,
   Header,
@@ -21,38 +26,30 @@ import { button } from '../../style/button';
 import { session } from '../../style/layout';
 import FButton from '../misc/flat_button';
 
-// const ProtectedView = require('./ProtectedView')
-
 class Greeting extends Component {
-  // static navigationOptions = {
-  //   title: 'Home',
-  // }
   constructor(props) {
 		super(props);
 
-    this.initialState = {
-      email: '',
+    this.state = {
+      username: '',
       password: '',
       fadeAnim: new Animated.Value(0),
-    }
-    this.state = this.initialState;
+    };
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
-  // _handleProtectedView = () => {
-  //   this.props.navigator.push({
-  //     title: 'Protected Content',
-  //     component: ProtectedView,
-  //     backButtonTitle: 'Back'
-  //   })
-  // }
-  _handleLogOut = () => {
-    AsyncStorage.removeItem('jwt');
-    alert('You have been logged out.');
+  handleDemo() {
+    const { navigate } = this.props.navigation;
+    this.props.signin({
+      username: 'fox',
+      password: 'fox'
+    });
+    dismissKeyboard();
+    navigate('PantryIndex');
   }
 
   render() {
     const { navigate } = this.props.navigation;
-
     return(
       <Image 
         source={require('../../assets/images/greeting/fridge-1-.jpg')}
@@ -76,38 +73,24 @@ class Greeting extends Component {
             onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text style={text.greetingButton}>Sign In</Text>
           </TouchableHighlight>
+          <TouchableHighlight
+              style={button.greetingButton}
+              underlayColor='#fff'
+              onPress={() => this.handleDemo()}>
+              <Text style={text.greetingButton}>Demo</Text>
+            </TouchableHighlight>
          </View> 
          </View>
       </Image>
     );
   }
-
-
-  // render() {
-  //   return (
-  //     <Container>
-  //     <View style={styles.container}>
-  //       <Text>Hello</Text>
-
-  //     //   <TouchableHighlight onPress={this._handleSigninPage}>
-  //     //     <Text style={[styles.button, styles.greenButton]}>
-  //     //       Sign In
-  //     //     </Text>
-  //     //   </TouchableHighlight>
-  //     //   <TouchableHighlight onPress={this._handleLogOut}>
-  //     //     <Text style={[styles.button, styles.greyButton]}>
-  //     //       Log Out
-  //     //     </Text>
-  //     //   </TouchableHighlight>
-  //       // <TouchableHighlight onPress={this._handleProtectedView}>
-  //       //   <Text style={[styles.button, styles.redButton]}>
-  //       //     Protected Content
-  //       //   </Text>
-  //       // </TouchableHighlight>
-  //     </View>
-  //     </Container>
-  //   )
-  // }
 }
 
-export default Greeting;
+const mapStateToProps = ({ session }) => ({
+  session,
+});
+const mapDispatchToProps = dispatch => ({
+  signin: user => dispatch(signin(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Greeting);

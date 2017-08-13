@@ -22,6 +22,7 @@ import {
   View,
   Text,
   Navigator,
+  ListItem,
 } from 'native-base';
 
 class AddItemCard extends Component {
@@ -30,7 +31,7 @@ class AddItemCard extends Component {
     this.state = {
       showCamera: false,
       cameraType: Camera.constants.Type.back,
-      upc: "none",
+      upc: '',
       name: "",
       quantity: "",
       units: "g",
@@ -53,6 +54,7 @@ class AddItemCard extends Component {
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
     );
+    this.props.updateParent(this.props.cardNum, this.state);
   }
 
   toggleCamera(){
@@ -107,7 +109,7 @@ class AddItemCard extends Component {
     );
     } else {
       return (
-      <Container>
+      <ListItem>
         <View style={session.container}>
           <View
             style={session.content}>
@@ -121,7 +123,7 @@ class AddItemCard extends Component {
                 value={this.state.name}
               />
             </InputGroup>
-            <InputGroup style={input.box} borderType='rounded'>
+            <InputGroup style={input.field} borderType='rounded'>
               <Icon name='calculator' />
               <Input
                 placeholder='Quantity'
@@ -133,7 +135,7 @@ class AddItemCard extends Component {
             </InputGroup>
             <Icon name='cart' />
             <Picker
-              selectedValue={this.state.unit}
+              selectedValue={this.state.units}
               onValueChange={units => this.onChangeText("units", units)}>
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
@@ -146,7 +148,7 @@ class AddItemCard extends Component {
               </Button>
           </View>
         </View>
-      </Container>
+      </ListItem>
       );
     }
   }
