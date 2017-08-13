@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Alert, Button, ScrollView } from 'react-native';
+import { StyleSheet, Alert, Button, ScrollView, TouchableHighlight } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import Camera from 'react-native-camera';
@@ -13,6 +13,8 @@ import { Container, Content, Text, View, List } from 'native-base';
 
 import { text } from '../../style/text';
 import { screen } from '../../style/layout';
+import { button } from '../../style/button';
+
 
 class AddItems extends React.Component {
   constructor(props) {
@@ -176,10 +178,11 @@ class AddItems extends React.Component {
         {/* <List> */}
           {this.itemFormGen()}
         {/* </List> */}
-        <Button
-          title="Submit"
+        <TouchableHighlight
+          style={button.posFormButton}
           onPress={() => this.handleSubmit()}>
-        </Button>
+          <Text style={text.posButton}>Add Items</Text>
+        </TouchableHighlight>
       </ScrollView>
       </View>
       );

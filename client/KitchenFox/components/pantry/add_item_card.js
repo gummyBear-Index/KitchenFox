@@ -49,61 +49,62 @@ class AddItemCard extends Component {
   render() {
     return (
       <View style={addItemCard.container}>
-          <View>
-            {/* ---- COL 1 --- */}
-            <InputGroup style={addItemCard.row} borderType="rounded">
-                <Icon name="nutrition" style={addItemsInput.icon}/> 
-                <View style={addItemCard.name}>
-                  <Input
-                    style={addItemsText.name}
-                    placeholder="Name"
-                    placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
-                    autoCorrect={false}
-                    autoCapitalize="words"
-                    onChangeText={name => this.onChangeText('name', name)}
-                    value={this.state.name}
-                  />
-                </View>
-                {/* ---- COL 2 --- */}
-                <TouchableHighlight
-                  onPress={() => this.toggleCamera()}
-                >
-                  <Icon theme={{ iconFamily: 'FontAwesome' }} name='barcode' style={addItemsInput.icon} />
-                </TouchableHighlight>
-                {/* <Icon name="camera"  />  */}
-          </InputGroup>
-          </View>
-
-          {/* ---- NEW ROW --- */}
-
-          <View>
-            <View style={addItemCard.rowQuan}>
-             <Icon name="cart" style={addItemsInput.icon} /> 
-              <View style={addItemCard.quan}>
+        <View>
+          {/* ---- COL 1 --- */}
+          <InputGroup style={addItemCard.row} borderType="rounded">
+              <Icon name="nutrition" style={addItemsInput.icon}/> 
+              <View style={addItemCard.name}>
                 <Input
-                  style={addItemsText.quan}
-                  placeholder="Quantity"
+                  style={addItemsText.name}
+                  placeholder="Name"
                   placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
                   autoCorrect={false}
-                  keyboardType="numeric"
-                  onChangeText={quantity => this.onChangeText('quantity', quantity)}
-                  value={`${this.state.quantity}`}
-              />
-            </View>
-            <View style={addItemCard.quanUnit}>
-              <Picker
-                placeholder="units"
-                mode="dropdown"
-                selectedValue={this.state.units}
-                onValueChange={units => this.onChangeText('units', units)}
-              >
-                <Picker.Item label="grams" value="g" />
-                <Picker.Item label="each" value="each" />
-              </Picker>
+                  autoCapitalize="words"
+                  onChangeText={name => this.onChangeText('name', name)}
+                  value={this.state.name}
+                />
               </View>
+              {/* ---- COL 2 --- */}
+              <TouchableHighlight
+                style={addItemCard.scanner}
+                onPress={() => this.toggleCamera()}
+              >
+                <Icon theme={{ iconFamily: 'FontAwesome' }} name='barcode' 
+                      style={addItemsInput.iconScanner} />
+              </TouchableHighlight>
+              {/* <Icon name="camera"  />  */}
+        </InputGroup>
+        </View>
+
+        {/* ---- NEW ROW --- */}
+
+        <View>
+          <View style={addItemCard.rowQuan}>
+            <Icon name="cart" style={addItemsInput.icon} /> 
+            <View style={addItemCard.quan}>
+              <Input
+                style={addItemsText.quan}
+                placeholder="Quantity"
+                placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
+                autoCorrect={false}
+                keyboardType="numeric"
+                onChangeText={quantity => this.onChangeText('quantity', quantity)}
+                value={`${this.state.quantity}`}
+            />
+          </View>
+          <View style={addItemCard.quanUnit}>
+            <Picker
+              placeholder="units"
+              mode="dropdown"
+              selectedValue={this.state.units}
+              onValueChange={units => this.onChangeText('units', units)}
+            >
+              <Picker.Item label="grams" value="g" />
+              <Picker.Item label="each" value="each" />
+            </Picker>
             </View>
           </View>
-        {/* </View> */}
+        </View>
       </View>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Image } from 'react-native';
 
-import { BLUE, WHITE, ORANGE, ORANGE_LIGHT } from './common';
+import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT } from './common';
 
 export const session = StyleSheet.create({
   container: {
@@ -109,7 +109,9 @@ export const pantry = StyleSheet.create({
 
 export const addItemCard = StyleSheet.create({
   container: {
-    padding: 10,
+    paddingBottom: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   row: {
     // flex: 1,
@@ -130,8 +132,8 @@ export const addItemCard = StyleSheet.create({
   },
   name: {
     flex: 4,
-    paddingTop: 10,
-    paddingBottom: 7,
+    // paddingTop: 10,
+    // paddingBottom: 7,
     paddingLeft: 5,
   },
   quan: {
@@ -145,4 +147,9 @@ export const addItemCard = StyleSheet.create({
     // backgroundColor: 'transparent',
     flex: 1,
   },
+  scanner: {
+    backgroundColor: '#333',
+    width: null,
+    height: null,
+  }
 });

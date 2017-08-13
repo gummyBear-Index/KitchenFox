@@ -61,7 +61,7 @@ class PantryItem extends React.Component {
                 style={pantryText.updateQuan}
                 keyboardType='numeric'
                 onChangeText={(num) => {this.setState({quantity: num});}}
-              ><Text>{`${qty}`}</Text></Input>
+              ><Text style={pantryText.updateQuan}>{`${qty}`}</Text></Input>
               </View>
               <Text style={pantryText.updateQuanUnit}>{units}</Text>
             </InputGroup>
