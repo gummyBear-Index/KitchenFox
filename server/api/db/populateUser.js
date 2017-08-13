@@ -6,13 +6,18 @@ const populate = () => {
 
   const inventory = {
     'A123948172348': {
-      'name': 'Banana',
+      'name': 'Tomato',
       'quantity': 11,
       'units': 'each',
     },
     9348798375: {
-      'name': 'Vegemite',
+      'name': 'Chicken',
       'quantity': 400,
+      'units': 'g',
+    },
+    183249187: {
+      'name': 'Linguine',
+      'quantity': 1400,
       'units': 'g',
     },
   };
@@ -43,6 +48,13 @@ const populate = () => {
       password: 'kevin',
       first_name: 'Kevin',
       last_name: 'Yang',
+      inventory,
+    },
+    {
+      username: 'Fox',
+      password: 'foxfox',
+      first_name: 'Cooking',
+      last_name: 'Fox',
       inventory,
     },
   ];
