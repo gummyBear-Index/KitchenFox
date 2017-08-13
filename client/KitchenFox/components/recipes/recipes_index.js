@@ -26,16 +26,22 @@ class RecipesIndex extends React.Component {
   };
 
   componentWillMount() {
-    this.props.requestItems(this.props.session.token);
+    // this.props.requestItems(this.props.session.token);
     // getRecipes(5, this.props.session.token).then((res) => {
     //   this.setState({recipes: JSON.parse(res._bodyText)})
     // });
   }
 
-  fetchRecipes() {
-    getRecipes(5, this.props.session.token).then((res) => {
+  fetchRecipes(query) {
+    if (query = "all") {
+    getRecipes(5, null, this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
+  } else {
+    getRecipes(5, Object.values(this.state.query).join("+"), this.props.session.token).then((res) => {
+      this.setState({recipes: JSON.parse(res._bodyText)})
+    });
+    }
   }
 
   checkBoxUpdate(checked, idx, name){
@@ -115,7 +121,10 @@ class RecipesIndex extends React.Component {
           <Content>
             {items}
           </Content>
-          <Button style={button.sessionButton} onPress={() => this.fetchRecipes()}>
+          <Button style={button.sessionButton} onPress={() => this.fetchRecipes("none")}>
+          <Text>Fetch with Checked Items</Text>
+          </Button>
+          <Button style={button.sessionButton} onPress={() => this.fetchRecipes("all")}>
           <Text>Fetch with Checked Items</Text>
           </Button>
         </Container>
