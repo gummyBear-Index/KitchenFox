@@ -33,6 +33,7 @@ class AddItems extends React.Component {
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
     this.itemFormGen();
+  }
 
   onBarCodeRead(e) {
     const newItems = Object.assign(this.state.items);
@@ -67,16 +68,6 @@ class AddItems extends React.Component {
     if (numBlank === 0) {
       this.updateNumItemCards()
     }
-    if (numBlank === 0) {
-      this.updateNumItemCards(this.state.numItemCards + 1)
-    }
-  }
-
-  toggleCamera(cardNum){
-    this.setState({
-      showCamera: true,
-      camIdx: cardNum,
-    });
   }
 
   toggleCamera(cardNum){

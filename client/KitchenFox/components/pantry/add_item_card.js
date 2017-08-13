@@ -30,22 +30,6 @@ class AddItemCard extends Component {
     super(props);
     this.state = Object.assign(this.props.initialCardState);
     this.onChange = this.onChange.bind(this);
-
-  }
-
-  onBarCodeRead(e) {
-    this.setState({showCamera: false, upc: e.data});
-    upcLookUp(e.data, this.props.token).then((res) => {
-      this.setState(JSON.parse(res._bodyText)[0]);
-      if (JSON.parse(res._bodyText)[0].quantity === 1) {
-        this.setState({units: "each"});
-      }
-    });
-    Alert.alert(
-        "Barcode Found!",
-        "Type: " + e.type + "\nData: " + e.data
-    );
-    this.props.updateParent(this.props.cardNum, this.state);
   }
 
   toggleCamera(){
