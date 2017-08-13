@@ -30,8 +30,42 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
-    getRecipes(1, null, this.props.session.token)
+
+  }
+
+  componentWillReceiveProps(newProps) {
+    let items = Object.values(newProps.inventory);
+    let item = items[Math.floor(Math.random()*items.length)];
+    item = item.name;
+    getRecipes(1, item, newProps.session.token)
       .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
+  }
+
+  selectToRender () {
+    const { navigate } = this.props.navigation;
+    const allItems = [];
+    const lowItems = [];
+    const allId = Object.keys(this.props.inventory);
+    allId.forEach((id) => {
+      let obj = {};
+      const item = this.props.inventory[`${id}`];
+      if (item['units'] == 'g' && item['quantity'] <= 100) {
+        obj[`${id}`] = item;
+        lowItems.push(obj);
+      } else if (item['units'] == 'each' && item['quantity'] <= 3) {
+        obj[`${id}`] = item;
+        lowItems.push(obj);
+      }
+      obj[`${id}`] = item;
+      allItems.push(obj);
+    })
+    if (allItems.length > 0 && lowItems.length === 0) {
+      return this.renderNoLowItem(lowItems);
+    } else if (lowItems.length > 0) {
+      return this.renderLowItems(lowItems);
+    } else if (allItems.length === 0) {
+      return this.renderNoInventory();
+    }
   }
 
   static navigationOptions = {
@@ -92,6 +126,8 @@ class Dashboard extends React.Component {
     )
   }
 
+
+
   renderNoInventory() {
     const { navigate } = this.props.navigation;
     return(
@@ -108,30 +144,10 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
-    const allItems = [];
-    const lowItems = [];
-    const allId = Object.keys(this.props.inventory);
-    allId.forEach((id) => {
-      let obj = {};
-      const item = this.props.inventory[`${id}`];
-      if (item['units'] == 'g' && item['quantity'] <= 100) {
-        obj[`${id}`] = item;
-        lowItems.push(obj);
-      } else if (item['units'] == 'each' && item['quantity'] <= 3) {
-        obj[`${id}`] = item;
-        lowItems.push(obj);
-      }
-      obj[`${id}`] = item;
-      allItems.push(obj);
-    })
-    if (allItems.length > 0 && lowItems.length === 0) {
-      return this.renderNoLowItem();
-    } else if (lowItems.length > 0) {
-      return this.renderLowItems(lowItems);
-    } else if (allItems.length === 0) {
-      return this.renderNoInventory();
-    }
+    const render = this.selectToRender();
+    return(
+      render
+    )
   }
 }
 
