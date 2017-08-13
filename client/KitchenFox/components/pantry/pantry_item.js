@@ -40,8 +40,11 @@ class PantryItem extends React.Component {
   render() {
     const item = this.props.navigation.state.params.item;
     const name = Object.values(item)[0]['name'];
-    const qty = Object.values(item)[0]['quantity'];
+    // const name = this.state.name;
+    // const qty = Object.values(item)[0]['quantity'];
+    const qty = this.state.quantity;
     const units = Object.values(item)[0]['units'];
+    // const units = this.state.units;
     return (
       <Container>
         <Content>
@@ -54,8 +57,7 @@ class PantryItem extends React.Component {
               <Text>Type new quantity : </Text>
               <Input
               onChangeText={(num) => {this.setState({quantity: num});}}
-              placeholder={`${this.state.quantity}`}
-              />
+              >{`${qty}`}</Input>
               <Text>{units}</Text>
             </InputGroup >
           </List>
@@ -67,9 +69,7 @@ class PantryItem extends React.Component {
           </Button>
           <Button
             style={button.sessionButton}
-            onPress={() => {
-              this.setState({quantity: 0});
-            }}
+            onPress={() => (this.setState({quantity: 0}))}
             >
             <Text>DELETE</Text>
           </Button>

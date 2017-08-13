@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AsyncStorage, StyleSheet } from 'react-native';
-import { Animated, Image, Text } from 'react-native';
+import { Animated, Image, Text, TouchableHighlight } from 'react-native';
+
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { signin } from '../../actions/session_actions';
+
 import {
   Container,
   Header,
@@ -22,6 +24,7 @@ import SignUp from './signup';
 import { text } from '../../style/text';
 import { button } from '../../style/button';
 import { session } from '../../style/layout';
+import FButton from '../misc/flat_button';
 
 class Greeting extends Component {
   constructor(props) {
@@ -48,32 +51,35 @@ class Greeting extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return(
-      <Image
-        source={require('../../images/greeting/food-4-.jpg')}
+      <Image 
+        source={require('../../assets/images/greeting/fridge-1-.jpg')}
         style={session.container}>
-         <View style={session.darkness}>
-          <View style={session.header}>
-            <Text style={text.sessionTitle}>KitchenFox</Text>
-            <Text style={text.sessionMessage}>always know what you have</Text>
-            <Text style={text.sessionMessage}>and what you can cook</Text>
-          </View>
-          <View style={session.groupButtons}>
-            <Button
-              style={button.sessionButton}
-              onPress={() => navigate('Signup', {name: 'signup'})}>
-              <Text style={text.sessionButton}>Sign Up</Text>
-            </Button>
-            <Button
-              style={button.sessionButton}
-              onPress={() => navigate('Signin', {name: 'signin'})}>
-              <Text style={text.sessionButton}>Sign In</Text>
-            </Button>
-            <Button
-              style={button.sessionButton}
+        <View style={session.greetingDarkness}>
+        <Image source={require('../../assets/images/fox.png')}
+                style={session.logo} />
+          <Text style={text.greetingTitle}>KitchenFox</Text>
+          <Text style={text.sessionMessage}>always know what you have</Text>
+          <Text style={text.sessionMessage}>and what you can cook</Text>
+        <View style={session.groupButtons}>
+          <TouchableHighlight
+            style={button.greetingButton}
+            underlayColor='#fff'
+            onPress={() => navigate('Signup', {name: 'signup'})}>
+            <Text style={text.greetingButton}>Sign Up</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={button.greetingButton}
+            underlayColor='#fff'
+            onPress={() => navigate('Signin', {name: 'signin'})}>
+            <Text style={text.greetingButton}>Sign In</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+              style={button.greetingButton}
+              underlayColor='#fff'
               onPress={() => this.handleDemo()}>
-              <Text style={text.sessionButton}>Demo</Text>
-            </Button>
-          </View>
+              <Text style={text.greetingButton}>Demo</Text>
+            </TouchableHighlight>
+         </View> 
          </View>
       </Image>
     );
