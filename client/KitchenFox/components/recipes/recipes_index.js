@@ -19,7 +19,7 @@ class RecipesIndex extends React.Component {
   };
 
   componentWillMount() {
-    getRecipes(this.props.session.token).then((res) => {
+    getRecipes(5, this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
   }

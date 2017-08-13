@@ -73,7 +73,7 @@ router.get('/recipes', (req, res, next) => {
     }
     if (user) {
       getItemsByUserId(user._id).then((result) => {
-        apiCall(createQuery(result)).then((recipeinfo) => {
+        apiCall(req.headers.number, createQuery(result)).then((recipeinfo) => {
           return res
           .status(200)
           .json(recipeinfo);
