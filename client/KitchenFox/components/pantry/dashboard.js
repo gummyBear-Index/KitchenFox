@@ -119,6 +119,8 @@ class Dashboard extends React.Component {
     )
   }
 
+
+
   renderNoInventory() {
     const { navigate } = this.props.navigation;
     return(
