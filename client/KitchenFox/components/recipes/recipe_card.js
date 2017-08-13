@@ -18,6 +18,8 @@ import {
   ListItem,
 } from 'native-base';
 
+import { recipe } from '../../style/layout';
+
 class RecipeCard extends React.Component {
   constructor(props){
     super(props);
@@ -32,7 +34,7 @@ class RecipeCard extends React.Component {
         <Image source={{uri:this.props.recipeInfo.image}} style={{height: 200, width: 250}}/>
         </TouchableHighlight>
         <Text>{JSON.stringify(this.props.recipeInfo.label)}</Text>
-        </Card>
+      </Card>
     );
   }
 }

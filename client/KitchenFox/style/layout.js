@@ -101,9 +101,13 @@ export const pantry = StyleSheet.create({
     // flexWrap: 'wrap',
   },
   groupButtons: {
-    padding: 6,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    alignItems: 'center',
+    alignContent: 'center',
+    marginBottom: 18,
+    paddingLeft: 1,
+    paddingRight: 1,
   }
 });
 
@@ -153,3 +157,12 @@ export const addItemCard = StyleSheet.create({
     height: null,
   }
 });
+
+export const recipe = StyleSheet.create({
+  image: {
+    height: 250,
+    width: null,
+    alignItems: 'stretch',
+  }
+});
+

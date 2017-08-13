@@ -54,5 +54,25 @@ export const button = StyleSheet.create({
     borderColor: BLUE,
     width: 120,
   },
+  negFormButtonRecipe: {
+    borderRadius: 80,
+    marginTop: 20,
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 3,
+    borderColor: BLUE,
+    // alignItems: 'stretch',
+    width: 180,
+  },
+  posFormButtonRecipe: {
+    borderRadius: 80,
+    marginTop: 20,
+    alignSelf: 'center',
+    backgroundColor: BLUE,
+    borderWidth: 3,
+    borderColor: BLUE,
+    // alignItems: 'stretch',
+    width: 180,
+  },
 });
 

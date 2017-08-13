@@ -15,14 +15,13 @@ const title = {
 
 export const text = StyleSheet.create({
   title,
-  titleLeft: {
-    fontSize: 36,
-    paddingTop: 40,
-    paddingBottom: 20,
-    paddingLeft: 40,
-    textAlign: 'left',
+  titleDiminished: {
+    fontSize: 22,
+    paddingTop: 8,
+    paddingBottom: 8,
+    textAlign: 'center',
     color: TITLE,
-    fontFamily: BASE_FONT_LIGHT,
+    fontFamily: BASE_FONT_BOLD,
   },
   titleSession: {
     fontSize: 50,
@@ -98,6 +97,24 @@ export const text = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'stretch',
     textAlign: 'center',
+  },
+  posButtonRecipe: {
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 14,
+    padding: 10,
+    borderRadius: 20,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  },
+  negButtonRecipe: {
+    color: BLUE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 14,
+    padding: 10,
+    borderRadius: 20,
+    alignSelf: 'stretch',
+    textAlign: 'center',
   }
 });
 
@@ -105,11 +122,16 @@ export const pantryText = StyleSheet.create({
   item: {
     fontSize: 22,
     color: WHITE,
-    paddingLeft: 16,
+    paddingLeft: 12,
+  },
+  itemForRecipe: {
+    fontSize: 22,
+    color: WHITE,
+    paddingLeft: 0,
   },
   itemDesc: {
     fontSize: 18,
-    paddingLeft: 28,
+    paddingLeft: 18,
     color: ORANGE_LIGHTER,
   },
   updateItem: {

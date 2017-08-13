@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Image } from 'react-native';
 import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List, Spinner } from 'native-base';
-import  {button} from '../../style/button';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
 import CheckBox from 'react-native-checkbox';
+import { Image, TouchableHighlight, ScrollView } from 'react-native';
+
+import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
+import  { button } from '../../style/button';
 import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
 
@@ -19,9 +21,9 @@ class RecipesIndex extends React.Component {
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
   };
-  static navigationOptions = {
-    title: 'Recipes',
-  };
+  // static navigationOptions = {
+  //   title: 'Recipes',
+  // };
 
 
   fetchRecipes(query) {
@@ -44,7 +46,7 @@ class RecipesIndex extends React.Component {
     if (checked === true) {
       newQuery[idx] = name;
     } else {
-      delete newQuery[idx]
+      delete newQuery[idx];
     }
     this.setState({query: newQuery});
   }
@@ -65,12 +67,19 @@ class RecipesIndex extends React.Component {
         {allItems.map((item, idx) =>
           <View key={idx} style={pantry.itemContainer}>
             <CheckBox
+              checkboxStyle={{
+                backgroundColor: ORANGE_LIGHT, 
+                tintColor: WHITE,
+                width: 18,
+                height: 18,
+              }}
+              underlayColor={ORANGE}
               key={idx}
               label={""}
               checked={new Boolean(this.state.query[idx])}
               onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
             />
-            <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
+            <Text style={pantryText.itemForRecipe}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
           </View>
         )}
@@ -93,12 +102,12 @@ class RecipesIndex extends React.Component {
     } else {
       return (
       <Container>
-          <Text>Sorry, No recipes matched with all the ingredients</Text>
-          <Button style={button.sessionButton} onPress={() => {
+          <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
+          <TouchableHighlight style={button.sessionButton} onPress={() => {
               navigate('AddItem');
           }}>
           <Text>Add Items</Text>
-          </Button>
+          </TouchableHighlight>
       </Container>
     )
     }
@@ -116,24 +125,27 @@ class RecipesIndex extends React.Component {
     }
     if (this.state.recipes === "none") {
       return (
-        <Container>
-          <Text>Select Ingredients for your recipes!</Text>
-          <Content>
+        <View style={screen.container}>
+          <Text style={text.titleCenter}>I want to cook with...</Text>
+          <ScrollView>
             {items}
-          </Content>
+          </ScrollView>
             {spinner}
-          <Button style={button.sessionButton} onPress={() => this.fetchRecipes("none")}>
-          <Text>Fetch with Checked Items</Text>
-          </Button>
-          <Button style={button.sessionButton} onPress={() => this.fetchRecipes("all")}>
-          <Text>Fetch with All Items</Text>
-          </Button>
-        </Container>
-      )
+          <View style={pantry.groupButtons}>
+            <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
+              <Text style={text.negButtonRecipe}>all my food</Text>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
+              <Text style={text.posButtonRecipe}>my selected food</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      );
     } else {
     return (
       <Container>
-        <Text>Recipes will go here!</Text>
+        <Text style={text.titleDiminished}>Recipes you can make</Text>
         <Content>
           {recipes}
         </Content>
