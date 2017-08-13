@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TouchableHighlight } from 'react-native';
 import { Container, Content, List, ListItem, Button,
 Card, CardItem, Left, Text } from 'native-base';
 
-import { ACTIVE_TAB } from '../../style/common';
+import { ACTIVE_TAB, ORANGE_LIGHT } from '../../style/common';
 import { screen, pantry } from '../../style/layout';
 import { button } from '../../style/button';
 import { text, pantryText } from '../../style/text';
@@ -50,12 +50,16 @@ class PantryIndex extends React.Component {
       return (
         <View>
         {allItems.map((item, idx) =>
-          <View style={pantry.itemContainer} key={idx} onPress={() => {
-            navigate('PantryItem', { item });
+          <TouchableHighlight 
+            key={idx}
+            underlayColor={ORANGE_LIGHT}
+            onPress={() => {navigate('PantryItem', { item });
           }}>
+          <View style={pantry.itemContainer}>
             <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
           </View>
+          </TouchableHighlight>
         )}
       </View>
       );

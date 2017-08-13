@@ -68,8 +68,8 @@ export const pantry = StyleSheet.create({
   },
   itemContainer: {
     backgroundColor: ORANGE,
-    paddingTop: 14,
-    paddingBottom: 14,
+    paddingTop: 18,
+    paddingBottom: 18,
     paddingLeft: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
