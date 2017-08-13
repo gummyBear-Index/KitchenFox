@@ -44,7 +44,7 @@ class AddItemCard extends Component {
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
-    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
+    upcLookUp(e.data, this.state.token).then((res) => {
       this.setState(JSON.parse(res._bodyText)[0]);
       if (JSON.parse(res._bodyText)[0].quantity === 1) {
         this.setState({units: "each"});
