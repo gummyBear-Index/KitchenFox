@@ -84,13 +84,11 @@ router.get('/recipes', (req, res, next) => {
           });
         });
       } else {
-      getItemsByUserId(user._id).then((result) => {
         apiCall(req.headers.number, req.headers.query).then((recipeinfo) => {
           return res
           .status(200)
           .json(recipeinfo);
         });
-      });
     }
     }
   })(req, res, next);
