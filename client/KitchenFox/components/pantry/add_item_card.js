@@ -94,6 +94,7 @@ class AddItemCard extends Component {
           </View>
           <View style={addItemCard.quanUnit}>
             <Picker
+              itemStyle={{color:'white'}}
               placeholder="units"
               mode="dropdown"
               selectedValue={this.state.units}

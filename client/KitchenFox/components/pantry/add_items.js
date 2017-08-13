@@ -110,10 +110,10 @@ class AddItems extends React.Component {
     });
     let finalInventory = {
       inventory,
-    }
+    };
     this.props.sendItems(this.props.session.token, finalInventory);
     const { navigate } = this.props.navigation;
-    navigate('PantryIndex')
+    navigate('PantryIndex');
   };
 
   updateNumItemCards() {
@@ -145,9 +145,9 @@ class AddItems extends React.Component {
     return itemCards;
   }
 
-  static navigationOptions = {
-    title: 'Add items your pantry',
-  };
+  // static navigationOptions = {
+  //   title: 'Add items your pantry',
+  // };
 
   render() {
     if (this.state.showCamera) {
