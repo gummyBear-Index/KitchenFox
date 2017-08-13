@@ -30,7 +30,7 @@ class PantryIndex extends React.Component {
       this.props.requestItems(this.props.session.token);
     }
   }
- 
+
   handleLogout() {
     this.props.logout();
   }
@@ -69,7 +69,7 @@ class PantryIndex extends React.Component {
     const { navigate } = this.props.navigation;
     const fullName = `${this.props.session.first_name} ${this.props.session.last_name}`;
     return (
-      <Container>
+      <Content>
          <View style={screen.container}>
               <Text style={text.titleCenter}>
                 Your Ingredients
@@ -82,7 +82,7 @@ class PantryIndex extends React.Component {
           </Button>
            </View>
         <NavFooter navigate={navigate} />
-       </Container>
+       </Content>
     );
   }
 }

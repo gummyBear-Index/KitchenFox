@@ -106,6 +106,7 @@ class AddItems extends React.Component {
       inventory,
     }
     this.props.sendItems(this.props.session.token, finalInventory);
+    this.props.requestItems(this.props.session.token);
     const { navigate } = this.props.navigation;
     navigate('PantryIndex')
   };
