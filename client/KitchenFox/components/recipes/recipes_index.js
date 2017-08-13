@@ -21,7 +21,6 @@ class RecipesIndex extends React.Component {
       spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
-    this.renderSpinner = this.renderSpinner.bind(this);
   };
   static navigationOptions = {
     title: 'Recipes',
@@ -36,16 +35,15 @@ class RecipesIndex extends React.Component {
 
   fetchRecipes(query) {
     this.setState({spinner: true});
-    console.warn(this.state.spinner);
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
-      this.setState({spinner: false});
       this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({spinner: false});
     });
   } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
-      this.setState({spinner: false});
       this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({spinner: false});
     });
     }
   }
@@ -60,9 +58,13 @@ class RecipesIndex extends React.Component {
     this.setState({query: newQuery});
   }
 
-  renderSpinner() {
-    return (<Content><Spinner color='red' /></Content>);
-  }
+  // renderSpinner() {
+  //   if (this.state.spinner) {
+  //     return (<Content><Spinner color='orange'/></Content>);
+  //   } else {
+  //     return (<Content></Content>)
+  //   }
+  // }
 
   renderItems() {
     const allId = Object.keys(this.props.inventory);
@@ -122,6 +124,12 @@ class RecipesIndex extends React.Component {
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
+    let spinner;
+    if (this.state.spinner) {
+      spinner = (<Content><Spinner color='blue'/></Content>);
+    } else {
+      spinner =  (<Content></Content>);
+    }
     if (this.state.recipes === "none") {
       return (
         <Container>
@@ -129,6 +137,7 @@ class RecipesIndex extends React.Component {
           <Content>
             {items}
           </Content>
+            {spinner}
           <Button style={button.sessionButton} onPress={() => this.fetchRecipes("none")}>
           <Text>Fetch with Checked Items</Text>
           </Button>
@@ -137,8 +146,6 @@ class RecipesIndex extends React.Component {
           </Button>
         </Container>
       )
-    } else if (this.state.spinner) {
-      return (this.renderSpinner())
     } else {
     return (
       <Container>
