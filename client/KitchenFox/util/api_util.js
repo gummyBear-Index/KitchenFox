@@ -89,6 +89,7 @@ export const upcLookUp = (code, token) => {
 };
 
 export const getRecipes = (number, query, token) => {
+  console.warn(query);
   return (
   fetch(`${baseURL}recipes`, {
     method: 'GET',
