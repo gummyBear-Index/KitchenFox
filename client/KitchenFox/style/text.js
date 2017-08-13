@@ -98,6 +98,24 @@ export const text = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'stretch',
     textAlign: 'center',
+  },
+  posButtonRecipe: {
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 14,
+    padding: 10,
+    borderRadius: 20,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  },
+  negButtonRecipe: {
+    color: BLUE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 14,
+    padding: 10,
+    borderRadius: 20,
+    alignSelf: 'stretch',
+    textAlign: 'center',
   }
 });
 

@@ -4,7 +4,7 @@ import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
 
 import CheckBox from 'react-native-checkbox';
-import { Image } from 'react-native';
+import { Image, TouchableHighlight, ScrollView } from 'react-native';
 import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
 
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
@@ -21,9 +21,9 @@ class RecipesIndex extends React.Component {
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
   };
-  static navigationOptions = {
-    title: 'Recipes',
-  };
+  // static navigationOptions = {
+  //   title: 'Recipes',
+  // };
 
   componentWillMount() {
     // this.props.requestItems(this.props.session.token);
@@ -105,11 +105,11 @@ class RecipesIndex extends React.Component {
       return (
       <Container>
           <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
-          <Button style={button.sessionButton} onPress={() => {
+          <TouchableHighlight style={button.sessionButton} onPress={() => {
               navigate('AddItem');
           }}>
           <Text>Add Items</Text>
-          </Button>
+          </TouchableHighlight>
       </Container>
     )
     }
@@ -122,16 +122,20 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
-          <Text style={text.titleCenter}>What do you want to cook with?</Text>
-          <Content>
+          <Text style={text.titleCenter}>I want to cook with...</Text>
+          <ScrollView>
             {items}
-          </Content>
-          <Button style={button.sessionButton} onPress={() => this.fetchRecipes("none")}>
-          <Text>Fetch with Checked Items</Text>
-          </Button>
-          <Button style={button.sessionButton} onPress={() => this.fetchRecipes("all")}>
-          <Text>Fetch with All Items</Text>
-          </Button>
+          </ScrollView>
+
+          <View style={pantry.groupButtons}>
+            <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
+              <Text style={text.negButtonRecipe}>all my food</Text>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
+              <Text style={text.posButtonRecipe}>my selected food</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       )
     } else {
