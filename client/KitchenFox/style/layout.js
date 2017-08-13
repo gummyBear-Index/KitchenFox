@@ -52,6 +52,7 @@ export const session = StyleSheet.create({
 export const screen = StyleSheet.create({
   container: {
     flex: 1,
+    // flexDirection: 'row',
     width: null,
     height: null,
     backgroundColor: 'white',
@@ -108,7 +109,7 @@ export const pantry = StyleSheet.create({
 
 export const addItemCard = StyleSheet.create({
   container: {
-    // flex: 1,
+    padding: 10,
   },
   row: {
     // flex: 1,
@@ -117,6 +118,7 @@ export const addItemCard = StyleSheet.create({
     backgroundColor: ORANGE,
     flexWrap: 'wrap',
     // alignItems: 'flex-end',
+    // borderBottomWidth: 0,
   },
   rowQuan: {
     // flex: 1,

@@ -8,7 +8,7 @@ import {
   View,
   ListItem,
 } from 'native-base';
-
+import { TouchableHighlight } from 'react-native';
 // import { Picker } from 'react-native';
 import { button } from '../../style/button';
 import { screen, addItemCard } from '../../style/layout';
@@ -48,8 +48,7 @@ class AddItemCard extends Component {
 
   render() {
     return (
-      <ListItem>
-        <View style={screen.container}>
+      <View style={addItemCard.container}>
           <View>
             {/* ---- COL 1 --- */}
             <InputGroup style={addItemCard.row} borderType="rounded">
@@ -66,15 +65,20 @@ class AddItemCard extends Component {
                   />
                 </View>
                 {/* ---- COL 2 --- */}
-                <Icon name="camera"  style={addItemsInput.icon} /> 
+                <TouchableHighlight
+                  onPress={() => this.toggleCamera()}
+                >
+                  <Icon theme={{ iconFamily: 'FontAwesome' }} name='barcode' style={addItemsInput.icon} />
+                </TouchableHighlight>
+                {/* <Icon name="camera"  />  */}
           </InputGroup>
           </View>
 
           {/* ---- NEW ROW --- */}
 
           <View>
-            {/* <Icon name="cart" /> */}
             <View style={addItemCard.rowQuan}>
+             <Icon name="cart" style={addItemsInput.icon} /> 
               <View style={addItemCard.quan}>
                 <Input
                   style={addItemsText.quan}
@@ -88,33 +92,19 @@ class AddItemCard extends Component {
             </View>
             <View style={addItemCard.quanUnit}>
               <Picker
-                itemTextStyle={{fontSize: 44}}
-                itemStyle={{fontSize: 44}}
-                textStyle={{fontSize: 44}}
                 placeholder="units"
                 mode="dropdown"
                 selectedValue={this.state.units}
                 onValueChange={units => this.onChangeText('units', units)}
               >
-                <Picker.Item label="grams" value="g" 
-                  itemTextStyle={{fontSize: 44}}
-                  itemTextStyle={{fontSize: 44}}
-                  itemStyle={{fontSize: 44}}
-                  textStyle={{fontSize: 44}}
-                  />
+                <Picker.Item label="grams" value="g" />
                 <Picker.Item label="each" value="each" />
               </Picker>
               </View>
             </View>
-            <Button
-              style={button.sessionButton}
-              onPress={() => this.toggleCamera()}
-            >
-              <Icon name="camera" />
-            </Button>
           </View>
-        </View>
-      </ListItem>
+        {/* </View> */}
+      </View>
     );
   }
 }

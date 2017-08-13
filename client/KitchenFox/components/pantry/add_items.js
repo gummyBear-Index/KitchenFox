@@ -12,6 +12,7 @@ import { Container, Content, Text, View, List } from 'native-base';
 
 
 import { text } from '../../style/text';
+import { screen } from '../../style/layout';
 
 class AddItems extends React.Component {
   constructor(props) {
@@ -169,6 +170,7 @@ class AddItems extends React.Component {
         </View>
       );
     } return (
+      <View style={screen.container}>
       <ScrollView>
         <Text style={text.titleCenter}>Add items</Text>
         {/* <List> */}
@@ -179,6 +181,7 @@ class AddItems extends React.Component {
           onPress={() => this.handleSubmit()}>
         </Button>
       </ScrollView>
+      </View>
       );
   }
 }
