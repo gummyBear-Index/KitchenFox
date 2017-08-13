@@ -11,6 +11,7 @@ import { text } from '../../style/text';
 
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
+import { getRecipes } from '../../util/api_util';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -18,112 +19,118 @@ class Dashboard extends React.Component {
     this.state = {
       name: '',
       quantity: 0,
-      units: ''
-    };
+      units: '',
+      recipes: []
+    }
+    this.renderRecipe = this.renderRecipe.bind(this);
+    this.renderNoLowItem = this.renderNoLowItem.bind(this);
+    this.renderLowItems = this.renderLowItems.bind(this);
+    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   componentWillMount() {
-    if (this.props.session.token) {
-      this.props.requestItems(this.props.session.token);
-    }
+    this.props.requestItems(this.props.session.token);
+    getRecipes(this.props.session.token)
+      .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
   }
 
   static navigationOptions = {
     title: 'Kitchen Fox Dashboard',
   };
 
-  header() {
-    return (
-      <Text style={text.titleCenter}>
-          Your Dashboard
-      </Text>
-    );
+  renderRecipe() {
+    if (this.state.recipes.length > 0) {
+      <RecipeCard recipeInfo={this.state.recipes[0]} />
+    }
+  }
+
+  renderNoLowItem() {
+    const { navigate } = this.props.navigation;
+    return(
+      <Container>
+        <ListItem itemDivider>
+          <Text>Looks like you are not running low on inventory</Text>
+        </ListItem>
+        <Button
+          style={button.sessionButton} onPress={() => { navigate('PantryIndex'); }}>
+          <Text>Manage Your Kitchen Inventory</Text>
+        </Button>
+        <ListItem itemDivider>
+          <Text>Cooking ideas based on your Ingredients :</Text>
+        </ListItem>
+        <ListItem>
+          {this.renderRecipe()}
+        </ListItem>
+        <NavFooter navigate={navigate} />
+      </Container>
+    )
+  }
+
+  renderLowItems(lowItems) {
+    const { navigate } = this.props.navigation;
+    return(
+      <Container>
+        <ListItem itemDivider>
+          <Text>Looks like you are running low on :</Text>
+        </ListItem>
+        {lowItems.map((item, idx) =>
+          <ListItem key={idx} onPress={() => { navigate('PantryItem', { item }); }}>
+            <Text>
+              {Object.values(item)[0]['name']}: &nbsp;
+              {Object.values(item)[0]['quantity']} &nbsp;
+              {Object.values(item)[0]['units']}
+            </Text>
+          </ListItem>)}
+        <ListItem itemDivider>
+          <Text>Cooking ideas based on your Ingredients :</Text>
+        </ListItem>
+        <ListItem>
+          {this.renderRecipe()}
+        </ListItem>
+        <NavFooter navigate={navigate} />
+      </Container>
+    )
+  }
+
+  renderNoInventory() {
+    const { navigate } = this.props.navigation;
+    return(
+      <Container>
+        <ListItem itemDivider>
+          <Text>There is nothing in your pantry or fridge</Text>
+        </ListItem>
+        <ListItem onPress={() => { navigate('AddItem'); }}>
+          <Text>Add Item</Text>
+        </ListItem>
+        <NavFooter navigate={navigate} />
+      </Container>
+    )
   }
 
   render() {
     const { navigate } = this.props.navigation;
-    const allId = Object.keys(this.props.inventory);
-    const lowItems = [];
     const allItems = [];
+    const lowItems = [];
+    const allId = Object.keys(this.props.inventory);
     allId.forEach((id) => {
       let obj = {};
       const item = this.props.inventory[`${id}`];
-      if (item['units'] == 'g' && item['quantity'] <= 1000) {
+      if (item['units'] == 'g' && item['quantity'] <= 100) {
         obj[`${id}`] = item;
         lowItems.push(obj);
-      } else if (item['units'] == 'each' && item['quantity'] <= 30) {
+      } else if (item['units'] == 'each' && item['quantity'] <= 3) {
         obj[`${id}`] = item;
         lowItems.push(obj);
       }
       obj[`${id}`] = item;
       allItems.push(obj);
     })
-
     if (allItems.length > 0 && lowItems.length === 0) {
-      return(
-        <Container>
-          {this.header()}
-          <ListItem itemDivider>
-            <Text>
-              Looks like you are not running low on inventory
-            </Text>
-          </ListItem>
-          <Button
-            style={button.sessionButton}
-            onPress={() => {
-              navigate('PantryIndex');
-            }}
-            >
-            <Text>Manage Your Kitchen Inventory</Text>
-          </Button>
-          <NavFooter navigate={navigate} />
-        </Container>
-      )
+      return this.renderNoLowItem();
     } else if (lowItems.length > 0) {
-      return(
-        <Container>
-          {this.header()}
-          <ListItem itemDivider>
-            <Text>
-              Looks like you are running low on :
-            </Text>
-          </ListItem>
-            {lowItems.map((item, idx) =>
-              <ListItem key={idx} onPress={() => {
-                  navigate('PantryItem', { item });
-                }}>
-                <Text>
-                  {Object.values(item)[0]['name']}: &nbsp;
-                  {Object.values(item)[0]['quantity']} &nbsp;
-                  {Object.values(item)[0]['units']}
-                </Text>
-              </ListItem>
-            )}
-          <ListItem itemDivider>
-            <Text>
-              Cooking ideas based on your Ingredients :
-            </Text>
-          </ListItem>
-          <ListItem>
-            {RecipeCard}
-          </ListItem>
-          <NavFooter navigate={navigate} />
-        </Container>
-      )
+      return this.renderLowItems(lowItems);
     } else if (allItems.length === 0) {
-      return(
-        <Container>
-          {this.header()}
-          <ListItem itemDivider>
-            <Text>
-              There is nothing in your pantry or fridge
-            </Text>
-          </ListItem>
-          <ListItem onPress={() => {navigate('AddItem');}}>
-            <Text>Add Item</Text>
-          </ListItem>
-        </Container>
-      )
+      return this.renderNoInventory();
     }
   }
 }
@@ -135,7 +142,7 @@ const mapStateToProps = ({ session, inventory }) => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-  requestItems: token => dispatch(requestItems(token))
+  requestItems: token => dispatch(requestItems(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
