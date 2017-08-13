@@ -31,6 +31,10 @@ class PantryItem extends React.Component {
     const inventory = {
       inventory: {}
     };
+    let obj = {};
+    obj.name = this.state.name;
+    obj.quantity = this.state.quantity;
+    obj.units = this.state.units;
     inventory['inventory'][`${key}`] = Object.assign(this.state);
     this.props.sendItems(token, inventory);
     this.props.requestItems(this.props.session.token);
