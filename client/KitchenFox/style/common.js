@@ -19,6 +19,7 @@ export const BUTTON_ACTION_TEXT = WHITE;
 export const GREETING_TEXT = WHITE;
 export const TITLE = BLACK;
 export const PLACEHOLDER_TEXT = '#444';
+export const PLACEHOLDER_TEXT_ADD_ITEMS = ORANGE_LIGHTER;
 export const ACTIVE_TAB = WHITE;
 
 // FONTS

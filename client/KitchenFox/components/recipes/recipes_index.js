@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Image } from 'react-native';
-import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
-import  {button} from '../../style/button';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
+
 import CheckBox from 'react-native-checkbox';
+import { Image } from 'react-native';
+import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
+
+import  {button} from '../../style/button';
 import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
-
-
-
 
 class RecipesIndex extends React.Component {
   constructor(props){
@@ -68,14 +67,14 @@ class RecipesIndex extends React.Component {
         <View>
         {allItems.map((item, idx) =>
           <View key={idx} style={pantry.itemContainer}>
+            <CheckBox
+              key={idx}
+              label={""}
+              checked={new Boolean(this.state.query[idx])}
+              onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
+            />
             <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
-              <CheckBox
-                key={idx}
-                label={""}
-                checked={new Boolean(this.state.query[idx])}
-                onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
-              />
           </View>
         )}
       </View>

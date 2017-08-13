@@ -54,18 +54,18 @@ class PantryItem extends React.Component {
       <Container>
         <View style={screen.container}>
           <View style={pantry.updateItem}>
-          <Text style={pantryText.updateItem}>
-            {name}
-          </Text>
+            <Text style={pantryText.updateItem}>
+              {name}
+            </Text>
           </View>
             <InputGroup style={pantry.updateQuan}>
               <View>
               <Input
-                autoFocus={Boolean(true)}
+                autoFocus={true}
                 style={pantryText.updateQuan}
                 keyboardType='numeric'
                 onChangeText={(num) => {this.setState({quantity: num});}}
-              >{`${qty}`}</Input>
+              ><Text style={pantryText.updateQuan}>{`${qty}`}</Text></Input>
               </View>
               <Text style={pantryText.updateQuanUnit}>{units}</Text>
             </InputGroup>
