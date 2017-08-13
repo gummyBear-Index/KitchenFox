@@ -15,7 +15,6 @@ class PantryItem extends React.Component {
       quantity: Object.values(item)[0]['quantity'],
       units: Object.values(item)[0]['units']
     }
-
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
@@ -39,12 +38,9 @@ class PantryItem extends React.Component {
 
   render() {
     const item = this.props.navigation.state.params.item;
-    const name = Object.values(item)[0]['name'];
-    // const name = this.state.name;
-    // const qty = Object.values(item)[0]['quantity'];
+    const name = this.state.name;
     const qty = this.state.quantity;
-    const units = Object.values(item)[0]['units'];
-    // const units = this.state.units;
+    const units = this.state.units;
     return (
       <Container>
         <Content>

@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import AddItemsContainer from '../components/pantry/add_items_container';
-import Dashboard from '../components/dashboard/pantry_stocked';
+import Dashboard from '../components/pantry/dashboard';
 import PantryIndex from '../components/pantry/pantry_index';
 import PantryItem from '../components/pantry/pantry_item';
 import RecipesIndex from '../components/recipes/recipes_index';

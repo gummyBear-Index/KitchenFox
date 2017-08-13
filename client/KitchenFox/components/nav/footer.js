@@ -24,7 +24,7 @@ const NavFooter = ({ navigate }) => {
           <Text>Dashboard</Text>
         </Button>
         <Button vertical
-          onPress={() => navigate('Pantry')} active>
+          onPress={() => navigate('PantryIndex')} active>
           <Icon active name="albums" />
           <Text>Pantry</Text>
         </Button>
@@ -41,5 +41,5 @@ const NavFooter = ({ navigate }) => {
 export default NavFooter;
 
 // const FooterLinking = StackNavigator({
-  
+
 // });

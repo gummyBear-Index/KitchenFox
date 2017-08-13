@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Container, Content, List, ListItem, Button,
-Card, CardItem, Left, Text } from 'native-base';
 import { button } from '../../style/button';
+import { Container, Content, List, ListItem, Button,
+  Card, CardItem, Left, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { requestItems } from '../../actions/inventory_actions';
@@ -16,12 +15,10 @@ class PantryIndex extends React.Component {
       quantity: 0,
       units: ''
     }
-
     this.renderItems = this.renderItems.bind(this);
   }
 
   componentWillMount() {
-    console.warn(JSON.stringify(this.props.session.token));
     if (this.props.session.token) {
       this.props.requestItems(this.props.session.token);
     }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, List, ListItem, Text } from 'native-base';
+import { Container, Content, List, ListItem, Text, Button } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
+import { button } from '../../style/button';
+import NavFooter from '../nav/footer';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -32,10 +34,10 @@ class Dashboard extends React.Component {
     allId.forEach((id) => {
       let obj = {};
       const item = this.props.inventory[`${id}`];
-      if (item['units'] == 'g' && item['quantity'] <= 100) {
+      if (item['units'] == 'g' && item['quantity'] <= 1000) {
         obj[`${id}`] = item;
         lowItems.push(obj);
-      } else if (item['units'] == 'each' && item['quantity'] <= 3) {
+      } else if (item['units'] == 'each' && item['quantity'] <= 30) {
         obj[`${id}`] = item;
         lowItems.push(obj);
       }
@@ -43,25 +45,44 @@ class Dashboard extends React.Component {
       allItems.push(obj);
     })
 
-    if (lowItems.length > 0) {
+    if (allItems.length > 0 && lowItems.length === 0) {
       return(
-        <List>
+        <Container>
+          <ListItem itemDivider>
+            <Text>
+              Looks like you are not running low on inventory
+            </Text>
+          </ListItem>
+          <Button
+            style={button.sessionButton}
+            onPress={() => {
+              navigate('PantryIndex');
+            }}
+            >
+            <Text>Manage Your Kitchen Inventory</Text>
+          </Button>
+          <NavFooter navigate={navigate} />
+        </Container>
+      )
+    } else if (lowItems.length > 0) {
+      return(
+        <Container>
           <ListItem itemDivider>
             <Text>
               Looks like you are running low on :
             </Text>
           </ListItem>
-          {lowItems.map((item, idx) =>
-            <ListItem key={idx} onPress={() => {
-                navigate('PantryItem', { item });
-              }}>
-              <Text>
-                {Object.values(item)[0]['name']}: &nbsp;
-                {Object.values(item)[0]['quantity']} &nbsp;
-                {Object.values(item)[0]['units']}
-              </Text>
-            </ListItem>
-          )}
+            {lowItems.map((item, idx) =>
+              <ListItem key={idx} onPress={() => {
+                  navigate('PantryItem', { item });
+                }}>
+                <Text>
+                  {Object.values(item)[0]['name']}: &nbsp;
+                  {Object.values(item)[0]['quantity']} &nbsp;
+                  {Object.values(item)[0]['units']}
+                </Text>
+              </ListItem>
+            )}
           <ListItem itemDivider>
             <Text>
               Cooking ideas based on your Ingredients :
@@ -69,21 +90,21 @@ class Dashboard extends React.Component {
           </ListItem>
           <ListItem>
           </ListItem>
-        </List>
+          <NavFooter navigate={navigate} />
+        </Container>
       )
-    } else if (lowItems.length === 0) {
+    } else if (allItems.length === 0) {
       return(
-        <List>
+        <Container>
           <ListItem itemDivider>
             <Text>
               There is nothing in your pantry or fridge
             </Text>
           </ListItem>
-          <ListItem onPress={() => {
-              navigate('AddItem')
-            }}><Text>Add Item</Text>
+          <ListItem onPress={() => {navigate('AddItem');}}>
+            <Text>Add Item</Text>
           </ListItem>
-        </List>
+        </Container>
       )
     }
   }
@@ -100,4 +121,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
-// export default DashboardPantryStocked;
