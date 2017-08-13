@@ -84,5 +84,8 @@ export const addItemCard = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
-  }
+  },
+  rowItem: {
+    flex: 1.
+  },
 })

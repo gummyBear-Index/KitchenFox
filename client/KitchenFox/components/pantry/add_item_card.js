@@ -10,7 +10,7 @@ import {
 } from 'native-base';
 
 import { button } from '../../style/button';
-import { addItemCard } from '../../style/layout';
+import { session } from '../../style/layout';
 import { input } from '../../style/input';
 
 class AddItemCard extends Component {
@@ -46,8 +46,8 @@ class AddItemCard extends Component {
   render() {
     return (
       <ListItem>
-        <View style={addItemCard.container}>
-          <View style={addItemCard.row}>
+        <View style={session.container}>
+          <View style={session.content}>
             <InputGroup style={input.field} borderType="rounded">
               <Icon name="nutrition" />
               <Input
