@@ -115,14 +115,21 @@ export const pantryText = StyleSheet.create({
   updateItem: {
     color: WHITE,
     fontFamily: BASE_FONT_BOLD,
-    fontSize: 32,
+    fontSize: 40,
   },
   updateQuan: {
-    fontSize: 22,
+    fontSize: 30,
     color: WHITE,
     fontFamily: BASE_FONT_BOLD,
     width: 100,
     textAlign: 'right',
-  }
+  },
+  updateQuanUnit: {
+    fontSize: 30,
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+    width: 100,
+    textAlign: 'left',
+  },
 });
 

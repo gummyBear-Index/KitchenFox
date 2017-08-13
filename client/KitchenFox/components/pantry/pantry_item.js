@@ -63,7 +63,7 @@ class PantryItem extends React.Component {
                 onChangeText={(num) => {this.setState({quantity: num});}}
               >{`${qty}`}</Input>
               </View>
-              <Text style={pantry.child}>{units}</Text>
+              <Text style={pantryText.updateQuanUnit}>{units}</Text>
             </InputGroup>
           <View style={pantry.groupButtons}>
           <TouchableHighlight
