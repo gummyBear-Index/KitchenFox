@@ -139,13 +139,9 @@ class AddItems extends React.Component {
     return itemCards;
   }
 
-
-
   static navigationOptions = {
     title: 'Add items your pantry',
   };
-
-
 
   render() {
     if (this.state.showCamera) {

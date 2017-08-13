@@ -77,4 +77,15 @@ export const pantry = StyleSheet.create({
   }
 });
 
-
+export const addItemCard = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  rowItem: {
+    flex: 1.
+  },
+})
