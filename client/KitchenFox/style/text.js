@@ -4,7 +4,7 @@ import {
   BASE_FONT_REGULAR, 
   BASE_FONT_BOLD, 
   BUTTON_ACTION_TEXT, 
-  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT,
+  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
   GREETING_TEXT } from './common';
 
 const title = {
@@ -110,7 +110,7 @@ export const pantryText = StyleSheet.create({
   itemDesc: {
     fontSize: 18,
     paddingLeft: 28,
-    color: ORANGE_LIGHT,
+    color: ORANGE_LIGHTER,
   },
   updateItem: {
     color: WHITE,
