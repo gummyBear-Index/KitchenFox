@@ -17,6 +17,7 @@ import {
   Navigator,
   ListItem,
 } from 'native-base';
+
 class RecipeCard extends React.Component {
   constructor(props){
     super(props);

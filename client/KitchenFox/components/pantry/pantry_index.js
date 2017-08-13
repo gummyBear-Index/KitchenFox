@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight } from 'react-native';
+
+
 import { Container, Content, List, ListItem, Button,
-Card, CardItem, Left, Text } from 'native-base';
+  Card, CardItem, Left, Text } from 'native-base';
+import { View, TouchableHighlight } from 'react-native';
 
 import { ACTIVE_TAB, ORANGE_LIGHT } from '../../style/common';
 import { screen, pantry } from '../../style/layout';
 import { button } from '../../style/button';
 import { text, pantryText } from '../../style/text';
+
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { requestItems } from '../../actions/inventory_actions';
@@ -18,14 +21,12 @@ class PantryIndex extends React.Component {
     this.state = {
       name: '',
       quantity: 0,
-      units: ''
+      units: '',
     };
-
     this.renderItems = this.renderItems.bind(this);
   }
 
   componentWillMount() {
-    // console.warn(JSON.stringify(this.props.session.token));
     if (this.props.session.token) {
       this.props.requestItems(this.props.session.token);
     }
@@ -45,7 +46,6 @@ class PantryIndex extends React.Component {
       allItems.push(obj);
     });
 
-    // console.warn(JSON.stringify(allItems));
     if (allItems.length > 0) {
       return (
         <View>

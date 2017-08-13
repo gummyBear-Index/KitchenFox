@@ -26,11 +26,9 @@ const NavFooter = ({ navigate }) => {
           <Text style={{ color: 'white'}}>Dashboard</Text>
         </Button>
         <Button vertical
-          style={{ backgroundColor: BLUE_DARK }}
-          onPress={() => navigate('Pantry')} active>
-          <Icon active name="albums"
-                style={{ color: 'white'}} />
-          <Text style={{ color: 'white'}}>Pantry</Text>
+          onPress={() => navigate('PantryIndex')} active>
+          <Icon active name="albums" />
+          <Text>Pantry</Text>
         </Button>
         <Button vertical
           onPress={() => navigate('Recipes')}>
@@ -46,5 +44,5 @@ const NavFooter = ({ navigate }) => {
 export default NavFooter;
 
 // const FooterLinking = StackNavigator({
-  
+
 // });
