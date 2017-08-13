@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import { Image } from 'react-native';
-import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
+import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List, Spinner } from 'native-base';
 import  {button} from '../../style/button';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
@@ -18,8 +18,10 @@ class RecipesIndex extends React.Component {
     this.state = {
       recipes: "none",
       query: {},
+      spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
+    this.renderSpinner = this.renderSpinner.bind(this);
   };
   static navigationOptions = {
     title: 'Recipes',
@@ -33,12 +35,16 @@ class RecipesIndex extends React.Component {
   }
 
   fetchRecipes(query) {
+    this.setState({spinner: true});
+    console.warn(this.state.spinner);
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
+      this.setState({spinner: false});
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
   } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
+      this.setState({spinner: false});
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
     }
@@ -52,6 +58,10 @@ class RecipesIndex extends React.Component {
       delete newQuery[idx]
     }
     this.setState({query: newQuery});
+  }
+
+  renderSpinner() {
+    return (<Content><Spinner color='red' /></Content>);
   }
 
   renderItems() {
@@ -115,7 +125,7 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <Container>
-          <Text>Recipes will go here!</Text>
+          <Text>Select Ingredients for your recipes!</Text>
           <Content>
             {items}
           </Content>
@@ -127,6 +137,8 @@ class RecipesIndex extends React.Component {
           </Button>
         </Container>
       )
+    } else if (this.state.spinner) {
+      return (this.renderSpinner())
     } else {
     return (
       <Container>
