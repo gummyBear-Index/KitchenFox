@@ -64,10 +64,6 @@ class Dashboard extends React.Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Kitchen Fox Dashboard',
-  };
-
   renderRecipe() {
     if (this.state.recipes.length > 0) {
       return (<RecipeCard recipeInfo={this.state.recipes[0]} />)
