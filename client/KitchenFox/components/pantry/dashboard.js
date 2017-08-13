@@ -5,6 +5,7 @@ import { Container, Content, List, ListItem, Text, Button } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
 import NavFooter from '../nav/footer';
+import RecipeCard from '../recipes/recipe_card';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class Dashboard extends React.Component {
             </Text>
           </ListItem>
           <ListItem>
+            {RecipeCard}
           </ListItem>
           <NavFooter navigate={navigate} />
         </Container>

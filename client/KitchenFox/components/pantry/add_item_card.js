@@ -30,6 +30,7 @@ class AddItemCard extends Component {
     super(props);
     this.state = Object.assign(this.props.initialCardState);
     this.onChange = this.onChange.bind(this);
+
   }
 
   onBarCodeRead(e) {
@@ -67,10 +68,13 @@ class AddItemCard extends Component {
   onChangeText(type, value) {
     this.setState({[type]: value});
     if (this.state.quantity === "1") {
-      console.warn(this.state.quantity === "1");
       this.setState({units: "each"});
     }
     this.props.updateParent(this.props.cardNum, this.state);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState(newProps.initialCardState);
   }
 
   // onChangeText={name => this.setState({name: name})}
