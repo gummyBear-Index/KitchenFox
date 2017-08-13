@@ -25,21 +25,29 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
-    getRecipes(1, null, this.props.session.token)
-      .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
   }
 
   static navigationOptions = {
     title: 'Kitchen Fox Dashboard',
   };
 
-  renderRecipe() {
+  renderRecipe(allItems) {
+    const idx = Math.floor(Math.random() * allItems.length);
+    console.warn(idx);
+    const name = Object.values(allItems[idx])[0]['name'];
+    console.warn(name);
+    getRecipes(1, name, this.props.session.token)
+      .then((res) => {
+        console.warn(JSON.stringify(res));
+        this.setState({recipes: JSON.parse(res._bodyText)});
+      })
+    console.warn(this.state.recipes.length);
     if (this.state.recipes.length > 0) {
       return <RecipeCard recipeInfo={this.state.recipes[0]} />
     }
   }
 
-  renderNoLowItem() {
+  renderNoLowItem(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
       <Container>
@@ -54,14 +62,14 @@ class Dashboard extends React.Component {
           <Text>Cooking ideas based on your Ingredients :</Text>
         </ListItem>
         <ListItem>
-          {this.renderRecipe()}
+          {this.renderRecipe(allItems)}
         </ListItem>
         <NavFooter navigate={navigate} />
       </Container>
     )
   }
 
-  renderLowItems(lowItems) {
+  renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
       <Container>
@@ -80,7 +88,7 @@ class Dashboard extends React.Component {
           <Text>Cooking ideas based on your Ingredients :</Text>
         </ListItem>
         <ListItem>
-          {this.renderRecipe()}
+          {this.renderRecipe(allItems)}
         </ListItem>
         <NavFooter navigate={navigate} />
       </Container>
@@ -122,9 +130,9 @@ class Dashboard extends React.Component {
     })
 
     if (allItems.length > 0 && lowItems.length === 0) {
-      return this.renderNoLowItem();
+      return this.renderNoLowItem(allItems, lowItems);
     } else if (lowItems.length > 0) {
-      return this.renderLowItems(lowItems);
+      return this.renderLowItems(allItems, lowItems);
     } else if (allItems.length === 0) {
       return this.renderNoInventory();
     }
