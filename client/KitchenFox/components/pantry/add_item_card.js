@@ -28,24 +28,14 @@ import {
 class AddItemCard extends Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign(this.props.initialCardState);
+    this.state = {
+      upc: '',
+      name: '',
+      quantity: '',
+      units: 'g',
+      weight: '',
+    };
     this.onChange = this.onChange.bind(this);
-
-  }
-
-  onBarCodeRead(e) {
-    this.setState({showCamera: false, upc: e.data});
-    upcLookUp(e.data, this.props.token).then((res) => {
-      this.setState(JSON.parse(res._bodyText)[0]);
-      if (JSON.parse(res._bodyText)[0].quantity === 1) {
-        this.setState({units: "each"});
-      }
-    });
-    Alert.alert(
-        "Barcode Found!",
-        "Type: " + e.type + "\nData: " + e.data
-    );
-    this.props.updateParent(this.props.cardNum, this.state);
   }
 
   toggleCamera(){
@@ -66,7 +56,9 @@ class AddItemCard extends Component {
   }
 
   onChangeText(type, value) {
-    this.setState({[type]: value});
+    const newState = Object.assign(this.state);
+    newState[type] = value;
+    this.setState(newState);
     if (this.state.quantity === "1") {
       this.setState({units: "each"});
     }
@@ -101,7 +93,7 @@ class AddItemCard extends Component {
                 placeholder='Quantity'
                 autoCorrect={false}
                 keyboardType="numeric"
-                onChangeText={(string) => this.onChange(string)}
+                onChangeText={quantity => this.onChangeText('quantity', quantity)}
                 value={`${this.state.quantity}`}
               />
             </InputGroup>
