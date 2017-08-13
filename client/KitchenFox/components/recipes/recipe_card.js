@@ -27,14 +27,14 @@ class RecipeCard extends React.Component {
 
   render() {
     return (
-            <Card style={{flex:0}}>
+      <Card style={{flex:0}}>
         <TouchableHighlight onPress={() => {
             Linking.openURL(`${this.props.recipeInfo.url}`).catch(err => console.error('An error occurred', err));
           }}>
         <Image source={{uri:this.props.recipeInfo.image}} style={{height: 200, width: 250}}/>
         </TouchableHighlight>
         <Text>{JSON.stringify(this.props.recipeInfo.label)}</Text>
-        </Card>
+      </Card>
     );
   }
 }
