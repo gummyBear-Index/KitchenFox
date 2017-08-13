@@ -134,3 +134,17 @@ export const pantryText = StyleSheet.create({
   },
 });
 
+export const addItemsText = StyleSheet.create({
+  name: {
+    fontSize: 30,
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+    alignItems: 'flex-end',
+  },
+  quan: {
+    fontSize: 26,
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+  }
+});
+

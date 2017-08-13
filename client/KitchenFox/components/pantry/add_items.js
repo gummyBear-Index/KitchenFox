@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { StyleSheet, Alert, Button, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import { Container, Content, Text, View, List } from 'native-base';
 import Camera from 'react-native-camera';
 import md5 from 'md5';
-
 import { camera } from '../../style/cameraStyle';
 import { upcLookUp } from '../../util/api_util';
 import AddItemCard from './add_item_card';
+
+import { Container, Content, Text, View, List } from 'native-base';
+
+
+import { text } from '../../style/text';
 
 class AddItems extends React.Component {
   constructor(props) {
@@ -166,10 +169,11 @@ class AddItems extends React.Component {
         </View>
       );
     } return (
-      <ScrollView >
-        <List>
+      <ScrollView>
+        <Text style={text.titleCenter}>Add items</Text>
+        {/* <List> */}
           {this.itemFormGen()}
-        </List>
+        {/* </List> */}
         <Button
           title="Submit"
           onPress={() => this.handleSubmit()}>

@@ -9,9 +9,12 @@ import {
   ListItem,
 } from 'native-base';
 
+// import { Picker } from 'react-native';
 import { button } from '../../style/button';
-import { session } from '../../style/layout';
-import { input } from '../../style/input';
+import { screen, addItemCard } from '../../style/layout';
+import { input, addItemsInput } from '../../style/input';
+import { addItemsText } from '../../style/text';
+import { PLACEHOLDER_TEXT_ADD_ITEMS } from '../../style/common';
 
 class AddItemCard extends Component {
   constructor(props) {
@@ -46,36 +49,63 @@ class AddItemCard extends Component {
   render() {
     return (
       <ListItem>
-        <View style={session.container}>
-          <View style={session.content}>
-            <InputGroup style={input.field} borderType="rounded">
-              <Icon name="nutrition" />
-              <Input
-                placeholder="Name"
-                autoCorrect={false}
-                autoCapitalize="words"
-                onChangeText={name => this.onChangeText('name', name)}
-                value={this.state.name}
+        <View style={screen.container}>
+          <View>
+            {/* ---- COL 1 --- */}
+            <InputGroup style={addItemCard.row} borderType="rounded">
+                <Icon name="nutrition" style={addItemsInput.icon}/> 
+                <View style={addItemCard.name}>
+                  <Input
+                    style={addItemsText.name}
+                    placeholder="Name"
+                    placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
+                    autoCorrect={false}
+                    autoCapitalize="words"
+                    onChangeText={name => this.onChangeText('name', name)}
+                    value={this.state.name}
+                  />
+                </View>
+                {/* ---- COL 2 --- */}
+                <Icon name="camera"  style={addItemsInput.icon} /> 
+          </InputGroup>
+          </View>
+
+          {/* ---- NEW ROW --- */}
+
+          <View>
+            {/* <Icon name="cart" /> */}
+            <View style={addItemCard.rowQuan}>
+              <View style={addItemCard.quan}>
+                <Input
+                  style={addItemsText.quan}
+                  placeholder="Quantity"
+                  placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
+                  autoCorrect={false}
+                  keyboardType="numeric"
+                  onChangeText={quantity => this.onChangeText('quantity', quantity)}
+                  value={`${this.state.quantity}`}
               />
-            </InputGroup>
-            <InputGroup style={input.field} borderType="rounded">
-              <Icon name="calculator" />
-              <Input
-                placeholder="Quantity"
-                autoCorrect={false}
-                keyboardType="numeric"
-                onChangeText={quantity => this.onChangeText('quantity', quantity)}
-                value={`${this.state.quantity}`}
-              />
-            </InputGroup>
-            <Icon name="cart" />
-            <Picker
-              selectedValue={this.state.units}
-              onValueChange={units => this.onChangeText('units', units)}
-            >
-              <Picker.Item label="grams" value="g" />
-              <Picker.Item label="each" value="each" />
-            </Picker>
+            </View>
+            <View style={addItemCard.quanUnit}>
+              <Picker
+                itemTextStyle={{fontSize: 44}}
+                itemStyle={{fontSize: 44}}
+                textStyle={{fontSize: 44}}
+                placeholder="units"
+                mode="dropdown"
+                selectedValue={this.state.units}
+                onValueChange={units => this.onChangeText('units', units)}
+              >
+                <Picker.Item label="grams" value="g" 
+                  itemTextStyle={{fontSize: 44}}
+                  itemTextStyle={{fontSize: 44}}
+                  itemStyle={{fontSize: 44}}
+                  textStyle={{fontSize: 44}}
+                  />
+                <Picker.Item label="each" value="each" />
+              </Picker>
+              </View>
+            </View>
             <Button
               style={button.sessionButton}
               onPress={() => this.toggleCamera()}

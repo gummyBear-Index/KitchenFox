@@ -108,13 +108,39 @@ export const pantry = StyleSheet.create({
 
 export const addItemCard = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
   },
   row: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: ORANGE,
+    flexWrap: 'wrap',
+    // alignItems: 'flex-end',
   },
-  rowItem: {
-    flex: 1.
+  rowQuan: {
+    // flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: ORANGE_LIGHT,
+    flexWrap: 'wrap',
+    // alignItems: 'flex-end',
   },
-})
+  name: {
+    flex: 4,
+    paddingTop: 10,
+    paddingBottom: 7,
+    paddingLeft: 5,
+  },
+  quan: {
+    // backgroundColor: 'transparent',
+    flex: 1,
+    paddingLeft: 15,
+    paddingTop: 6,
+    paddingBottom: 6,
+  },
+  quanUnit: {
+    // backgroundColor: 'transparent',
+    flex: 1,
+  },
+});
