@@ -4,12 +4,13 @@ import { BASE_FONT_REGULAR, WHITE, BLACK } from './common';
 export const input = StyleSheet.create({
   field: {
     // marginBottom: 20,
-    // backgroundColor: 'rgba(255,255,255,.76)',
-    borderBottomWidth: 1,
-    // borderRadius: 50,
-    paddingLeft: 10,
-    // borderColor: 'rgba(0,0,0,.38)', 
+    // backgroundColor: 'rgba(255,255,255,.2)',
     borderWidth: 0,
+    borderBottomWidth: 1,
+    paddingLeft: 10,
+    borderColor: 'rgba(0,0,0,.14)',
+    paddingTop: 4, 
+    paddingBottom: 4, 
   },
   sessionText: {
     color: BLACK,

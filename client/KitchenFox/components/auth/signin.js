@@ -57,7 +57,7 @@ class SignIn extends Component {
          <View style={session.container}> 
           <View
             style={session.content}>
-              <Text style={text.titleLeft}>Sign In</Text>
+              <Text style={text.titleSession}>Sign In</Text>
             <InputGroup style={input.field}>
               <Icon name='ios-person' style={input.icon} />
               <Input
