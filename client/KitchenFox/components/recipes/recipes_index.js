@@ -86,7 +86,6 @@ class RecipesIndex extends React.Component {
   recipes(){
     let recipes = [];
     const { navigate } = this.props.navigation;
-    console.warn(this.state.recipes.length);
     if (this.state.recipes.length > 0) {
       for (let i = 0; i < this.state.recipes.length; i++) {
         let j = (
