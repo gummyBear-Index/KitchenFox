@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 
-import { View } from 'react-native';
+import { View, TouchableHighlight } from 'react-native';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
 import { screen, pantry } from '../../style/layout';
@@ -49,32 +49,36 @@ class PantryItem extends React.Component {
     return (
       <Container>
         <View style={screen.container}>
-          <View style={pantry.addItem}>
-          <Text style={pantryText.addItem}>
+          <View style={pantry.updateItem}>
+          <Text style={pantryText.updateItem}>
             {name}
           </Text>
           </View>
             <InputGroup style={pantry.updateQuan}>
+              <View>
               <Input
+                autoFocus={Boolean(true)}
+                style={pantryText.updateQuan}
                 keyboardType='numeric'
-                style={pantry.child}
                 onChangeText={(num) => {this.setState({quantity: num});}}
               >{`${qty}`}</Input>
+              </View>
               <Text style={pantry.child}>{units}</Text>
             </InputGroup>
-
-          <Button
-            style={button.sessionButton}
-            onPress={() => this.handleUpdate()}
-            >
-            <Text>UPDATE</Text>
-          </Button>
-          <Button
-            style={button.sessionButton}
+          <View style={pantry.groupButtons}>
+          <TouchableHighlight
+            style={button.negFormButton}
             onPress={() => (this.setState({quantity: 0}))}
             >
-            <Text>DELETE</Text>
-          </Button>
+            <Text style={text.negButton}>delete</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={button.posFormButton}
+            onPress={() => this.handleUpdate()}
+            >
+            <Text style={text.posButton}>update</Text>
+          </TouchableHighlight>
+        </View>
         </View>
       </Container>
     );

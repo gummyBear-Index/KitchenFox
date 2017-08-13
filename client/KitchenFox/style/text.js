@@ -79,6 +79,26 @@ export const text = StyleSheet.create({
     alignSelf: 'stretch',
     textAlign: 'center',
   },
+  posButton: {
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 18,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  },
+  negButton: {
+    color: BLUE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 18,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  }
 });
 
 export const pantryText = StyleSheet.create({
@@ -92,10 +112,17 @@ export const pantryText = StyleSheet.create({
     paddingLeft: 28,
     color: ORANGE_LIGHT,
   },
-  addItem: {
+  updateItem: {
     color: WHITE,
-    fontFamily: BASE_FONT_REGULAR,
+    fontFamily: BASE_FONT_BOLD,
     fontSize: 32,
   },
+  updateQuan: {
+    fontSize: 22,
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    width: 100,
+    textAlign: 'right',
+  }
 });
 

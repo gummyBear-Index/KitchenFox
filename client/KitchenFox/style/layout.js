@@ -75,30 +75,33 @@ export const pantry = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-end',
   },
-  addItem: {
-    backgroundColor: ORANGE,
+  updateItem: {
+    backgroundColor: ORANGE_LIGHT,
     alignItems: 'center',
     paddingTop: 34,
     paddingBottom: 34,
   },
   updateQuan: {
-    backgroundColor: ORANGE_LIGHT,
+    backgroundColor: ORANGE,
     // flex: 1,
     height: 70,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
     flexWrap: 'wrap',
-    paddingLeft: 20, 
-    paddingRight: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   child: {
-    flex: 1,
-    width: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
-    flexWrap: 'wrap',
-  } 
+    // flex: 1,
+    width: 80,
+    color: WHITE,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // alignContent: 'center',
+    // flexWrap: 'wrap',
+  },
+  groupButtons: {
+    padding: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  }
 });
