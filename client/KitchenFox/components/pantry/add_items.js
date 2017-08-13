@@ -181,7 +181,7 @@ class AddItems extends React.Component {
         <TouchableHighlight
           style={button.posFormButton}
           onPress={() => this.handleSubmit()}>
-          <Text style={text.posButton}>Add Items</Text>
+          <Text style={text.posButton}>submit</Text>
         </TouchableHighlight>
       </ScrollView>
       </View>
