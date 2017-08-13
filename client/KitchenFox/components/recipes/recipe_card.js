@@ -17,8 +17,6 @@ import {
   Navigator,
   ListItem,
 } from 'native-base';
-// style={{flex:0}}
-
 class RecipeCard extends React.Component {
   constructor(props){
     super(props);
@@ -28,7 +26,7 @@ class RecipeCard extends React.Component {
     return (
       <Card style={{flex:0}}>
         <TouchableHighlight onPress={() => {
-            Linking.openURL(JSON.stringify(this.props.recipeInfo.url)).catch(err => console.error('An error occurred', err));
+            Linking.openURL(`${this.props.recipeInfo.url}`).catch(err => console.error('An error occurred', err));
           }}>
         <Image source={{uri:this.props.recipeInfo.image}} style={{height: 200, width: 250}}/>
         </TouchableHighlight>

@@ -23,8 +23,7 @@ export const createQuery = (result) => {
       // query = query + `${entry.name}+${entry.quantity}${units}AND`;
       query = query + `${entry.name}+`;
     });
-  // return query.slice(0, -1);
-  return 'Chicken, Tomato';
+  return query.slice(0, -1);
 };
 
 export const apiCall = (query) => {
