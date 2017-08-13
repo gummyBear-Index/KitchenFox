@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Alert, StackNavigator } from 'react-native';
+import { StyleSheet, Alert, Button, ScrollView } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import { Container, Content, Text, View, List } from 'native-base';
 import Camera from 'react-native-camera';
 import md5 from 'md5';
@@ -13,7 +14,7 @@ class AddItems extends React.Component {
     super(props);
     this.initialCardState = {
       upc: '',
-      name: 'Carrots',
+      name: '',
       quantity: '',
       units: 'g',
       weight: '',
@@ -30,6 +31,7 @@ class AddItems extends React.Component {
     }
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
+    this.itemFormGen();
   }
 
   onBarCodeRead(e) {
@@ -56,14 +58,14 @@ class AddItems extends React.Component {
     newItems[idx] = Object.assign(childState);
     this.setState({ items: newItems });
     let numBlank = 0;
-    for (let i = 0; i < this.numItemCards; i++) {
+    for (let i = 0; i < this.state.numItemCards; i++) {
       let item = this.state.items[i];
       if (!(item.upc.length || item.name.length || `${item.quantity}`.length)) {
         numBlank += 1;
       }
     }
     if (numBlank === 0) {
-      this.updateNumItemCards(this.state.numItemCards + 1)
+      this.updateNumItemCards()
     }
   }
 
@@ -76,7 +78,13 @@ class AddItems extends React.Component {
 
   handleSubmit() {
     let inventory = Object.assign(this.props.inventory);
-    this.cart.forEach((item) => {
+    let itemKeys = Object.keys(this.state.items);
+    const cart = [];
+    itemKeys.forEach(i => {
+      if (this.state.items[i].name.length)
+      cart.push(this.state.items[i])
+    })
+    cart.forEach((item) => {
       let upc = item.upc.length ? item.upc : md5(item.name)
       if (upc in inventory) {
         let newQuant = inventory[upc].quantity;
@@ -92,12 +100,20 @@ class AddItems extends React.Component {
         inventory[upc].weight = item.weight.length ? item.weight : 'NA';
       }
     });
-    this.props.sendItems(this.props.session.token, inventory);
+    console.warn('props', JSON.stringify(this.props))
+    console.warn('inventory', JSON.stringify(inventory))
+    let finalInventory = {
+      inventory,
+    }
+    this.props.sendItems(this.props.session.token, finalInventory);
+    const { navigate } = this.props.navigation;
+    navigate('PantryIndex')
   };
 
-  updateNumItemCards(newNumItemCards) {
+  updateNumItemCards() {
     let newItems = this.state.items;
-    newItems[this.numItemCards] = Object.assign(this.initialCardState);
+    newItems[this.state.numItemCards] = Object.assign(this.initialCardState);
+    const newNumItemCards = this.state.numItemCards + 1;
     this.setState({
       numItemCards: newNumItemCards,
       items: newItems,
@@ -133,8 +149,6 @@ class AddItems extends React.Component {
 
 
   render() {
-    const itemCards = this.itemFormGen(this.state.numItemCards);
-    console.warn(JSON.stringify(this.state));
     if (this.state.showCamera) {
       return (
         <View style={camera.container}>
@@ -157,9 +171,15 @@ class AddItems extends React.Component {
         </View>
       );
     } return (
+      <ScrollView >
         <List>
-          {itemCards}
+          {this.itemFormGen()}
         </List>
+        <Button
+          title="Submit"
+          onPress={() => this.handleSubmit()}>
+        </Button>
+      </ScrollView>
       );
   }
 }
