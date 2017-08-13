@@ -32,6 +32,7 @@ class AddItems extends React.Component {
     }
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
+    this.handleCardUpdate = this.handleCardUpdate.bind(this);
     this.itemFormGen();
   }
 
@@ -68,16 +69,6 @@ class AddItems extends React.Component {
     if (numBlank === 0) {
       this.updateNumItemCards()
     }
-    if (numBlank === 0) {
-      this.updateNumItemCards(this.state.numItemCards + 1)
-    }
-  }
-
-  toggleCamera(cardNum){
-    this.setState({
-      showCamera: true,
-      camIdx: cardNum,
-    });
   }
 
   toggleCamera(cardNum){
@@ -127,7 +118,6 @@ class AddItems extends React.Component {
       numItemCards: newNumItemCards,
       items: newItems,
     })
-    this.itemFormGen();
   }
 
   itemFormGen() {
@@ -149,13 +139,9 @@ class AddItems extends React.Component {
     return itemCards;
   }
 
-
-
   static navigationOptions = {
     title: 'Add items your pantry',
   };
-
-
 
   render() {
     if (this.state.showCamera) {

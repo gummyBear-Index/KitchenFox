@@ -88,12 +88,14 @@ export const upcLookUp = (code, token) => {
   );
 };
 
-export const getRecipes = (token) => {
+export const getRecipes = (number, query, token) => {
   return (
   fetch(`${baseURL}recipes`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      'number': number,
+      'query': query,
       'Authorization': `JWT ${token}`,
       charset: 'UTF-8',
     },

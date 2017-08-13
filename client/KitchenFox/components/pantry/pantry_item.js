@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
+
+import { View, TouchableHighlight } from 'react-native';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
+import { screen, pantry } from '../../style/layout';
+import { text, pantryText } from '../../style/text';
+
 import { connect } from 'react-redux';
 import { sendItems, requestItems } from '../../actions/inventory_actions';
 
@@ -43,33 +48,38 @@ class PantryItem extends React.Component {
     const units = this.state.units;
     return (
       <Container>
-        <Content>
-          <List>
-            <ListItem itemDivider>
-              <Text>You have {name} {qty} {units}</Text>
-            </ListItem>
-            <InputGroup borderType='underline' >
-              <Icon name='ios-home' />
-              <Text>Type new quantity : </Text>
+        <View style={screen.container}>
+          <View style={pantry.updateItem}>
+          <Text style={pantryText.updateItem}>
+            {name}
+          </Text>
+          </View>
+            <InputGroup style={pantry.updateQuan}>
+              <View>
               <Input
-              onChangeText={(num) => {this.setState({quantity: num});}}
+                autoFocus={Boolean(true)}
+                style={pantryText.updateQuan}
+                keyboardType='numeric'
+                onChangeText={(num) => {this.setState({quantity: num});}}
               >{`${qty}`}</Input>
-              <Text>{units}</Text>
-            </InputGroup >
-          </List>
-          <Button
-            style={button.sessionButton}
-            onPress={() => this.handleUpdate()}
-            >
-            <Text>UPDATE</Text>
-          </Button>
-          <Button
-            style={button.sessionButton}
+              </View>
+              <Text style={pantryText.updateQuanUnit}>{units}</Text>
+            </InputGroup>
+          <View style={pantry.groupButtons}>
+          <TouchableHighlight
+            style={button.negFormButton}
             onPress={() => (this.setState({quantity: 0}))}
             >
-            <Text>DELETE</Text>
-          </Button>
-        </Content>
+            <Text style={text.negButton}>delete</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={button.posFormButton}
+            onPress={() => this.handleUpdate()}
+            >
+            <Text style={text.posButton}>update</Text>
+          </TouchableHighlight>
+        </View>
+        </View>
       </Container>
     );
   }

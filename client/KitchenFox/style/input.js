@@ -21,6 +21,6 @@ export const input = StyleSheet.create({
   },
   box: {
     marginBottom: 20,
-    width:150,
+    width: 150,
   },
 });

@@ -36,5 +36,23 @@ export const button = StyleSheet.create({
     // alignSelf: 'stretch',
     // textAlign: 'center',
   },
+  negFormButton: {
+    borderRadius: 80,
+    marginTop: 20,
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 3,
+    borderColor: BLUE,
+    width: 120,
+  },
+  posFormButton: {
+    borderRadius: 80,
+    marginTop: 20,
+    alignSelf: 'center',
+    backgroundColor: BLUE,
+    borderWidth: 3,
+    borderColor: BLUE,
+    width: 120,
+  },
 });
 

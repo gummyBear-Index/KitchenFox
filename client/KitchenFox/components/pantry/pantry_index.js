@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 import { Container, Content, List, ListItem, Button,
   Card, CardItem, Left, Text } from 'native-base';
 import { View, TouchableHighlight } from 'react-native';
@@ -31,7 +30,7 @@ class PantryIndex extends React.Component {
       this.props.requestItems(this.props.session.token);
     }
   }
-
+ 
   handleLogout() {
     this.props.logout();
   }
@@ -69,14 +68,12 @@ class PantryIndex extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const fullName = `${this.props.session.first_name} ${this.props.session.last_name}`;
-    // console.warn(ACTIVE_TAB);
     return (
       <Container>
          <View style={screen.container}>
               <Text style={text.titleCenter}>
                 Your Ingredients
               </Text>
-
             {this.renderItems()}
            <Button
             style={button.sessionButton}
