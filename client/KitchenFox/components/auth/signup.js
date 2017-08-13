@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { AsyncStorage, Image, KeyboardAvoidingView } from 'react-native';
+import { AsyncStorage, Image, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
 import { session } from '../../style/layout';
+import { PLACEHOLDER_TEXT } from '../../style/common';
+import FButton from '../misc/flat_button';
 
 import {
   Container,
@@ -13,7 +15,6 @@ import {
   Title,
   InputGroup,
   Input,
-  Button,
   Spinner,
   Icon,
   View,
@@ -55,16 +56,17 @@ class Signup extends Component {
 				<Image
         source={require('../../images/greeting/food-5-.jpg')}
         style={session.container}>
+				<View style={session.sessionDarkness}>
 				<View style={session.container}>
 					<View
 						style={session.content}>
 						{/* <KeyboardAvoidingView> */}
-							<Text style={text.titleCenter}>Sign Up</Text>
+							<Text style={text.titleSession}>Sign Up</Text>
 							<InputGroup style={input.field}>
 								<Icon name='ios-arrow-forward' style={input.icon} />
 								<Input
 									style={input.sessionText}
-									placeholderTextColor='#000'
+									placeholderTextColor={PLACEHOLDER_TEXT}
 									placeholder='First name'
 									autoCorrect={false}
 									onChangeText={first_name => this.setState({ first_name })}
@@ -75,7 +77,7 @@ class Signup extends Component {
 								<Icon name='ios-arrow-forward' style={input.icon} />
 								<Input
 									style={input.sessionText}
-									placeholderTextColor='#000'
+									placeholderTextColor={PLACEHOLDER_TEXT}
 									placeholder='Last name'
 									autoCorrect={false}
 									onChangeText={last_name => this.setState({ last_name })}
@@ -86,7 +88,7 @@ class Signup extends Component {
 								<Icon name="ios-person" style={input.icon} />
 								<Input
 									style={input.sessionText}
-									placeholderTextColor='#000'
+									placeholderTextColor={PLACEHOLDER_TEXT}
 									placeholder="Email"
 									keyboardType="email-address"
 									autoCorrect={false}
@@ -99,7 +101,7 @@ class Signup extends Component {
 								<Icon name="ios-unlock" style={input.icon} />
 								<Input
 									style={input.sessionText}
-									placeholderTextColor='#000'
+									placeholderTextColor={PLACEHOLDER_TEXT}
 									placeholder="Password"
 									onChangeText={password => this.setState({ password })}
 									value={this.state.password}
@@ -109,15 +111,17 @@ class Signup extends Component {
 							{this.state.isLoading ? (
 								<Spinner size="small" color="#000000" />
 							) : (
-								<Button
+								<TouchableHighlight
+									underlayColor='#fff'
 									style={button.sessionButton}
 									onPress={(e) => this.handleSignup()}
 								>
 									<Text style={text.sessionButton}>Go</Text>
-								</Button>
+								</TouchableHighlight>
 							)}
 					{/* </KeyboardAvoidingView> */}
 					</View>
+				</View>
 				</View>
 				</Image>
 			</Container>

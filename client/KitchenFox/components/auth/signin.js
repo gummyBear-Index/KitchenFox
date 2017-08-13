@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import { Image } from 'react-native';
+import { Image, TouchableHighlight } from 'react-native';
 import { text } from '../../style/text.js';
 import { button } from '../../style/button';
 import { input } from '../../style/input';
 import { session } from '../../style/layout';
+import { PLACEHOLDER_TEXT } from '../../style/common';
 
 import {
   Container,
@@ -52,15 +53,16 @@ class SignIn extends Component {
         <Image
         source={require('../../images/greeting/food-2-.jpg')}
         style={session.container}>
-        <View style={session.container}>
+        <View style={session.sessionDarkness}>
+         <View style={session.container}> 
           <View
             style={session.content}>
-            <Text style={text.titleCenter}>Sign In</Text>
+              <Text style={text.titleSession}>Sign In</Text>
             <InputGroup style={input.field}>
               <Icon name='ios-person' style={input.icon} />
               <Input
                 style={input.sessionText}
-                placeholderTextColor='#444'
+                placeholderTextColor={PLACEHOLDER_TEXT}
                 placeholder='Email'
                 keyboardtype='email-address'
                 autoCorrect={false}
@@ -73,7 +75,7 @@ class SignIn extends Component {
               <Icon name='ios-unlock' style={input.icon} />
               <Input
                 style={input.sessionText}
-                placeholderTextColor='#444'
+                placeholderTextColor={PLACEHOLDER_TEXT}
                 placeholder='Password'
                 onChangeText={password => this.setState({ password })}
                 value={this.state.password}
@@ -83,14 +85,16 @@ class SignIn extends Component {
             {this.state.isLoading ? (
               <Spinner size="small" color="#000000" />
             ) : (
-              <Button
+              <TouchableHighlight
                 style={button.sessionButton}
+                underlayColor='#fff'
                 onPress={() => this.handleSignin()}
               >
                 <Text style={text.sessionButton}>Go</Text>
-              </Button>
+              </TouchableHighlight>
             )}
           </View>
+         </View> 
         </View>
         </Image>
       </Container>
