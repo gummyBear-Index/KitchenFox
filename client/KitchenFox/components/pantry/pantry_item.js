@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
+import { connect } from 'react-redux';
+import { sendItems, requestItems } from '../../actions/inventory_actions';
 
 class PantryItem extends React.Component {
   constructor(props) {
@@ -13,25 +15,22 @@ class PantryItem extends React.Component {
       quantity: Object.values(item)[0]['quantity'],
       units: Object.values(item)[0]['units']
     }
+
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   handleUpdate() {
-    console.warn(JSON.stringify(this.state));
+    const { navigate } = this.props.navigation;
     const token = this.props.session.token;
     const item = this.props.navigation.state.params.item;
     const key = Object.keys(item)[0];
-    console.warn(key);
     const inventory = {
       inventory: {}
     };
     inventory['inventory'][`${key}`] = Object.assign(this.state);
-    console.warn(JSON.stringify(inventory));
-    console.warn(token);
     this.props.sendItems(token, inventory);
-  }
-
-  handleDelete() {
-    console.warn(this.state);
+    this.props.requestItems(this.props.session.token);
+    navigate('PantryIndex');
   }
 
   static navigationOptions = {
@@ -68,7 +67,9 @@ class PantryItem extends React.Component {
           </Button>
           <Button
             style={button.sessionButton}
-            onPress={() => this.handleDelete()}
+            onPress={() => {
+              this.setState({quantity: 0});
+            }}
             >
             <Text>DELETE</Text>
           </Button>
@@ -78,30 +79,14 @@ class PantryItem extends React.Component {
   }
 }
 
-export default PantryItem;
+const mapStateToProps = ({ session, inventory }) => ({
+  session,
+  inventory
+});
 
-// const PantryCategoryItemCard = () => {
-//   return (
-//     <Card>
-//       <CardItem>
-//         <Left>
-//           <Body>
-//             <Text>Asparagus</Text>
-//             <Text note>Running Low</Text>
-//           </Body>
-//         </Left>
-//       </CardItem>
-//     </Card>
-//   );
-// };
+const mapDispatchToProps = dispatch => ({
+  sendItems: (token, inventory) => dispatch(sendItems(token, inventory)),
+  requestItems: token => dispatch(requestItems(token))
+});
 
-// <Picker
-//   borderType='underline'
-//   iosHeader='Select one'
-//   mode='dropdown'
-//   selectedValue={this.state.units}
-//   onValueChange={this.onValueChange.bind(this)}
-//   >
-//   <Item label="each" value="each" />
-//   <Item label="g" value="g" />
-// </Picker>
+export default connect(mapStateToProps, mapDispatchToProps)(PantryItem);
