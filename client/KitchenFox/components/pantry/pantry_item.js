@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
+
+import { View } from 'react-native';
 import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListItem, Text, Card, CardItem, Body, Left, Button } from 'native-base';
 import { button } from '../../style/button';
+import { screen, pantry } from '../../style/layout';
+import { text, pantryText } from '../../style/text';
+
 import { connect } from 'react-redux';
 import { sendItems, requestItems } from '../../actions/inventory_actions';
 
@@ -43,20 +48,21 @@ class PantryItem extends React.Component {
     const units = this.state.units;
     return (
       <Container>
-        <Content>
-          <List>
-            <ListItem itemDivider>
-              <Text>You have {name} {qty} {units}</Text>
-            </ListItem>
-            <InputGroup borderType='underline' >
-              <Icon name='ios-home' />
-              <Text>Type new quantity : </Text>
+        <View style={screen.container}>
+          <View style={pantry.addItem}>
+          <Text style={pantryText.addItem}>
+            {name}
+          </Text>
+          </View>
+            <InputGroup style={pantry.updateQuan}>
               <Input
-              onChangeText={(num) => {this.setState({quantity: num});}}
+                keyboardType='numeric'
+                style={pantry.child}
+                onChangeText={(num) => {this.setState({quantity: num});}}
               >{`${qty}`}</Input>
-              <Text>{units}</Text>
-            </InputGroup >
-          </List>
+              <Text style={pantry.child}>{units}</Text>
+            </InputGroup>
+
           <Button
             style={button.sessionButton}
             onPress={() => this.handleUpdate()}
@@ -69,7 +75,7 @@ class PantryItem extends React.Component {
             >
             <Text>DELETE</Text>
           </Button>
-        </Content>
+        </View>
       </Container>
     );
   }

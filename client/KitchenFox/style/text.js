@@ -53,12 +53,11 @@ export const text = StyleSheet.create({
     marginBottom: 2,
     textAlign: 'center',
     color: GREETING_TEXT,
-    fontWeight: 'normal',
     fontFamily: BASE_FONT_REGULAR,
-    textShadowColor: BLUE,
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
-    shadowOpacity: 0.98,
+    // textShadowColor: BLUE,
+    // textShadowOffset: { width: 2, height: 2 },
+    // textShadowRadius: 4,
+    // shadowOpacity: 0.98,
   },
   greetingButton: {
     color: ORANGE,
@@ -92,6 +91,11 @@ export const pantryText = StyleSheet.create({
     fontSize: 18,
     paddingLeft: 28,
     color: ORANGE_LIGHT,
-  }
+  },
+  addItem: {
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+    fontSize: 32,
+  },
 });
 
