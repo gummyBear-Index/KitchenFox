@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -51,6 +50,10 @@
 		EFF8738F90554084974BC021 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD7302E90704EC7BD565A5B /* MaterialIcons.ttf */; };
 		F14378C93B8C4837B6D70F3F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91F3480F054240C182BD9A3F /* Zocial.ttf */; };
 		FF0E5C95A35B41BCA05C5E75 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE93366577345928DC380ED /* Foundation.ttf */; };
+		5545CFF10D734F44B313C03D /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FE0C2B0DFFB4F2ABE26CFB0 /* Quicksand-Bold.ttf */; };
+		923F4D11A9164ABF80B00537 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7420D8281434EB1A3E43691 /* Quicksand-Light.ttf */; };
+		900AFA36120A4C47B2602A86 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77E969C44B1B4A3E93C2C98F /* Quicksand-Medium.ttf */; };
+		011CFFD55D6D48D9A9B4E509 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE2D86CA4CA48C9B9C1CE4D /* Quicksand-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -321,6 +324,10 @@
 		DE53229679974FDAB6C925BE /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		E44CF90132FB47918D1D09A0 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		E764087DDA6442F4A505421E /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		3FE0C2B0DFFB4F2ABE26CFB0 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; name = "Quicksand-Bold.ttf"; path = "../assets/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C7420D8281434EB1A3E43691 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; name = "Quicksand-Light.ttf"; path = "../assets/fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		77E969C44B1B4A3E93C2C98F /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; name = "Quicksand-Medium.ttf"; path = "../assets/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CDE2D86CA4CA48C9B9C1CE4D /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; name = "Quicksand-Regular.ttf"; path = "../assets/fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +518,10 @@
 				91F3480F054240C182BD9A3F /* Zocial.ttf */,
 				8DF466E9C3594F6DB91A6E78 /* FredokaOne-Regular.ttf */,
 				7E0F81AC27544DE8B8D67ED4 /* GrandHotel-Regular.ttf */,
+				3FE0C2B0DFFB4F2ABE26CFB0 /* Quicksand-Bold.ttf */,
+				C7420D8281434EB1A3E43691 /* Quicksand-Light.ttf */,
+				77E969C44B1B4A3E93C2C98F /* Quicksand-Medium.ttf */,
+				CDE2D86CA4CA48C9B9C1CE4D /* Quicksand-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1000,6 +1011,10 @@
 				F14378C93B8C4837B6D70F3F /* Zocial.ttf in Resources */,
 				2AF13EAC6707460E972E22C9 /* FredokaOne-Regular.ttf in Resources */,
 				D23ECF3A936A4BB38D82B56C /* GrandHotel-Regular.ttf in Resources */,
+				5545CFF10D734F44B313C03D /* Quicksand-Bold.ttf in Resources */,
+				923F4D11A9164ABF80B00537 /* Quicksand-Light.ttf in Resources */,
+				900AFA36120A4C47B2602A86 /* Quicksand-Medium.ttf in Resources */,
+				011CFFD55D6D48D9A9B4E509 /* Quicksand-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
