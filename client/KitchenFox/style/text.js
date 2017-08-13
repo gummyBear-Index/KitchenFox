@@ -15,14 +15,13 @@ const title = {
 
 export const text = StyleSheet.create({
   title,
-  titleLeft: {
-    fontSize: 36,
-    paddingTop: 40,
-    paddingBottom: 20,
-    paddingLeft: 40,
-    textAlign: 'left',
+  titleDiminished: {
+    fontSize: 22,
+    paddingTop: 8,
+    paddingBottom: 8,
+    textAlign: 'center',
     color: TITLE,
-    fontFamily: BASE_FONT_LIGHT,
+    fontFamily: BASE_FONT_BOLD,
   },
   titleSession: {
     fontSize: 50,

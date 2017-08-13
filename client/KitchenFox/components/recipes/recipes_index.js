@@ -35,11 +35,11 @@ class RecipesIndex extends React.Component {
   fetchRecipes(query) {
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({recipes: JSON.parse(res._bodyText)});
     });
   } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({recipes: JSON.parse(res._bodyText)});
     });
     }
   }
@@ -49,7 +49,7 @@ class RecipesIndex extends React.Component {
     if (checked === true) {
       newQuery[idx] = name;
     } else {
-      delete newQuery[idx]
+      delete newQuery[idx];
     }
     this.setState({query: newQuery});
   }
@@ -137,11 +137,11 @@ class RecipesIndex extends React.Component {
             </TouchableHighlight>
           </View>
         </View>
-      )
+      );
     } else {
     return (
       <Container>
-        <Text>Recipes will go here!</Text>
+        <Text style={text.titleDiminished}>Recipes you can make</Text>
         <Content>
           {recipes}
         </Content>

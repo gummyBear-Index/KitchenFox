@@ -157,3 +157,12 @@ export const addItemCard = StyleSheet.create({
     height: null,
   }
 });
+
+export const recipe = StyleSheet.create({
+  image: {
+    height: 250,
+    width: null,
+    alignItems: 'stretch',
+  }
+});
+

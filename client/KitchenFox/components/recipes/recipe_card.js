@@ -18,6 +18,8 @@ import {
   ListItem,
 } from 'native-base';
 
+import { recipe } from '../../style/layout';
+
 class RecipeCard extends React.Component {
   constructor(props){
     super(props);
@@ -25,7 +27,7 @@ class RecipeCard extends React.Component {
 
   render() {
     return (
-      <Card style={{flex:0}}>
+            <Card style={{flex:0}}>
         <TouchableHighlight onPress={() => {
             Linking.openURL(`${this.props.recipeInfo.url}`).catch(err => console.error('An error occurred', err));
           }}>
