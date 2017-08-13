@@ -33,19 +33,18 @@ class RecipesIndex extends React.Component {
   }
 
   fetchRecipes(query) {
-    if (query = "all") {
+    if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
   } else {
-    getRecipes(5, Object.values(this.state.query).join("+"), this.props.session.token).then((res) => {
+    getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
     }
   }
 
   checkBoxUpdate(checked, idx, name){
-    console.warn(checked);
     const newQuery = Object.assign(this.state.query);
     if (checked === true) {
       newQuery[idx] = name;
@@ -110,7 +109,6 @@ class RecipesIndex extends React.Component {
   }
 
   render() {
-    console.warn(JSON.stringify(this.state.query));
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
@@ -125,7 +123,7 @@ class RecipesIndex extends React.Component {
           <Text>Fetch with Checked Items</Text>
           </Button>
           <Button style={button.sessionButton} onPress={() => this.fetchRecipes("all")}>
-          <Text>Fetch with Checked Items</Text>
+          <Text>Fetch with All Items</Text>
           </Button>
         </Container>
       )
