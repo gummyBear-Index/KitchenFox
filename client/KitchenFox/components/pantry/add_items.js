@@ -32,6 +32,7 @@ class AddItems extends React.Component {
     }
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
+    this.handleCardUpdate = this.handleCardUpdate.bind(this);
     this.itemFormGen();
   }
 
@@ -117,7 +118,6 @@ class AddItems extends React.Component {
       numItemCards: newNumItemCards,
       items: newItems,
     })
-    this.itemFormGen();
   }
 
   itemFormGen() {

@@ -28,7 +28,13 @@ import {
 class AddItemCard extends Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign(this.props.initialCardState);
+    this.state = {
+      upc: '',
+      name: '',
+      quantity: '',
+      units: 'g',
+      weight: '',
+    };
     this.onChange = this.onChange.bind(this);
   }
 
@@ -50,7 +56,9 @@ class AddItemCard extends Component {
   }
 
   onChangeText(type, value) {
-    this.setState({[type]: value});
+    const newState = Object.assign(this.state);
+    newState[type] = value;
+    this.setState(newState);
     if (this.state.quantity === "1") {
       this.setState({units: "each"});
     }
@@ -85,7 +93,7 @@ class AddItemCard extends Component {
                 placeholder='Quantity'
                 autoCorrect={false}
                 keyboardType="numeric"
-                onChangeText={(string) => this.onChange(string)}
+                onChangeText={quantity => this.onChangeText('quantity', quantity)}
                 value={`${this.state.quantity}`}
               />
             </InputGroup>
