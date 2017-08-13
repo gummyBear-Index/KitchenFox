@@ -16,6 +16,7 @@ class RecipesIndex extends React.Component {
       recipes: [],
       query: {},
     };
+    this.fetchRecipes = this.fetchRecipes.bind(this);
   };
   static navigationOptions = {
     title: 'Recipes',
@@ -23,9 +24,25 @@ class RecipesIndex extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
+    // getRecipes(5, this.props.session.token).then((res) => {
+    //   this.setState({recipes: JSON.parse(res._bodyText)})
+    // });
+  }
+
+  fetchRecipes() {
     getRecipes(5, this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
     });
+  }
+
+  checkBoxUpdate(checked, idx, name){
+    const newQuery = Object.assign(this.state.query);
+    if (checked === true) {
+      newQuery[idx] = name;
+    } else {
+      delete newQuery[idx]
+    }
+    this.setState({query: newQuery});
   }
 
   renderItems() {
@@ -45,9 +62,9 @@ class RecipesIndex extends React.Component {
             <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
               <CheckBox
-                label='Label'
-                checked={true}
-                onChange={(checked) => console.log('I am checked', checked)}
+                label={idx}
+                checked={false}
+                onChange={(checked) => this.checkBoxUpdate(checked, idx, Object.values(item)[0]['name'])}
               />
           </View>
         )}
@@ -84,6 +101,20 @@ class RecipesIndex extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
+    const items = this.renderItems();
+    if (this.state.recipes.length === 0) {
+      return (
+        <Container>
+          <Text>Recipes will go here!</Text>
+          <Content>
+            {items}
+          </Content>
+          <Button style={button.sessionButton} onPress={() => this.fetchRecipes()}>
+          <Text>Fetch with Checked Items</Text>
+          </Button>
+        </Container>
+      )
+    } else {
     return (
       <Container>
         <Text>Recipes will go here!</Text>
@@ -92,6 +123,7 @@ class RecipesIndex extends React.Component {
         </Content>
       </Container>
     );
+    }
   }
 }
 
