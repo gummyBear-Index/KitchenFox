@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BUTTON_ACTION, BUTTON_ACTION_TEXT, WHITE, ORANGE } from './common';
+import { BUTTON_ACTION, BUTTON_ACTION_TEXT, WHITE, ORANGE, BLUE } from './common';
 
 export const button = StyleSheet.create({
   // container: {
@@ -14,7 +14,7 @@ export const button = StyleSheet.create({
     shadowOpacity: 0,
   },
   greetingButton: {
-    borderRadius: 20,
+    borderRadius: 80,
     marginTop: 20,
     alignSelf: 'center',
     backgroundColor: WHITE,
@@ -24,14 +24,16 @@ export const button = StyleSheet.create({
     borderColor: '#fff'
   },
   sessionButton: {
-    borderRadius: 20,
+    borderRadius: 80,
     marginTop: 20,
     alignSelf: 'center',
     backgroundColor: ORANGE,
     shadowColor: 'transparent',
     shadowOpacity: 0,
     // borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: '#fff',
+    alignSelf: 'stretch',
+    // textAlign: 'center',
   },
 });
 

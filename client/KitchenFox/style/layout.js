@@ -21,16 +21,17 @@ export const session = StyleSheet.create({
     justifyContent: 'center',
   },
   sessionDarkness: {
-    backgroundColor: 'rgba(255,255,255,.85)',
+    backgroundColor: 'rgba(255,255,255,.83)',
     flex: 1,
     width: undefined,
     height: undefined,
     justifyContent: 'center',
   },
   content: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 28,
+    paddingRight: 28,
     paddingBottom: 20,
+    paddingTop: 20,
   },
   header: {
     marginTop: 80,

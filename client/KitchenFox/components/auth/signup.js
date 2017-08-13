@@ -61,7 +61,7 @@ class Signup extends Component {
 					<View
 						style={session.content}>
 						{/* <KeyboardAvoidingView> */}
-							<Text style={text.titleLeft}>Sign Up</Text>
+							<Text style={text.titleSession}>Sign Up</Text>
 							<InputGroup style={input.field}>
 								<Icon name='ios-arrow-forward' style={input.icon} />
 								<Input
