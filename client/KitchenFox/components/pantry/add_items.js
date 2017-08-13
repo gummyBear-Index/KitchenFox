@@ -1,17 +1,77 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert, StackNavigator } from 'react-native';
 import { Container, Content, Text, View, List } from 'native-base';
+import Camera from 'react-native-camera';
 import md5 from 'md5';
 
+import { camera } from '../../style/cameraStyle';
+import { upcLookUp } from '../../util/api_util';
 import AddItemCard from './add_item_card';
 
 class AddItems extends React.Component {
   constructor(props) {
     super(props);
+    this.initialCardState = {
+      upc: '',
+      name: 'Carrots',
+      quantity: '',
+      units: 'g',
+      weight: '',
+    }
     this.state = {
+      showCamera: false,
+      cameraType: Camera.constants.Type.back,
       cart: [],
       numItemCards: 1,
+      items: {
+        0: Object.assign(this.initialCardState),
+      },
+      camIdx: 0,
     }
+    this.onBarCodeRead = this.onBarCodeRead.bind(this);
+    this.toggleCamera = this.toggleCamera.bind(this);
+  }
+
+  onBarCodeRead(e) {
+    const newItems = Object.assign(this.state.items);
+    let newItem;
+    this.setState({ showCamera: false });
+    upcLookUp(e.data, this.props.session.token).then((res) => {
+      newItem = JSON.parse(res._bodyText);
+      newItem = newItem[0];
+      if (newItem.quantity === 1) {
+        newItem.units = 'each';
+      }
+      this.handleCardUpdate(this.state.camIdx, newItem)
+    });
+    Alert.alert(
+        "Barcode Found!",
+        "Type: " + e.type + "\nData: " + e.data
+    );
+  }
+
+  handleCardUpdate(idx, childState) {
+    const keyArr = ['upc', 'name', 'quantity', 'units', 'weight']
+    const newItems = Object.assign(this.state.items);
+    newItems[idx] = Object.assign(childState);
+    this.setState({ items: newItems });
+    let numBlank = 0;
+    for (let i = 0; i < this.numItemCards; i++) {
+      let item = this.state.items[i];
+      if (!(item.upc.length || item.name.length || `${item.quantity}`.length)) {
+        numBlank += 1;
+      }
+    }
+    if (numBlank === 0) {
+      this.updateNumItemCards(this.state.numItemCards + 1)
+    }
+  }
+
+  toggleCamera(cardNum){
+    this.setState({
+      showCamera: true,
+      camIdx: cardNum,
+    });
   }
 
   handleSubmit() {
@@ -35,34 +95,29 @@ class AddItems extends React.Component {
     this.props.sendItems(this.props.session.token, inventory);
   };
 
-  handleCardUpdate(idx, childState) {
-    let obj = Object.assign(childState);
-    const newCart = this.state.cart.slice(0);
-    newCart[idx] = obj;
-    this.setState({ cart: newCart });
-    let numBlank = 0;
-    let blanks = newCart.filter(item => (
-      !(item.upc.length || item.name.length || item.name.quantity)
-    ));
-    if (!blanks.length) {
-      this.updateNumItemCards(this.state.numItemCards + 1);
-    }
-  }
-
   updateNumItemCards(newNumItemCards) {
-    this.setState({ numItemCards: newNumItemCards });
-    this.itemFormGen(newNumItemCards);
+    let newItems = this.state.items;
+    newItems[this.numItemCards] = Object.assign(this.initialCardState);
+    this.setState({
+      numItemCards: newNumItemCards,
+      items: newItems,
+    })
+    this.itemFormGen();
   }
 
-  itemFormGen(numItemCards) {
+  itemFormGen() {
     const itemCards = [];
-    for (let i = 0; i < numItemCards; i++) {
+    for (let i = 0; i < this.state.numItemCards; i++) {
+      let item = this.state.items.hasOwnProperty(i) ? this.state.items[i] : this.initialCardState;
+      item = Object.assign(item);
       let j = (
         <AddItemCard
           key={`card-form-number-${i}`}
           cardNum={i}
           updateParent={(cardNum, localState) => this.handleCardUpdate(cardNum, localState)}
-          token={this.props.session.token} />
+          token={this.props.session.token}
+          toggleParentCam={cardNum => this.toggleCamera(cardNum)}
+          initialCardState={Object.assign(item)} />
       );
       itemCards.push(j);
     }
@@ -79,11 +134,33 @@ class AddItems extends React.Component {
 
   render() {
     const itemCards = this.itemFormGen(this.state.numItemCards);
-    return (
-      <List>
-        {itemCards}
-      </List>
-    );
+    console.warn(JSON.stringify(this.state));
+    if (this.state.showCamera) {
+      return (
+        <View style={camera.container}>
+        <Text>
+          Scan the barcode now!
+        </Text>
+        <Camera
+          ref={(cam) => {
+            this.camera = cam;
+          }}
+          style={camera.preview}
+          aspect={Camera.constants.Aspect.fill}
+          orientation={Camera.constants.Orientation.portrait}
+          barCodeTypes={['org.gs1.UPC-E']}
+          onBarCodeRead={this.onBarCodeRead}>
+          <View style={camera.square}>
+            <Text>Here</Text>
+          </View>
+        </Camera>
+        </View>
+      );
+    } return (
+        <List>
+          {itemCards}
+        </List>
+      );
   }
 }
 
