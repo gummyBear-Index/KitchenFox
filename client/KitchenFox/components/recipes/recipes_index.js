@@ -27,7 +27,6 @@ class RecipesIndex extends React.Component {
   recipes(){
     const recipes = [];
     if (this.state.recipes.length > 0) {
-      console.warn(JSON.stringify(this.state.recipes[0].label));
       for (let i = 0; i < this.state.recipes.length; i++) {
         let j = (
           <RecipeCard key={i} recipeInfo={this.state.recipes[i]} />
