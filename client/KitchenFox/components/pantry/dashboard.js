@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
-    getRecipes(this.props.session.token)
+    getRecipes(1, null, this.props.session.token)
       .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
   }
 
@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
 
   renderRecipe() {
     if (this.state.recipes.length > 0) {
-      <RecipeCard recipeInfo={this.state.recipes[0]} />
+      return <RecipeCard recipeInfo={this.state.recipes[0]} />
     }
   }
 
