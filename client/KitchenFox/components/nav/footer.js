@@ -26,7 +26,8 @@ const NavFooter = ({ navigate }) => {
           <Text style={{ color: 'white'}}>Dashboard</Text>
         </Button>
         <Button vertical
-          onPress={() => navigate('PantryIndex')} active>
+          onPress={() => navigate('PantryIndex')} 
+          style={{ backgroundColor: BLUE_DARK }} active>
           <Icon active name="albums" />
           <Text>Pantry</Text>
         </Button>

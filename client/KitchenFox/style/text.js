@@ -4,7 +4,7 @@ import {
   BASE_FONT_REGULAR, 
   BASE_FONT_BOLD, 
   BUTTON_ACTION_TEXT, 
-  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT,
+  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
   GREETING_TEXT } from './common';
 
 const title = {
@@ -53,12 +53,11 @@ export const text = StyleSheet.create({
     marginBottom: 2,
     textAlign: 'center',
     color: GREETING_TEXT,
-    fontWeight: 'normal',
     fontFamily: BASE_FONT_REGULAR,
-    textShadowColor: BLUE,
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
-    shadowOpacity: 0.98,
+    // textShadowColor: BLUE,
+    // textShadowOffset: { width: 2, height: 2 },
+    // textShadowRadius: 4,
+    // shadowOpacity: 0.98,
   },
   greetingButton: {
     color: ORANGE,
@@ -80,6 +79,26 @@ export const text = StyleSheet.create({
     alignSelf: 'stretch',
     textAlign: 'center',
   },
+  posButton: {
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 18,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  },
+  negButton: {
+    color: BLUE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 18,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  }
 });
 
 export const pantryText = StyleSheet.create({
@@ -91,7 +110,27 @@ export const pantryText = StyleSheet.create({
   itemDesc: {
     fontSize: 18,
     paddingLeft: 28,
-    color: ORANGE_LIGHT,
-  }
+    color: ORANGE_LIGHTER,
+  },
+  updateItem: {
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    fontSize: 40,
+  },
+  updateQuan: {
+    fontSize: 30,
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    width: 100,
+    textAlign: 'right',
+  },
+  updateQuanUnit: {
+    fontSize: 30,
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+    width: 100,
+    textAlign: 'left',
+    paddingLeft: 3,
+  },
 });
 

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
+
+import { View } from 'react-native';
 import { Container, Content, List, ListItem, Text, Button } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
+import { screen } from '../../style/layout';
+import { text } from '../../style/text';
+
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 
@@ -14,7 +19,7 @@ class Dashboard extends React.Component {
       name: '',
       quantity: 0,
       units: ''
-    }
+    };
   }
 
   componentWillMount() {
@@ -26,6 +31,14 @@ class Dashboard extends React.Component {
   static navigationOptions = {
     title: 'Kitchen Fox Dashboard',
   };
+
+  header() {
+    return (
+      <Text style={text.titleCenter}>
+          Your Dashboard
+      </Text>
+    );
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -49,6 +62,7 @@ class Dashboard extends React.Component {
     if (allItems.length > 0 && lowItems.length === 0) {
       return(
         <Container>
+          {this.header()}
           <ListItem itemDivider>
             <Text>
               Looks like you are not running low on inventory
@@ -68,6 +82,7 @@ class Dashboard extends React.Component {
     } else if (lowItems.length > 0) {
       return(
         <Container>
+          {this.header()}
           <ListItem itemDivider>
             <Text>
               Looks like you are running low on :
@@ -98,6 +113,7 @@ class Dashboard extends React.Component {
     } else if (allItems.length === 0) {
       return(
         <Container>
+          {this.header()}
           <ListItem itemDivider>
             <Text>
               There is nothing in your pantry or fridge
