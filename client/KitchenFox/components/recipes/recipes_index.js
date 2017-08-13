@@ -16,7 +16,7 @@ class RecipesIndex extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      recipes: [],
+      recipes: "none",
       query: {},
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
@@ -86,7 +86,7 @@ class RecipesIndex extends React.Component {
   recipes(){
     let recipes = [];
     const { navigate } = this.props.navigation;
-    // console.warn(this.state.recipes.length);
+    console.warn(this.state.recipes.length);
     if (this.state.recipes.length > 0) {
       for (let i = 0; i < this.state.recipes.length; i++) {
         let j = (
@@ -113,7 +113,7 @@ class RecipesIndex extends React.Component {
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
-    if (this.state.recipes.length === 0) {
+    if (this.state.recipes === "none") {
       return (
         <Container>
           <Text>Recipes will go here!</Text>
