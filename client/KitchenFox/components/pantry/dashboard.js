@@ -11,11 +11,13 @@ import { getRecipes } from '../../util/api_util';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    let component = <Text>''</Text>
     this.state = {
       name: '',
       quantity: 0,
       units: '',
-      recipes: []
+      recipes: [],
+      toRender: component
     }
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
@@ -25,21 +27,51 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
-    getRecipes(1, null, this.props.session.token)
+  }
+
+  componentWillReceiveProps(newProps) {
+    let items = Object.values(newProps.inventory);
+    let item = items[Math.floor(Math.random()*items.length)];
+    item = item.name;
+    getRecipes(1, item, newProps.session.token)
       .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
   }
 
-  static navigationOptions = {
-    title: 'Kitchen Fox Dashboard',
-  };
-
-  renderRecipe() {
-    if (this.state.recipes.length > 0) {
-      return <RecipeCard recipeInfo={this.state.recipes[0]} />
+  selectToRender () {
+    const { navigate } = this.props.navigation;
+    const allItems = [];
+    const lowItems = [];
+    const allId = Object.keys(this.props.inventory);
+    allId.forEach((id) => {
+      let obj = {};
+      const item = this.props.inventory[`${id}`];
+      if (item['units'] == 'g' && item['quantity'] <= 100) {
+        obj[`${id}`] = item;
+        lowItems.push(obj);
+      } else if (item['units'] == 'each' && item['quantity'] <= 3) {
+        obj[`${id}`] = item;
+        lowItems.push(obj);
+      }
+      obj[`${id}`] = item;
+      allItems.push(obj);
+    })
+    if (allItems.length > 0 && lowItems.length === 0) {
+      return this.renderNoLowItem(allItems, lowItems);
+    } else if (lowItems.length > 0) {
+      return this.renderLowItems(allItems, lowItems);
+    } else if (allItems.length === 0) {
+      return this.renderNoInventory();
     }
   }
 
-  renderNoLowItem() {
+  renderRecipe() {
+    if (this.state.recipes.length > 0) {
+      return (<RecipeCard recipeInfo={this.state.recipes[0]} />)
+    };
+
+  }
+
+  renderNoLowItem(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
       <Container>
@@ -61,7 +93,7 @@ class Dashboard extends React.Component {
     )
   }
 
-  renderLowItems(lowItems) {
+  renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
       <Container>
@@ -102,32 +134,15 @@ class Dashboard extends React.Component {
     )
   }
 
-  render() {
-    const { navigate } = this.props.navigation;
-    const allItems = [];
-    const lowItems = [];
-    const allId = Object.keys(this.props.inventory);
-    allId.forEach((id) => {
-      let obj = {};
-      const item = this.props.inventory[`${id}`];
-      if (item['units'] == 'g' && item['quantity'] <= 100) {
-        obj[`${id}`] = item;
-        lowItems.push(obj);
-      } else if (item['units'] == 'each' && item['quantity'] <= 3) {
-        obj[`${id}`] = item;
-        lowItems.push(obj);
-      }
-      obj[`${id}`] = item;
-      allItems.push(obj);
-    })
+  static navigationOptions = {
+    title: 'Kitchen Fox Dashboard',
+  };
 
-    if (allItems.length > 0 && lowItems.length === 0) {
-      return this.renderNoLowItem();
-    } else if (lowItems.length > 0) {
-      return this.renderLowItems(lowItems);
-    } else if (allItems.length === 0) {
-      return this.renderNoInventory();
-    }
+  render() {
+    const render = this.selectToRender();
+    return(
+      render
+    )
   }
 }
 
@@ -137,7 +152,7 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
+  // logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token)),
 });
 

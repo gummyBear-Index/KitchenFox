@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Image } from 'react-native';
 
-import { BLUE, WHITE, ORANGE, ORANGE_LIGHT } from './common';
+import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT } from './common';
 
 export const session = StyleSheet.create({
   container: {
@@ -52,6 +52,7 @@ export const session = StyleSheet.create({
 export const screen = StyleSheet.create({
   container: {
     flex: 1,
+    // flexDirection: 'row',
     width: null,
     height: null,
     backgroundColor: 'white',
@@ -108,13 +109,47 @@ export const pantry = StyleSheet.create({
 
 export const addItemCard = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingBottom: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   row: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: ORANGE,
+    flexWrap: 'wrap',
+    // alignItems: 'flex-end',
+    // borderBottomWidth: 0,
   },
-  rowItem: {
-    flex: 1.
+  rowQuan: {
+    // flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: ORANGE_LIGHT,
+    flexWrap: 'wrap',
+    // alignItems: 'flex-end',
   },
-})
+  name: {
+    flex: 4,
+    // paddingTop: 10,
+    // paddingBottom: 7,
+    paddingLeft: 5,
+  },
+  quan: {
+    // backgroundColor: 'transparent',
+    flex: 1,
+    paddingLeft: 15,
+    paddingTop: 6,
+    paddingBottom: 6,
+  },
+  quanUnit: {
+    // backgroundColor: 'transparent',
+    flex: 1,
+  },
+  scanner: {
+    backgroundColor: '#333',
+    width: null,
+    height: null,
+  }
+});

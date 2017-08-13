@@ -9,9 +9,6 @@ import CheckBox from 'react-native-checkbox';
 import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
 
-
-
-
 class RecipesIndex extends React.Component {
   constructor(props){
     super(props)
@@ -26,12 +23,6 @@ class RecipesIndex extends React.Component {
     title: 'Recipes',
   };
 
-  componentWillMount() {
-    // this.props.requestItems(this.props.session.token);
-    // getRecipes(5, this.props.session.token).then((res) => {
-    //   this.setState({recipes: JSON.parse(res._bodyText)})
-    // });
-  }
 
   fetchRecipes(query) {
     this.setState({spinner: true});
@@ -58,13 +49,6 @@ class RecipesIndex extends React.Component {
     this.setState({query: newQuery});
   }
 
-  // renderSpinner() {
-  //   if (this.state.spinner) {
-  //     return (<Content><Spinner color='orange'/></Content>);
-  //   } else {
-  //     return (<Content></Content>)
-  //   }
-  // }
 
   renderItems() {
     const allId = Object.keys(this.props.inventory);
@@ -80,14 +64,14 @@ class RecipesIndex extends React.Component {
         <View>
         {allItems.map((item, idx) =>
           <View key={idx} style={pantry.itemContainer}>
+            <CheckBox
+              key={idx}
+              label={""}
+              checked={new Boolean(this.state.query[idx])}
+              onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
+            />
             <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
-              <CheckBox
-                key={idx}
-                label={""}
-                checked={new Boolean(this.state.query[idx])}
-                onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
-              />
           </View>
         )}
       </View>

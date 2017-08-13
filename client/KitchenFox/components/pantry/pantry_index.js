@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Container, Content, List, ListItem, Button,
   Card, CardItem, Left, Text } from 'native-base';
-import { View, TouchableHighlight } from 'react-native';
+import { View, TouchableHighlight, ScrollView } from 'react-native';
 
 import { ACTIVE_TAB, ORANGE_LIGHT } from '../../style/common';
 import { screen, pantry } from '../../style/layout';
@@ -74,12 +74,14 @@ class PantryIndex extends React.Component {
               <Text style={text.titleCenter}>
                 Your Ingredients
               </Text>
-            {this.renderItems()}
-           <Button
-            style={button.sessionButton}
-            onPress={(e) => this.handleLogout()}>
-            <Text>LOGOUT</Text>
-          </Button>
+            <ScrollView>  
+              {this.renderItems()}
+            <Button
+              style={button.sessionButton}
+              onPress={(e) => this.handleLogout()}>
+              <Text>LOGOUT</Text>
+            </Button>
+            </ScrollView>  
            </View>
         <NavFooter navigate={navigate} />
        </Content>

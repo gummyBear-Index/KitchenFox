@@ -31,6 +31,10 @@ class PantryItem extends React.Component {
     const inventory = {
       inventory: {}
     };
+    let obj = {};
+    obj.name = this.state.name;
+    obj.quantity = this.state.quantity;
+    obj.units = this.state.units;
     inventory['inventory'][`${key}`] = Object.assign(this.state);
     this.props.sendItems(token, inventory);
     this.props.requestItems(this.props.session.token);
@@ -50,18 +54,18 @@ class PantryItem extends React.Component {
       <Container>
         <View style={screen.container}>
           <View style={pantry.updateItem}>
-          <Text style={pantryText.updateItem}>
-            {name}
-          </Text>
+            <Text style={pantryText.updateItem}>
+              {name}
+            </Text>
           </View>
             <InputGroup style={pantry.updateQuan}>
               <View>
               <Input
-                autoFocus={Boolean(true)}
+                autoFocus={true}
                 style={pantryText.updateQuan}
                 keyboardType='numeric'
                 onChangeText={(num) => {this.setState({quantity: num});}}
-              >{`${qty}`}</Input>
+              ><Text style={pantryText.updateQuan}>{`${qty}`}</Text></Input>
               </View>
               <Text style={pantryText.updateQuanUnit}>{units}</Text>
             </InputGroup>

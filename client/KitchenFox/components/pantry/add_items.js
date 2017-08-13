@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet, Alert, Button, ScrollView } from 'react-native';
+import { StyleSheet, Alert, Button, ScrollView, TouchableHighlight } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import { Container, Content, Text, View, List } from 'native-base';
 import Camera from 'react-native-camera';
 import md5 from 'md5';
-
 import { camera } from '../../style/cameraStyle';
 import { upcLookUp } from '../../util/api_util';
 import AddItemCard from './add_item_card';
+
+import { Container, Content, Text, View, List } from 'native-base';
+
+
+import { text } from '../../style/text';
+import { screen } from '../../style/layout';
+import { button } from '../../style/button';
+
 
 class AddItems extends React.Component {
   constructor(props) {
@@ -104,11 +110,11 @@ class AddItems extends React.Component {
     });
     let finalInventory = {
       inventory,
-    }
+    };
     this.props.sendItems(this.props.session.token, finalInventory);
     this.props.requestItems(this.props.session.token);
     const { navigate } = this.props.navigation;
-    navigate('PantryIndex')
+    navigate('PantryIndex');
   };
 
   updateNumItemCards() {
@@ -140,9 +146,9 @@ class AddItems extends React.Component {
     return itemCards;
   }
 
-  static navigationOptions = {
-    title: 'Add items your pantry',
-  };
+  // static navigationOptions = {
+  //   title: 'Add items your pantry',
+  // };
 
   render() {
     if (this.state.showCamera) {
@@ -167,15 +173,19 @@ class AddItems extends React.Component {
         </View>
       );
     } return (
-      <ScrollView >
-        <List>
+      <View style={screen.container}>
+      <ScrollView>
+        <Text style={text.titleCenter}>Add items</Text>
+        {/* <List> */}
           {this.itemFormGen()}
-        </List>
-        <Button
-          title="Submit"
+        {/* </List> */}
+        <TouchableHighlight
+          style={button.posFormButton}
           onPress={() => this.handleSubmit()}>
-        </Button>
+          <Text style={text.posButton}>submit</Text>
+        </TouchableHighlight>
       </ScrollView>
+      </View>
       );
   }
 }
