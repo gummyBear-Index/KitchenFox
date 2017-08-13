@@ -40,8 +40,8 @@ class Greeting extends Component {
   handleDemo() {
     const { navigate } = this.props.navigation;
     this.props.signin({
-      username: 'kevin',
-      password: 'kevin'
+      username: 'cherry',
+      password: 'cherry'
     });
     dismissKeyboard();
     navigate('PantryIndex');
@@ -50,7 +50,7 @@ class Greeting extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return(
-      <Image 
+      <Image
         source={require('../../assets/images/greeting/fridge-1-.jpg')}
         style={session.container}>
         <View style={session.greetingDarkness}>
@@ -78,7 +78,7 @@ class Greeting extends Component {
               onPress={() => this.handleDemo()}>
               <Text style={text.greetingButton}>Demo</Text>
             </TouchableHighlight>
-         </View> 
+         </View>
          </View>
       </Image>
     );

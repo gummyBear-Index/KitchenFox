@@ -88,6 +88,19 @@ export const upcLookUp = (code, token) => {
   );
 };
 
+export const getRecipes = (token) => {
+  return (
+  fetch(`${baseURL}recipes`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `JWT ${token}`,
+      charset: 'UTF-8',
+    },
+  })
+  );
+};
+
 export const deleteLocalData = () => (
   AsyncStorage.removeItem('user')
 );

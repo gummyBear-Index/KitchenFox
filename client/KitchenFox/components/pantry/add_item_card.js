@@ -5,8 +5,8 @@ import {button} from '../../style/button';
 import {text} from '../../style/text';
 import {input} from '../../style/input';
 import {session} from '../../style/layout';
-import {camera} from '../../style/cameraStyle';
-import {upcLookUp} from '../../util/api_util';
+import { camera } from '../../style/cameraStyle';
+import { upcLookUp } from '../../util/api_util';
 
 import {
   Container,
@@ -28,23 +28,14 @@ import {
 class AddItemCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showCamera: false,
-      cameraType: Camera.constants.Type.back,
-      upc: '',
-      name: "",
-      quantity: "",
-      units: "g",
-      weight: "",
-    };
-    this._onBarCodeRead = this._onBarCodeRead.bind(this);
-    this.toggleCamera = this.toggleCamera.bind(this);
+    this.state = Object.assign(this.props.initialCardState);
     this.onChange = this.onChange.bind(this);
+
   }
 
-  _onBarCodeRead(e) {
+  onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
-    upcLookUp(e.data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5OGQ0NjY1NzFiM2UwMTBkODdhOTg3MSIsInVzZXJuYW1lIjoiaGlybyIsImlhdCI6MTUwMjUxMzU1MX0.aax3xiirSr1XWAcShsqBIEYFmGC-hogOgzB4KEY-D0A").then((res) => {
+    upcLookUp(e.data, this.props.token).then((res) => {
       this.setState(JSON.parse(res._bodyText)[0]);
       if (JSON.parse(res._bodyText)[0].quantity === 1) {
         this.setState({units: "each"});
@@ -58,7 +49,7 @@ class AddItemCard extends Component {
   }
 
   toggleCamera(){
-    this.setState({showCamera: true});
+    this.props.toggleParentCam(this.props.cardNum);
   }
 
   onChange(string) {
@@ -77,53 +68,34 @@ class AddItemCard extends Component {
   onChangeText(type, value) {
     this.setState({[type]: value});
     if (this.state.quantity === "1") {
-      console.warn(this.state.quantity === "1");
       this.setState({units: "each"});
     }
     this.props.updateParent(this.props.cardNum, this.state);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState(newProps.initialCardState);
+  }
+
   // onChangeText={name => this.setState({name: name})}
 
   render() {
-    if (this.state.showCamera) {
     return (
-      <View style={camera.container}>
-      <Text>
-        Scan the barcode now!
-      </Text>
-      <Camera
-        ref={(cam) => {
-          this.camera = cam;
-        }}
-        style={camera.preview}
-        aspect={Camera.constants.Aspect.fill}
-        orientation={Camera.constants.Orientation.portrait}
-        barCodeTypes={['org.gs1.UPC-E']}
-        onBarCodeRead={this._onBarCodeRead}>
-        <View style={camera.square}>
-          <Text>Here</Text>
-        </View>
-      </Camera>
-      </View>
-    );
-    } else {
-      return (
       <ListItem>
         <View style={session.container}>
           <View
             style={session.content}>
-            <InputGroup style={input.field} borderType='rounded'>
+            <InputGroup style={input.field} borderType="rounded">
               <Icon name='nutrition' />
               <Input
                 placeholder='Name'
                 autoCorrect={false}
                 autoCapitalize='words'
-                onChangeText={name => this.onChangeText("name", name)}
+                onChangeText={name => this.onChangeText('name', name)}
                 value={this.state.name}
               />
             </InputGroup>
-            <InputGroup style={input.field} borderType='rounded'>
+            <InputGroup style={input.field} borderType="rounded">
               <Icon name='calculator' />
               <Input
                 placeholder='Quantity'
@@ -136,7 +108,7 @@ class AddItemCard extends Component {
             <Icon name='cart' />
             <Picker
               selectedValue={this.state.units}
-              onValueChange={units => this.onChangeText("units", units)}>
+              onValueChange={units => this.onChangeText('units', units)}>
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
             </Picker>
@@ -149,8 +121,7 @@ class AddItemCard extends Component {
           </View>
         </View>
       </ListItem>
-      );
-    }
+    );
   }
 }
 
