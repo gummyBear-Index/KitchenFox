@@ -75,7 +75,7 @@ router.get('/recipes', (req, res, next) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
     if (user) {
-      if (req.headers.query === undefined) {
+      if (req.headers.query === "null") {
         getItemsByUserId(user._id).then((result) => {
           apiCall(req.headers.number, createQuery(result)).then((recipeinfo) => {
             return res
