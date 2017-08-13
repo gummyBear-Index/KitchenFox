@@ -32,7 +32,8 @@ export const button = StyleSheet.create({
     shadowOpacity: 0,
     // borderWidth: 1,
     borderColor: '#fff',
-    alignSelf: 'stretch',
+    width: 200,
+    // alignSelf: 'stretch',
     // textAlign: 'center',
   },
 });

@@ -24,7 +24,6 @@ import SignUp from './signup';
 import { text } from '../../style/text';
 import { button } from '../../style/button';
 import { session } from '../../style/layout';
-import FButton from '../misc/flat_button';
 
 class Greeting extends Component {
   constructor(props) {

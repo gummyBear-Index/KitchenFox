@@ -102,7 +102,7 @@ class Signup extends Component {
 								<Input
 									style={input.sessionText}
 									placeholderTextColor={PLACEHOLDER_TEXT}
-									placeholder="Password"
+									placeholder="Choose password"
 									onChangeText={password => this.setState({ password })}
 									value={this.state.password}
 									secureTextEntry
