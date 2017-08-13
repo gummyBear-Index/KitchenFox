@@ -130,6 +130,7 @@ export const pantryText = StyleSheet.create({
     fontFamily: BASE_FONT_REGULAR,
     width: 100,
     textAlign: 'left',
+    paddingLeft: 3,
   },
 });
 
