@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-
-import { View } from 'react-native';
 import { Container, Content, List, ListItem, Text, Button } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
-import { screen } from '../../style/layout';
-import { text } from '../../style/text';
-
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes } from '../../util/api_util';
@@ -30,7 +25,7 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
-    getRecipes(this.props.session.token)
+    getRecipes(1, null, this.props.session.token)
       .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
   }
 
@@ -40,7 +35,7 @@ class Dashboard extends React.Component {
 
   renderRecipe() {
     if (this.state.recipes.length > 0) {
-      <RecipeCard recipeInfo={this.state.recipes[0]} />
+      return <RecipeCard recipeInfo={this.state.recipes[0]} />
     }
   }
 
@@ -125,6 +120,7 @@ class Dashboard extends React.Component {
       obj[`${id}`] = item;
       allItems.push(obj);
     })
+
     if (allItems.length > 0 && lowItems.length === 0) {
       return this.renderNoLowItem();
     } else if (lowItems.length > 0) {
