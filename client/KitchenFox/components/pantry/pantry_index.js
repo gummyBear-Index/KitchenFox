@@ -42,11 +42,10 @@ class PantryIndex extends React.Component {
     const allItems = [];
     allId.forEach((id) => {
       let obj = {};
-      obj[`${id}`] = this.props.inventory[`${id}`]
+      obj[`${id}`] = this.props.inventory[`${id}`];
       allItems.push(obj);
     })
 
-    // console.warn(JSON.stringify(allItems));
     if (allItems.length > 0) {
       return (
         <List>

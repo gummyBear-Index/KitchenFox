@@ -38,8 +38,8 @@ class Greeting extends Component {
   handleDemo() {
     const { navigate } = this.props.navigation;
     this.props.signin({
-      username: 'fox',
-      password: 'fox'
+      username: 'hiro',
+      password: 'hiro'
     });
     dismissKeyboard();
     navigate('PantryIndex');

@@ -47,7 +47,7 @@ class PantryItem extends React.Component {
         <Content>
           <List>
             <ListItem itemDivider>
-              <Text>You have {name} {qty} {units}.</Text>
+              <Text>You have {name} {qty} {units}</Text>
             </ListItem>
             <InputGroup borderType='underline' >
               <Icon name='ios-home' />
