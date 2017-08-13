@@ -40,7 +40,6 @@ class SignIn extends Component {
   }
 
   handleSignin() {
-    // console.warn(JSON.stringify(this.state));
     this.props.signin(this.state);
     // this.props.navigation.navigate('Pantry');
     dismissKeyboard();
@@ -54,7 +53,7 @@ class SignIn extends Component {
         source={require('../../images/greeting/food-2-.jpg')}
         style={session.container}>
         <View style={session.sessionDarkness}>
-         <View style={session.container}> 
+         <View style={session.container}>
           <View
             style={session.content}>
               <Text style={text.titleSession}>Sign In</Text>
@@ -94,7 +93,7 @@ class SignIn extends Component {
               </TouchableHighlight>
             )}
           </View>
-         </View> 
+         </View>
         </View>
         </Image>
       </Container>

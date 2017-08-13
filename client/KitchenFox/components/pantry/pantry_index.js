@@ -50,7 +50,7 @@ class PantryIndex extends React.Component {
       return (
         <View>
         {allItems.map((item, idx) =>
-          <TouchableHighlight 
+          <TouchableHighlight
             key={idx}
             underlayColor={ORANGE_LIGHT}
             onPress={() => {navigate('PantryItem', { item });
@@ -72,20 +72,20 @@ class PantryIndex extends React.Component {
     // console.warn(ACTIVE_TAB);
     return (
       <Container>
-         <View style={screen.container}> 
+         <View style={screen.container}>
               <Text style={text.titleCenter}>
                 Your Ingredients
               </Text>
 
-            {this.renderItems()} 
-           {/* <Button
+            {this.renderItems()}
+           <Button
             style={button.sessionButton}
             onPress={(e) => this.handleLogout()}>
             <Text>LOGOUT</Text>
-          </Button>  */}
-           </View> 
+          </Button>
+           </View>
         <NavFooter navigate={navigate} />
-       </Container> 
+       </Container>
     );
   }
 }
