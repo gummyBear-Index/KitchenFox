@@ -33,6 +33,7 @@ class AddItems extends React.Component {
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
     this.itemFormGen();
+  }
 
   onBarCodeRead(e) {
     const newItems = Object.assign(this.state.items);

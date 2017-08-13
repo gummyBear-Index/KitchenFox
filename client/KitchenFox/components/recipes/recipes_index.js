@@ -6,6 +6,9 @@ import  {button} from '../../style/button';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
 import CheckBox from 'react-native-checkbox';
+import { screen, pantry } from '../../style/layout';
+import { text, pantryText } from '../../style/text';
+
 
 
 
@@ -36,6 +39,7 @@ class RecipesIndex extends React.Component {
   }
 
   checkBoxUpdate(checked, idx, name){
+    console.warn(checked);
     const newQuery = Object.assign(this.state.query);
     if (checked === true) {
       newQuery[idx] = name;
@@ -58,13 +62,14 @@ class RecipesIndex extends React.Component {
       return (
         <View>
         {allItems.map((item, idx) =>
-          <View style={pantry.itemContainer}>
+          <View key={idx} style={pantry.itemContainer}>
             <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
               <CheckBox
-                label={idx}
-                checked={false}
-                onChange={(checked) => this.checkBoxUpdate(checked, idx, Object.values(item)[0]['name'])}
+                key={idx}
+                label={""}
+                checked={new Boolean(this.state.query[idx])}
+                onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
               />
           </View>
         )}
@@ -99,6 +104,7 @@ class RecipesIndex extends React.Component {
   }
 
   render() {
+    console.warn(JSON.stringify(this.state.query));
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
