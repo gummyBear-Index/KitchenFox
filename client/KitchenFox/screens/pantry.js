@@ -11,6 +11,8 @@ const Pantry = StackNavigator({
   PantryItem: { screen: PantryItem },
   AddItem: { screen: AddItemsContainer },
   Recipes: { screen: RecipesIndexContainer },
+  }, {
+  headerMode: 'none'
 });
 
 export default Pantry;

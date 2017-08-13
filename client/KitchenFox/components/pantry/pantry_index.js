@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { button } from '../../style/button';
+
+
 import { Container, Content, List, ListItem, Button,
   Card, CardItem, Left, Text } from 'native-base';
+import { View, TouchableHighlight } from 'react-native';
+
+import { ACTIVE_TAB, ORANGE_LIGHT } from '../../style/common';
+import { screen, pantry } from '../../style/layout';
+import { button } from '../../style/button';
+import { text, pantryText } from '../../style/text';
+
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { requestItems } from '../../actions/inventory_actions';
@@ -13,8 +21,8 @@ class PantryIndex extends React.Component {
     this.state = {
       name: '',
       quantity: 0,
-      units: ''
-    }
+      units: '',
+    };
     this.renderItems = this.renderItems.bind(this);
   }
 
@@ -28,11 +36,6 @@ class PantryIndex extends React.Component {
     this.props.logout();
   }
 
-  static navigationOptions = {
-    title: `Hello, username! Here's Your Ingredients`,
-    headerLeft: null
-  };
-
   renderItems() {
     const { navigate } = this.props.navigation;
     const allId = Object.keys(this.props.inventory);
@@ -41,50 +44,48 @@ class PantryIndex extends React.Component {
       let obj = {};
       obj[`${id}`] = this.props.inventory[`${id}`];
       allItems.push(obj);
-    })
+    });
 
     if (allItems.length > 0) {
       return (
-        <List>
+        <View>
         {allItems.map((item, idx) =>
-          <ListItem key={idx} onPress={() => {
-            navigate('PantryItem', { item });
+          <TouchableHighlight 
+            key={idx}
+            underlayColor={ORANGE_LIGHT}
+            onPress={() => {navigate('PantryItem', { item });
           }}>
-            <Text>
-              {Object.values(item)[0]['name']}: &nbsp;
-              {Object.values(item)[0]['quantity']} &nbsp;
-              {Object.values(item)[0]['units']}
-            </Text>
-          </ListItem>
+          <View style={pantry.itemContainer}>
+            <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
+            <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
+          </View>
+          </TouchableHighlight>
         )}
-      </List>
-      )
+      </View>
+      );
     }
   }
 
   render() {
     const { navigate } = this.props.navigation;
     const fullName = `${this.props.session.first_name} ${this.props.session.last_name}`;
+    // console.warn(ACTIVE_TAB);
     return (
       <Container>
-        <Content>
-          <List>
-            <ListItem itemDivider>
-              <Text>
-                Hello, {fullName}! Here is Your Ingredients.
+         <View style={screen.container}> 
+              <Text style={text.titleCenter}>
+                Your Ingredients
               </Text>
-            </ListItem>
-            {this.renderItems()}
-          </List>
-          <Button
+
+            {this.renderItems()} 
+           {/* <Button
             style={button.sessionButton}
-            onPress={(e) => this.handleLogout()}
-            >
+            onPress={(e) => this.handleLogout()}>
             <Text>LOGOUT</Text>
-          </Button>
-        </Content>
+          </Button>  */}
+           </View> 
         <NavFooter navigate={navigate} />
-      </Container>
+       </Container> 
     );
   }
 }

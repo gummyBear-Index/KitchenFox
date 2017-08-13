@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { BASE_FONT_LIGHT, BASE_FONT_REGULAR, BASE_FONT_BOLD, BUTTON_ACTION_TEXT, TITLE, BLUE, WHITE, ORANGE, GREETING_TEXT } from './common';
+import { 
+  BASE_FONT_LIGHT, 
+  BASE_FONT_REGULAR, 
+  BASE_FONT_BOLD, 
+  BUTTON_ACTION_TEXT, 
+  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT,
+  GREETING_TEXT } from './common';
 
 const title = {
   fontSize: 30,
@@ -10,10 +16,10 @@ const title = {
 export const text = StyleSheet.create({
   title,
   titleLeft: {
-    fontSize: 50,
-    paddingTop: 20,
+    fontSize: 36,
+    paddingTop: 40,
     paddingBottom: 20,
-    paddingLeft: 10,
+    paddingLeft: 40,
     textAlign: 'left',
     color: TITLE,
     fontFamily: BASE_FONT_LIGHT,
@@ -28,10 +34,13 @@ export const text = StyleSheet.create({
     fontFamily: BASE_FONT_LIGHT,
   },
   titleCenter: {
-    fontSize: 94,
+    fontSize: 34,
+    // fontSize: 50,
     textAlign: 'center',
     color: TITLE,
-    fontFamily: BASE_FONT_LIGHT,
+    fontFamily: BASE_FONT_REGULAR,
+    paddingTop: 40,
+    paddingBottom: 40,
   },
   greetingTitle: {
     fontSize: 88,
@@ -72,3 +81,17 @@ export const text = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export const pantryText = StyleSheet.create({
+  item: {
+    fontSize: 22,
+    color: WHITE,
+    paddingLeft: 16,
+  },
+  itemDesc: {
+    fontSize: 18,
+    paddingLeft: 28,
+    color: ORANGE_LIGHT,
+  }
+});
+

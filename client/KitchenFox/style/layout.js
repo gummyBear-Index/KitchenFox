@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Image } from 'react-native';
 
-import { BLUE } from './common';
+import { BLUE, WHITE, ORANGE } from './common';
 
 export const session = StyleSheet.create({
   container: {
@@ -48,3 +48,33 @@ export const session = StyleSheet.create({
     // borderRadius: 40,
   }
 });
+
+export const screen = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: null,
+    height: null,
+    backgroundColor: 'white',
+    // alignSelf: 'center'
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
+});
+
+export const pantry = StyleSheet.create({
+  container: {
+    // flex: 1,
+    // flexDirection: 'column',
+  },
+  itemContainer: {
+    backgroundColor: ORANGE,
+    paddingTop: 18,
+    paddingBottom: 18,
+    paddingLeft: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-end',
+  }
+});
+
+

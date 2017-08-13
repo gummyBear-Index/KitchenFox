@@ -24,7 +24,6 @@ import SignUp from './signup';
 import { text } from '../../style/text';
 import { button } from '../../style/button';
 import { session } from '../../style/layout';
-import FButton from '../misc/flat_button';
 
 class Greeting extends Component {
   constructor(props) {
@@ -51,7 +50,7 @@ class Greeting extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return(
-      <Image 
+      <Image
         source={require('../../assets/images/greeting/fridge-1-.jpg')}
         style={session.container}>
         <View style={session.greetingDarkness}>
@@ -79,7 +78,7 @@ class Greeting extends Component {
               onPress={() => this.handleDemo()}>
               <Text style={text.greetingButton}>Demo</Text>
             </TouchableHighlight>
-         </View> 
+         </View>
          </View>
       </Image>
     );
