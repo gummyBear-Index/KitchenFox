@@ -7,7 +7,8 @@ import CheckBox from 'react-native-checkbox';
 import { Image } from 'react-native';
 import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
 
-import  {button} from '../../style/button';
+import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
+import  { button } from '../../style/button';
 import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
 
@@ -68,12 +69,19 @@ class RecipesIndex extends React.Component {
         {allItems.map((item, idx) =>
           <View key={idx} style={pantry.itemContainer}>
             <CheckBox
+              checkboxStyle={{
+                backgroundColor: ORANGE_LIGHT, 
+                tintColor: WHITE,
+                width: 18,
+                height: 18,
+              }}
+              underlayColor={ORANGE}
               key={idx}
               label={""}
               checked={new Boolean(this.state.query[idx])}
               onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
             />
-            <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
+            <Text style={pantryText.itemForRecipe}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
           </View>
         )}

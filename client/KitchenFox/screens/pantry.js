@@ -19,7 +19,7 @@ const Pantry = StackNavigator({
     }),   
   },
   PantryItem: { 
-    screen: PantryItem ,
+    screen: PantryItem,
     navigationOptions: ({navigation}) => ({
       header: null,
     }),  
@@ -28,7 +28,10 @@ const Pantry = StackNavigator({
     screen: AddItemsContainer 
   },
   Recipes: { 
-    screen: RecipesIndexContainer 
+    screen: RecipesIndexContainer,
+    navigationOptions: ({navigation}) => ({
+      header: null,
+    }), 
   },
 });
 

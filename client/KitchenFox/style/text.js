@@ -105,11 +105,16 @@ export const pantryText = StyleSheet.create({
   item: {
     fontSize: 22,
     color: WHITE,
-    paddingLeft: 16,
+    paddingLeft: 12,
+  },
+  itemForRecipe: {
+    fontSize: 22,
+    color: WHITE,
+    paddingLeft: 0,
   },
   itemDesc: {
     fontSize: 18,
-    paddingLeft: 28,
+    paddingLeft: 18,
     color: ORANGE_LIGHTER,
   },
   updateItem: {

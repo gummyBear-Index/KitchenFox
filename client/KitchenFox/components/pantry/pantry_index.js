@@ -69,7 +69,7 @@ class PantryIndex extends React.Component {
     const { navigate } = this.props.navigation;
     const fullName = `${this.props.session.first_name} ${this.props.session.last_name}`;
     return (
-      <Content>
+      <Container>
          <View style={screen.container}>
               <Text style={text.titleCenter}>
                 Your Ingredients
@@ -84,7 +84,7 @@ class PantryIndex extends React.Component {
             </ScrollView>  
            </View>
         <NavFooter navigate={navigate} />
-       </Content>
+       </Container>
     );
   }
 }
