@@ -104,7 +104,7 @@ class RecipesIndex extends React.Component {
     } else {
       return (
       <Container>
-          <Text>Sorry, No recipes matched with all the ingredients</Text>
+          <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
           <Button style={button.sessionButton} onPress={() => {
               navigate('AddItem');
           }}>
@@ -121,8 +121,8 @@ class RecipesIndex extends React.Component {
     const items = this.renderItems();
     if (this.state.recipes === "none") {
       return (
-        <Container>
-          <Text>Recipes will go here!</Text>
+        <View style={screen.container}>
+          <Text style={text.titleCenter}>What do you want to cook with?</Text>
           <Content>
             {items}
           </Content>
@@ -132,7 +132,7 @@ class RecipesIndex extends React.Component {
           <Button style={button.sessionButton} onPress={() => this.fetchRecipes("all")}>
           <Text>Fetch with All Items</Text>
           </Button>
-        </Container>
+        </View>
       )
     } else {
     return (
