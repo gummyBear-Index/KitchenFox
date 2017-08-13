@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import { Image } from 'react-native';
 import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
+import  {button} from '../../style/button';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
 
@@ -24,7 +25,8 @@ class RecipesIndex extends React.Component {
   }
 
   recipes(){
-    const recipes = [];
+    let recipes = [];
+    const { navigate } = this.props.navigation;
     if (this.state.recipes.length > 0) {
       for (let i = 0; i < this.state.recipes.length; i++) {
         let j = (
@@ -32,11 +34,23 @@ class RecipesIndex extends React.Component {
         );
         recipes.push(j);
       }
+      return recipes;
+    } else {
+      return (
+      <Container>
+          <Text>Sorry, No recipes matched with all the ingredients</Text>
+          <Button style={button.sessionButton} onPress={() => {
+              navigate('AddItem');
+          }}>
+          <Text>Add Items</Text>
+          </Button>
+      </Container>
+    )
     }
-    return recipes;
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     return (
       <Container>
