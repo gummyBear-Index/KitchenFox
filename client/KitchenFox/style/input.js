@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BASE_FONT_REGULAR, WHITE, BLACK } from './common';
+import { BASE_FONT_REGULAR, WHITE, BLACK, BLUE, BLUE_DARK, ORANGE_LIGHTER } from './common';
 
 export const input = StyleSheet.create({
   field: {
@@ -22,5 +22,21 @@ export const input = StyleSheet.create({
   box: {
     marginBottom: 20,
     width: 150,
+  },
+});
+
+export const addItemsInput = StyleSheet.create({
+  icon: {
+    color: ORANGE_LIGHTER,
+    fontSize: 30,
+    paddingLeft: 15,
+  },
+  iconScanner: {
+    color: WHITE,
+    fontSize: 30,
+    paddingLeft: 18,
+    paddingRight: 15,
+    paddingTop: 18,
+    paddingBottom: 18,
   },
 });

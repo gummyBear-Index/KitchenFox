@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-
-import { View } from 'react-native';
 import { Container, Content, List, ListItem, Text, Button } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
-import { screen } from '../../style/layout';
-import { text } from '../../style/text';
-
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes } from '../../util/api_util';
@@ -16,11 +11,13 @@ import { getRecipes } from '../../util/api_util';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    let component = <Text>''</Text>
     this.state = {
       name: '',
       quantity: 0,
       units: '',
-      recipes: []
+      recipes: [],
+      toRender: component
     }
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
@@ -30,7 +27,6 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
-
   }
 
   componentWillReceiveProps(newProps) {
@@ -60,9 +56,9 @@ class Dashboard extends React.Component {
       allItems.push(obj);
     })
     if (allItems.length > 0 && lowItems.length === 0) {
-      return this.renderNoLowItem(lowItems);
+      return this.renderNoLowItem(allItems, lowItems);
     } else if (lowItems.length > 0) {
-      return this.renderLowItems(lowItems);
+      return this.renderLowItems(allItems, lowItems);
     } else if (allItems.length === 0) {
       return this.renderNoInventory();
     }
@@ -74,11 +70,12 @@ class Dashboard extends React.Component {
 
   renderRecipe() {
     if (this.state.recipes.length > 0) {
-      return <RecipeCard recipeInfo={this.state.recipes[0]} />
-    }
+      return (<RecipeCard recipeInfo={this.state.recipes[0]} />)
+    };
+
   }
 
-  renderNoLowItem() {
+  renderNoLowItem(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
       <Container>
@@ -100,7 +97,7 @@ class Dashboard extends React.Component {
     )
   }
 
-  renderLowItems(lowItems) {
+  renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
       <Container>
@@ -143,6 +140,10 @@ class Dashboard extends React.Component {
     )
   }
 
+  static navigationOptions = {
+    title: 'Kitchen Fox Dashboard',
+  };
+
   render() {
     const render = this.selectToRender();
     return(
@@ -157,7 +158,7 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
+  // logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token)),
 });
 

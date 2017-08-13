@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import { Image } from 'react-native';
-import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
+import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List, Spinner } from 'native-base';
 import  {button} from '../../style/button';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
@@ -9,15 +9,13 @@ import CheckBox from 'react-native-checkbox';
 import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
 
-
-
-
 class RecipesIndex extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      recipes: [],
+      recipes: "none",
       query: {},
+      spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
   };
@@ -25,21 +23,18 @@ class RecipesIndex extends React.Component {
     title: 'Recipes',
   };
 
-  componentWillMount() {
-    // this.props.requestItems(this.props.session.token);
-    // getRecipes(5, this.props.session.token).then((res) => {
-    //   this.setState({recipes: JSON.parse(res._bodyText)})
-    // });
-  }
 
   fetchRecipes(query) {
+    this.setState({spinner: true});
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({spinner: false});
     });
   } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
       this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({spinner: false});
     });
     }
   }
@@ -53,6 +48,7 @@ class RecipesIndex extends React.Component {
     }
     this.setState({query: newQuery});
   }
+
 
   renderItems() {
     const allId = Object.keys(this.props.inventory);
@@ -68,14 +64,14 @@ class RecipesIndex extends React.Component {
         <View>
         {allItems.map((item, idx) =>
           <View key={idx} style={pantry.itemContainer}>
+            <CheckBox
+              key={idx}
+              label={""}
+              checked={new Boolean(this.state.query[idx])}
+              onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
+            />
             <Text style={pantryText.item}>{Object.values(item)[0]['name']}</Text>
             <Text style={pantryText.itemDesc}>{Object.values(item)[0]['quantity']}&nbsp;{Object.values(item)[0]['units']}</Text>
-              <CheckBox
-                key={idx}
-                label={""}
-                checked={new Boolean(this.state.query[idx])}
-                onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
-              />
           </View>
         )}
       </View>
@@ -112,13 +108,20 @@ class RecipesIndex extends React.Component {
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
-    if (this.state.recipes.length === 0) {
+    let spinner;
+    if (this.state.spinner) {
+      spinner = (<Content><Spinner color='blue'/></Content>);
+    } else {
+      spinner =  (<Content></Content>);
+    }
+    if (this.state.recipes === "none") {
       return (
         <Container>
-          <Text>Recipes will go here!</Text>
+          <Text>Select Ingredients for your recipes!</Text>
           <Content>
             {items}
           </Content>
+            {spinner}
           <Button style={button.sessionButton} onPress={() => this.fetchRecipes("none")}>
           <Text>Fetch with Checked Items</Text>
           </Button>

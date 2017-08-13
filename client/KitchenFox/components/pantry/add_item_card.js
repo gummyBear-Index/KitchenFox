@@ -8,10 +8,13 @@ import {
   View,
   ListItem,
 } from 'native-base';
-
+import { TouchableHighlight } from 'react-native';
+// import { Picker } from 'react-native';
 import { button } from '../../style/button';
-import { session } from '../../style/layout';
-import { input } from '../../style/input';
+import { screen, addItemCard } from '../../style/layout';
+import { input, addItemsInput } from '../../style/input';
+import { addItemsText } from '../../style/text';
+import { PLACEHOLDER_TEXT_ADD_ITEMS } from '../../style/common';
 
 class AddItemCard extends Component {
   constructor(props) {
@@ -45,46 +48,65 @@ class AddItemCard extends Component {
 
   render() {
     return (
-      <ListItem>
-        <View style={session.container}>
-          <View style={session.content}>
-            <InputGroup style={input.field} borderType="rounded">
-              <Icon name="nutrition" />
+      <View style={addItemCard.container}>
+        <View>
+          {/* ---- COL 1 --- */}
+          <InputGroup style={addItemCard.row} borderType="rounded">
+              <Icon name="nutrition" style={addItemsInput.icon}/> 
+              <View style={addItemCard.name}>
+                <Input
+                  style={addItemsText.name}
+                  placeholder="Name"
+                  placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
+                  autoCorrect={false}
+                  autoCapitalize="words"
+                  onChangeText={name => this.onChangeText('name', name)}
+                  value={this.state.name}
+                />
+              </View>
+              {/* ---- COL 2 --- */}
+              <TouchableHighlight
+                style={addItemCard.scanner}
+                onPress={() => this.toggleCamera()}
+              >
+                <Icon theme={{ iconFamily: 'FontAwesome' }} name='barcode' 
+                      style={addItemsInput.iconScanner} />
+              </TouchableHighlight>
+              {/* <Icon name="camera"  />  */}
+        </InputGroup>
+        </View>
+
+        {/* ---- NEW ROW --- */}
+
+        <View>
+          <View style={addItemCard.rowQuan}>
+            <Icon name="cart" style={addItemsInput.icon} /> 
+            <View style={addItemCard.quan}>
               <Input
-                placeholder="Name"
-                autoCorrect={false}
-                autoCapitalize="words"
-                onChangeText={name => this.onChangeText('name', name)}
-                value={this.state.name}
-              />
-            </InputGroup>
-            <InputGroup style={input.field} borderType="rounded">
-              <Icon name="calculator" />
-              <Input
+                style={addItemsText.quan}
                 placeholder="Quantity"
+                placeholderTextColor={PLACEHOLDER_TEXT_ADD_ITEMS}
                 autoCorrect={false}
                 keyboardType="numeric"
                 onChangeText={quantity => this.onChangeText('quantity', quantity)}
                 value={`${this.state.quantity}`}
-              />
-            </InputGroup>
-            <Icon name="cart" />
+            />
+          </View>
+          <View style={addItemCard.quanUnit}>
             <Picker
+              itemStyle={{color:'white'}}
+              placeholder="units"
+              mode="dropdown"
               selectedValue={this.state.units}
               onValueChange={units => this.onChangeText('units', units)}
             >
               <Picker.Item label="grams" value="g" />
               <Picker.Item label="each" value="each" />
             </Picker>
-            <Button
-              style={button.sessionButton}
-              onPress={() => this.toggleCamera()}
-            >
-              <Icon name="camera" />
-            </Button>
+            </View>
           </View>
         </View>
-      </ListItem>
+      </View>
     );
   }
 }
