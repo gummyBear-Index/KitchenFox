@@ -8,11 +8,12 @@ import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-
+import CustomStatusBar from '../misc/status_bar';
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
-import  { button } from '../../style/button';
-import { screen, pantry } from '../../style/layout';
+import  { button, back } from '../../style/button';
+import { screen, pantry, icon } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 class RecipesIndex extends React.Component {
   constructor(props){
@@ -136,7 +137,7 @@ class RecipesIndex extends React.Component {
     } else {
       return (
       <Container>
-          <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
+          <Text style={text.titleCenter}>Sorry, no recipes matched with all the ingredients</Text>
           <TouchableHighlight style={button.sessionButton} onPress={() => {
               navigate('AddItem');
           }}>
@@ -165,6 +166,8 @@ class RecipesIndex extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const { navigation } = this.props;
+
     const recipes = this.recipes();
     const items = this.renderItems();
     let spinner;
@@ -176,11 +179,21 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
-          <Button onPress={() => navigate('Dashboard')}>
-            <Text>Go Back</Text>
-          </Button>
+          <CustomStatusBar />
           <ScrollView>
-          <Text style={text.titleCenter}>I want to cook with...</Text>
+             <View style={back.container}>
+            <TouchableHighlight 
+              onPress={() => navigation.goBack(null)}
+              underlayColor='#fff'>
+              <EvilIcons name='arrow-left' style={icon.back} />
+            </TouchableHighlight>
+            <View>
+              <Text style={text.titleDiminished}>I want to cook with...</Text>
+            </View>
+            <View>
+              <EvilIcons name='arrow-left' style={icon.backPadding} />
+            </View>
+          </View> 
             {items}
           </ScrollView>
             {spinner}
@@ -190,13 +203,25 @@ class RecipesIndex extends React.Component {
     } else {
     return (
       <View style={screen.container}>
-        <Button onPress={() => navigate('Recipes')}>
-          <Text>Go Back</Text>
-        </Button>
-        <Text style={text.titleDiminished}>Recipes you can make</Text>
-        <Content>
+         <CustomStatusBar /> 
+        <ScrollView>
+            <View style={back.container}>
+            <TouchableHighlight 
+              onPress={() => navigation.goBack(null)}
+              underlayColor='#fff'>
+              <EvilIcons name='arrow-left' style={icon.back} />
+            </TouchableHighlight>
+            <View>
+              <Text style={text.titleDiminished}>Recipes for you</Text>
+            </View>
+            <View>
+              <EvilIcons name='arrow-left' style={icon.backPadding} />
+            </View>
+          </View>
+        <View>
           {recipes}
-        </Content>
+        </View>
+        </ScrollView>
       </View>
     );
     }
