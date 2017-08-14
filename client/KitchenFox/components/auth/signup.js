@@ -46,7 +46,6 @@ class Signup extends Component {
 
   handleSignup() {
     this.props.signup(this.state);
-    // console.warn(JSON.stringify(this.state))
 		dismissKeyboard();
 	}
 

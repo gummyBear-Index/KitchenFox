@@ -4,7 +4,7 @@ import {
   BASE_FONT_REGULAR, 
   BASE_FONT_BOLD, 
   BUTTON_ACTION_TEXT, 
-  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
+  TITLE, BLUE, WHITE, BLACK, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
   GREETING_TEXT } from './common';
 
 const title = {
@@ -16,12 +16,21 @@ const title = {
 export const text = StyleSheet.create({
   title,
   titleDiminished: {
-    fontSize: 22,
-    paddingTop: 8,
-    paddingBottom: 8,
+    fontSize: 34,
+    paddingTop: 20,
+    paddingBottom: 20,
     textAlign: 'center',
     color: TITLE,
+    fontFamily: BASE_FONT_LIGHT,
+  },
+  titleScanner: {
+    fontSize: 34,
+    paddingTop: 20,
+    paddingBottom: 20,
+    textAlign: 'center',
+    color: WHITE,
     fontFamily: BASE_FONT_BOLD,
+    backgroundColor: BLACK,
   },
   titleSession: {
     fontSize: 50,
@@ -115,7 +124,15 @@ export const text = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'stretch',
     textAlign: 'center',
-  }
+  },
+  scanner: {
+    fontSize: 22,
+    paddingTop: 12,
+    paddingBottom: 12,
+    textAlign: 'center',
+    color: 'red',
+    fontFamily: BASE_FONT_BOLD,
+  },
 });
 
 export const pantryText = StyleSheet.create({
@@ -124,15 +141,25 @@ export const pantryText = StyleSheet.create({
     color: WHITE,
     paddingLeft: 12,
   },
-  itemForRecipe: {
-    fontSize: 22,
-    color: WHITE,
-    paddingLeft: 0,
-  },
   itemDesc: {
     fontSize: 18,
     paddingLeft: 18,
     color: ORANGE_LIGHTER,
+  },
+  itemDash: {
+    fontSize: 18,
+    color: ORANGE,
+    paddingLeft: 8,
+  },
+  itemDescDash: {
+    fontSize: 14,
+    paddingLeft: 8,
+    color: ORANGE,
+  },
+  itemForRecipe: {
+    fontSize: 22,
+    color: WHITE,
+    paddingLeft: 0,
   },
   updateItem: {
     color: WHITE,
@@ -167,6 +194,24 @@ export const addItemsText = StyleSheet.create({
     fontSize: 26,
     color: WHITE,
     fontFamily: BASE_FONT_REGULAR,
+  }
+});
+
+export const overlayText = StyleSheet.create({
+  fullOpacity: {
+    // backgroundColor: ORANGE,
+    // backgroundColor: 'rgba(6,186,235,.85)',
+    backgroundColor: 'rgba(242,126,8,.85)',
+    fontSize: 22,
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 16,
+    marginBottom: 10,
+    padding: 10,
+    textAlign: 'center',
+    // flexDirection:'row', flexWrap:'wrap'
   }
 });
 

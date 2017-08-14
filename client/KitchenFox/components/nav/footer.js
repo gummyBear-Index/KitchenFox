@@ -15,10 +15,11 @@ class NavFooter extends Component {
   }
 
   render() {
+    const dummy = () => 0;
     const light = { backgroundColor: BLUE };
     const dark = { backgroundColor: BLUE_DARK }
-    const activeRoute = this.props.navigation.state.routeName;
-    const { navigate } = this.props.navigation;
+    const activeRoute = this.props.hasOwnProperty('state') ? this.props.navigation.state.routeName : '';
+    const { navigate } = this.props.hasOwnProperty('navigation') ? this.props.navigation : dummy;
     return (
       <Footer>
         <FooterTab style={light}>

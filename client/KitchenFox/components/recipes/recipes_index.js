@@ -164,8 +164,8 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
-          <Text style={text.titleCenter}>I want to cook with...</Text>
           <ScrollView>
+          <Text style={text.titleCenter}>I want to cook with...</Text>
             {items}
           </ScrollView>
             {spinner}
@@ -174,12 +174,12 @@ class RecipesIndex extends React.Component {
       );
     } else {
     return (
-      <Container>
+      <View style={screen.container}>
         <Text style={text.titleDiminished}>Recipes you can make</Text>
         <Content>
           {recipes}
         </Content>
-      </Container>
+      </View>
     );
     }
   }
