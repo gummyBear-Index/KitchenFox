@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Image, StatusBar, Platform } from 'react-native';
 
-import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, TITLE, BASE_FONT_LIGHT, BASE_FONT_REGULAR } from './common';
+import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, TITLE, BASE_FONT_LIGHT, BASE_FONT_REGULAR, BASE_FONT_BOLD } from './common';
 
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
@@ -231,6 +231,24 @@ export const card = StyleSheet.create({
     fontFamily: BASE_FONT_REGULAR,
     flexWrap: 'wrap',
     flex: 5,
+    // width: 100,
+    // flexDirection: 'column',
+  },
+  titleLeftLarge: {
+    fontSize: 28,
+    paddingTop: 20,
+    paddingBottom: 16,
+    paddingLeft: 4,
+    paddingRight: 8,
+    textAlign: 'left',
+    color: TITLE,
+    fontFamily: BASE_FONT_REGULAR,
+    flexWrap: 'wrap',
+    flex: 5,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center'
     // width: 100,
     // flexDirection: 'column',
   },

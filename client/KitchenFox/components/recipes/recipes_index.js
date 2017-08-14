@@ -10,7 +10,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import EmptyPantry from '../pantry/pantry_empty';
 import CustomStatusBar from '../misc/status_bar';
-import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
+import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE, BLUE_LIGHT } from '../../style/common';
 import  { button, back } from '../../style/button';
 import { screen, pantry, icon } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
@@ -129,14 +129,16 @@ class RecipesIndex extends React.Component {
       return recipes;
     } else {
       return (
-      <Container>
-          <Text style={text.titleCenter}>Sorry, no recipes matched with all the ingredients</Text>
-          <TouchableHighlight style={button.sessionButton} onPress={() => {
-              navigate('AddItem');
+      <View style={{backgroundColor: '#eee', paddingBottom: 30}}>
+          <Text style={text.titleDiminishedNeg}>Sorry, no recipes matched with the ingredients you chose</Text>
+          <TouchableHighlight style={button.posFormButton}
+                              underlayColor={BLUE_LIGHT}
+                              onPress={() => {
+                              navigate('AddItem');
           }}>
-          <Text>Add Items</Text>
+          <Text style={text.posButton}>add Items</Text>
           </TouchableHighlight>
-      </Container>
+      </View>
     );
     }
   }

@@ -23,6 +23,16 @@ export const text = StyleSheet.create({
     color: TITLE,
     fontFamily: BASE_FONT_LIGHT,
   },
+  titleDiminishedNeg: {
+    fontSize: 26,
+    paddingTop: 20,
+    paddingRight: 20,
+    paddingLeft: 20,
+    paddingBottom: 10,
+    textAlign: 'center',
+    color: TITLE,
+    fontFamily: BASE_FONT_LIGHT,
+  },
   titleScanner: {
     fontSize: 34,
     paddingTop: 20,
