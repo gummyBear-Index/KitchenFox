@@ -147,11 +147,15 @@ class RecipesIndex extends React.Component {
     if (Object.keys(this.props.inventory).length > 0) {
       return(
       <View style={pantry.groupButtons}>
-        <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
+        <TouchableHighlight style={button.negFormButtonRecipe}
+                            underlayColor={BLUE_LIGHT}
+                            onPress={() => this.fetchRecipes("all")}>
           <Text style={text.negButtonRecipe}>all my food</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
+        <TouchableHighlight style={button.posFormButtonRecipe} 
+                            underlayColor={BLUE_LIGHT}
+                            onPress={() => this.fetchRecipes("none")}>
           <Text style={text.posButtonRecipe}>my selected food</Text>
         </TouchableHighlight>
       </View>
