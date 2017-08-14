@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, Alert, Button, ScrollView, TouchableHighlight } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-
-import Camera from 'react-native-camera';
-import md5 from 'md5';
-import { camera } from '../../style/cameraStyle';
-import { upcLookUp } from '../../util/api_util';
-import AddItemCard from './add_item_card';
-
 import { Container, Content, Text, View, List } from 'native-base';
 
+import { StackNavigator } from 'react-navigation';
+import Camera from 'react-native-camera';
+import md5 from 'md5';
+import { upcLookUp } from '../../util/api_util';
 
+import AddItemCard from './add_item_card';
+import CustomStatusBar from '../misc/status_bar';
 import { text } from '../../style/text';
 import { screen } from '../../style/layout';
 import { button } from '../../style/button';
-
+import { camera } from '../../style/cameraStyle';
 
 class AddItems extends React.Component {
   constructor(props) {
@@ -173,6 +171,7 @@ class AddItems extends React.Component {
       );
     } return (
       <View style={screen.container}>
+        <CustomStatusBar />
         <ScrollView>
           <Text style={text.titleCenter}>Add items</Text>
           {/* <List> */}

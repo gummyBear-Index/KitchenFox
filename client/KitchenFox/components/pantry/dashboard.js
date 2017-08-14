@@ -8,6 +8,7 @@ import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes } from '../../util/api_util';
 
+import CustomStatusBar from '../misc/status_bar';
 import EmptyPantry from './pantry_empty';
 import { View, ScrollView, TouchableHighlight } from 'react-native';
 import { screen, card, pantry } from '../../style/layout';
@@ -131,6 +132,7 @@ class Dashboard extends React.Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={screen.container}>
+        <CustomStatusBar />
         <ScrollView>
           <Text style={text.titleCenter}>Dashboard</Text>
           {this.selectToRender()}

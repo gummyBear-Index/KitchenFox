@@ -10,6 +10,7 @@ import { screen, pantry } from '../../style/layout';
 import { button } from '../../style/button';
 import { text, pantryText } from '../../style/text';
 
+import CustomStatusBar from '../misc/status_bar';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { requestItems } from '../../actions/inventory_actions';
@@ -92,6 +93,7 @@ class PantryIndex extends React.Component {
     return (
       <Container>
          <View style={screen.container}>
+           <CustomStatusBar />
             <ScrollView>
               <Text style={text.titleCenter}>
                 Your Ingredients

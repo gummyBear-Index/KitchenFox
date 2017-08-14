@@ -8,8 +8,9 @@ import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
+import CustomStatusBar from '../misc/status_bar';
 import EmptyPantry from '../pantry/pantry_empty';
-import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
+import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE, BLUE_DARK } from '../../style/common';
 import  { button } from '../../style/button';
 import { screen, pantry, icon } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
@@ -130,7 +131,7 @@ class RecipesIndex extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigation } = this.props;
     const recipes = this.recipes();
     const items = this.renderItems();
     let spinner;
@@ -145,9 +146,12 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
+          <CustomStatusBar />
           <ScrollView>
             <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
-              <TouchableHighlight onPress={() => navigate('Dashboard')}>
+              <TouchableHighlight 
+                onPress={() => navigation.goBack(null)}
+                underlayColor='#fff'>
                 <Icon name='ios-arrow-dropleft-outline' style={icon.back} />
               </TouchableHighlight>
               <Text style={text.titleDiminished}>I want to cook with...</Text>
@@ -162,7 +166,7 @@ class RecipesIndex extends React.Component {
     return (
       <View style={screen.container}>
         <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
-          <TouchableHighlight onPress={() => navigate('Recipes')}>
+          <TouchableHighlight onPress={() => navigation.goBack(null)}>
             <Icon name='' style={icon.back} />
           </TouchableHighlight>
           <Text style={text.titleDiminished}>Recipes you can make</Text>

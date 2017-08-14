@@ -8,8 +8,8 @@ import {
   View,
   ListItem,
 } from 'native-base';
+
 import { TouchableHighlight } from 'react-native';
-// import { Picker } from 'react-native';
 import { button } from '../../style/button';
 import { screen, addItemCard } from '../../style/layout';
 import { input, addItemsInput } from '../../style/input';

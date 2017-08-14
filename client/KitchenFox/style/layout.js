@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, Image } from 'react-native';
+import { StyleSheet, Dimensions, Image, StatusBar, Platform } from 'react-native';
 
 import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, TITLE, BASE_FONT_LIGHT, BASE_FONT_REGULAR } from './common';
+
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 
 export const session = StyleSheet.create({
   container: {
@@ -256,3 +259,14 @@ export const icon = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+export const bar = StyleSheet.create({
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+  },
+  appBar: {
+    backgroundColor:'white',
+    height: APPBAR_HEIGHT,
+  },
+});
+
