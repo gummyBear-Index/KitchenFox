@@ -114,12 +114,10 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        <NavFooter navigate={navigate} activeTab="Dashboard" />
+        <NavFooter navigate={navigate} />
       </Container>
     )
   }
-
-
 
   renderNoInventory() {
     const { navigate } = this.props.navigation;
@@ -128,10 +126,10 @@ class Dashboard extends React.Component {
         <ListItem itemDivider>
           <Text>There is nothing in your pantry or fridge</Text>
         </ListItem>
-        <ListItem onPress={() => { navigate('AddItem'); }}>
+        <Button onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
-        </ListItem>
-        <NavFooter navigate={navigate} active={'oiwjefoiwjeorwijero'}/>
+        </Button>
+      <NavFooter navigate={navigate} />
       </Container>
     )
   }

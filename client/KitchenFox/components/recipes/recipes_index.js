@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
+import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail,
+Text, Left, Body, Icon, Button, List, ListItem } from 'native-base';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
 import CheckBox from 'react-native-checkbox';
@@ -22,6 +23,7 @@ class RecipesIndex extends React.Component {
       spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
+    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
   // static navigationOptions = {
   //   title: 'Recipes',
@@ -53,6 +55,19 @@ class RecipesIndex extends React.Component {
     this.setState({query: newQuery});
   }
 
+  renderNoInventory() {
+    const { navigate } = this.props.navigation;
+    return(
+      <Container>
+        <ListItem itemDivider>
+          <Text>There is nothing in your pantry or fridge</Text>
+        </ListItem>
+        <Button onPress={() => { navigate('AddItem'); }}>
+          <Text>Add Item</Text>
+        </Button>
+      </Container>
+    );
+  }
 
   renderItems() {
     const allId = Object.keys(this.props.inventory);
@@ -87,6 +102,8 @@ class RecipesIndex extends React.Component {
         )}
       </View>
       );
+    } else if (allItems.length === 0) {
+      return this.renderNoInventory();
     }
   }
 
@@ -115,6 +132,22 @@ class RecipesIndex extends React.Component {
     }
   }
 
+  renderButton() {
+    if (Object.keys(this.props.inventory).length > 0) {
+      return(
+      <View style={pantry.groupButtons}>
+        <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
+          <Text style={text.negButtonRecipe}>all my food</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
+          <Text style={text.posButtonRecipe}>my selected food</Text>
+        </TouchableHighlight>
+      </View>
+    );
+    }
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     const recipes = this.recipes();
@@ -136,15 +169,7 @@ class RecipesIndex extends React.Component {
             {items}
           </ScrollView>
             {spinner}
-          <View style={pantry.groupButtons}>
-            <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
-              <Text style={text.negButtonRecipe}>all my food</Text>
-            </TouchableHighlight>
-
-            <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
-              <Text style={text.posButtonRecipe}>my selected food</Text>
-            </TouchableHighlight>
-          </View>
+          {this.renderButton()}
         </View>
       );
     } else {

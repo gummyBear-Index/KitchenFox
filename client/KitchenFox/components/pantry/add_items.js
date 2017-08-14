@@ -25,7 +25,7 @@ class AddItems extends React.Component {
       quantity: '',
       units: 'g',
       weight: '',
-    }
+    };
     this.state = {
       showCamera: false,
       cameraType: Camera.constants.Type.back,
@@ -35,7 +35,7 @@ class AddItems extends React.Component {
         0: Object.assign(this.initialCardState),
       },
       camIdx: 0,
-    }
+    };
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
     this.handleCardUpdate = this.handleCardUpdate.bind(this);
@@ -52,7 +52,7 @@ class AddItems extends React.Component {
       if (newItem.quantity === 1) {
         newItem.units = 'each';
       }
-      this.handleCardUpdate(this.state.camIdx, newItem)
+      this.handleCardUpdate(this.state.camIdx, newItem);
     });
     Alert.alert(
         "Barcode Found!",
@@ -61,7 +61,7 @@ class AddItems extends React.Component {
   }
 
   handleCardUpdate(idx, childState) {
-    const keyArr = ['upc', 'name', 'quantity', 'units', 'weight']
+    const keyArr = ['upc', 'name', 'quantity', 'units', 'weight'];
     const newItems = Object.assign(this.state.items);
     newItems[idx] = Object.assign(childState);
     this.setState({ items: newItems });
@@ -73,7 +73,7 @@ class AddItems extends React.Component {
       }
     }
     if (numBlank === 0) {
-      this.updateNumItemCards()
+      this.updateNumItemCards();
     }
   }
 
@@ -90,10 +90,10 @@ class AddItems extends React.Component {
     const cart = [];
     itemKeys.forEach(i => {
       if (this.state.items[i].name.length)
-      cart.push(this.state.items[i])
-    })
+      cart.push(this.state.items[i]);
+    });
     cart.forEach((item) => {
-      let upc = item.upc.length ? item.upc : md5(item.name)
+      let upc = item.upc.length ? item.upc : md5(item.name);
       if (upc in inventory) {
         let newQuant = inventory[upc].quantity;
         newQuant = parseInt(newQuant);
@@ -114,7 +114,7 @@ class AddItems extends React.Component {
     this.props.sendItems(this.props.session.token, finalInventory);
     const { navigate } = this.props.navigation;
     navigate('PantryIndex');
-  };
+  }
 
   updateNumItemCards() {
     let newItems = this.state.items;
@@ -123,7 +123,7 @@ class AddItems extends React.Component {
     this.setState({
       numItemCards: newNumItemCards,
       items: newItems,
-    })
+    });
   }
 
   itemFormGen() {
