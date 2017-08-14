@@ -45,10 +45,15 @@ class RecipesIndex extends React.Component {
     }
   }
 
+
   checkBoxUpdate(checked, idx, name){
     const newQuery = Object.assign(this.state.query);
     if (checked === true) {
-      newQuery[idx] = name;
+        if (name.includes(",")) {
+          newQuery[idx] = (name.split(",")).join("+");
+        } else {
+          newQuery[idx] = name;
+        }
     } else {
       delete newQuery[idx];
     }
