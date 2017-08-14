@@ -8,6 +8,10 @@ import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes } from '../../util/api_util';
 
+import { View } from 'react-native';
+import { screen } from '../../style/layout';
+import { text } from '../../style/text';
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -83,7 +87,7 @@ class Dashboard extends React.Component {
           <Text>Manage Your Kitchen Inventory</Text>
         </Button>
         <ListItem itemDivider>
-          <Text>Cooking ideas based on your Ingredients :</Text>
+          <Text>Recipes you can make from your pantry</Text>
         </ListItem>
         <ListItem>
           {this.renderRecipe()}
@@ -119,8 +123,6 @@ class Dashboard extends React.Component {
     )
   }
 
-
-
   renderNoInventory() {
     const { navigate } = this.props.navigation;
     return(
@@ -141,10 +143,14 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    const render = this.selectToRender();
+    // const render = this.selectToRender();
     return(
-      render
-    )
+      <View style={screen.container}>
+          <Text style={text.titleCenter}>Dashboard</Text>
+          {this.selectToRender()}
+      </View>
+      // render
+    );
   }
 }
 
