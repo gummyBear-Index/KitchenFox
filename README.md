@@ -27,10 +27,6 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
   + Generating and storing JWT tokens using Async Storage on the local device helps us bootstrap the user to the application. Passport.js was untilized to verify the token and also fetch the appropriate user's collection.
 
-  ```javascript
-
-  ```
-
   ### Barcode Scanning Tool
   + With the react-native-camera library, KitchenFox allows the user to toggle back and forth when adding items to your inventory to user the mobile's camera to scan item's barcode to populate the inventory.
 
@@ -159,27 +155,15 @@ Our team's mission is to optimize people's daily lives by providing a simple too
    + The api call is built taking into account of fetching recipes with a specific query from the front end, or getting the entire inventory from the backend an parsing that as a query.
 
 
-  ### Keeping the Database up-to-date
-
-   +
-
-  ``` python
-
-  ```
-
-  ### Following bills
-   +
-
  <p align="center">
  <img src = "/docs/bill_view.gif">
  </p>
 
 ## Future Features
-  There are a number of bonus features that would greatly enhanced te user's experience 
+  There are a number of bonus features that would greatly enhanced the user's experience and also optimize the execution of certain logics.
 
-  + Expand LegislateMe to incorporate data from outside of California.
-  + Deploy app to Google Play and App Store.
-  + Search legislator by name.
-    - If users want to see a specific legislator's voting history or sponsored bills, we want to provide search functionality. This would entail having a nightly request to OpenStates and storing bills/legislators in our database for efficient retrieval by the frontend.
-  + Push notifications when bookmarked bill changes state
-    - If a user bookmarks a bill, we want them to be notified if its status changes (e.g it passes the House or gets signed into law). We plan to use push notifications for this feature.
+  + Add Receipt parsing functionality with OCR
+  + Deploy app to Google Play and App Store
+  + Connect with Amazon via affiliate link for items low in stock
+  + Suggest a meal plan for the week based on food inventory
+  + Include Carbon footprint and nutrition data for grocery items
