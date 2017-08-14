@@ -8,13 +8,11 @@ import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import CustomStatusBar from '../misc/status_bar';
-import EmptyPantry from '../pantry/pantry_empty';
-import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE, BLUE_DARK, BLUE_LIGHT } from '../../style/common';
-import  { button, back } from '../../style/button';
-import { screen, pantry, icon } from '../../style/layout';
+
+import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
+import  { button } from '../../style/button';
+import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 class RecipesIndex extends React.Component {
   constructor(props){
@@ -25,6 +23,7 @@ class RecipesIndex extends React.Component {
       spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
+    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   fetchRecipes(query) {
@@ -32,7 +31,9 @@ class RecipesIndex extends React.Component {
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
       if (res.status === 503) {
-        let dummy = [{'label': 'Server Error, try this recipe instead!', 'url':'http://www.grouprecipes.com/40883/tuttu-frutti-ice-cream.html', 'image':'https://www.edamam.com/web-img/0ab/0ab967ea9b889bd387fbd2d7aff64f83.jpg' }];
+        let dummy = [{'label': 'Server Error, try this recipe instead!',
+          'url':'http://www.grouprecipes.com/40883/tuttu-frutti-ice-cream.html',
+          'image':'https://www.edamam.com/web-img/0ab/0ab967ea9b889bd387fbd2d7aff64f83.jpg' }];
         this.setState({recipes: dummy});
         this.setState({spinner: false});
       } else {
@@ -69,6 +70,20 @@ class RecipesIndex extends React.Component {
     this.setState({query: newQuery});
   }
 
+  renderNoInventory() {
+    const { navigate } = this.props.navigation;
+    return(
+      <Container>
+        <ListItem itemDivider>
+          <Text>There is nothing in your pantry or fridge</Text>
+        </ListItem>
+        <Button onPress={() => { navigate('AddItem'); }}>
+          <Text>Add Item</Text>
+        </Button>
+      </Container>
+    );
+  }
+
   renderItems() {
     const allId = Object.keys(this.props.inventory);
     const allItems = [];
@@ -103,7 +118,7 @@ class RecipesIndex extends React.Component {
       </View>
       );
     } else if (allItems.length === 0) {
-      return (<EmptyPantry navigation={this.props.navigation} />);
+      return this.renderNoInventory();
     }
   }
 
@@ -121,13 +136,12 @@ class RecipesIndex extends React.Component {
     } else {
       return (
       <Container>
-        <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
-        <TouchableHighlight 
-            style={button.sessionButton} 
-            onPress={() => {navigate('AddItem');
-        }}>
-        <Text>Add Items</Text>
-        </TouchableHighlight>
+          <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
+          <TouchableHighlight style={button.sessionButton} onPress={() => {
+              navigate('AddItem');
+          }}>
+          <Text>Add Items</Text>
+          </TouchableHighlight>
       </Container>
     );
     }
@@ -137,17 +151,11 @@ class RecipesIndex extends React.Component {
     if (Object.keys(this.props.inventory).length > 0) {
       return(
       <View style={pantry.groupButtons}>
-        <TouchableHighlight 
-            style={button.negFormButtonRecipe} 
-            underlayColor={BLUE_LIGHT}
-            onPress={() => this.fetchRecipes("all")}>
+        <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
           <Text style={text.negButtonRecipe}>all my food</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight 
-            style={button.posFormButtonRecipe} 
-            underlayColor={BLUE_LIGHT}
-            onPress={() => this.fetchRecipes("none")}>
+        <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
           <Text style={text.posButtonRecipe}>my selected food</Text>
         </TouchableHighlight>
       </View>
@@ -156,7 +164,7 @@ class RecipesIndex extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigate } = this.props.navigation;
     const recipes = this.recipes();
     const items = this.renderItems();
     let spinner;
@@ -168,22 +176,11 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
-          <CustomStatusBar />
+          <Button onPress={() => navigate('Dashboard')}>
+            <Text>Go Back</Text>
+          </Button>
           <ScrollView>
-            <View style={back.container}>
-              <TouchableHighlight 
-                onPress={() => navigation.goBack(null)}
-                underlayColor='#fff'>
-                <EvilIcons name='arrow-left' style={icon.back} />
-              </TouchableHighlight>
-              <View>
-                <Text style={text.titleDiminished}>I want to cook with...</Text>
-              </View>
-              <View>
-                <EvilIcons name='arrow-left' style={icon.backPadding} />
-              </View>
-            </View>
-
+          <Text style={text.titleCenter}>I want to cook with...</Text>
             {items}
           </ScrollView>
             {spinner}
@@ -193,25 +190,13 @@ class RecipesIndex extends React.Component {
     } else {
     return (
       <View style={screen.container}>
-        <CustomStatusBar />
-        <ScrollView>
-        <View style={back.container}>
-          <TouchableHighlight 
-            onPress={() => navigation.goBack(null)}
-            underlayColor='#fff'>
-            <EvilIcons name='arrow-left' style={icon.back} />
-          </TouchableHighlight>
-          <View>
-            <Text style={text.titleDiminished}>Recipes you can make</Text>
-          </View>
-          <View>
-            <EvilIcons name='arrow-left' style={icon.backPadding} />
-          </View>
-        </View>
-        <View>
+        <Button onPress={() => navigate('Recipes')}>
+          <Text>Go Back</Text>
+        </Button>
+        <Text style={text.titleDiminished}>Recipes you can make</Text>
+        <Content>
           {recipes}
-        </View>
-        </ScrollView>
+        </Content>
       </View>
     );
     }
