@@ -74,16 +74,16 @@ class PantryIndex extends React.Component {
               <Text style={text.titleCenter}>
                 Your Ingredients
               </Text>
-            <ScrollView>  
+            <ScrollView>
               {this.renderItems()}
             <Button
               style={button.sessionButton}
               onPress={(e) => this.handleLogout()}>
               <Text>LOGOUT</Text>
             </Button>
-            </ScrollView>  
+            </ScrollView>
            </View>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigation={this.props.navigation} />
        </Container>
     );
   }
