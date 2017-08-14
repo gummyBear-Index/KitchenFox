@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, List, ListItem, Text, Button } from 'native-base';
+import { Container, Content, List, ListItem, Text, Button, Icon } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes } from '../../util/api_util';
 
-import { View } from 'react-native';
-import { screen } from '../../style/layout';
-import { text } from '../../style/text';
+import { View, ScrollView, TouchableHighlight } from 'react-native';
+import { screen, card, pantry } from '../../style/layout';
+import { text, pantryText } from '../../style/text';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        <NavFooter navigate={navigate} />
+        {/* <NavFooter navigate={navigate} /> */}
       </Container>
     )
   }
@@ -100,31 +100,32 @@ class Dashboard extends React.Component {
   renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>Looks like you are running low on :</Text>
-        </ListItem>
-        {lowItems.map((item, idx) =>
-          <ListItem key={idx} onPress={() => { navigate('PantryItem', { item }); }}>
-            <Text>
-              {Object.values(item)[0]['name']}: &nbsp;
-              {Object.values(item)[0]['quantity']} &nbsp;
-              {Object.values(item)[0]['units']}
-            </Text>
-          </ListItem>)}
-        <ListItem itemDivider>
-          <Text>Cooking ideas based on your Ingredients :</Text>
-        </ListItem>
-        <ListItem>
+      <View>
+        <View style={card.container}>
+          <View style={card.headerRow}>
+            <Icon name="alert" style={card.iconWarning} /> 
+            <Text style={card.titleLeft}>Looks like you are running low on some ingredients</Text>
+          </View>
+          {lowItems.map((item, idx) =>
+          <TouchableHighlight key={idx} onPress={() => { navigate('PantryItem', { item }); }}>
+            
+            <View style={pantry.itemContainerSmall}>
+              <Icon name='md-arrow-dropright'  style={card.icon} /> 
+              <Text style={pantryText.itemDash}>{Object.values(item)[0]['name']}</Text>
+              <Text style={pantryText.itemDescDash}>{Object.values(item)[0]['quantity']} {Object.values(item)[0]['units']}</Text>
+            </View>
+          </TouchableHighlight>)}
+        </View>
+        <View style={card.container}>
+          <Text style={card.titleRecipe}>Recipe ideas</Text>
           {this.renderRecipe()}
-        </ListItem>
-        <NavFooter navigate={navigate} />
-      </Container>
-    )
+      </View>
+      </View>
+    );
   }
 
   renderNoInventory() {
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     return(
       <Container>
         <ListItem itemDivider>
@@ -133,7 +134,7 @@ class Dashboard extends React.Component {
         <ListItem onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
         </ListItem>
-        <NavFooter navigate={navigate} />
+        {/* <NavFooter navigate={navigate} /> */}
       </Container>
     )
   }
@@ -144,10 +145,14 @@ class Dashboard extends React.Component {
 
   render() {
     // const render = this.selectToRender();
+    const { navigate } = this.props.navigation;
     return(
       <View style={screen.container}>
+        <ScrollView>
           <Text style={text.titleCenter}>Dashboard</Text>
           {this.selectToRender()}
+        </ScrollView>
+        <NavFooter navigate={navigate} />
       </View>
       // render
     );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Image } from 'react-native';
 
-import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT } from './common';
+import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, TITLE, BASE_FONT_LIGHT, BASE_FONT_REGULAR } from './common';
 
 export const session = StyleSheet.create({
   container: {
@@ -72,6 +72,15 @@ export const pantry = StyleSheet.create({
     paddingTop: 18,
     paddingBottom: 18,
     paddingLeft: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-end',
+  },
+  itemContainerSmall: {
+    backgroundColor: '#fff',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 84,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-end',
@@ -172,3 +181,65 @@ export const recipe = StyleSheet.create({
   }
 });
 
+export const card = StyleSheet.create({
+  container: {
+    // backgroundColor: '#444',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    width: null,
+    marginTop: 6,
+    marginLeft: 6,
+    marginRight: 6,
+    padding: 0,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingTop: 7,
+  },
+  iconWarning: {
+    color: ORANGE,
+    fontSize: 60,
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
+    paddingLeft: 22,
+    paddingRight: 2,
+  },
+  icon: {
+    color: ORANGE,
+    fontSize: 20,
+  },
+  titleLeft: {
+    fontSize: 20,
+    paddingTop: 8,
+    paddingBottom: 12,
+    paddingLeft: 4,
+    paddingRight: 8,
+    textAlign: 'left',
+    color: TITLE,
+    fontFamily: BASE_FONT_REGULAR,
+    flexWrap: 'wrap',
+    flex: 5,
+    // width: 100,
+    // flexDirection: 'column',
+  },
+  titleRecipe: {
+    fontSize: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 20,
+    paddingRight: 8,
+    textAlign: 'left',
+    color: TITLE,
+    fontFamily: BASE_FONT_REGULAR,
+    flexWrap: 'wrap',
+    flex: 5,
+    // width: 100,
+    // flexDirection: 'column',
+  },
+});
