@@ -748,7 +748,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 .section-intro .with-bottom-line::after {
 	display: block;
-	background-color: #05bca9;
+	background-color: #F27E08;
 	width: 120px;
 	height: 3px;
 	content: '\0020';
@@ -839,7 +839,7 @@ header .logo a {
 	color: transparent;
 	width: 42px;
 	height: 42px;
-	background: url("../images/logo.png") no-repeat center;
+	background: url("../images/fox.png") no-repeat center;
 	background-size: 42px 42px;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -849,7 +849,7 @@ header .logo a {
 }
 .sticky {
 	position: fixed;
-	background: #EE9133;
+	background: #06BAEB;
 	top: 0;
 }
 .sticky .logo a {
@@ -937,7 +937,7 @@ a.menu-toggle {
 	transition: all 0.3s ease-in-out;
 }
 .main-navigation li.highlight a {
-	color: #05bca9;
+	color: #F27E08;
 }
 .main-navigation li.with-sep a {
 	position: relative;
@@ -1565,7 +1565,7 @@ a.menu-toggle {
 .features-list .h05 {
 	font-size: 1.7rem;
 	line-height: 1.765;
-	color: #05bca9;
+	color: #F27E08;
 	margin-bottom: 1.8rem;
 }
 
@@ -2050,11 +2050,11 @@ a.menu-toggle {
 	color: #0087cc;
 }
 .section-ads .button {
-	background: #05bca9;
+	background: #06BAEB;
 	color: #FFFFFF;
 }
 .section-ads .button:hover, .section-ads .button:focus {
-	background: #05ad9c;
+	background: #06ACD9;
 }
 
 
@@ -2202,10 +2202,10 @@ footer ul li {
 	color: #FFFFFF;
 }
 .footer-main .footer-logo {
-	width: 162px;
+	width: 39px;
 	height: 39px;
-	background: url("../images/footer-logo.png") no-repeat center;
-	background-size: 162px 39px;
+	background: url("../images/fox.png") no-repeat center;
+	background-size: 39px 39px;
 	margin: -.6rem 0 2.1rem -.3rem;
 	display: block;
 }
