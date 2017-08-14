@@ -31,21 +31,38 @@ class RecipesIndex extends React.Component {
     this.setState({spinner: true});
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)});
-      this.setState({spinner: false});
+      if (res.status === 503) {
+        let dummy = [{'label': 'Server Error, try this recipe instead!', 'url':'http://www.grouprecipes.com/40883/tuttu-frutti-ice-cream.html', 'image':'https://www.edamam.com/web-img/0ab/0ab967ea9b889bd387fbd2d7aff64f83.jpg' }];
+        this.setState({recipes: dummy});
+        this.setState({spinner: false});
+      } else {
+        this.setState({recipes: JSON.parse(res._bodyText)});
+        this.setState({spinner: false});
+      }
     });
-  } else {
+    } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)});
-      this.setState({spinner: false});
+      if (res.status === 503) {
+        let dummy = [{'label': 'Server Error, try this recipe instead!', 'url':'https://www.campbells.com/kitchen/recipes/lucky-duck-cupcakes', 'image':'https://www.edamam.com/web-img/007/007643dc0b88f69b82cff6341a7fcfe2.jpg' }];
+        this.setState({recipes: dummy});
+        this.setState({spinner: false});
+      } else {
+        this.setState({recipes: JSON.parse(res._bodyText)});
+        this.setState({spinner: false});
+      }
     });
     }
   }
 
+
   checkBoxUpdate(checked, idx, name){
     const newQuery = Object.assign(this.state.query);
     if (checked === true) {
-      newQuery[idx] = name;
+        if (name.includes(",")) {
+          newQuery[idx] = (name.split(",")).join("+");
+        } else {
+          newQuery[idx] = name;
+        }
     } else {
       delete newQuery[idx];
     }
@@ -144,12 +161,9 @@ class RecipesIndex extends React.Component {
     const items = this.renderItems();
     let spinner;
     if (this.state.spinner) {
-      // spinner = (<Content><Spinner color='blue'/></Content>);
         spinner = (<View style={{ flex: 1 }}><Spinner visible={true} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-
     } else {
       spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-      // spinner =  (<Content></Content>);
     }
     if (this.state.recipes === "none") {
       return (

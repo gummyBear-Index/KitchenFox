@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, List, ListItem, Text, Button, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Text, Button, Icon, Spinner } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
-import { getRecipes } from '../../util/api_util';
+import { getRecipes1 } from '../../util/api_util';
 
 import CustomStatusBar from '../misc/status_bar';
 import EmptyPantry from './pantry_empty';
@@ -17,13 +17,13 @@ import { text, pantryText } from '../../style/text';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    let component = <Text>''</Text>
+    let component = <View><Spinner color='blue' /></View>
     this.state = {
       name: '',
       quantity: 0,
       units: '',
       recipes: [],
-      toRender: component
+      toRender: component,
     }
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
@@ -32,14 +32,26 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
+    this.selectToRender();
   }
 
   componentWillReceiveProps(newProps) {
     let items = Object.values(newProps.inventory);
     let item = items[Math.floor(Math.random()*items.length)];
     item = item.name;
-    getRecipes(1, item, newProps.session.token)
-      .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
+    item = item.split(', ').join('');
+    item = item.split(' ').join('');
+    getRecipes1(1, item, newProps.session.token)
+      .then((res) =>  {
+        if (res.status === 503) {
+          let dummy = [{'label': 'Strawberry, Melon & Ginger Sundaes', 'url':'http://www.bbcgoodfood.com/recipes/2384/strawberry-melon-and-ginger-sundaes', 'image':'https://www.edamam.com/web-img/6cf/6cf1b0d6b9bf021277435a236eb54ac1.jpg' }]
+          this.setState({recipes: dummy});
+          this.selectToRender()
+        } else {
+          this.setState({recipes: JSON.parse(res._bodyText)});
+          this.selectToRender();
+        }
+      })
   }
 
   selectToRender () {
@@ -60,20 +72,24 @@ class Dashboard extends React.Component {
       obj[`${id}`] = item;
       allItems.push(obj);
     })
+    let toRender;
     if (allItems.length > 0 && lowItems.length === 0) {
-      return this.renderNoLowItem(allItems, lowItems);
+      toRender = this.renderNoLowItem(allItems, lowItems);
     } else if (lowItems.length > 0) {
-      return this.renderLowItems(allItems, lowItems);
-    } else if (allItems.length === 0) {
-      return (<EmptyPantry navigation={this.props.navigation} />);
+      toRender = this.renderLowItems(allItems, lowItems);
+    } else {
+      toRender = this.renderNoInventory();
     }
+    this.setState({ toRender: toRender });
+    this.forceUpdate();
   }
 
   renderRecipe() {
     if (this.state.recipes.length > 0) {
       return (<RecipeCard recipeInfo={this.state.recipes[0]} />)
-    };
-
+    } else if (this.state.recipes.length === 0) {
+      return (<View><Spinner color='blue' /></View>)
+    }
   }
 
   renderNoLowItem(allItems, lowItems) {
@@ -124,10 +140,6 @@ class Dashboard extends React.Component {
     );
   }
 
-  // static navigationOptions = {
-  //   title: 'Kitchen Fox Dashboard',
-  // };
-
   render() {
     const { navigate } = this.props.navigation;
     return(
@@ -135,7 +147,7 @@ class Dashboard extends React.Component {
         <CustomStatusBar />
         <ScrollView>
           <Text style={text.titleCenter}>Dashboard</Text>
-          {this.selectToRender()}
+          {this.state.toRender}
         </ScrollView>
         <NavFooter navigation={this.props.navigation} />
       </View>
@@ -149,7 +161,6 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token)),
 });
 

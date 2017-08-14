@@ -6,7 +6,7 @@ const router = Router();
 
 import { userIndex, register, login, showUser } from './controllers/users';
 import { itemsIndex, itemsPatch, test, populateDb } from './controllers/items';
-import { createQuery, apiCall } from './utils/suggestRecipe';
+import { createQuery, apiCall, apiCallDashboard } from './utils/suggestRecipe';
 import { upcLookUp } from './utils/upcLogic';
 import { getItemsByUserId } from './db/queries';
 import User from './models/user';
@@ -85,6 +85,34 @@ router.get('/recipes', (req, res, next) => {
         });
       } else {
         apiCall(req.headers.number, req.headers.query).then((recipeinfo) => {
+          return res
+          .status(200)
+          .json(recipeinfo);
+        });
+    }
+    }
+  })(req, res, next);
+});
+
+router.get('/dashboard-recipes', (req, res, next) => {
+  passport.authenticate('jwt', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    if (user) {
+      if (req.headers.query === "null") {
+        getItemsByUserId(user._id).then((result) => {
+          apiCallDashboard(req.headers.number, createQuery(result)).then((recipeinfo) => {
+            return res
+            .status(200)
+            .json(recipeinfo);
+          });
+        });
+      } else {
+        apiCallDashboard(req.headers.number, req.headers.query).then((recipeinfo) => {
           return res
           .status(200)
           .json(recipeinfo);
