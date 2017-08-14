@@ -39,6 +39,7 @@ class Dashboard extends React.Component {
     item = item.name;
     getRecipes(1, item, newProps.session.token)
       .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
+      .then(() => this.selectToRender())
   }
 
   selectToRender () {
@@ -59,13 +60,16 @@ class Dashboard extends React.Component {
       obj[`${id}`] = item;
       allItems.push(obj);
     })
+    let toRender;
     if (allItems.length > 0 && lowItems.length === 0) {
-      return this.renderNoLowItem(allItems, lowItems);
+      toRender = this.renderNoLowItem(allItems, lowItems);
     } else if (lowItems.length > 0) {
-      return this.renderLowItems(allItems, lowItems);
+      toRender = this.renderLowItems(allItems, lowItems);
     } else if (allItems.length === 0) {
-      return this.renderNoInventory();
+      toRender = this.renderNoInventory();
     }
+    this.setState({ toRender: toRender })
+    this.forceUpdate();
   }
 
   renderRecipe() {
@@ -147,7 +151,7 @@ class Dashboard extends React.Component {
       <View style={screen.container}>
         <ScrollView>
           <Text style={text.titleCenter}>Dashboard</Text>
-          {this.selectToRender()}
+          {this.state.toRender}
         </ScrollView>
         <NavFooter navigation={this.props.navigation} />
       </View>

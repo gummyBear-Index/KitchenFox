@@ -109,7 +109,6 @@ class BarCodeCamera extends Component {
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});
-    console.warn(this.state.upc);
     Alert.alert(
         "Barcode Found!",
         "Type: " + e.type + "\nData: " + e.data
