@@ -161,7 +161,7 @@ export const addItemCard = StyleSheet.create({
     flex: 1,
   },
   scanner: {
-    backgroundColor: '#333',
+    backgroundColor: '#666',
     width: null,
     height: null,
   }
@@ -191,6 +191,7 @@ export const card = StyleSheet.create({
     marginLeft: 6,
     marginRight: 6,
     padding: 0,
+    marginBottom: 4,
   },
   headerRow: {
     flexDirection: 'row',
