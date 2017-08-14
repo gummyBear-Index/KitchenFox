@@ -128,7 +128,7 @@ class Dashboard extends React.Component {
         </ListItem>
         <Button onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
-        </ListItem>
+        </Button>
         <NavFooter navigation={this.props.navigation} />
       </Container>
     )
@@ -153,7 +153,7 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // logout: () => dispatch(logout()),
+  logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token)),
 });
 
