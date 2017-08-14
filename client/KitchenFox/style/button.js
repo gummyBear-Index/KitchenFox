@@ -21,7 +21,8 @@ export const button = StyleSheet.create({
     shadowColor: 'transparent',
     shadowOpacity: 0,
     // borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: '#fff',
+    overflow: 'hidden',
   },
   sessionButton: {
     borderRadius: 80,
@@ -33,6 +34,7 @@ export const button = StyleSheet.create({
     // borderWidth: 1,
     borderColor: '#fff',
     width: 200,
+    overflow: 'hidden',
     // alignSelf: 'stretch',
     // textAlign: 'center',
   },
@@ -44,6 +46,7 @@ export const button = StyleSheet.create({
     borderWidth: 3,
     borderColor: BLUE,
     width: 120,
+    overflow: 'hidden',
   },
   posFormButton: {
     borderRadius: 80,
@@ -52,7 +55,8 @@ export const button = StyleSheet.create({
     backgroundColor: BLUE,
     borderWidth: 3,
     borderColor: BLUE,
-    width: 120,
+    maxWidth: 140,
+    overflow: 'hidden',
   },
   negFormButtonRecipe: {
     borderRadius: 80,
@@ -63,6 +67,7 @@ export const button = StyleSheet.create({
     borderColor: BLUE,
     // alignItems: 'stretch',
     width: 180,
+    overflow: 'hidden',
   },
   posFormButtonRecipe: {
     borderRadius: 80,
@@ -73,6 +78,27 @@ export const button = StyleSheet.create({
     borderColor: BLUE,
     // alignItems: 'stretch',
     width: 180,
+    overflow: 'hidden',
   },
 });
 
+export const back = StyleSheet.create({
+  container: {
+    flex: 1, 
+    flexDirection: 'row', 
+    alignContent: 'flex-start', 
+    justifyContent: 'space-between', 
+    alignItems: 'flex-start',
+    // backgroundColor: 'white'
+  },
+  containerCamera: {
+    // flex: 1, 
+    flexDirection: 'row', 
+    alignContent: 'flex-start', 
+    justifyContent: 'space-between', 
+    alignItems: 'flex-start',
+    // backgroundColor: 'transparent',
+    // height: 100,
+    // width: null,
+  },
+});

@@ -8,6 +8,8 @@ import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes1 } from '../../util/api_util';
 
+import CustomStatusBar from '../misc/status_bar';
+import EmptyPantry from './pantry_empty';
 import { View, ScrollView, TouchableHighlight } from 'react-native';
 import { screen, card, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
@@ -26,7 +28,6 @@ class Dashboard extends React.Component {
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
     this.renderLowItems = this.renderLowItems.bind(this);
-    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   componentWillMount() {
@@ -52,15 +53,6 @@ class Dashboard extends React.Component {
         }
       })
   }
-
-  // componentWillReceiveProps(newProps) {
-  //   let items = Object.values(newProps.inventory);
-  //   let item = items[Math.floor(Math.random()*items.length)];
-  //   item = item.name;
-  //   getRecipes1(1, item, newProps.session.token)
-  //     .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
-  //     .then(() => this.selectToRender())
-  // }
 
   selectToRender () {
     const { navigate } = this.props.navigation;
@@ -118,7 +110,7 @@ class Dashboard extends React.Component {
           {this.renderRecipe()}
         </ListItem>
       </Container>
-    )
+    );
   }
 
   renderLowItems(allItems, lowItems) {
@@ -148,28 +140,11 @@ class Dashboard extends React.Component {
     );
   }
 
-  renderNoInventory() {
-    const { navigate } = this.props.navigation;
-    return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>There is nothing in your pantry or fridge</Text>
-        </ListItem>
-        <Button onPress={() => { navigate('AddItem'); }}>
-          <Text>Add Item</Text>
-        </Button>
-      </Container>
-    )
-  }
-
-  static navigationOptions = {
-    title: 'Kitchen Fox Dashboard',
-  };
-
   render() {
     const { navigate } = this.props.navigation;
     return(
       <View style={screen.container}>
+        <CustomStatusBar />
         <ScrollView>
           <Text style={text.titleCenter}>Dashboard</Text>
           {this.state.toRender}

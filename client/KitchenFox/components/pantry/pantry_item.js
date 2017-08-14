@@ -8,6 +8,7 @@ import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 
+import CustomStatusBar from '../misc/status_bar';
 import { connect } from 'react-redux';
 import { sendItems, requestItems } from '../../actions/inventory_actions';
 
@@ -54,6 +55,7 @@ class PantryItem extends React.Component {
     return (
       <Container>
         <View style={screen.container}>
+          <CustomStatusBar />
           <View style={pantry.updateItem}>
             <Text style={pantryText.updateItem}>
               {name}

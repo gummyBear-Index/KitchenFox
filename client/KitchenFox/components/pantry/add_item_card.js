@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Picker,
   InputGroup,
   Input,
   Button,
@@ -8,8 +7,8 @@ import {
   View,
   ListItem,
 } from 'native-base';
-import { TouchableHighlight } from 'react-native';
-// import { Picker } from 'react-native';
+
+import { TouchableHighlight, Picker } from 'react-native';
 import { button } from '../../style/button';
 import { screen, addItemCard } from '../../style/layout';
 import { input, addItemsInput } from '../../style/input';
@@ -94,7 +93,7 @@ class AddItemCard extends Component {
           </View>
           <View style={addItemCard.quanUnit}>
             <Picker
-              itemStyle={{color:'white'}}
+              itemStyle={{color: 'white', height: 60}}
               placeholder="units"
               mode="dropdown"
               selectedValue={this.state.units}

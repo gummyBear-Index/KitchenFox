@@ -16,7 +16,7 @@ const title = {
 export const text = StyleSheet.create({
   title,
   titleDiminished: {
-    fontSize: 34,
+    fontSize: 30,
     paddingTop: 20,
     paddingBottom: 20,
     textAlign: 'center',
@@ -48,6 +48,15 @@ export const text = StyleSheet.create({
     color: TITLE,
     fontFamily: BASE_FONT_REGULAR,
     paddingTop: 40,
+    paddingBottom: 40,
+  },
+  titleCenterWBB: {
+    fontSize: 34,
+    // fontSize: 50,
+    textAlign: 'center',
+    color: TITLE,
+    fontFamily: BASE_FONT_REGULAR,
+    paddingTop: 0,
     paddingBottom: 40,
   },
   greetingTitle: {
@@ -96,6 +105,8 @@ export const text = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'stretch',
     textAlign: 'center',
+    paddingLeft: 18,
+    paddingRight: 18,
   },
   negButton: {
     color: BLUE,
@@ -155,6 +166,7 @@ export const pantryText = StyleSheet.create({
     fontSize: 14,
     paddingLeft: 8,
     color: ORANGE,
+    paddingBottom: 1,
   },
   itemForRecipe: {
     fontSize: 22,
@@ -211,6 +223,8 @@ export const overlayText = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     textAlign: 'center',
+    borderRadius: 5,
+    overflow: 'hidden',
     // flexDirection:'row', flexWrap:'wrap'
   }
 });

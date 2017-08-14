@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, Image } from 'react-native';
+import { StyleSheet, Dimensions, Image, StatusBar, Platform } from 'react-native';
 
 import { BLUE, BLUE_DARK, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, TITLE, BASE_FONT_LIGHT, BASE_FONT_REGULAR } from './common';
+
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 
 export const session = StyleSheet.create({
   container: {
@@ -75,6 +78,8 @@ export const pantry = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-end',
+    borderBottomWidth: 1,
+    borderColor: ORANGE_LIGHTER,
   },
   itemContainerSmall: {
     backgroundColor: '#fff',
@@ -171,10 +176,10 @@ export const recipe = StyleSheet.create({
   image: {
     height: 250,
     width: null,
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     // alignSelf: 'center',
     // marginBottom: 10,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     borderBottomWidth: 4,
     borderColor: 'white',
 
@@ -244,3 +249,30 @@ export const card = StyleSheet.create({
     // flexDirection: 'column',
   },
 });
+
+export const icon = StyleSheet.create({
+  back: {
+    color: '#ccc',
+    paddingLeft: 15,
+    paddingTop: 10,
+    // paddingTop: 10,
+    marginBottom: 0,
+    alignSelf: 'center',
+    fontSize: 30,
+  },
+  backPadding: {
+    color: 'transparent',
+    fontSize: 40,
+  },
+});
+
+export const bar = StyleSheet.create({
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+  },
+  appBar: {
+    backgroundColor:'white',
+    height: APPBAR_HEIGHT,
+  },
+});
+
