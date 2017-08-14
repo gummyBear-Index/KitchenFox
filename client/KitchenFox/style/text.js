@@ -212,6 +212,7 @@ export const overlayText = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     textAlign: 'center',
+    borderRadius: 5,
     // flexDirection:'row', flexWrap:'wrap'
   }
 });

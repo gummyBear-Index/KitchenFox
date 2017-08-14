@@ -173,10 +173,10 @@ export const recipe = StyleSheet.create({
   image: {
     height: 250,
     width: null,
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     // alignSelf: 'center',
     // marginBottom: 10,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     borderBottomWidth: 4,
     borderColor: 'white',
 
