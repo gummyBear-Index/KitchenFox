@@ -78,7 +78,7 @@ class RecipesIndex extends React.Component {
               underlayColor={ORANGE}
               key={idx}
               label={""}
-              checked={new Boolean(this.state.query[idx])}
+              checked={Boolean(this.state.query[idx])}
               onChange={(checked) => this.checkBoxUpdate(!checked, idx, Object.values(item)[0]['name'])}
             />
             <Text style={pantryText.itemForRecipe}>{Object.values(item)[0]['name']}</Text>
