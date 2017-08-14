@@ -69,8 +69,7 @@ class Dashboard extends React.Component {
   }
 
   renderRecipe() {
-    console.warn(this.state.recipes.length)
-    if (this.state.recipes.length === 1) {
+    if (this.state.recipes.length > 0) {
       return (<RecipeCard recipeInfo={this.state.recipes[0]} />)
     } else if (this.state.recipes.length === 0) {
       return (<View><Spinner color='blue' /></View>)
