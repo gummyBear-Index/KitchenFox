@@ -45,10 +45,15 @@ class RecipesIndex extends React.Component {
     }
   }
 
+
   checkBoxUpdate(checked, idx, name){
     const newQuery = Object.assign(this.state.query);
     if (checked === true) {
-      newQuery[idx] = name;
+        if (name.includes(",")) {
+          newQuery[idx] = (name.split(",")).join("+");
+        } else {
+          newQuery[idx] = name;
+        }
     } else {
       delete newQuery[idx];
     }
@@ -154,12 +159,9 @@ class RecipesIndex extends React.Component {
     const items = this.renderItems();
     let spinner;
     if (this.state.spinner) {
-      // spinner = (<Content><Spinner color='blue'/></Content>);
         spinner = (<View style={{ flex: 1 }}><Spinner visible={true} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-
     } else {
       spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-      // spinner =  (<Content></Content>);
     }
     if (this.state.recipes === "none") {
       return (
