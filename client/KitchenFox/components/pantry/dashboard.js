@@ -39,7 +39,6 @@ class Dashboard extends React.Component {
     item = item.name;
     getRecipes(1, item, newProps.session.token)
       .then((res) =>  {
-        console.warn(JSON.stringify(res));
         if (res.status === 503) {
           let dummy = [{'label': 'Strawberry, Melon & Ginger Sundaes', 'url':'http://www.bbcgoodfood.com/recipes/2384/strawberry-melon-and-ginger-sundaes', 'image':'https://www.edamam.com/web-img/6cf/6cf1b0d6b9bf021277435a236eb54ac1.jpg' }]
           this.setState({recipes: dummy});
