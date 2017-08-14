@@ -21,7 +21,8 @@ export const button = StyleSheet.create({
     shadowColor: 'transparent',
     shadowOpacity: 0,
     // borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: '#fff',
+    overflow: 'hidden',
   },
   sessionButton: {
     borderRadius: 80,
@@ -33,6 +34,7 @@ export const button = StyleSheet.create({
     // borderWidth: 1,
     borderColor: '#fff',
     width: 200,
+    overflow: 'hidden',
     // alignSelf: 'stretch',
     // textAlign: 'center',
   },
@@ -44,6 +46,7 @@ export const button = StyleSheet.create({
     borderWidth: 3,
     borderColor: BLUE,
     width: 120,
+    overflow: 'hidden',
   },
   posFormButton: {
     borderRadius: 80,
@@ -53,6 +56,7 @@ export const button = StyleSheet.create({
     borderWidth: 3,
     borderColor: BLUE,
     maxWidth: 140,
+    overflow: 'hidden',
   },
   negFormButtonRecipe: {
     borderRadius: 80,
@@ -63,6 +67,7 @@ export const button = StyleSheet.create({
     borderColor: BLUE,
     // alignItems: 'stretch',
     width: 180,
+    overflow: 'hidden',
   },
   posFormButtonRecipe: {
     borderRadius: 80,
@@ -73,6 +78,7 @@ export const button = StyleSheet.create({
     borderColor: BLUE,
     // alignItems: 'stretch',
     width: 180,
+    overflow: 'hidden',
   },
 });
 

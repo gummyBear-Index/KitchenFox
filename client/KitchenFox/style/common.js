@@ -10,6 +10,7 @@ export const ORANGE = '#F27E08';
 export const ORANGE_LIGHT = '#EE9133';
 export const ORANGE_LIGHTER = '#FCBE7F';
 export const BLUE = '#06BAEB';
+export const BLUE_LIGHT = '#42C9ED';
 export const BLUE_DARK = '#06ACD9';
 export const WHITE = '#fff';
 export const BLACK = '#000';

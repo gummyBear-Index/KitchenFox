@@ -10,7 +10,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import CustomStatusBar from '../misc/status_bar';
 import EmptyPantry from '../pantry/pantry_empty';
-import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE, BLUE_DARK } from '../../style/common';
+import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE, BLUE_DARK, BLUE_LIGHT } from '../../style/common';
 import  { button, back } from '../../style/button';
 import { screen, pantry, icon } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
@@ -105,8 +105,9 @@ class RecipesIndex extends React.Component {
       return (
       <Container>
         <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
-        <TouchableHighlight style={button.sessionButton} onPress={() => {
-            navigate('AddItem');
+        <TouchableHighlight 
+            style={button.sessionButton} 
+            onPress={() => {navigate('AddItem');
         }}>
         <Text>Add Items</Text>
         </TouchableHighlight>
@@ -119,11 +120,17 @@ class RecipesIndex extends React.Component {
     if (Object.keys(this.props.inventory).length > 0) {
       return(
       <View style={pantry.groupButtons}>
-        <TouchableHighlight style={button.negFormButtonRecipe} onPress={() => this.fetchRecipes("all")}>
+        <TouchableHighlight 
+            style={button.negFormButtonRecipe} 
+            underlayColor={BLUE_LIGHT}
+            onPress={() => this.fetchRecipes("all")}>
           <Text style={text.negButtonRecipe}>all my food</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={button.posFormButtonRecipe} onPress={() => this.fetchRecipes("none")}>
+        <TouchableHighlight 
+            style={button.posFormButtonRecipe} 
+            underlayColor={BLUE_LIGHT}
+            onPress={() => this.fetchRecipes("none")}>
           <Text style={text.posButtonRecipe}>my selected food</Text>
         </TouchableHighlight>
       </View>

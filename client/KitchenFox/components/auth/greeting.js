@@ -24,6 +24,7 @@ import SignUp from './signup';
 import { text } from '../../style/text';
 import { button } from '../../style/button';
 import { session } from '../../style/layout';
+import { BLUE_LIGHT } from '../../style/common';
 
 class Greeting extends Component {
   constructor(props) {
@@ -62,19 +63,19 @@ class Greeting extends Component {
         <View style={session.groupButtons}>
           <TouchableHighlight
             style={button.greetingButton}
-            underlayColor='#fff'
+            underlayColor={BLUE_LIGHT}
             onPress={() => navigate('Signup', {name: 'signup'})}>
             <Text style={text.greetingButton}>Sign Up</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={button.greetingButton}
-            underlayColor='#fff'
+            underlayColor={BLUE_LIGHT}
             onPress={() => navigate('Signin', {name: 'signin'})}>
             <Text style={text.greetingButton}>Sign In</Text>
           </TouchableHighlight>
           <TouchableHighlight
               style={button.greetingButton}
-              underlayColor='#fff'
+              underlayColor={BLUE_LIGHT}
               onPress={() => this.handleDemo()}>
               <Text style={text.greetingButton}>Demo</Text>
             </TouchableHighlight>
