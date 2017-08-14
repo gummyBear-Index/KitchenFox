@@ -5,7 +5,7 @@ import { Container, Content, List, ListItem, Button,
 import { View, TouchableHighlight, ScrollView } from 'react-native';
 
 import EmptyPantry from './pantry_empty';
-import { ACTIVE_TAB, ORANGE_LIGHT } from '../../style/common';
+import { ACTIVE_TAB, ORANGE_LIGHT, BLUE_LIGHT } from '../../style/common';
 import { screen, pantry } from '../../style/layout';
 import { button } from '../../style/button';
 import { text, pantryText } from '../../style/text';
@@ -83,11 +83,13 @@ class PantryIndex extends React.Component {
                 Your Ingredients
               </Text>
               {this.renderItems()}
-              <Button
-                style={button.sessionButton}
+              <View style={{paddingTop: 16}} />
+              <TouchableHighlight
+                style={button.posFormButtonRecipe}
+                underlayColor={BLUE_LIGHT}
                 onPress={(e) => this.handleLogout()}>
-                <Text>LOGOUT</Text>
-              </Button>
+                <Text style={text.posButtonRecipe}>logout</Text>
+              </TouchableHighlight>
             </ScrollView>
            </View>
         <NavFooter navigation={this.props.navigation} />

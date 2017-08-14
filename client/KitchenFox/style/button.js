@@ -52,6 +52,16 @@ export const button = StyleSheet.create({
     maxWidth: 140,
     overflow: 'hidden',
   },
+  posFormButtonDash: {
+    borderRadius: 80,
+    marginTop: 20,
+    alignSelf: 'center',
+    backgroundColor: BLUE,
+    borderWidth: 3,
+    borderColor: BLUE,
+    maxWidth: 400,
+    overflow: 'hidden',
+  },
   negFormButtonRecipe: {
     borderRadius: 80,
     marginTop: 20,

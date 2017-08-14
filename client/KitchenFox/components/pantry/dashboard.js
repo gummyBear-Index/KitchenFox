@@ -13,6 +13,8 @@ import EmptyPantry from './pantry_empty';
 import { View, ScrollView, TouchableHighlight } from 'react-native';
 import { screen, card, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
+import { BLUE_LIGHT } from '../../style/common';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -99,21 +101,28 @@ class Dashboard extends React.Component {
   renderNoLowItem(allItems, lowItems) {
     const { navigate } = this.props.navigation;
     return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>Looks like you are not running low on inventory</Text>
-        </ListItem>
-        <Button
-          style={button.sessionButton} onPress={() => { navigate('PantryIndex'); }}>
-          <Text>Manage Your Kitchen Inventory</Text>
-        </Button>
-        <ListItem itemDivider>
-          <Text>Recipes you can make from your pantry</Text>
-        </ListItem>
-        <ListItem>
+      <View>
+        <View style={card.container}>
+          <View style={card.headerRow}>
+            <EvilIcons name='check' style={card.iconWarning} />
+            <Text style={card.titleLeftLarge}>Your pantry is stocked</Text>
+          </View>
+          <View>
+            <TouchableHighlight
+                style={button.posFormButtonDash}
+                underlayColor={BLUE_LIGHT}
+                onPress={() => navigate('AddItem')}>
+              <Text style={text.posButton}>add items to your inventory</Text>
+            </TouchableHighlight>
+            </View>
+            <View style={{marginBottom: 20}} />
+        </View>
+
+        <View style={card.container}>
+          <Text style={card.titleRecipe}>Recipe ideas</Text>
           {this.renderRecipe()}
-        </ListItem>
-      </Container>
+        </View>
+      </View>
     );
   }
 
