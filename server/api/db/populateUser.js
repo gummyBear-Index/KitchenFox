@@ -5,17 +5,17 @@ import md5 from 'md5'
 const populate = () => {
   const currentUsers =  User.find().lean().distinct('_id');
   const inventory = {
-    `${md5('tomato')}`: {
+    [`${md5('tomato')}`]: {
       'name': 'Tomato',
       'quantity': 11,
       'units': 'each',
     },
-    `${md5('chicken')}`: {
+    [`${md5('chicken')}`]: {
       'name': 'Chicken',
       'quantity': 400,
       'units': 'g',
     },
-    `${md5('linguine')}`: {
+    [`${md5('linguine')}`]: {
       'name': 'Linguine',
       'quantity': 1400,
       'units': 'g',

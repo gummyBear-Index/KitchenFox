@@ -92,7 +92,7 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        {/* <NavFooter navigate={navigate} /> */}
+        <NavFooter navigation={this.props.navigation}  />
       </Container>
     )
   }
@@ -131,20 +131,19 @@ class Dashboard extends React.Component {
         <ListItem itemDivider>
           <Text>There is nothing in your pantry or fridge</Text>
         </ListItem>
-        <ListItem onPress={() => { navigate('AddItem'); }}>
+        <Button onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
         </ListItem>
-        {/* <NavFooter navigate={navigate} /> */}
       </Container>
     )
   }
 
   static navigationOptions = {
     title: 'Kitchen Fox Dashboard',
+    activeTab: 'cthoiasjdf',
   };
 
   render() {
-    // const render = this.selectToRender();
     const { navigate } = this.props.navigation;
     return(
       <View style={screen.container}>
@@ -154,7 +153,6 @@ class Dashboard extends React.Component {
         </ScrollView>
         <NavFooter navigate={navigate} />
       </View>
-      // render
     );
   }
 }

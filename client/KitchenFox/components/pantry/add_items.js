@@ -52,7 +52,7 @@ class AddItems extends React.Component {
       if (newItem.quantity === 1) {
         newItem.units = 'each';
       }
-      this.handleCardUpdate(this.state.camIdx, newItem)
+      this.handleCardUpdate(this.state.camIdx, newItem);
     });
     Alert.alert(
         "Barcode Found!",
@@ -61,7 +61,7 @@ class AddItems extends React.Component {
   }
 
   handleCardUpdate(idx, childState) {
-    const keyArr = ['upc', 'name', 'quantity', 'units', 'weight']
+    const keyArr = ['upc', 'name', 'quantity', 'units', 'weight'];
     const newItems = Object.assign(this.state.items);
     newItems[idx] = Object.assign(childState);
     this.setState({ items: newItems });
@@ -73,7 +73,7 @@ class AddItems extends React.Component {
       }
     }
     if (numBlank === 0) {
-      this.updateNumItemCards()
+      this.updateNumItemCards();
     }
   }
 
@@ -85,15 +85,15 @@ class AddItems extends React.Component {
   }
 
   handleSubmit() {
-    let inventory = Object.assign(this.props.inventory);
+    let inventory = Object.assign({}, this.props.inventory);
     let itemKeys = Object.keys(this.state.items);
     const cart = [];
     itemKeys.forEach(i => {
       if (this.state.items[i].name.length)
-      cart.push(this.state.items[i])
-    })
+      cart.push(this.state.items[i]);
+    });
     cart.forEach((item) => {
-      let upc = item.upc.length ? item.upc : md5(item.name)
+      let upc = item.upc.length ? item.upc : md5(item.name);
       if (upc in inventory) {
         let newQuant = inventory[upc].quantity;
         newQuant = parseInt(newQuant);
@@ -104,18 +104,17 @@ class AddItems extends React.Component {
           name: item.name,
           quantity: item.quantity,
           units: item.units,
-        }
-        inventory[upc].weight = item.weight.length ? item.weight : 'NA';
+          weight: (item.weight.length ? item.weight : 'NA'),
+        };
       }
     });
     let finalInventory = {
       inventory,
     };
     this.props.sendItems(this.props.session.token, finalInventory);
-    this.props.requestItems(this.props.session.token);
     const { navigate } = this.props.navigation;
     navigate('PantryIndex');
-  };
+  }
 
   updateNumItemCards() {
     let newItems = this.state.items;
@@ -124,7 +123,7 @@ class AddItems extends React.Component {
     this.setState({
       numItemCards: newNumItemCards,
       items: newItems,
-    })
+    });
   }
 
   itemFormGen() {
@@ -174,20 +173,21 @@ class AddItems extends React.Component {
       );
     } return (
       <View style={screen.container}>
-      <ScrollView>
-        <Text style={text.titleCenter}>Add items</Text>
-        {/* <List> */}
+        <ScrollView>
+          <Text style={text.titleCenter}>Add items</Text>
+          {/* <List> */}
           {this.itemFormGen()}
-        {/* </List> */}
-        <TouchableHighlight
-          style={button.posFormButton}
-          onPress={() => this.handleSubmit()}>
-          <Text style={text.posButton}>submit</Text>
-        </TouchableHighlight>
-      </ScrollView>
+          {/* </List> */}
+          <TouchableHighlight
+            style={button.posFormButton}
+            onPress={() => this.handleSubmit()}>
+            <Text style={text.posButton}>submit</Text>
+          </TouchableHighlight>
+        </ScrollView>
       </View>
-      );
+    );
   }
 }
+
 
 export default AddItems;

@@ -23,6 +23,7 @@ class PantryIndex extends React.Component {
       units: '',
     };
     this.renderItems = this.renderItems.bind(this);
+    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   componentWillMount() {
@@ -33,6 +34,20 @@ class PantryIndex extends React.Component {
 
   handleLogout() {
     this.props.logout();
+  }
+
+  renderNoInventory() {
+    const { navigate } = this.props.navigation;
+    return(
+      <Container>
+        <ListItem itemDivider>
+          <Text>There is nothing in your pantry or fridge</Text>
+        </ListItem>
+        <Button onPress={() => { navigate('AddItem'); }}>
+          <Text>Add Item</Text>
+        </Button>
+      </Container>
+    );
   }
 
   renderItems() {
@@ -62,6 +77,8 @@ class PantryIndex extends React.Component {
         )}
       </View>
       );
+    } else if (allItems.length === 0) {
+      return this.renderNoInventory();
     }
   }
 
@@ -74,16 +91,16 @@ class PantryIndex extends React.Component {
               <Text style={text.titleCenter}>
                 Your Ingredients
               </Text>
-            <ScrollView>  
+            <ScrollView>
               {this.renderItems()}
             <Button
               style={button.sessionButton}
               onPress={(e) => this.handleLogout()}>
               <Text>LOGOUT</Text>
             </Button>
-            </ScrollView>  
+            </ScrollView>
            </View>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigation={this.props.navigation} />
        </Container>
     );
   }
