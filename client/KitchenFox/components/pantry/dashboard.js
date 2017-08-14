@@ -119,8 +119,6 @@ class Dashboard extends React.Component {
     )
   }
 
-
-
   renderNoInventory() {
     const { navigate } = this.props.navigation;
     return(
@@ -128,7 +126,7 @@ class Dashboard extends React.Component {
         <ListItem itemDivider>
           <Text>There is nothing in your pantry or fridge</Text>
         </ListItem>
-        <ListItem onPress={() => { navigate('AddItem'); }}>
+        <Button onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
         </ListItem>
         <NavFooter navigation={this.props.navigation} />
