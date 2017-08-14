@@ -76,3 +76,12 @@ export const button = StyleSheet.create({
   },
 });
 
+export const back = StyleSheet.create({
+  container: {
+    flex: 1, 
+    flexDirection: 'row', 
+    alignContent: 'flex-start', 
+    justifyContent: 'space-between', 
+    alignItems: 'flex-start',
+  },
+});

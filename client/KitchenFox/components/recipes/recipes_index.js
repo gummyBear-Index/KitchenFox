@@ -11,9 +11,10 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import CustomStatusBar from '../misc/status_bar';
 import EmptyPantry from '../pantry/pantry_empty';
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE, BLUE_DARK } from '../../style/common';
-import  { button } from '../../style/button';
+import  { button, back } from '../../style/button';
 import { screen, pantry, icon } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 class RecipesIndex extends React.Component {
   constructor(props){
@@ -103,12 +104,12 @@ class RecipesIndex extends React.Component {
     } else {
       return (
       <Container>
-          <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
-          <TouchableHighlight style={button.sessionButton} onPress={() => {
-              navigate('AddItem');
-          }}>
-          <Text>Add Items</Text>
-          </TouchableHighlight>
+        <Text style={text.titleCenter}>Sorry, No recipes matched with all the ingredients</Text>
+        <TouchableHighlight style={button.sessionButton} onPress={() => {
+            navigate('AddItem');
+        }}>
+        <Text>Add Items</Text>
+        </TouchableHighlight>
       </Container>
     );
     }
@@ -148,15 +149,21 @@ class RecipesIndex extends React.Component {
         <View style={screen.container}>
           <CustomStatusBar />
           <ScrollView>
-            <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
+            <View style={back.container}>
               <TouchableHighlight 
                 onPress={() => navigation.goBack(null)}
                 underlayColor='#fff'>
-                <Icon name='ios-arrow-dropleft-outline' style={icon.back} />
+                <EvilIcons name='arrow-left' style={icon.back} />
               </TouchableHighlight>
-              <Text style={text.titleDiminished}>I want to cook with...</Text>
+              <View>
+                <Text style={text.titleDiminished}>I want to cook with...</Text>
+              </View>
+              <View>
+                <EvilIcons name='arrow-left' style={icon.backPadding} />
+              </View>
             </View>
-              {items}
+
+            {items}
           </ScrollView>
             {spinner}
             {this.renderButton()}
@@ -165,11 +172,18 @@ class RecipesIndex extends React.Component {
     } else {
     return (
       <View style={screen.container}>
-        <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
-          <TouchableHighlight onPress={() => navigation.goBack(null)}>
-            <Icon name='' style={icon.back} />
+        <View style={back.container}>
+          <TouchableHighlight 
+            onPress={() => navigation.goBack(null)}
+            underlayColor='#fff'>
+            <EvilIcons name='arrow-left' style={icon.back} />
           </TouchableHighlight>
-          <Text style={text.titleDiminished}>Recipes you can make</Text>
+          <View>
+            <Text style={text.titleDiminished}>Recipes you can make</Text>
+          </View>
+          <View>
+            <EvilIcons name='arrow-left' style={icon.backPadding} />
+          </View>
         </View>
         <Content>
           {recipes}
