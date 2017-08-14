@@ -164,26 +164,26 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
+          <Button onPress={() => navigate('Dashboard')}>
+            <Text>Go Back</Text>
+          </Button>
           <ScrollView>
           <Text style={text.titleCenter}>I want to cook with...</Text>
             {items}
           </ScrollView>
             {spinner}
-            <Button onPress={() => navigate('Dashboard')}>
-              <Text>Go Back</Text>
-            </Button>
             {this.renderButton()}
         </View>
       );
     } else {
     return (
       <View style={screen.container}>
+        <Button onPress={() => navigate('Recipes')}>
+          <Text>Go Back</Text>
+        </Button>
         <Text style={text.titleDiminished}>Recipes you can make</Text>
         <Content>
           {recipes}
-          <Button onPress={() => navigate('Recipes')}>
-            <Text>Go Back</Text>
-          </Button>
         </Content>
       </View>
     );
