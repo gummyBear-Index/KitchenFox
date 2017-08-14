@@ -179,6 +179,8 @@ class RecipesIndex extends React.Component {
     } else {
     return (
       <View style={screen.container}>
+        <CustomStatusBar />
+        <ScrollView>
         <View style={back.container}>
           <TouchableHighlight 
             onPress={() => navigation.goBack(null)}
@@ -192,9 +194,10 @@ class RecipesIndex extends React.Component {
             <EvilIcons name='arrow-left' style={icon.backPadding} />
           </View>
         </View>
-        <Content>
+        <View>
           {recipes}
-        </Content>
+        </View>
+        </ScrollView>
       </View>
     );
     }

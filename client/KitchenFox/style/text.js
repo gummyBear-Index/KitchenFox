@@ -16,7 +16,7 @@ const title = {
 export const text = StyleSheet.create({
   title,
   titleDiminished: {
-    fontSize: 34,
+    fontSize: 30,
     paddingTop: 20,
     paddingBottom: 20,
     textAlign: 'center',

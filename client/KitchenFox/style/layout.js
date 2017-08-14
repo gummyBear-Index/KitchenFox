@@ -262,7 +262,7 @@ export const icon = StyleSheet.create({
   },
   backPadding: {
     color: 'transparent',
-    fontSize: 30,
+    fontSize: 40,
   },
 });
 
