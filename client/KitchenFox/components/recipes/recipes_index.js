@@ -8,6 +8,7 @@ import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
+import EmptyPantry from '../pantry/pantry_empty';
 import CustomStatusBar from '../misc/status_bar';
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
 import  { button, back } from '../../style/button';
@@ -72,16 +73,8 @@ class RecipesIndex extends React.Component {
   }
 
   renderNoInventory() {
-    const { navigate } = this.props.navigation;
     return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>There is nothing in your pantry or fridge</Text>
-        </ListItem>
-        <Button onPress={() => { navigate('AddItem'); }}>
-          <Text>Add Item</Text>
-        </Button>
-      </Container>
+      <EmptyPantry navigation={this.props.navigation} />
     );
   }
 
