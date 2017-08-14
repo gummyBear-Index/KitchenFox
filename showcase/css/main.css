@@ -1632,6 +1632,7 @@ a.menu-toggle {
 	position: relative;
 }
 .team-content .price-block .bottom-part {
+  background-color: rgba(199, 94, 7, 0.57);
 	padding-top: 2.4rem;
 	padding-left: 3rem;
 	padding-right: 3rem;
@@ -1675,15 +1676,16 @@ a.menu-toggle {
 	line-height: 1.8rem;
 }
 .team-content .price-block .button {
-	color: #353F49;
+	color: #06BAEB;
 	padding: 0 5rem;
 	margin-left: auto;
 	margin-right: auto;
+  background-color: rgb(234, 234, 237);
 }
 .team-content .price-block .button:hover,
 .team-content .price-block .button:focus {
-	background: #58687b;
-	color: #FFFFFF;
+	background: white;
+	color: #06BAEB;
 }
 .team-content .price-block .features {
 	list-style: none;
@@ -1705,7 +1707,11 @@ a.menu-toggle {
 	border: none;
 }
 .team-content .primary .top-part {
-	background: #05bca9;
+	background: white;
+}
+
+.team-content .primary .top-part img {
+	border-radius: 5px;
 }
 .team-content .primary .top-part::before {
 	content: attr(data-info);
