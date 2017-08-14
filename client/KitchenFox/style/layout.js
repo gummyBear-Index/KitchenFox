@@ -75,6 +75,8 @@ export const pantry = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-end',
+    borderBottomWidth: 1,
+    borderColor: ORANGE_LIGHTER,
   },
   itemContainerSmall: {
     backgroundColor: '#fff',
