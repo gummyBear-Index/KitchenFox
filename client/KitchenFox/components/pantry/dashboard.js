@@ -92,7 +92,6 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        <NavFooter navigation={this.props.navigation}  />
       </Container>
     )
   }
@@ -125,7 +124,7 @@ class Dashboard extends React.Component {
   }
 
   renderNoInventory() {
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return(
       <Container>
         <ListItem itemDivider>

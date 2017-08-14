@@ -169,7 +169,10 @@ class RecipesIndex extends React.Component {
             {items}
           </ScrollView>
             {spinner}
-          {this.renderButton()}
+            <Button onPress={() => navigate('Dashboard')}>
+              <Text>Go Back</Text>
+            </Button>
+            {this.renderButton()}
         </View>
       );
     } else {
@@ -178,6 +181,9 @@ class RecipesIndex extends React.Component {
         <Text style={text.titleDiminished}>Recipes you can make</Text>
         <Content>
           {recipes}
+          <Button onPress={() => navigate('Recipes')}>
+            <Text>Go Back</Text>
+          </Button>
         </Content>
       </View>
     );
