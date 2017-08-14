@@ -103,6 +103,21 @@ export const getRecipes = (number, query, token) => {
   );
 };
 
+export const getRecipes1 = (number, query, token) => {
+  return (
+  fetch(`${baseURL}dashboard-recipes`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'number': number,
+      'query': query,
+      'Authorization': `JWT ${token}`,
+      charset: 'UTF-16',
+    },
+  })
+  );
+};
+
 export const deleteLocalData = () => (
   AsyncStorage.removeItem('user')
 );

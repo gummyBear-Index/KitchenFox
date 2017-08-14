@@ -6,7 +6,7 @@ import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
 import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
-import { getRecipes } from '../../util/api_util';
+import { getRecipes1 } from '../../util/api_util';
 
 import { View, ScrollView, TouchableHighlight } from 'react-native';
 import { screen, card, pantry } from '../../style/layout';
@@ -31,6 +31,7 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.requestItems(this.props.session.token);
+    this.selectToRender();
   }
 
   componentWillReceiveProps(newProps) {
@@ -39,7 +40,7 @@ class Dashboard extends React.Component {
     item = item.name;
     item = item.split(', ').join('');
     item = item.split(' ').join('');
-    getRecipes(1, item, newProps.session.token)
+    getRecipes1(1, item, newProps.session.token)
       .then((res) =>  {
         if (res.status === 503) {
           let dummy = [{'label': 'Strawberry, Melon & Ginger Sundaes', 'url':'http://www.bbcgoodfood.com/recipes/2384/strawberry-melon-and-ginger-sundaes', 'image':'https://www.edamam.com/web-img/6cf/6cf1b0d6b9bf021277435a236eb54ac1.jpg' }]
@@ -56,7 +57,7 @@ class Dashboard extends React.Component {
   //   let items = Object.values(newProps.inventory);
   //   let item = items[Math.floor(Math.random()*items.length)];
   //   item = item.name;
-  //   getRecipes(1, item, newProps.session.token)
+  //   getRecipes1(1, item, newProps.session.token)
   //     .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
   //     .then(() => this.selectToRender())
   // }
