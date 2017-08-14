@@ -85,7 +85,7 @@ class AddItems extends React.Component {
   }
 
   handleSubmit() {
-    let inventory = Object.assign(this.props.inventory);
+    let inventory = Object.assign({}, this.props.inventory);
     let itemKeys = Object.keys(this.state.items);
     const cart = [];
     itemKeys.forEach(i => {
@@ -104,15 +104,14 @@ class AddItems extends React.Component {
           name: item.name,
           quantity: item.quantity,
           units: item.units,
-        }
-        inventory[upc].weight = item.weight.length ? item.weight : 'NA';
+          weight: (item.weight.length ? item.weight : 'NA'),
+        };
       }
     });
     let finalInventory = {
       inventory,
     };
     this.props.sendItems(this.props.session.token, finalInventory);
-    this.props.requestItems(this.props.session.token);
     const { navigate } = this.props.navigation;
     navigate('PantryIndex');
   };
@@ -174,20 +173,21 @@ class AddItems extends React.Component {
       );
     } return (
       <View style={screen.container}>
-      <ScrollView>
-        <Text style={text.titleCenter}>Add items</Text>
-        {/* <List> */}
+        <ScrollView>
+          <Text style={text.titleCenter}>Add items</Text>
+          {/* <List> */}
           {this.itemFormGen()}
-        {/* </List> */}
-        <TouchableHighlight
-          style={button.posFormButton}
-          onPress={() => this.handleSubmit()}>
-          <Text style={text.posButton}>submit</Text>
-        </TouchableHighlight>
-      </ScrollView>
+          {/* </List> */}
+          <TouchableHighlight
+            style={button.posFormButton}
+            onPress={() => this.handleSubmit()}>
+            <Text style={text.posButton}>submit</Text>
+          </TouchableHighlight>
+        </ScrollView>
       </View>
-      );
+    );
   }
 }
+
 
 export default AddItems;

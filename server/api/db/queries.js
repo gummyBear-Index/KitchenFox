@@ -30,7 +30,7 @@ export const getDocFromToken = token => (
   //  .error(error => coolErrorFunction(error));
 );
 
-export const completeMerge = (oldItems, newItems) => {
+export const completeMerge = (oldItems = {}, newItems) => {
   // const newKeys = Object.keys(newItems);
   // const tempObj = Object.assign(oldItems);
   // newKeys.forEach((key) => {

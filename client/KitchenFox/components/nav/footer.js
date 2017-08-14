@@ -15,7 +15,7 @@ const NavFooter = ({ navigate }) => {
       <FooterTab style={{ backgroundColor: BLUE}}>
         <Button vertical
           onPress={() => navigate('AddItem')}>
-          <Icon name="add-circle" 
+          <Icon name="add-circle"
                 style={{ color: 'white'}} />
           <Text style={{ color: 'white'}}>Add Item</Text>
         </Button>
@@ -26,7 +26,7 @@ const NavFooter = ({ navigate }) => {
           <Text style={{ color: 'white'}}>Dashboard</Text>
         </Button>
         <Button vertical
-          onPress={() => navigate('PantryIndex')} 
+          onPress={() => navigate('PantryIndex')}
           style={{ backgroundColor: BLUE_DARK }} active>
           <Icon active name="albums" />
           <Text>Pantry</Text>
