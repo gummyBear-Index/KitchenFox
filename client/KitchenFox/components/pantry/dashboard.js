@@ -15,7 +15,7 @@ import { text, pantryText } from '../../style/text';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    let component = this.renderNoInventory();
+    let component = <View><Spinner color='blue' /></View>
     this.state = {
       name: '',
       quantity: 0,
@@ -27,8 +27,6 @@ class Dashboard extends React.Component {
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
     this.renderLowItems = this.renderLowItems.bind(this);
     this.renderNoInventory = this.renderNoInventory.bind(this);
-    this.selectToRender = this.selectToRender.bind(this);
-    this.selectToRender();
   }
 
   componentWillMount() {
@@ -42,8 +40,26 @@ class Dashboard extends React.Component {
     item = item.split(', ').join('');
     item = item.split(' ').join('');
     getRecipes(1, item, newProps.session.token)
-      .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}, () => this.selectToRender()))
+      .then((res) =>  {
+        if (res.status === 503) {
+          let dummy = [{'label': 'Strawberry, Melon & Ginger Sundaes', 'url':'http://www.bbcgoodfood.com/recipes/2384/strawberry-melon-and-ginger-sundaes', 'image':'https://www.edamam.com/web-img/6cf/6cf1b0d6b9bf021277435a236eb54ac1.jpg' }]
+          this.setState({recipes: dummy});
+          this.selectToRender()
+        } else {
+          this.setState({recipes: JSON.parse(res._bodyText)});
+          this.selectToRender();
+        }
+      })
   }
+
+  // componentWillReceiveProps(newProps) {
+  //   let items = Object.values(newProps.inventory);
+  //   let item = items[Math.floor(Math.random()*items.length)];
+  //   item = item.name;
+  //   getRecipes(1, item, newProps.session.token)
+  //     .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
+  //     .then(() => this.selectToRender())
+  // }
 
   selectToRender () {
     const { navigate } = this.props.navigation;
@@ -72,6 +88,7 @@ class Dashboard extends React.Component {
       toRender = this.renderNoInventory();
     }
     this.setState({ toRender: toRender });
+    this.forceUpdate();
   }
 
   renderRecipe() {
@@ -105,12 +122,6 @@ class Dashboard extends React.Component {
 
   renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
-    // let spinner;
-    // if (this.state.recipes.length === 0 ) {
-    //   spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-    // } else if (this.state.recipes.length === 1) {
-    //   spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-    // }
     return(
       <View>
         <View style={card.container}>
@@ -174,7 +185,6 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token)),
 });
 

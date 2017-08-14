@@ -34,13 +34,25 @@ class RecipesIndex extends React.Component {
     this.setState({spinner: true});
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)});
-      this.setState({spinner: false});
+      if (res.status === 503) {
+        let dummy = [{'label': 'Server Error, try this recipe instead!', 'url':'http://www.grouprecipes.com/40883/tuttu-frutti-ice-cream.html', 'image':'https://www.edamam.com/web-img/0ab/0ab967ea9b889bd387fbd2d7aff64f83.jpg' }];
+        this.setState({recipes: dummy});
+        this.setState({spinner: false});
+      } else {
+        this.setState({recipes: JSON.parse(res._bodyText)});
+        this.setState({spinner: false});
+      }
     });
-  } else {
+    } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)});
-      this.setState({spinner: false});
+      if (res.status === 503) {
+        let dummy = [{'label': 'Server Error, try this recipe instead!', 'url':'https://www.campbells.com/kitchen/recipes/lucky-duck-cupcakes', 'image':'https://www.edamam.com/web-img/007/007643dc0b88f69b82cff6341a7fcfe2.jpg' }];
+        this.setState({recipes: dummy});
+        this.setState({spinner: false});
+      } else {
+        this.setState({recipes: JSON.parse(res._bodyText)});
+        this.setState({spinner: false});
+      }
     });
     }
   }
