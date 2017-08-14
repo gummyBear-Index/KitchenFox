@@ -25,7 +25,7 @@ class AddItems extends React.Component {
       quantity: '',
       units: 'g',
       weight: '',
-    }
+    };
     this.state = {
       showCamera: false,
       cameraType: Camera.constants.Type.back,
@@ -35,7 +35,7 @@ class AddItems extends React.Component {
         0: Object.assign(this.initialCardState),
       },
       camIdx: 0,
-    }
+    };
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.toggleCamera = this.toggleCamera.bind(this);
     this.handleCardUpdate = this.handleCardUpdate.bind(this);
@@ -154,8 +154,8 @@ class AddItems extends React.Component {
     if (this.state.showCamera) {
       return (
         <View style={camera.container}>
-        <Text>
-          Scan the barcode now!
+        <Text style={text.titleScanner}>
+          scan the barcode
         </Text>
         <Camera
           ref={(cam) => {
@@ -166,8 +166,8 @@ class AddItems extends React.Component {
           orientation={Camera.constants.Orientation.portrait}
           barCodeTypes={['org.gs1.UPC-E']}
           onBarCodeRead={this.onBarCodeRead}>
+          <Text style={text.scanner}>here</Text>
           <View style={camera.square}>
-            <Text>Here</Text>
           </View>
         </Camera>
         </View>

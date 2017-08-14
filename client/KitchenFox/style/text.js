@@ -4,7 +4,7 @@ import {
   BASE_FONT_REGULAR, 
   BASE_FONT_BOLD, 
   BUTTON_ACTION_TEXT, 
-  TITLE, BLUE, WHITE, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
+  TITLE, BLUE, WHITE, BLACK, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
   GREETING_TEXT } from './common';
 
 const title = {
@@ -22,6 +22,15 @@ export const text = StyleSheet.create({
     textAlign: 'center',
     color: TITLE,
     fontFamily: BASE_FONT_LIGHT,
+  },
+  titleScanner: {
+    fontSize: 34,
+    paddingTop: 20,
+    paddingBottom: 20,
+    textAlign: 'center',
+    color: WHITE,
+    fontFamily: BASE_FONT_BOLD,
+    backgroundColor: BLACK,
   },
   titleSession: {
     fontSize: 50,
@@ -115,7 +124,15 @@ export const text = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'stretch',
     textAlign: 'center',
-  }
+  },
+  scanner: {
+    fontSize: 22,
+    paddingTop: 12,
+    paddingBottom: 12,
+    textAlign: 'center',
+    color: 'red',
+    fontFamily: BASE_FONT_BOLD,
+  },
 });
 
 export const pantryText = StyleSheet.create({
