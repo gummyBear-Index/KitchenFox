@@ -103,14 +103,14 @@ class Dashboard extends React.Component {
       <View>
         <View style={card.container}>
           <View style={card.headerRow}>
-            <Icon name="alert" style={card.iconWarning} /> 
+            <Icon name="alert" style={card.iconWarning} />
             <Text style={card.titleLeft}>Looks like you are running low on some ingredients</Text>
           </View>
           {lowItems.map((item, idx) =>
           <TouchableHighlight key={idx} onPress={() => { navigate('PantryItem', { item }); }}>
-            
+
             <View style={pantry.itemContainerSmall}>
-              <Icon name='md-arrow-dropright'  style={card.icon} /> 
+              <Icon name='md-arrow-dropright'  style={card.icon} />
               <Text style={pantryText.itemDash}>{Object.values(item)[0]['name']}</Text>
               <Text style={pantryText.itemDescDash}>{Object.values(item)[0]['quantity']} {Object.values(item)[0]['units']}</Text>
             </View>
@@ -133,14 +133,13 @@ class Dashboard extends React.Component {
         </ListItem>
         <Button onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
-        </ListItem>
+        </Button>
       </Container>
     )
   }
 
   static navigationOptions = {
     title: 'Kitchen Fox Dashboard',
-    activeTab: 'cthoiasjdf',
   };
 
   render() {
@@ -151,7 +150,7 @@ class Dashboard extends React.Component {
           <Text style={text.titleCenter}>Dashboard</Text>
           {this.selectToRender()}
         </ScrollView>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigation={this.props.navigation} />
       </View>
     );
   }
