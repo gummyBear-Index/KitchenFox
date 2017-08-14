@@ -6,6 +6,7 @@ import { Container, Content, List, Picker, Item, Icon, InputGroup, Input, ListIt
 import { button } from '../../style/button';
 import { screen, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
+import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 
 import { connect } from 'react-redux';
 import { sendItems, requestItems } from '../../actions/inventory_actions';
@@ -23,7 +24,8 @@ class PantryItem extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  handleUpdate() {
+  handleUpdate(quant = this.state.quantity) {
+    dismissKeyboard();
     const { navigate } = this.props.navigation;
     const token = this.props.session.token;
     const item = this.props.navigation.state.params.item;
@@ -33,9 +35,9 @@ class PantryItem extends React.Component {
     };
     let obj = {};
     obj.name = this.state.name;
-    obj.quantity = this.state.quantity;
+    obj.quantity = quant;
     obj.units = this.state.units;
-    inventory['inventory'][`${key}`] = Object.assign(this.state);
+    inventory['inventory'][`${key}`] = Object.assign(obj);
     this.props.sendItems(token, inventory);
     this.props.requestItems(this.props.session.token);
     navigate('PantryIndex');
@@ -72,7 +74,7 @@ class PantryItem extends React.Component {
           <View style={pantry.groupButtons}>
           <TouchableHighlight
             style={button.negFormButton}
-            onPress={() => (this.setState({quantity: 0}))}
+            onPress={() => this.handleUpdate(0)}
             >
             <Text style={text.negButton}>delete</Text>
           </TouchableHighlight>
