@@ -100,7 +100,7 @@ class PantryIndex extends React.Component {
             </Button>
             </ScrollView>
            </View>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigation={this.props.navigation} />
        </Container>
     );
   }

@@ -6,32 +6,32 @@ import PantryItem from '../components/pantry/pantry_item';
 import RecipesIndexContainer from '../components/recipes/recipes_index_container';
 
 const Pantry = StackNavigator({
-  Dashboard: { 
+  Dashboard: {
     screen: Dashboard,
     navigationOptions: ({navigation}) => ({
       header: null,
-    }),  
+    }),
   },
-  PantryIndex: { 
+  PantryIndex: {
     screen: PantryIndex,
     navigationOptions: ({navigation}) => ({
       header: null,
-    }),   
+    }),
   },
-  PantryItem: { 
+  PantryItem: {
     screen: PantryItem,
     navigationOptions: ({navigation}) => ({
       header: null,
-    }),  
+    }),
   },
-  AddItem: { 
-    screen: AddItemsContainer 
+  AddItem: {
+    screen: AddItemsContainer
   },
-  Recipes: { 
+  Recipes: {
     screen: RecipesIndexContainer,
     navigationOptions: ({navigation}) => ({
       header: null,
-    }), 
+    }),
   },
 });
 
