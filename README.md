@@ -1,5 +1,5 @@
 # KitchenFox
-[Homepage](http://www.legislateme.com)
+[Homepage](https://hobara.github.io/KitchenFox/)
 
 ## Overview
 What's better than having an application that lets you make easy decisions on-the-go? KithchenFox, a mobile application built using the MERN (Mongo-Express-React-Node) stack, helps you visualize your kitchen's inventory and recommend recipes based on what you have.
