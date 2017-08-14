@@ -154,12 +154,9 @@ class RecipesIndex extends React.Component {
     const items = this.renderItems();
     let spinner;
     if (this.state.spinner) {
-      // spinner = (<Content><Spinner color='blue'/></Content>);
         spinner = (<View style={{ flex: 1 }}><Spinner visible={true} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-
     } else {
       spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-      // spinner =  (<Content></Content>);
     }
     if (this.state.recipes === "none") {
       return (

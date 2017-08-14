@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, List, ListItem, Text, Button, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Text, Button, Icon, Spinner } from 'native-base';
 import { requestItems } from '../../actions/inventory_actions';
 import { button } from '../../style/button';
 import NavFooter from '../nav/footer';
@@ -69,10 +69,12 @@ class Dashboard extends React.Component {
   }
 
   renderRecipe() {
-    if (this.state.recipes.length > 0) {
+    console.warn(this.state.recipes.length)
+    if (this.state.recipes.length === 1) {
       return (<RecipeCard recipeInfo={this.state.recipes[0]} />)
-    };
-
+    } else if (this.state.recipes.length === 0) {
+      return (<View><Spinner color='blue' /></View>)
+    }
   }
 
   renderNoLowItem(allItems, lowItems) {
@@ -98,6 +100,12 @@ class Dashboard extends React.Component {
 
   renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
+    // let spinner;
+    // if (this.state.recipes.length === 0 ) {
+    //   spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
+    // } else if (this.state.recipes.length === 1) {
+    //   spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
+    // }
     return(
       <View>
         <View style={card.container}>
