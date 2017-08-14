@@ -39,7 +39,6 @@ class PantryItem extends React.Component {
     obj.units = this.state.units;
     inventory['inventory'][`${key}`] = Object.assign(obj);
     this.props.sendItems(token, inventory);
-    this.props.requestItems(this.props.session.token);
     navigate('PantryIndex');
   }
 

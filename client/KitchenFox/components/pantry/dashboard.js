@@ -15,37 +15,37 @@ import { text, pantryText } from '../../style/text';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    let component = <Text>''</Text>
+    let component = this.renderNoInventory();
     this.state = {
       name: '',
       quantity: 0,
       units: '',
       recipes: [],
-      toRender: component
+      toRender: component,
     }
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
     this.renderLowItems = this.renderLowItems.bind(this);
     this.renderNoInventory = this.renderNoInventory.bind(this);
+    this.selectToRender = this.selectToRender.bind(this);
+    this.selectToRender();
   }
 
   componentWillMount() {
-    console.warn('mounted');
     this.props.requestItems(this.props.session.token);
   }
 
   componentWillReceiveProps(newProps) {
-    console.warn('got props');
     let items = Object.values(newProps.inventory);
     let item = items[Math.floor(Math.random()*items.length)];
     item = item.name;
+    item = item.split(', ').join('');
+    item = item.split(' ').join('');
     getRecipes(1, item, newProps.session.token)
-      .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}))
-      .then(() => this.selectToRender())
+      .then((res) => this.setState({recipes: JSON.parse(res._bodyText)}, () => this.selectToRender()))
   }
 
   selectToRender () {
-    console.warn('render');
     const { navigate } = this.props.navigation;
     const allItems = [];
     const lowItems = [];
@@ -68,11 +68,10 @@ class Dashboard extends React.Component {
       toRender = this.renderNoLowItem(allItems, lowItems);
     } else if (lowItems.length > 0) {
       toRender = this.renderLowItems(allItems, lowItems);
-    } else if (allItems.length === 0) {
+    } else {
       toRender = this.renderNoInventory();
     }
-    this.setState({ toRender: toRender })
-    this.forceUpdate();
+    this.setState({ toRender: toRender });
   }
 
   renderRecipe() {

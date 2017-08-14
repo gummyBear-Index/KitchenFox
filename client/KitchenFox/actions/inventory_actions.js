@@ -24,5 +24,5 @@ export const sendItems = (token, inventory) => dispatch => (
   APIUtil.patchItems(token, inventory).then((newInventory) => {
     const parsedInventory = JSON.parse(newInventory._bodyText);
     dispatch(receiveInventory(parsedInventory.inventory));
-  })
+  }).error(error)
 );
