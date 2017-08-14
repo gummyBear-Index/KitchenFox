@@ -144,12 +144,12 @@ class RecipesIndex extends React.Component {
       );
     } else {
     return (
-      <Container>
+      <View style={screen.container}>
         <Text style={text.titleDiminished}>Recipes you can make</Text>
         <Content>
           {recipes}
         </Content>
-      </Container>
+      </View>
     );
     }
   }

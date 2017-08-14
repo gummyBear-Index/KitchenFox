@@ -16,12 +16,12 @@ const title = {
 export const text = StyleSheet.create({
   title,
   titleDiminished: {
-    fontSize: 22,
-    paddingTop: 8,
-    paddingBottom: 8,
+    fontSize: 34,
+    paddingTop: 20,
+    paddingBottom: 20,
     textAlign: 'center',
     color: TITLE,
-    fontFamily: BASE_FONT_BOLD,
+    fontFamily: BASE_FONT_LIGHT,
   },
   titleSession: {
     fontSize: 50,
@@ -167,6 +167,24 @@ export const addItemsText = StyleSheet.create({
     fontSize: 26,
     color: WHITE,
     fontFamily: BASE_FONT_REGULAR,
+  }
+});
+
+export const overlayText = StyleSheet.create({
+  fullOpacity: {
+    // backgroundColor: ORANGE,
+    // backgroundColor: 'rgba(6,186,235,.85)',
+    backgroundColor: 'rgba(242,126,8,.85)',
+    fontSize: 22,
+    color: WHITE,
+    fontFamily: BASE_FONT_REGULAR,
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 16,
+    marginBottom: 10,
+    padding: 10,
+    textAlign: 'center',
+    // flexDirection:'row', flexWrap:'wrap'
   }
 });
 

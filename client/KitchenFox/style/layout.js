@@ -162,7 +162,13 @@ export const recipe = StyleSheet.create({
   image: {
     height: 250,
     width: null,
-    alignItems: 'stretch',
+    alignItems: 'flex-end',
+    // alignSelf: 'center',
+    // marginBottom: 10,
+    justifyContent: 'flex-end',
+    borderBottomWidth: 4,
+    borderColor: 'white',
+
   }
 });
 
