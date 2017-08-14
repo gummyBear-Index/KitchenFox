@@ -17,15 +17,10 @@ import {
 } from 'native-base';
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   flexDirection: 'column',
-  // },
+
   container: {
     flex: 1,
     justifyContent: "center",
-    // width:300,
-    // height:5,
     backgroundColor: "transparent",
   },
   preview: {
@@ -61,10 +56,6 @@ class BarCodeCamera extends Component {
     this._onBarCodeRead = this._onBarCodeRead.bind(this);
   }
 
-  // static navigationOptions = {
-  //   title: 'Scan the Item',
-  // };
-
   render() {
     if (this.state.showCamera) {
         return (
@@ -97,15 +88,6 @@ class BarCodeCamera extends Component {
         );
     }
   }
-  // takePicture() {
-  // const options = {};
-  // //options.location = ...
-  // this.camera.capture({metadata: options})
-  //   .then((data) => console.log(data))
-  //   .catch(err => console.error(err));
-  // }
-
-
 
   _onBarCodeRead(e) {
     this.setState({showCamera: false, upc: e.data});

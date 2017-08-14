@@ -25,7 +25,6 @@ class PantryIndex extends React.Component {
       units: '',
     };
     this.renderItems = this.renderItems.bind(this);
-    // this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   componentDidMount() {
@@ -33,27 +32,12 @@ class PantryIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // console.warn(JSON.stringify(newProps.inventory));
   }
 
 
   handleLogout() {
     this.props.logout();
   }
-
-  // renderNoInventory() {
-  //   const { navigate } = this.props.navigation;
-  //   return(
-  //     <Container>
-  //       <ListItem itemDivider>
-  //         <Text>There is nothing in your pantry or fridge</Text>
-  //       </ListItem>
-  //       <Button onPress={() => { navigate('AddItem'); }}>
-  //         <Text>Add Item</Text>
-  //       </Button>
-  //     </Container>
-  //   );
-  // }
 
   renderItems() {
     const { navigate } = this.props.navigation;

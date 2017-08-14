@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { 
-  BASE_FONT_LIGHT, 
-  BASE_FONT_REGULAR, 
-  BASE_FONT_BOLD, 
-  BUTTON_ACTION_TEXT, 
+import {
+  BASE_FONT_LIGHT,
+  BASE_FONT_REGULAR,
+  BASE_FONT_BOLD,
+  BUTTON_ACTION_TEXT,
   TITLE, BLUE, WHITE, BLACK, ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER,
   GREETING_TEXT } from './common';
 
@@ -43,7 +43,6 @@ export const text = StyleSheet.create({
   },
   titleCenter: {
     fontSize: 34,
-    // fontSize: 50,
     textAlign: 'center',
     color: TITLE,
     fontFamily: BASE_FONT_REGULAR,
@@ -52,7 +51,6 @@ export const text = StyleSheet.create({
   },
   titleCenterWBB: {
     fontSize: 34,
-    // fontSize: 50,
     textAlign: 'center',
     color: TITLE,
     fontFamily: BASE_FONT_REGULAR,
@@ -71,10 +69,6 @@ export const text = StyleSheet.create({
     textAlign: 'center',
     color: GREETING_TEXT,
     fontFamily: BASE_FONT_REGULAR,
-    // textShadowColor: BLUE,
-    // textShadowOffset: { width: 2, height: 2 },
-    // textShadowRadius: 4,
-    // shadowOpacity: 0.98,
   },
   greetingButton: {
     color: ORANGE,
@@ -211,8 +205,6 @@ export const addItemsText = StyleSheet.create({
 
 export const overlayText = StyleSheet.create({
   fullOpacity: {
-    // backgroundColor: ORANGE,
-    // backgroundColor: 'rgba(6,186,235,.85)',
     backgroundColor: 'rgba(242,126,8,.85)',
     fontSize: 22,
     color: WHITE,
@@ -225,7 +217,5 @@ export const overlayText = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 5,
     overflow: 'hidden',
-    // flexDirection:'row', flexWrap:'wrap'
   }
 });
-

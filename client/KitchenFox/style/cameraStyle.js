@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 
 export const camera = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   flexDirection: 'column',
-  // },
   container: {
     flex: 1,
     justifyContent: "center",
-    // width:300,
-    // height:5,
     backgroundColor: "transparent",
   },
   preview: {

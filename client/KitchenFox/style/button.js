@@ -2,9 +2,6 @@ import { StyleSheet } from 'react-native';
 import { BUTTON_ACTION, BUTTON_ACTION_TEXT, WHITE, ORANGE, BLUE } from './common';
 
 export const button = StyleSheet.create({
-  // container: {
-  //   borderRadius: 5,
-  // },
   button: {
     backgroundColor: BUTTON_ACTION,
     color: BUTTON_ACTION_TEXT,
@@ -31,12 +28,9 @@ export const button = StyleSheet.create({
     backgroundColor: ORANGE,
     shadowColor: 'transparent',
     shadowOpacity: 0,
-    // borderWidth: 1,
     borderColor: '#fff',
     width: 200,
     overflow: 'hidden',
-    // alignSelf: 'stretch',
-    // textAlign: 'center',
   },
   negFormButton: {
     borderRadius: 80,
@@ -65,7 +59,6 @@ export const button = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 3,
     borderColor: BLUE,
-    // alignItems: 'stretch',
     width: 180,
     overflow: 'hidden',
   },
@@ -76,7 +69,6 @@ export const button = StyleSheet.create({
     backgroundColor: BLUE,
     borderWidth: 3,
     borderColor: BLUE,
-    // alignItems: 'stretch',
     width: 180,
     overflow: 'hidden',
   },
@@ -84,21 +76,16 @@ export const button = StyleSheet.create({
 
 export const back = StyleSheet.create({
   container: {
-    flex: 1, 
-    flexDirection: 'row', 
-    alignContent: 'flex-start', 
-    justifyContent: 'space-between', 
+    flex: 1,
+    flexDirection: 'row',
+    alignContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
-    // backgroundColor: 'white'
   },
   containerCamera: {
-    // flex: 1, 
-    flexDirection: 'row', 
-    alignContent: 'flex-start', 
-    justifyContent: 'space-between', 
+    flexDirection: 'row',
+    alignContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
-    // backgroundColor: 'transparent',
-    // height: 100,
-    // width: null,
   },
 });

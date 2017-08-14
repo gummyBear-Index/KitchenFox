@@ -1,5 +1,4 @@
 import { AsyncStorage } from 'react-native';
-// const baseURL = 'http://localhost:3000/api/';
 const baseURL = 'https://kitchenfox.herokuapp.com/api/';
 
 const objectToQueryString = (obj, prefix) => {

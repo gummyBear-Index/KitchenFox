@@ -9,7 +9,6 @@ const Welcome = StackNavigator({
   Greeting: { screen: Greeting },
   Signup: { screen: SignupContainer },
   Signin: { screen: SigninContainer },
-  // Pantry: { screen: Pantry },
   }, {
   headerMode: 'none'
 });

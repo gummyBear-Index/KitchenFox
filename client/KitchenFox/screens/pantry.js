@@ -23,34 +23,5 @@ const Pantry = StackNavigator({
   }}, {
   headerMode: 'none'
 });
-// const Pantry = StackNavigator({
-//   Dashboard: {
-//     screen: Dashboard,
-//     navigationOptions: ({navigation}) => ({
-//       header: null,
-//     }),
-//   },
-//   PantryIndex: {
-//     screen: PantryIndex,
-//     navigationOptions: ({navigation}) => ({
-//       header: null,
-//     }),
-//   },
-//   PantryItem: {
-//     screen: PantryItem,
-//     navigationOptions: ({navigation}) => ({
-//       header: null,
-//     }),
-//   },
-//   AddItem: {
-//     screen: AddItemsContainer
-//   },
-//   Recipes: {
-//     screen: RecipesIndexContainer,
-//     navigationOptions: ({navigation}) => ({
-//       header: null,
-//     }),
-//   },
-// });
 
 export default Pantry;

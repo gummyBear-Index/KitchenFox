@@ -11,10 +11,6 @@ export const session = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    // backgroundColor: 'white',
-    // alignSelf: 'center'
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   greetingDarkness: {
     backgroundColor: 'rgba(6,186,235,.85)',
@@ -44,31 +40,22 @@ export const session = StyleSheet.create({
   },
   logo: {
     alignSelf: 'center',
-    // justifyContent: 'center',
     width: 128,
     height: 128,
-    // backgroundColor: 'white',
-    // borderRadius: 40,
   }
 });
 
 export const screen = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: 'row',
     width: null,
     height: null,
     backgroundColor: 'white',
-    // alignSelf: 'center'
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
 });
 
 export const pantry = StyleSheet.create({
   container: {
-    // flex: 1,
-    // flexDirection: 'column',
   },
   itemContainer: {
     backgroundColor: ORANGE,
@@ -98,7 +85,6 @@ export const pantry = StyleSheet.create({
   },
   updateQuan: {
     backgroundColor: ORANGE,
-    // flex: 1,
     height: 70,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -106,13 +92,8 @@ export const pantry = StyleSheet.create({
     justifyContent: 'center'
   },
   child: {
-    // flex: 1,
     width: 80,
     color: WHITE,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // alignContent: 'center',
-    // flexWrap: 'wrap',
   },
   groupButtons: {
     flexDirection: 'row',
@@ -132,37 +113,28 @@ export const addItemCard = StyleSheet.create({
     paddingRight: 20,
   },
   row: {
-    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: ORANGE,
     flexWrap: 'wrap',
-    // alignItems: 'flex-end',
-    // borderBottomWidth: 0,
   },
   rowQuan: {
-    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: ORANGE_LIGHT,
     flexWrap: 'wrap',
-    // alignItems: 'flex-end',
   },
   name: {
     flex: 4,
-    // paddingTop: 10,
-    // paddingBottom: 7,
     paddingLeft: 5,
   },
   quan: {
-    // backgroundColor: 'transparent',
     flex: 1,
     paddingLeft: 15,
     paddingTop: 6,
     paddingBottom: 6,
   },
   quanUnit: {
-    // backgroundColor: 'transparent',
     flex: 1,
   },
   scanner: {
@@ -177,8 +149,6 @@ export const recipe = StyleSheet.create({
     height: 250,
     width: null,
     alignItems: 'flex-start',
-    // alignSelf: 'center',
-    // marginBottom: 10,
     justifyContent: 'flex-start',
     borderBottomWidth: 4,
     borderColor: 'white',
@@ -188,7 +158,6 @@ export const recipe = StyleSheet.create({
 
 export const card = StyleSheet.create({
   container: {
-    // backgroundColor: '#444',
     borderWidth: 1,
     borderColor: '#ddd',
     width: null,
@@ -231,8 +200,6 @@ export const card = StyleSheet.create({
     fontFamily: BASE_FONT_REGULAR,
     flexWrap: 'wrap',
     flex: 5,
-    // width: 100,
-    // flexDirection: 'column',
   },
   titleRecipe: {
     fontSize: 20,
@@ -245,8 +212,6 @@ export const card = StyleSheet.create({
     fontFamily: BASE_FONT_REGULAR,
     flexWrap: 'wrap',
     flex: 5,
-    // width: 100,
-    // flexDirection: 'column',
   },
 });
 
@@ -255,7 +220,6 @@ export const icon = StyleSheet.create({
     color: '#ccc',
     paddingLeft: 15,
     paddingTop: 10,
-    // paddingTop: 10,
     marginBottom: 0,
     alignSelf: 'center',
     fontSize: 30,
@@ -275,4 +239,3 @@ export const bar = StyleSheet.create({
     height: APPBAR_HEIGHT,
   },
 });
-
