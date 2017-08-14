@@ -26,11 +26,14 @@ class PantryIndex extends React.Component {
     this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
-  componentWillMount() {
-    if (this.props.session.token) {
-      this.props.requestItems(this.props.session.token);
-    }
+  componentDidMount() {
+    this.props.requestItems(this.props.session.token);
   }
+
+  componentWillReceiveProps(newProps) {
+    // console.warn(JSON.stringify(newProps.inventory));
+  }
+
 
   handleLogout() {
     this.props.logout();
