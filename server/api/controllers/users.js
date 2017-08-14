@@ -28,6 +28,7 @@ export const register = (req, res, next) => {
     username: req.body.username,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
+    inventory: {},
   }), req.body.password, (err, user) => {
     if (err) {
       return res.status(401).json({ error: 'Email address in use' });

@@ -114,7 +114,7 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigate={navigate} activeTab="Dashboard" />
       </Container>
     )
   }
@@ -131,13 +131,14 @@ class Dashboard extends React.Component {
         <ListItem onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
         </ListItem>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigate={navigate} active={'oiwjefoiwjeorwijero'}/>
       </Container>
     )
   }
 
   static navigationOptions = {
     title: 'Kitchen Fox Dashboard',
+    activeTab: 'cthoiasjdf',
   };
 
   render() {

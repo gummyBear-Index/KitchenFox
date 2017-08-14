@@ -82,7 +82,7 @@ export const upcLookUp = (code, token) => {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': `JWT ${token}`,
       'upc_code': code,
-      charset: 'UTF-8',
+      charset: 'UTF-16',
     },
   })
   );
@@ -97,7 +97,7 @@ export const getRecipes = (number, query, token) => {
       'number': number,
       'query': query,
       'Authorization': `JWT ${token}`,
-      charset: 'UTF-8',
+      charset: 'UTF-16',
     },
   })
   );
