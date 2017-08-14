@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
       quantity: 0,
       units: '',
       recipes: [],
-      toRender: component
+      toRender: component,
     }
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
@@ -37,6 +37,8 @@ class Dashboard extends React.Component {
     let items = Object.values(newProps.inventory);
     let item = items[Math.floor(Math.random()*items.length)];
     item = item.name;
+    item = item.split(', ').join('');
+    item = item.split(' ').join('');
     getRecipes(1, item, newProps.session.token)
       .then((res) =>  {
         if (res.status === 503) {
@@ -82,10 +84,10 @@ class Dashboard extends React.Component {
       toRender = this.renderNoLowItem(allItems, lowItems);
     } else if (lowItems.length > 0) {
       toRender = this.renderLowItems(allItems, lowItems);
-    } else if (allItems.length === 0) {
+    } else {
       toRender = this.renderNoInventory();
     }
-    this.setState({ toRender: toRender })
+    this.setState({ toRender: toRender });
     this.forceUpdate();
   }
 
@@ -120,12 +122,6 @@ class Dashboard extends React.Component {
 
   renderLowItems(allItems, lowItems) {
     const { navigate } = this.props.navigation;
-    // let spinner;
-    // if (this.state.recipes.length === 0 ) {
-    //   spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-    // } else if (this.state.recipes.length === 1) {
-    //   spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
-    // }
     return(
       <View>
         <View style={card.container}>
@@ -189,7 +185,6 @@ const mapStateToProps = ({ session, inventory }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // logout: () => dispatch(logout()),
   requestItems: token => dispatch(requestItems(token)),
 });
 
