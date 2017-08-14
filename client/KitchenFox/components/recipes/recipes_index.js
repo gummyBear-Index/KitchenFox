@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List, Spinner } from 'native-base';
+import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button, List } from 'native-base';
 import { getRecipes } from '../../util/api_util';
 import  RecipeCard from './recipe_card';
 import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
 import  { button } from '../../style/button';
@@ -13,14 +15,14 @@ import { text, pantryText } from '../../style/text';
 
 class RecipesIndex extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       recipes: "none",
       query: {},
       spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
-  };
+  }
   // static navigationOptions = {
   //   title: 'Recipes',
   // };
@@ -30,12 +32,12 @@ class RecipesIndex extends React.Component {
     this.setState({spinner: true});
     if (query === "all") {
     getRecipes(5, null, this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({recipes: JSON.parse(res._bodyText)});
       this.setState({spinner: false});
     });
   } else {
     getRecipes(5, (Object.values(this.state.query).join("+")), this.props.session.token).then((res) => {
-      this.setState({recipes: JSON.parse(res._bodyText)})
+      this.setState({recipes: JSON.parse(res._bodyText)});
       this.setState({spinner: false});
     });
     }
@@ -68,7 +70,7 @@ class RecipesIndex extends React.Component {
           <View key={idx} style={pantry.itemContainer}>
             <CheckBox
               checkboxStyle={{
-                backgroundColor: ORANGE_LIGHT, 
+                backgroundColor: ORANGE_LIGHT,
                 tintColor: WHITE,
                 width: 18,
                 height: 18,
@@ -109,7 +111,7 @@ class RecipesIndex extends React.Component {
           <Text>Add Items</Text>
           </TouchableHighlight>
       </Container>
-    )
+    );
     }
   }
 
@@ -119,9 +121,12 @@ class RecipesIndex extends React.Component {
     const items = this.renderItems();
     let spinner;
     if (this.state.spinner) {
-      spinner = (<Content><Spinner color='blue'/></Content>);
+      // spinner = (<Content><Spinner color='blue'/></Content>);
+        spinner = (<View style={{ flex: 1 }}><Spinner visible={true} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
+
     } else {
-      spinner =  (<Content></Content>);
+      spinner = (<View style={{ flex: 1 }}><Spinner visible={false} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View>);
+      // spinner =  (<Content></Content>);
     }
     if (this.state.recipes === "none") {
       return (
