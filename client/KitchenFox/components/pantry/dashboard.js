@@ -30,12 +30,10 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    console.warn('mounted');
     this.props.requestItems(this.props.session.token);
   }
 
   componentWillReceiveProps(newProps) {
-    console.warn('got props');
     let items = Object.values(newProps.inventory);
     let item = items[Math.floor(Math.random()*items.length)];
     item = item.name;
@@ -45,7 +43,6 @@ class Dashboard extends React.Component {
   }
 
   selectToRender () {
-    console.warn('render');
     const { navigate } = this.props.navigation;
     const allItems = [];
     const lowItems = [];
