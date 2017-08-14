@@ -17,7 +17,7 @@
  * 08. intro section
  * 09. process section
  * 10. features section
- * 11. pricing section
+ * 11. team section
  * 12. testimomials section
  * 13. faq section
  *	14. ad-section
@@ -1597,53 +1597,53 @@ a.menu-toggle {
 
 /**
  * ===================================================================
- * pricing section
+ * team section
  *
  * -------------------------------------------------------------------
  */
 
-#pricing {
+#team {
 	background: #EAEAED;
 	padding-top: 12rem;
 	padding-bottom: 9.6rem;
 }
-.pricing-content {
+.team-content {
 	margin-top: 6.6rem;
 	max-width: 1280px;
 }
-.pricing-content .bgrid {
+.team-content .bgrid {
 	margin-bottom: 3.6rem;
 }
-.pricing-content .price-block {
+.team-content .price-block {
 	background-color: #FFFFFF;
 	border-radius: 5px;
 	overflow: hidden;
 	text-align: center;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
-.pricing-content .price-block .top-part,
-.pricing-content .price-block .bottom-part {
+.team-content .price-block .top-part,
+.team-content .price-block .bottom-part {
 	padding: 3.9rem 1.5rem;
 }
-.pricing-content .price-block .top-part {
+.team-content .price-block .top-part {
 	background: #58687b;
 	color: #FFFFFF;
 	padding-bottom: 2.4rem;
 	position: relative;
 }
-.pricing-content .price-block .bottom-part {
+.team-content .price-block .bottom-part {
 	padding-top: 2.4rem;
 	padding-left: 3rem;
 	padding-right: 3rem;
 }
-.pricing-content .price-block .plan-title {
+.team-content .price-block .plan-title {
 	color: #FFFFFF;
 	padding-bottom: 2.4rem;
 	margin-bottom: 1.2rem;
 	font-size: 2.4rem;
 	position: relative;
 }
-.pricing-content .price-block .plan-title::after {
+.team-content .price-block .plan-title::after {
 	display: block;
 	background-color: rgba(255, 255, 255, 0.3);
 	width: 80px;
@@ -1654,60 +1654,60 @@ a.menu-toggle {
 	bottom: 0;
 	margin-left: -40px;
 }
-.pricing-content .price-block .plan-price {
+.team-content .price-block .plan-price {
 	font-family: "raleway-bold", sans-serif;
 	font-size: 5rem;
 	line-height: 1;
 	margin-bottom: .6rem;
 }
-.pricing-content .price-block .plan-price sup {
+.team-content .price-block .plan-price sup {
 	font-size: 2.4rem;
 	top: -1.5rem;
 	margin-right: 3px;
 }
-.pricing-content .price-block .price-month {
+.team-content .price-block .price-month {
 	margin-bottom: 1.2rem;
 	font-family: "raleway-bold", sans-serif;
 	font-size: 1.6rem;
 }
-.pricing-content .price-block .price-meta {
+.team-content .price-block .price-meta {
 	color: rgba(255, 255, 255, 0.5);
 	line-height: 1.8rem;
 }
-.pricing-content .price-block .button {
+.team-content .price-block .button {
 	color: #353F49;
 	padding: 0 5rem;
 	margin-left: auto;
 	margin-right: auto;
 }
-.pricing-content .price-block .button:hover,
-.pricing-content .price-block .button:focus {
+.team-content .price-block .button:hover,
+.team-content .price-block .button:focus {
 	background: #58687b;
 	color: #FFFFFF;
 }
-.pricing-content .price-block .features {
+.team-content .price-block .features {
 	list-style: none;
 	font-family: "raleway-bold", sans-serif;
 	font-size: 1.5rem;
 	color: rgba(0, 0, 0, 0.4);
 	margin: .6rem 0 1.8rem 0;
 }
-.pricing-content .price-block .features li {
+.team-content .price-block .features li {
 	padding: .6rem 0;
 	border-bottom: 1px solid #EAEAED;
 }
-.pricing-content .price-block .features li strong {
+.team-content .price-block .features li strong {
 	color: #353F49;
 	font-family: "raleway-bold", serif;
 	margin-right: 5px;
 }
-.pricing-content .price-block .features li:last-child {
+.team-content .price-block .features li:last-child {
 	border: none;
 }
-.pricing-content .primary .top-part {
+.team-content .primary .top-part {
 	background: #05bca9;
 }
-.pricing-content .primary .top-part::before {
+.team-content .primary .top-part::before {
 	content: attr(data-info);
 	display: block;
 	min-height: 48px;
@@ -1732,27 +1732,27 @@ a.menu-toggle {
 
 /**
  * responsive:
- * pricing
+ * team
  * -
  */
 
 @media only screen and (max-width:1140px) {
-	.pricing-content {
+	.team-content {
 		max-width: 800px;
 	}
-	.pricing-content .bgrid {
+	.team-content .bgrid {
 		width: 50%;
 		clear: none;
 	}
-	.pricing-content .bgrid:nth-child(2n+1) {
+	.team-content .bgrid:nth-child(2n+1) {
 		clear: both;
 	}
 }
 @media only screen and (max-width:600px) {
-	.pricing-content {
+	.team-content {
 		max-width: 420px;
 	}
-	.pricing-content .bgrid {
+	.team-content .bgrid {
 		width: 100% !important;
 		float: none !important;
 		clear: both !important;
