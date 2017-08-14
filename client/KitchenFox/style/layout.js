@@ -246,3 +246,13 @@ export const card = StyleSheet.create({
     // flexDirection: 'column',
   },
 });
+
+export const icon = StyleSheet.create({
+  back: {
+    color: '#bbb',
+    paddingRight: 10,
+    // paddingTop: 10,
+    marginBottom: 0,
+    alignSelf: 'center',
+  },
+});

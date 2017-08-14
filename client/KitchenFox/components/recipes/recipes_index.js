@@ -11,7 +11,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
 import  { button } from '../../style/button';
-import { screen, pantry } from '../../style/layout';
+import { screen, pantry, icon } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
 
 class RecipesIndex extends React.Component {
@@ -164,12 +164,14 @@ class RecipesIndex extends React.Component {
     if (this.state.recipes === "none") {
       return (
         <View style={screen.container}>
-          <Button onPress={() => navigate('Dashboard')}>
-            <Text>Go Back</Text>
-          </Button>
           <ScrollView>
-          <Text style={text.titleCenter}>I want to cook with...</Text>
-            {items}
+            <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
+              <TouchableHighlight onPress={() => navigate('Dashboard')}>
+                <Icon name='ios-arrow-dropleft-outline' style={icon.back} />
+              </TouchableHighlight>
+              <Text style={text.titleDiminished}>I want to cook with...</Text>
+            </View>
+              {items}
           </ScrollView>
             {spinner}
             {this.renderButton()}
@@ -178,10 +180,12 @@ class RecipesIndex extends React.Component {
     } else {
     return (
       <View style={screen.container}>
-        <Button onPress={() => navigate('Recipes')}>
-          <Text>Go Back</Text>
-        </Button>
-        <Text style={text.titleDiminished}>Recipes you can make</Text>
+        <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableHighlight onPress={() => navigate('Recipes')}>
+            <Icon name='' style={icon.back} />
+          </TouchableHighlight>
+          <Text style={text.titleDiminished}>Recipes you can make</Text>
+        </View>
         <Content>
           {recipes}
         </Content>

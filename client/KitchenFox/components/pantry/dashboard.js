@@ -93,7 +93,7 @@ class Dashboard extends React.Component {
           {this.renderRecipe()}
         </ListItem>
       </Container>
-    )
+    );
   }
 
   renderLowItems(allItems, lowItems) {

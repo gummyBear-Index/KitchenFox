@@ -50,6 +50,15 @@ export const text = StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 40,
   },
+  titleCenterWBB: {
+    fontSize: 34,
+    // fontSize: 50,
+    textAlign: 'center',
+    color: TITLE,
+    fontFamily: BASE_FONT_REGULAR,
+    paddingTop: 0,
+    paddingBottom: 40,
+  },
   greetingTitle: {
     fontSize: 88,
     textAlign: 'center',
