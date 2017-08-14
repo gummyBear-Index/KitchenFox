@@ -89,5 +89,16 @@ export const back = StyleSheet.create({
     alignContent: 'flex-start', 
     justifyContent: 'space-between', 
     alignItems: 'flex-start',
+    // backgroundColor: 'white'
+  },
+  containerCamera: {
+    // flex: 1, 
+    flexDirection: 'row', 
+    alignContent: 'flex-start', 
+    justifyContent: 'space-between', 
+    alignItems: 'flex-start',
+    // backgroundColor: 'transparent',
+    // height: 100,
+    // width: null,
   },
 });

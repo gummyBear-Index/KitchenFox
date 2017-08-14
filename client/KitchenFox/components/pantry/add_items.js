@@ -10,9 +10,10 @@ import { upcLookUp } from '../../util/api_util';
 import AddItemCard from './add_item_card';
 import CustomStatusBar from '../misc/status_bar';
 import { text } from '../../style/text';
-import { screen } from '../../style/layout';
-import { button } from '../../style/button';
+import { screen, icon } from '../../style/layout';
+import { button, back } from '../../style/button';
 import { camera } from '../../style/cameraStyle';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 class AddItems extends React.Component {
   constructor(props) {
@@ -148,12 +149,25 @@ class AddItems extends React.Component {
   // };
 
   render() {
+    const { navigation } = this.props;
     if (this.state.showCamera) {
       return (
         <View style={camera.container}>
-        <Text style={text.titleScanner}>
-          scan the barcode
-        </Text>
+           <CustomStatusBar /> 
+           <View style={back.containerCamera}> 
+            <TouchableHighlight 
+              onPress={() => navigation.goBack(null)}
+              underlayColor='#fff'>
+              <EvilIcons name='arrow-left' style={icon.back} />
+            </TouchableHighlight>
+            {/* <View> */}
+              <Text style={text.titleDiminished}>scan the barcode</Text>
+            {/* </View> */}
+            {/* {/* <View> */}
+               <EvilIcons name='arrow-left' style={icon.backPadding} /> 
+            </View>
+          {/* </View> */}
+        {/* <Text style={text.titleScanner}>scan the barcode</Text> */}
         <Camera
           ref={(cam) => {
             this.camera = cam;
@@ -173,10 +187,22 @@ class AddItems extends React.Component {
       <View style={screen.container}>
         <CustomStatusBar />
         <ScrollView>
-          <Text style={text.titleCenter}>Add items</Text>
-          {/* <List> */}
+          <View style={back.container}>
+            <TouchableHighlight 
+              onPress={() => navigation.goBack(null)}
+              underlayColor='#fff'>
+              <EvilIcons name='arrow-left' style={icon.back} />
+            </TouchableHighlight>
+            <View>
+              <Text style={text.titleDiminished}>Add Items</Text>
+            </View>
+            <View>
+              <EvilIcons name='arrow-left' style={icon.backPadding} />
+            </View>
+          </View>
+
           {this.itemFormGen()}
-          {/* </List> */}
+
           <TouchableHighlight
             style={button.posFormButton}
             onPress={() => this.handleSubmit()}>
