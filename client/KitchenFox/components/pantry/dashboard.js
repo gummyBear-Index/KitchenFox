@@ -88,7 +88,7 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        <NavFooter navigate={navigate} />
+        <NavFooter navigation={this.props.navigation}  />
       </Container>
     )
   }
@@ -114,7 +114,7 @@ class Dashboard extends React.Component {
         <ListItem>
           {this.renderRecipe()}
         </ListItem>
-        <NavFooter navigate={navigate} activeTab="Dashboard" />
+        <NavFooter navigation={this.props.navigation}  />
       </Container>
     )
   }
@@ -131,7 +131,7 @@ class Dashboard extends React.Component {
         <ListItem onPress={() => { navigate('AddItem'); }}>
           <Text>Add Item</Text>
         </ListItem>
-        <NavFooter navigate={navigate} active={'oiwjefoiwjeorwijero'}/>
+        <NavFooter navigation={this.props.navigation} />
       </Container>
     )
   }
