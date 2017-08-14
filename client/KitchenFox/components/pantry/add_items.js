@@ -160,14 +160,9 @@ class AddItems extends React.Component {
               underlayColor='#fff'>
               <EvilIcons name='arrow-left' style={icon.back} />
             </TouchableHighlight>
-            {/* <View> */}
               <Text style={text.titleDiminished}>scan the barcode</Text>
-            {/* </View> */}
-            {/* {/* <View> */}
                <EvilIcons name='arrow-left' style={icon.backPadding} /> 
             </View>
-          {/* </View> */}
-        {/* <Text style={text.titleScanner}>scan the barcode</Text> */}
         <Camera
           ref={(cam) => {
             this.camera = cam;
@@ -208,6 +203,7 @@ class AddItems extends React.Component {
             onPress={() => this.handleSubmit()}>
             <Text style={text.posButton}>submit</Text>
           </TouchableHighlight>
+          <View style={{height: 60}} />
         </ScrollView>
       </View>
     );
