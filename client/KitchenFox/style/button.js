@@ -52,7 +52,7 @@ export const button = StyleSheet.create({
     backgroundColor: BLUE,
     borderWidth: 3,
     borderColor: BLUE,
-    width: 120,
+    maxWidth: 140,
   },
   negFormButtonRecipe: {
     borderRadius: 80,

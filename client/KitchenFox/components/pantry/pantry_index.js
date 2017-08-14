@@ -4,6 +4,7 @@ import { Container, Content, List, ListItem, Button,
   Card, CardItem, Left, Text } from 'native-base';
 import { View, TouchableHighlight, ScrollView } from 'react-native';
 
+import EmptyPantry from './pantry_empty';
 import { ACTIVE_TAB, ORANGE_LIGHT } from '../../style/common';
 import { screen, pantry } from '../../style/layout';
 import { button } from '../../style/button';
@@ -23,7 +24,7 @@ class PantryIndex extends React.Component {
       units: '',
     };
     this.renderItems = this.renderItems.bind(this);
-    this.renderNoInventory = this.renderNoInventory.bind(this);
+    // this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   componentDidMount() {
@@ -39,19 +40,19 @@ class PantryIndex extends React.Component {
     this.props.logout();
   }
 
-  renderNoInventory() {
-    const { navigate } = this.props.navigation;
-    return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>There is nothing in your pantry or fridge</Text>
-        </ListItem>
-        <Button onPress={() => { navigate('AddItem'); }}>
-          <Text>Add Item</Text>
-        </Button>
-      </Container>
-    );
-  }
+  // renderNoInventory() {
+  //   const { navigate } = this.props.navigation;
+  //   return(
+  //     <Container>
+  //       <ListItem itemDivider>
+  //         <Text>There is nothing in your pantry or fridge</Text>
+  //       </ListItem>
+  //       <Button onPress={() => { navigate('AddItem'); }}>
+  //         <Text>Add Item</Text>
+  //       </Button>
+  //     </Container>
+  //   );
+  // }
 
   renderItems() {
     const { navigate } = this.props.navigation;
@@ -81,7 +82,7 @@ class PantryIndex extends React.Component {
       </View>
       );
     } else if (allItems.length === 0) {
-      return this.renderNoInventory();
+      return (<EmptyPantry navigation={this.props.navigation} />);
     }
   }
 

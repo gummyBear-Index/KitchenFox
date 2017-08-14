@@ -105,6 +105,8 @@ export const text = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'stretch',
     textAlign: 'center',
+    paddingLeft: 18,
+    paddingRight: 18,
   },
   negButton: {
     color: BLUE,

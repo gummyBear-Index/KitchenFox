@@ -8,7 +8,7 @@ import CheckBox from 'react-native-checkbox';
 import { Image, TouchableHighlight, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-
+import EmptyPantry from '../pantry/pantry_empty';
 import  { ORANGE, ORANGE_LIGHT, ORANGE_LIGHTER, WHITE } from '../../style/common';
 import  { button } from '../../style/button';
 import { screen, pantry, icon } from '../../style/layout';
@@ -23,12 +23,7 @@ class RecipesIndex extends React.Component {
       spinner: false,
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
-    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
-  // static navigationOptions = {
-  //   title: 'Recipes',
-  // };
-
 
   fetchRecipes(query) {
     this.setState({spinner: true});
@@ -53,20 +48,6 @@ class RecipesIndex extends React.Component {
       delete newQuery[idx];
     }
     this.setState({query: newQuery});
-  }
-
-  renderNoInventory() {
-    const { navigate } = this.props.navigation;
-    return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>There is nothing in your pantry or fridge</Text>
-        </ListItem>
-        <Button onPress={() => { navigate('AddItem'); }}>
-          <Text>Add Item</Text>
-        </Button>
-      </Container>
-    );
   }
 
   renderItems() {
@@ -103,7 +84,7 @@ class RecipesIndex extends React.Component {
       </View>
       );
     } else if (allItems.length === 0) {
-      return this.renderNoInventory();
+      return (<EmptyPantry navigation={this.props.navigation} />);
     }
   }
 

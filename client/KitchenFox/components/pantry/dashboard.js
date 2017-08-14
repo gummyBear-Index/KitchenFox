@@ -8,6 +8,7 @@ import NavFooter from '../nav/footer';
 import RecipeCard from '../recipes/recipe_card';
 import { getRecipes } from '../../util/api_util';
 
+import EmptyPantry from './pantry_empty';
 import { View, ScrollView, TouchableHighlight } from 'react-native';
 import { screen, card, pantry } from '../../style/layout';
 import { text, pantryText } from '../../style/text';
@@ -26,7 +27,6 @@ class Dashboard extends React.Component {
     this.renderRecipe = this.renderRecipe.bind(this);
     this.renderNoLowItem = this.renderNoLowItem.bind(this);
     this.renderLowItems = this.renderLowItems.bind(this);
-    this.renderNoInventory = this.renderNoInventory.bind(this);
   }
 
   componentWillMount() {
@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
     } else if (lowItems.length > 0) {
       return this.renderLowItems(allItems, lowItems);
     } else if (allItems.length === 0) {
-      return this.renderNoInventory();
+      return (<EmptyPantry navigation={this.props.navigation} />);
     }
   }
 
@@ -123,23 +123,9 @@ class Dashboard extends React.Component {
     );
   }
 
-  renderNoInventory() {
-    const { navigate } = this.props.navigation;
-    return(
-      <Container>
-        <ListItem itemDivider>
-          <Text>There is nothing in your pantry or fridge</Text>
-        </ListItem>
-        <Button onPress={() => { navigate('AddItem'); }}>
-          <Text>Add Item</Text>
-        </Button>
-      </Container>
-    )
-  }
-
-  static navigationOptions = {
-    title: 'Kitchen Fox Dashboard',
-  };
+  // static navigationOptions = {
+  //   title: 'Kitchen Fox Dashboard',
+  // };
 
   render() {
     const { navigate } = this.props.navigation;
