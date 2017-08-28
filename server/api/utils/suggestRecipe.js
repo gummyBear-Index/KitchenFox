@@ -3,15 +3,12 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import http from 'http';
 import Promise from "bluebird";
+import {APPID, APPKEY} from '../../api_keys';
 
 
 const router = Router();
-const app_id = "744f7b77";
-const app_key = "28d95b6af2869f1fdd36dcc5a7e6a24b";
-const app_id1 = "d3dd7705";
-const app_key1 = "9e56473d6091ebe4f26acb90a00ca4fb";
-// api call address
-// https://api.edamam.com/search?q=1+chicken%22AND%221+tomato&app_id=744f7b77&app_key=28d95b6af2869f1fdd36dcc5a7e6a24b
+let today = new Date();
+let dd = (today.getDate())%4;
 
 export const createQuery = (result) => {
     let query = "";
@@ -30,7 +27,7 @@ export const createQuery = (result) => {
 
 export const apiCall = (number, query) => {
   return new Promise((resolve, reject) => {
-    const request = http.get(`http://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${app_key}&to=${number}`, (res) => {
+    const request = http.get(`http://api.edamam.com/search?q=${query}&app_id=${APPID[dd]}&app_key=${APPKEY[dd]}&to=${number}`, (res) => {
       const { statusCode } = res;
       const contentType = res.headers['content-type'];
       let error;
@@ -78,7 +75,7 @@ export const apiCall = (number, query) => {
 
 export const apiCallDashboard = (number, query) => {
   return new Promise((resolve, reject) => {
-    const request = http.get(`http://api.edamam.com/search?q=${query}&app_id=${app_id1}&app_key=${app_key1}&to=${number}`, (res) => {
+    const request = http.get(`http://api.edamam.com/search?q=${query}&app_id=${APPID[dd]}&app_key=${APPKEY[dd]}&to=${number}`, (res) => {
       const { statusCode } = res;
       const contentType = res.headers['content-type'];
       let error;
