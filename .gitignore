@@ -18,6 +18,7 @@
 !/tmp/.keep
 
 /server/node_modules
+/server/api_key.js
 /server/dist
 client/KitchenFox/node_modules
 client/KitchenFox/__tests__
