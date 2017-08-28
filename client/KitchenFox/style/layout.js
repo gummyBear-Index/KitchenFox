@@ -117,12 +117,17 @@ export const addItemCard = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: ORANGE,
     flexWrap: 'wrap',
+    borderTopLeftRadius: 5, 
+    borderTopRightRadius: 5,        
   },
   rowQuan: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: ORANGE_LIGHT,
     flexWrap: 'wrap',
+    marginTop: -1,
+    borderBottomLeftRadius: 5, 
+    borderBottomRightRadius: 5, 
   },
   name: {
     flex: 4,
@@ -141,6 +146,7 @@ export const addItemCard = StyleSheet.create({
     backgroundColor: '#666',
     width: null,
     height: null,
+    borderTopRightRadius: 5,    
   }
 });
 
@@ -152,7 +158,6 @@ export const recipe = StyleSheet.create({
     justifyContent: 'flex-start',
     borderBottomWidth: 4,
     borderColor: 'white',
-
   }
 });
 

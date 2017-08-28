@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import AddItemsContainer from '../components/pantry/add_items_container';
 import Dashboard from '../components/pantry/dashboard';
 import PantryIndex from '../components/pantry/pantry_index';
