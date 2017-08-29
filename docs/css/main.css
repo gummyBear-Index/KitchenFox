@@ -702,7 +702,7 @@ button.round, .button.round {
 	border-radius: 1000px;
 }
 button.stroke, .button.stroke {
-	background: transparent !important;
+	background: rgba(255, 255, 255, .5) !important;
 	border: 3px solid transparent;
 	line-height: 4.4rem;
 }
@@ -1149,7 +1149,7 @@ a.menu-toggle {
  */
 
 #intro {
-	background: #14181E url(../images/cabinet.jpg) no-repeat center;
+	background: #14181E url(../images/kitchen.jpg) no-repeat center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -1179,7 +1179,7 @@ a.menu-toggle {
 	transform: translateY(-1.2rem);
 }
 .intro-content h1 {
-	color: #FFFFFF;
+	color: #444;
 	font-family: "merriweather-bold", serif;
 	font-size: 5.4rem;
 	line-height: 1.334;
@@ -1188,7 +1188,7 @@ a.menu-toggle {
 	margin-right: auto;
 }
 .intro-content h5 {
-	color: rgba(255, 255, 255, 0.6);
+	color: #777;
 	font-family: "raleway-heavy", sans-serif;
 	font-size: 1.8rem;
 	line-height: 1.667;
@@ -1204,8 +1204,8 @@ a.menu-toggle {
 	outline: none;
 }
 .intro-content .button {
-	border-color: #FFFFFF;
-	color: #FFFFFF;
+	border-color: #000;
+	color: #000;
 	height: 6.6rem;
 	line-height: 6rem;
 	padding: 0 3rem !important;
@@ -1216,8 +1216,8 @@ a.menu-toggle {
 	letter-spacing: .4rem;
 }
 .intro-content .button:hover, .intro-content .button:focus {
-	color: #05bca9;
-	border-color: #05bca9;
+	color: #444;
+	border-color: #444;
 }
 
 /**
