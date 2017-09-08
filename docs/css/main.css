@@ -833,14 +833,20 @@ header .logo {
 header .logo a {
 	display: block;
 	margin: 0;
-	padding: 0;
+	padding: 4px 0 0 50px;
 	border: none;
-	font: 0/0 a;
+	/* font: 0/0 a; */
+	font-family: "raleway-heavy", sans-serif;
+	font-size: 1.8rem;
+	line-height: 1.667;
+	margin-bottom: 0.6rem;
+	text-transform: uppercase;
+	letter-spacing: .25rem;
 	text-shadow: none;
-	color: transparent;
-	width: 42px;
+	color: #fff;
+	width: 500px;
 	height: 42px;
-	background: url("../images/fox.png") no-repeat center;
+	background: url("../images/fox.png") no-repeat left;
 	background-size: 42px 42px;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -854,7 +860,7 @@ header .logo a {
 	top: 0;
 }
 .sticky .logo a {
-	width: 38px;
+	width: 500px;
 	height: 38px;
 	background-size: 38px 38px;
 }
