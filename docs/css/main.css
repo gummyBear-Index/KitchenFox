@@ -1768,7 +1768,26 @@ a.menu-toggle {
 		margin-right: 0;
 	}
 }
+/**
+ * ===================================================================
+ * phone demo section
+ *
+ * -------------------------------------------------------------------
+ */
+ #device {
+	 background-image: url(../images/device-android.png);
+	 background-repeat: no-repeat;
+	 background-position: center; 
+	 height: 560px;
+ }
 
+ #screen {
+	position: relative;
+	top: 10.0%;
+	right: 0.125%;
+	/* right: 5.97%;
+	bottom: 11.58%; */
+ }
 
 /**
  * ===================================================================
@@ -2276,6 +2295,10 @@ footer ul li {
 }
 .footer-bottom .copyright span:last-child::after {
 	display: none;
+}
+
+iframe {
+	overflow: hidden;
 }
 
 /**
