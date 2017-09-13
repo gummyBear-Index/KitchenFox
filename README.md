@@ -18,9 +18,9 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
 
 ## Technologies
-  KitchenFox utilizes React Native, Stack Navigation and Redux for smooth transition, efficiency and unidirectional data management. It pairs with Node/Express backend and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
+  KitchenFox utilizes React Native, Stack Navigation and Redux for smooth transition, efficient and unidirectional data management. It pairs a Node/Express backend and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
 
-  Third Party APIS involved:
+  Third Party APIs involved:
    + [Edamam](http://developer.edamam.com/edamam-docs-recipe-api)
       - allows for recipe search using ingredients
    + [Nutritionix](https://developer.nutritionix.com/docs/v1_1#/nutritionix_api_v1_1)
@@ -91,7 +91,6 @@ Our team's mission is to optimize people's daily lives by providing a simple too
   ``` javascript
 
   //  Recipe Index Component
-
   fetchRecipes(query) {
     this.setState({spinner: true});
     if (query === "all") {
@@ -108,7 +107,6 @@ Our team's mission is to optimize people's daily lives by providing a simple too
   }
 
   //  Recipe API call
-
   export const createQuery = (result) => {
       let query = "";
       let units;
@@ -127,8 +125,7 @@ Our team's mission is to optimize people's daily lives by providing a simple too
     return new Promise((resolve, reject) => {
       const request = http.get(`http://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${app_key}&to=${number}`, (res) => {
 
-      // other code
-
+        // other code
         res.setEncoding('utf8');
         let rawData = '';
         let recipeinfo = [];
@@ -150,13 +147,13 @@ Our team's mission is to optimize people's daily lives by providing a simple too
           }
           resolve(recipeinfo);
         }
-  // other code
+    // other code
     }}
   };
 
   ```
 
-   + The api call is built taking into account of fetching recipes with a specific query from the front end, or getting the entire inventory from the backend an parsing that as a query.
+   + The API call is designed so that fetching recipes with a specific query from the front end, or getting the entire inventory from the backend and parsing that as a query.
 
 
  <p align="center">
@@ -164,7 +161,7 @@ Our team's mission is to optimize people's daily lives by providing a simple too
  </p>
 
 ## Future Features
-  There are a number of bonus features that would greatly enhanced the user's experience and also optimize the execution of certain logics.
+  There are a number of bonus features that would greatly enhance the user's experience:
 
   + Add Receipt parsing functionality with OCR
   + Deploy app to Google Play and App Store
