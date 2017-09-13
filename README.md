@@ -2,11 +2,11 @@
 [Demo Site](https://kitchenfox.site/)
 
 ## Overview
-What's better than having an application that lets you make easy decisions on-the-go? KithchenFox, a mobile application built using the MERN (Mongo-Express-React-Node) stack, helps you visualize your kitchen's inventory and recommend recipes based on what you have.
+What's better than having an application that lets you make easy decisions on the go? KitchenFox, a mobile app built using the MERN (Mongo-Express-React-Node) stack, helps you visualize your kitchen's inventory and recommends recipes based on what you have.
 
 Users can keep track of their groceries and produce using the barcode scanning tool. They can easily update and delete items that are no longer desired and or expired.
 
-Our team's mission is to optimize people's daily lives by providing a simple tool and also to reduce food waste by keeping track on inventory items. Cook with your favorite ingredients with ease!
+Our team's mission is to optimize people's daily lives by providing a simple tool that reduces food waste by keeping track on inventory items. Cook your favorite ingredients with ease!
 
 ![overview_image](./docs/images/kf-previews.png)
 
@@ -18,7 +18,9 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
 
 ## Technologies
-  KitchenFox utilizes React Native, Stack Navigation and Redux for smooth transition, efficient and unidirectional data management. It pairs a Node/Express backend and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
+  KitchenFox's frontend utilizes React Native with a Redux architecture for efficient and unidirectional data management. 
+  
+  It pairs a Node/Express backend and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
 
   Third Party APIs involved:
    + [Edamam](http://developer.edamam.com/edamam-docs-recipe-api)
