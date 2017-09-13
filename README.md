@@ -13,6 +13,9 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 ### Adding ingredients
 ![adding_an_ingredient](./docs/images/KF-adding-ingredients.gif)
 
+### Updating ingredients
+![updating_an_ingredient](./docs/images/KF-updating-ingredients.gif)
+
 
 ## Technologies
   KitchenFox utilizes React Native, Stack Navigation and Redux for smooth transition, efficiency and unidirectional data management. It pairs with Node/Express backend and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
