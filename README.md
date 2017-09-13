@@ -33,7 +33,7 @@ Our team's mission is to optimize people's daily lives by providing a simple too
   + Generating and storing JWT tokens using Async Storage on the local device helped bootstrap the user to the application. Passport.js was utilized to verify the token and also fetch the appropriate user's collection.
 
   ### Barcode Scanning Tool
-  + With the react-native-camera library, KitchenFox allows the user to user their phone's camera to scan item barcode to populate the inventory. (Manual input of ingredients also possible.)
+  + Integrated the react-native-camera library into the KitchenFox app allowed the user to use their phone's camera to scan an item's barcode to add ingredients into their inventory. 
 
   ``` javascript
 
@@ -156,16 +156,13 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
    + The API call is designed so that fetching recipes with a specific query from the front end, or getting the entire inventory from the backend and parsing that as a query.
 
+  ![recipes](./docs/images/recipes.png)
 
- <p align="center">
- <img src = "/docs/recipes.png">
- </p>
 
 ## Future Features
   There are a number of bonus features that would greatly enhance the user's experience:
 
-  + Add Receipt parsing functionality with OCR
-  + Deploy app to Google Play and App Store
+  + Add receipt parsing functionality with OCR
   + Connect with Amazon via affiliate link for items low in stock
   + Suggest a meal plan for the week based on food inventory
   + Include Carbon footprint and nutrition data for grocery items
