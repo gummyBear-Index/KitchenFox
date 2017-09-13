@@ -2,7 +2,7 @@
 [Demo Site](https://kitchenfox.site/)
 
 ## Overview
-What's better than having an application that lets you make easy decisions on the go? KitchenFox, a mobile app built using the MERN (Mongo-Express-React-Node) stack, helps you visualize your kitchen's inventory and recommends recipes based on what you have.
+KitchenFox, an Android and iOS mobile app, helps you visualize your kitchen's inventory and recommends recipes based on what you have.
 
 Users can keep track of their groceries and produce using the barcode scanning tool. They can easily update and delete items that are no longer desired and or expired.
 
@@ -30,11 +30,10 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
 ## Features
   ### JWT Token Authentication
-
-  + Generating and storing JWT tokens using Async Storage on the local device helps us bootstrap the user to the application. Passport.js was untilized to verify the token and also fetch the appropriate user's collection.
+  + Generating and storing JWT tokens using Async Storage on the local device helped bootstrap the user to the application. Passport.js was utilized to verify the token and also fetch the appropriate user's collection.
 
   ### Barcode Scanning Tool
-  + With the react-native-camera library, KitchenFox allows the user to toggle back and forth when adding items to your inventory to user the mobile's camera to scan item's barcode to populate the inventory.
+  + With the react-native-camera library, KitchenFox allows the user to user their phone's camera to scan item barcode to populate the inventory. (Manual input of ingredients also possible.)
 
   ``` javascript
 
