@@ -83,11 +83,9 @@ Our team's mission is to help people reduce their food waste by keeping track on
   ```
 
   ### Fetching Recipes using inventory items
+   + Users can get recommended recipes by choosing specific items in their inventory they want to cook with.
 
-   + Users have the options to get recommended recipes by selecting specific items in their inventory or using their entire inventory.
-
-
-   + Recipes results page display 5 recommended recipes with a clickable image with overlayed title that opens up a browser page with the detailed recipe.
+   + The recipes results page displays 5 recommended recipes users can browse from.
 
   ``` javascript
 
