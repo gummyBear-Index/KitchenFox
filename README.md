@@ -2,11 +2,11 @@
 [Demo Site](https://kitchenfox.site/)
 
 ## Overview
-KitchenFox, an Android and iOS mobile app, helps you visualize your kitchen's inventory and recommends recipes based on what you have.
+KitchenFox, an Android and iOS mobile app, helps you visualize your kitchen's food inventory and recommends recipes based on the ingredients you have.
 
-Users can keep track of their groceries and produce using the barcode scanning tool. They can easily update and delete items that are no longer desired and or expired.
+Users can keep track of their produce and grocery items by entering items into their invetory via scanning an items barcode scanning tool. They also can manually enter, update, and delete items that have been consumed.
 
-Our team's mission is to optimize people's daily lives by providing a simple tool that reduces food waste by keeping track on inventory items. Cook your favorite ingredients with ease!
+Our team's mission is to help people reduce their food waste by keeping track on inventory items. Cook your favorite ingredients with ease!
 
 ![overview_image](./docs/images/kf-previews.png)
 
@@ -18,9 +18,9 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
 
 ## Technologies
-  KitchenFox's frontend utilizes React Native with a Redux architecture for efficient and unidirectional data management. 
+  KitchenFox's frontend utilizes React Native with a Redux architecture for efficient and unidirectional data management.
   
-  It pairs a Node/Express backend and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
+  On the backend, it pairs an Express framework for Node.js and MongoDB. MongoDB allows us to build a scalable, high-performance, open source, schema-free, document-oriented database.
 
   Third Party APIs involved:
    + [Edamam](http://developer.edamam.com/edamam-docs-recipe-api)
@@ -30,7 +30,7 @@ Our team's mission is to optimize people's daily lives by providing a simple too
 
 ## Features
   ### JWT Token Authentication
-  + Generating and storing JWT tokens using Async Storage on the local device helped bootstrap the user to the application. Passport.js was utilized to verify the token and also fetch the appropriate user's collection.
+  + Generating and storing JWT tokens via Async Storage on the local device helped bootstrap the user to the application. Passport.js was utilized to verify the token and also fetch the appropriate user's collection.
 
   ### Barcode Scanning Tool
   + Integrated the react-native-camera library into the KitchenFox app allowed the user to use their phone's camera to scan an item's barcode to add ingredients into their inventory. 
@@ -165,4 +165,4 @@ Our team's mission is to optimize people's daily lives by providing a simple too
   + Add receipt parsing functionality with OCR
   + Connect with Amazon via affiliate link for items low in stock
   + Suggest a meal plan for the week based on food inventory
-  + Include Carbon footprint and nutrition data for grocery items
+  + Include carbon footprint and nutrition data for grocery items
