@@ -1,5 +1,5 @@
 # KitchenFox
-[Homepage](https://kitchenfox.site/)
+[Demo Site](https://kitchenfox.site/)
 
 ## Overview
 What's better than having an application that lets you make easy decisions on-the-go? KithchenFox, a mobile application built using the MERN (Mongo-Express-React-Node) stack, helps you visualize your kitchen's inventory and recommend recipes based on what you have.
@@ -8,9 +8,10 @@ Users can keep track of their groceries and produce using the barcode scanning t
 
 Our team's mission is to optimize people's daily lives by providing a simple tool and also to reduce food waste by keeping track on inventory items. Cook with your favorite ingredients with ease!
 
-<p align="center">
-<img src ="/docs/open.gif">
-</p>
+![overview_image](./docs/images/kf-previews.png)
+
+### Adding ingredients
+![adding_an_ingredient](./docs/images/KF-adding-ingredients.gif)
 
 
 ## Technologies
